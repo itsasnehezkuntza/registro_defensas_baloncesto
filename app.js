@@ -29,7 +29,6 @@ const DEFENSE_CONFIG = Object.freeze({
 
 const DB_NAME = "registro_defensivo_baloncesto";
 const DB_VERSION = 1;
-const BACKUP_SCHEMA = "registro-defensivo-baloncesto";
 const CATEGORY_NAMES = { transicion: "Transición", estatico: "Estático", directo: "Bloqueo directo" };
 const $ = (selector) => document.querySelector(selector);
 
@@ -39,7 +38,8 @@ let currentGameId = null;
 let events = [];
 let chosen = null;
 let busy = false;
-let metadataTimer = null;
+let pendingMetadataSave = Promise.resolve();
+let metadataRevision = 0;
 let mutationQueue = Promise.resolve();
 let feedbackVersion = 0;
 
@@ -195,28 +195,35 @@ async function persistGameDetails(snapshot) {
   await done;
 }
 
+// Cada cambio se confirma en IndexedDB sin esperar a un temporizador.
+// Así se minimiza el riesgo de perder jornada o rival si se recarga
+// inmediatamente después de editarlos.
 function queueCurrentMetadataSave() {
   const game = gameById(currentGameId);
   if (!game) return Promise.resolve();
   const snapshot = { ...game };
+  const revision = ++metadataRevision;
   setSaveStatus("saving");
-  return queueMutation(() => persistGameDetails(snapshot))
-    .then(async () => {
-      if (currentGameId === snapshot.id) events = await eventsForGame(snapshot.id);
-      setSaveStatus("saved");
+  const operation = queueMutation(() => persistGameDetails(snapshot))
+    .then(() => {
+      if (revision === metadataRevision && !busy) setSaveStatus("saved");
     })
     .catch((error) => {
       console.error("No se pudieron guardar los datos del partido", error);
-      setSaveStatus("error");
-      setFeedback("No se han podido guardar la jornada o el rival.", "error");
+      if (revision === metadataRevision) {
+        setSaveStatus("error");
+        setFeedback("No se han podido guardar la jornada o el rival.", "error");
+      }
+      throw error;
     });
+  pendingMetadataSave = operation;
+  return operation;
 }
 
+// Antes de cambiar de partido, registrar o exportar, esperamos a que
+// todas las ediciones anteriores se hayan confirmado en disco.
 function flushMetadata() {
-  if (metadataTimer === null) return Promise.resolve();
-  clearTimeout(metadataTimer);
-  metadataTimer = null;
-  return queueCurrentMetadataSave();
+  return pendingMetadataSave;
 }
 
 function onMetadataInput() {
@@ -225,12 +232,7 @@ function onMetadataInput() {
   game.jornada = $("#roundInput").value.trim().slice(0, 32);
   game.rival = $("#rivalInput").value.trim().slice(0, 80);
   renderGameOptions();
-  setSaveStatus("saving");
-  if (metadataTimer !== null) clearTimeout(metadataTimer);
-  metadataTimer = setTimeout(() => {
-    metadataTimer = null;
-    queueCurrentMetadataSave();
-  }, 400);
+  queueCurrentMetadataSave().catch(() => {});
 }
 
 async function selectGame(gameId) {
@@ -314,7 +316,7 @@ function buildSimpleActions(category, config, targetId) {
     const stat = summarize(events.filter((event) => event.categoria === CATEGORY_NAMES[category] && event.accion === action.name));
     const active = isChosen(category, action.name);
     return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.name)}" aria-pressed="${active}">
-        <span><span class="action-name">${htmlSafe(action.name)}</span><span class="action-shots">${action.shots.join("P / ")}P</span></span>
+        <span class="action-name">${htmlSafe(action.name)}</span>
         <span class="action-score">${statText(stat)}</span>
       </button>`;
   }).join("");
@@ -331,7 +333,7 @@ function buildDirectActions() {
       </button>`;
     }).join("");
     return `<div class="direct-row">
-      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${action.shots.join("P / ")}P · ${statText(summarize(typeEvents))}</span></div>
+      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${statText(summarize(typeEvents))}</span></div>
       <div class="defense-options">${chips}</div>
     </div>`;
   }).join("");
@@ -349,8 +351,6 @@ function renderSelection() {
   $("#gameSelect").disabled = busy;
   $("#newGameBtn").disabled = busy;
   $("#exportCsvBtn").disabled = busy;
-  $("#exportJsonBtn").disabled = busy;
-  $("#importJsonBtn").disabled = busy;
 }
 
 function render() {
@@ -517,106 +517,6 @@ async function exportCsv() {
   }
 }
 
-async function exportJson() {
-  if (busy) return;
-  await flushMetadata();
-  try {
-    const backup = {
-      schema: BACKUP_SCHEMA,
-      version: 1,
-      exportedAt: new Date().toISOString(),
-      games: await allGames(),
-      events: (await allEvents()).sort((a, b) => a.seq - b.seq).map(({ seq, ...event }) => event)
-    };
-    triggerDownload(`copia-registro-defensivo-${safeFileStamp()}.json`, "application/json;charset=utf-8", JSON.stringify(backup, null, 2));
-    setFeedback(`Copia JSON descargada: ${backup.events.length} jugadas.`, "success");
-  } catch (error) {
-    console.error("Error al exportar JSON", error);
-    setFeedback("No se ha podido generar la copia JSON.", "error");
-  }
-}
-
-function validateBackup(backup) {
-  if (!backup || backup.schema !== BACKUP_SCHEMA || backup.version !== 1 || !Array.isArray(backup.games) || !Array.isArray(backup.events)) {
-    throw new Error("El JSON no es una copia compatible con esta aplicación.");
-  }
-  const validString = (value, max = 200) => typeof value === "string" && value.length > 0 && value.length <= max;
-  const ids = new Set();
-  const gameIds = new Set(games.map((game) => game.id));
-  const validatedGames = backup.games.map((game) => {
-    if (!validString(game.id) || typeof game.jornada !== "string" || game.jornada.length > 32 || typeof game.rival !== "string" || game.rival.length > 80 || !validString(game.createdAt, 64) || ids.has(game.id)) {
-      throw new Error("La copia contiene partidos con datos no válidos.");
-    }
-    ids.add(game.id);
-    gameIds.add(game.id);
-    return { id: game.id, jornada: game.jornada, rival: game.rival, createdAt: game.createdAt };
-  });
-  const eventIds = new Set();
-  const validatedEvents = backup.events.map((event) => {
-    const category = Object.keys(CATEGORY_NAMES).find((key) => CATEGORY_NAMES[key] === event.categoria);
-    const action = category && DEFENSE_CONFIG[category].find((entry) => entry.name === event.accion);
-    const validStrategy = category === "directo"
-      ? event.tipo_bloqueo === event.accion && DEFENSE_CONFIG.estrategias.includes(event.estrategia)
-      : event.tipo_bloqueo === null && event.estrategia === null;
-    if (!validString(event.id) || eventIds.has(event.id) || !validString(event.gameId) || !gameIds.has(event.gameId)
-      || !action || !validStrategy || !action.shots.includes(event.valor_tiro)
-      || !["anotado", "fallado"].includes(event.resultado) || typeof event.jornada !== "string"
-      || typeof event.rival !== "string" || !validString(event.fecha_hora, 64)) {
-      throw new Error("La copia contiene alguna jugada no válida o duplicada.");
-    }
-    eventIds.add(event.id);
-    return {
-      id: event.id, gameId: event.gameId, jornada: event.jornada, rival: event.rival,
-      categoria: event.categoria, accion: event.accion,
-      tipo_bloqueo: event.tipo_bloqueo, estrategia: event.estrategia,
-      valor_tiro: event.valor_tiro, resultado: event.resultado, fecha_hora: event.fecha_hora
-    };
-  });
-  return { validatedGames, validatedEvents };
-}
-
-async function importJson(file) {
-  if (!file || busy) return;
-  if (file.size > 30 * 1024 * 1024) {
-    setFeedback("El archivo supera el límite de seguridad de 30 MB.", "error");
-    return;
-  }
-  busy = true;
-  renderSelection();
-  try {
-    await flushMetadata();
-    const input = JSON.parse(await file.text());
-    const { validatedGames, validatedEvents } = validateBackup(input);
-    const existingEvents = await allEvents();
-    const oldGameIds = new Set(games.map((game) => game.id));
-    const oldEventIds = new Set(existingEvents.map((event) => event.id));
-    const newGames = validatedGames.filter((game) => !oldGameIds.has(game.id));
-    const newEvents = validatedEvents.filter((event) => !oldEventIds.has(event.id));
-    setSaveStatus("saving");
-    await queueMutation(async () => {
-      const tx = db.transaction(["games", "events"], "readwrite");
-      const done = transactionDone(tx);
-      const gameStore = tx.objectStore("games");
-      const eventStore = tx.objectStore("events");
-      newGames.forEach((game) => gameStore.add(game));
-      newEvents.forEach((event) => eventStore.add(event));
-      await done;
-    });
-    games = await allGames();
-    events = await eventsForGame(currentGameId);
-    render();
-    setSaveStatus("saved");
-    setFeedback(`Importación completada: ${newGames.length} partidos y ${newEvents.length} jugadas nuevas (sin duplicados).`, "success");
-  } catch (error) {
-    console.error("Error al importar", error);
-    setSaveStatus("error");
-    setFeedback(`Importación cancelada: ${error.message || "archivo no válido"}`, "error");
-  } finally {
-    busy = false;
-    renderSelection();
-  }
-}
-
 function bindEvents() {
   $("#transitionActions").addEventListener("click", onPickClick);
   $("#staticActions").addEventListener("click", onPickClick);
@@ -630,16 +530,7 @@ function bindEvents() {
   $("#gameSelect").addEventListener("change", (evt) => selectGame(evt.target.value));
   $("#roundInput").addEventListener("input", onMetadataInput);
   $("#rivalInput").addEventListener("input", onMetadataInput);
-  $("#roundInput").addEventListener("change", flushMetadata);
-  $("#rivalInput").addEventListener("change", flushMetadata);
   $("#exportCsvBtn").addEventListener("click", exportCsv);
-  $("#exportJsonBtn").addEventListener("click", exportJson);
-  $("#importJsonBtn").addEventListener("click", () => $("#importJsonInput").click());
-  $("#importJsonInput").addEventListener("change", async (evt) => {
-    const file = evt.target.files?.[0];
-    evt.target.value = "";
-    await importJson(file);
-  });
 }
 
 function onPickClick(evt) {
