@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111c31">
+  <meta name="description" content="Planilla de registro defensivo de baloncesto para partidos en directo, sin cuentas ni servidor.">
+  <title>Registro defensivo · Baloncesto</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header" aria-label="Datos y herramientas del partido">
+      <div class="brand-line">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">D<span>↗</span></span>
+          <div>
+            <h1>REGISTRO DEFENSIVO</h1>
+            <p>Baloncesto · Hoja de partido</p>
+          </div>
+        </div>
+        <div id="saveStatus" class="save-status is-saving" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="saveStatusText">Cargando…</span>
+        </div>
+      </div>
+      <div class="toolbar">
+        <label class="field field-game">
+          <span>Partido</span>
+          <select id="gameSelect" aria-label="Elegir partido"></select>
+        </label>
+        <label class="field field-round">
+          <span>Jornada</span>
+          <input id="roundInput" type="text" maxlength="32" placeholder="Jornada" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field field-rival">
+          <span>Rival</span>
+          <input id="rivalInput" type="text" maxlength="80" placeholder="Nombre del rival" autocomplete="off">
+        </label>
+        <button type="button" id="newGameBtn" class="tool-button" title="Crear otro partido">+ Partido</button>
+        <button type="button" id="undoBtn" class="tool-button undo-button" disabled title="Eliminar el último registro del partido activo">
+          <span aria-hidden="true">↶</span> Deshacer
+        </button>
+        <div class="toolbar-exports" aria-label="Copias y exportaciones">
+          <button type="button" id="exportCsvBtn" class="tool-button">↓ CSV Excel</button>
+          <button type="button" id="exportJsonBtn" class="tool-button">↓ JSON</button>
+          <button type="button" id="importJsonBtn" class="tool-button">↑ Importar</button>
+          <input id="importJsonInput" type="file" accept=".json,application/json" hidden aria-label="Seleccionar copia JSON">
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="top-grid">
+        <section class="stat-panel" aria-labelledby="transitionTitle">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">SITUACIÓN</span>
+              <h2 id="transitionTitle">TRANSICIÓN</h2>
+            </div>
+            <span class="panel-summary" id="transitionTotal">—</span>
+          </div>
+          <div id="transitionActions" class="action-list transition-list" aria-label="Acciones de transición"></div>
+        </section>
+        <section class="stat-panel" aria-labelledby="staticTitle">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">SITUACIÓN</span>
+              <h2 id="staticTitle">ESTÁTICO</h2>
+            </div>
+            <span class="panel-summary" id="staticTotal">—</span>
+          </div>
+          <div id="staticActions" class="action-list static-list" aria-label="Acciones de estático"></div>
+        </section>
+      </div>
+
+      <section class="stat-panel direct-panel" aria-labelledby="directTitle">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">TIPO + DEFENSA · DOS PULSACIONES EN TOTAL</span>
+            <h2 id="directTitle">BLOQUEO DIRECTO</h2>
+          </div>
+          <span class="panel-summary" id="directTotal">—</span>
+        </div>
+        <div id="directActions" class="direct-list" aria-label="Defensas por tipo de bloqueo directo"></div>
+      </section>
+      <p class="stat-footnote">Éxito defensivo = tiros fallados por el rival / intentos. Cada cifra se muestra como <strong>fallados/intentos — porcentaje</strong>. Sin intentos: —.</p>
+    </main>
+  </div>
+
+  <footer class="result-dock" aria-label="Registrar resultado">
+    <div class="result-inner">
+      <div class="selection-line">
+        <div class="selection-details">
+          <span class="selection-label">ACCIÓN SELECCIONADA</span>
+          <strong id="selectedDescription">Selecciona una acción o defensa</strong>
+        </div>
+        <span class="selection-meta" id="gameTotal">0 intentos · — de éxito</span>
+      </div>
+      <div class="result-buttons" id="resultButtons">
+        <button type="button" class="result-btn result-made" data-points="2" data-result="anotado" disabled><span>2<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
+        <button type="button" class="result-btn result-missed" data-points="2" data-result="fallado" disabled><span>2<span class="result-sign">✕</span></span><small>FALLADO</small></button>
+        <button type="button" class="result-btn result-made" data-points="3" data-result="anotado" disabled><span>3<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
+        <button type="button" class="result-btn result-missed" data-points="3" data-result="fallado" disabled><span>3<span class="result-sign">✕</span></span><small>FALLADO</small></button>
+      </div>
+      <div id="feedback" class="feedback" role="status" aria-live="polite">Selecciona una acción y después pulsa su resultado.</div>
+    </div>
+  </footer>
+</body>
+</html>
