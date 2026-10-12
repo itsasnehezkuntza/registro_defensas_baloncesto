@@ -7,7 +7,7 @@
   <meta name="description" content="Planilla de registro defensivo de baloncesto para partidos en directo, sin cuentas ni servidor.">
   <title>Registro defensivo · Baloncesto</title>
   <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+  <script type="module" src="./app.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -28,32 +28,26 @@
       <div class="toolbar">
         <label class="field field-game">
           <span>Partido</span>
-          <select id="gameSelect" aria-label="Elegir partido"></select>
+          <select id="gameSelect" aria-label="Elegir partido" disabled><option value="">Selecciona o crea un partido</option></select>
         </label>
-        <label class="field field-round">
-          <span>Jornada</span>
-          <input id="roundInput" type="text" maxlength="32" placeholder="Jornada" autocomplete="off" spellcheck="false">
-        </label>
-        <label class="field field-rival">
-          <span>Rival</span>
-          <input id="rivalInput" type="text" maxlength="80" placeholder="Nombre del rival" autocomplete="off">
-        </label>
-        <button type="button" id="newGameBtn" class="tool-button" title="Crear otro partido">+ Partido</button>
+        <button type="button" id="newGameBtn" class="tool-button" disabled>+ Nuevo partido</button>
+        <button type="button" id="deleteGameBtn" class="tool-button delete-game-button" disabled>Eliminar partido</button>
         <button type="button" id="undoBtn" class="tool-button undo-button" disabled title="Eliminar el último registro del partido activo">
           <span aria-hidden="true">↶</span> Deshacer
         </button>
         <div class="toolbar-exports" aria-label="Copias y exportaciones">
-          <button type="button" id="exportCsvBtn" class="tool-button">↓ CSV Excel</button>
+          <button type="button" id="exportCsvBtn" class="tool-button" disabled>↓ CSV Excel</button>
         </div>
       </div>
     </header>
 
     <main>
+      <p id="noGameNotice" class="no-game-notice" role="status">Selecciona o crea un partido para registrar acciones.</p>
+      <p id="configurationError" role="alert" hidden></p>
       <div class="top-grid">
         <section class="stat-panel" aria-labelledby="transitionTitle">
           <div class="panel-heading">
             <div>
-              <span class="eyebrow">SITUACIÓN</span>
               <h2 id="transitionTitle">TRANSICIÓN</h2>
             </div>
             <span class="panel-summary" id="transitionTotal">—</span>
@@ -63,7 +57,6 @@
         <section class="stat-panel" aria-labelledby="staticTitle">
           <div class="panel-heading">
             <div>
-              <span class="eyebrow">SITUACIÓN</span>
               <h2 id="staticTitle">ESTÁTICO</h2>
             </div>
             <span class="panel-summary" id="staticTotal">—</span>
@@ -75,33 +68,58 @@
       <section class="stat-panel direct-panel" aria-labelledby="directTitle">
         <div class="panel-heading">
           <div>
-            <span class="eyebrow">SITUACIÓN</span>
             <h2 id="directTitle">BLOQUEO DIRECTO</h2>
           </div>
           <span class="panel-summary" id="directTotal">—</span>
         </div>
         <div id="directActions" class="direct-list" aria-label="Defensas por tipo de bloqueo directo"></div>
       </section>
-      <p class="stat-footnote">Éxito defensivo = tiros fallados por el rival / intentos. Cada cifra se muestra como <strong>fallados/intentos — porcentaje</strong>. Sin intentos: —.</p>
     </main>
   </div>
+
+  <dialog id="newGameDialog" class="game-dialog" aria-labelledby="newGameTitle">
+    <form id="newGameForm">
+      <h2 id="newGameTitle">Nuevo partido</h2>
+      <label class="dialog-field">Jornada
+        <input id="roundInput" type="text" enterkeyhint="next" maxlength="32" required autocomplete="off">
+      </label>
+      <label class="dialog-field">Rival
+        <input id="rivalInput" type="text" enterkeyhint="done" maxlength="80" required autocomplete="off">
+      </label>
+      <p id="newGameError" class="dialog-error" role="alert"></p>
+      <div class="dialog-buttons">
+        <button id="cancelNewGameBtn" type="button" class="tool-button">Cancelar</button>
+        <button id="createGameBtn" type="submit" class="tool-button">Crear partido</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="deleteGameDialog" class="game-dialog" aria-labelledby="deleteGameTitle" aria-describedby="deleteGameMessage">
+    <h2 id="deleteGameTitle">Eliminar partido</h2>
+    <p id="deleteGameMessage"></p>
+    <p id="deleteGameError" class="dialog-error" role="alert"></p>
+    <div class="dialog-buttons">
+      <button id="cancelDeleteBtn" type="button" class="tool-button">Cancelar</button>
+      <button id="confirmDeleteBtn" type="button" class="tool-button delete-confirm-button">Eliminar definitivamente</button>
+    </div>
+  </dialog>
 
   <footer class="result-dock" aria-label="Registrar resultado">
     <div class="result-inner">
       <div class="selection-line">
         <div class="selection-details">
           <span class="selection-label">ACCIÓN SELECCIONADA</span>
-          <strong id="selectedDescription">Selecciona una acción o defensa</strong>
+          <strong id="selectedDescription" aria-live="polite" aria-atomic="true">Selecciona una acción o defensa</strong>
         </div>
         <span class="selection-meta" id="gameTotal">0 intentos · — de éxito</span>
       </div>
       <div class="result-buttons" id="resultButtons">
-        <button type="button" class="result-btn result-made" data-points="2" data-result="anotado" disabled><span>2<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
-        <button type="button" class="result-btn result-missed" data-points="2" data-result="fallado" disabled><span>2<span class="result-sign">✕</span></span><small>FALLADO</small></button>
-        <button type="button" class="result-btn result-made" data-points="3" data-result="anotado" disabled><span>3<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
-        <button type="button" class="result-btn result-missed" data-points="3" data-result="fallado" disabled><span>3<span class="result-sign">✕</span></span><small>FALLADO</small></button>
+        <button type="button" class="result-btn result-made" data-points="2" data-result="anotado" aria-label="Tiro de 2 puntos anotado por el rival" disabled><span>2<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
+        <button type="button" class="result-btn result-missed" data-points="2" data-result="fallado" aria-label="Tiro de 2 puntos fallado por el rival" disabled><span>2<span class="result-sign">✕</span></span><small>FALLADO</small></button>
+        <button type="button" class="result-btn result-made" data-points="3" data-result="anotado" aria-label="Tiro de 3 puntos anotado por el rival" disabled><span>3<span class="result-sign">✓</span></span><small>ANOTADO</small></button>
+        <button type="button" class="result-btn result-missed" data-points="3" data-result="fallado" aria-label="Tiro de 3 puntos fallado por el rival" disabled><span>3<span class="result-sign">✕</span></span><small>FALLADO</small></button>
       </div>
-      <div id="feedback" class="feedback" role="status" aria-live="polite">Selecciona una acción y después pulsa su resultado.</div>
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
     </div>
   </footer>
 </body>

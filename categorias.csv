@@ -1,0 +1,29 @@
+categoria_id;categoria;accion_id;accion;defensa_id;defensa;tiros
+transicion;Transición;transicion_bajo_aro;Bajo aro;;;2
+transicion;Transición;transicion_spot_up_3;Spot up 3;;;3
+estatico;Estático;estatico_1c1_exterior;1c1 exterior;;;2,3
+estatico;Estático;estatico_1c1_interior;1c1 interior;;;2
+estatico;Estático;estatico_pin_down;Pin down;;;2,3
+estatico;Estático;estatico_cortes;Cortes;;;2
+estatico;Estático;estatico_spot_up_3;Spot up 3;;;3
+estatico;Estático;estatico_bajo_aro;Bajo aro;;;2
+directo;Bloqueo directo;pr_manejador;PR Manejador;black;Black;2,3
+directo;Bloqueo directo;pr_manejador;PR Manejador;white;White;2,3
+directo;Bloqueo directo;pr_manejador;PR Manejador;blue;Blue;2,3
+directo;Bloqueo directo;pr_manejador;PR Manejador;red;Red;2,3
+directo;Bloqueo directo;pr_manejador;PR Manejador;tut;Tut;2,3
+directo;Bloqueo directo;pr_roller;PR Roller;black;Black;2
+directo;Bloqueo directo;pr_roller;PR Roller;white;White;2
+directo;Bloqueo directo;pr_roller;PR Roller;blue;Blue;2
+directo;Bloqueo directo;pr_roller;PR Roller;red;Red;2
+directo;Bloqueo directo;pr_roller;PR Roller;tut;Tut;2
+directo;Bloqueo directo;pr_pop;PR Pop;black;Black;2,3
+directo;Bloqueo directo;pr_pop;PR Pop;white;White;2,3
+directo;Bloqueo directo;pr_pop;PR Pop;blue;Blue;2,3
+directo;Bloqueo directo;pr_pop;PR Pop;red;Red;2,3
+directo;Bloqueo directo;pr_pop;PR Pop;tut;Tut;2,3
+directo;Bloqueo directo;spain;Spain;black;Black;2,3
+directo;Bloqueo directo;spain;Spain;white;White;2,3
+directo;Bloqueo directo;spain;Spain;blue;Blue;2,3
+directo;Bloqueo directo;spain;Spain;red;Red;2,3
+directo;Bloqueo directo;spain;Spain;tut;Tut;2,3

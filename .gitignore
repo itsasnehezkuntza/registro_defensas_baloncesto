@@ -1,0 +1,3 @@
+.test-artifacts/
+# Pruebas locales: no se incluyen en la primera publicación desde main.
+tests/

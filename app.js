@@ -1,45 +1,29 @@
-"use strict";
+import { resolveSelection, makeShotEvent } from "./js/registro.js";
+import { initializeLayout } from "./js/interfaz.js";
+import { loadConfiguration } from "./js/configuracion.js";
+import { matchesEvent } from "./js/identidad.js";
+import { summarize, statText } from "./js/estadisticas.js";
+import { buildCsv, csvFilename, triggerDownload } from "./js/exportacion.js";
+import { openDatabase, readState, createGameAndSelect, selectGameState,
+  deleteGame, readExportSnapshot, addEvent, removeLastGameEvent } from "./js/persistencia.js";
 
-/*
- * CONFIGURACIÓN DE CATEGORÍAS
- * Para cambiar acciones o tiros permitidos, edita solamente este objeto.
- * Las estrategias son comunes a los cuatro tipos de bloqueo directo.
- */
-const DEFENSE_CONFIG = Object.freeze({
-  transicion: [
-    { name: "Bajo aro", shots: [2] },
-    { name: "Spot up 3", shots: [3] }
-  ],
-  estatico: [
-    { name: "1c1 exterior", shots: [2, 3] },
-    { name: "1c1 interior", shots: [2] },
-    { name: "Pin down", shots: [2, 3] },
-    { name: "Cortes", shots: [2] },
-    { name: "Spot up 3", shots: [3] },
-    { name: "Bajo aro", shots: [2] }
-  ],
-  directo: [
-    { name: "PR Manejador", shots: [2, 3] },
-    { name: "PR Roller", shots: [2] },
-    { name: "PR Pop", shots: [2, 3] },
-    { name: "Spain", shots: [2, 3] }
-  ],
-  estrategias: ["Black", "White", "Blue", "Red", "Tut"]
-});
-
-const DB_NAME = "registro_defensivo_baloncesto";
-const DB_VERSION = 1;
-const CATEGORY_NAMES = { transicion: "Transición", estatico: "Estático", directo: "Bloqueo directo" };
 const $ = (selector) => document.querySelector(selector);
 
-let db;
 let games = [];
 let currentGameId = null;
 let events = [];
 let chosen = null;
-let busy = false;
-let pendingMetadataSave = Promise.resolve();
-let metadataRevision = 0;
+let pendingShot = null;
+let busy = true;
+let configuration = null;
+let configurationError = null;
+let storageReady = false;
+let pendingOperations = 0;
+let revision = 0;
+let selectionPending = false;
+let deletionTarget = null;
+let channel;
+let saveError = false;
 let mutationQueue = Promise.resolve();
 let feedbackVersion = 0;
 
@@ -56,71 +40,109 @@ function uniqueId() {
   return Array.from(bytes, (x) => x.toString(16).padStart(2, "0")).join("");
 }
 
-function requestResult(req) {
-  return new Promise((resolve, reject) => {
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
+function queueOperation(task) {
+  pendingOperations++;
+  busy = true;
+  renderSelection();
+  setSaveStatus("saving");
+  const operation = mutationQueue.catch(() => {}).then(task);
+  mutationQueue = operation;
+  return operation.finally(() => {
+    pendingOperations--;
+    busy = pendingOperations > 0;
+    if (!busy) selectionPending = false;
+    renderSelection();
   });
 }
 
-function transactionDone(tx) {
-  return new Promise((resolve, reject) => {
-    tx.oncomplete = () => resolve();
-    tx.onabort = () => reject(tx.error || new Error("Transacción cancelada"));
-    tx.onerror = () => {}; // El error se notifica al abortar la transacción.
+function applyState(state) {
+  if (state.currentGameId !== currentGameId) pendingShot = null;
+  games = state.games;
+  currentGameId = state.currentGameId;
+  events = state.events;
+  chosen = null;
+  if (deletionTarget && !gameById(deletionTarget.id)) {
+    $("#deleteGameDialog").close();
+    deletionTarget = null;
+  }
+  render();
+}
+
+function markSaved() {
+  if (pendingOperations <= 1) setSaveStatus("saved");
+}
+
+function notifyChange(gameId, deleted = false) {
+  const message = { gameId, deleted, stamp: uniqueId() };
+  if (channel) channel.postMessage(message);
+  else {
+    try { localStorage.setItem("defensas-change", JSON.stringify(message)); } catch {}
+  }
+}
+
+async function refreshState() {
+  if (!storageReady) return;
+  const ticket = ++revision;
+  const previousSelection = chosen;
+  const previousGameId = currentGameId;
+  try {
+    await queueOperation(async () => {
+      const state = await readState();
+      if (ticket === revision) {
+        applyState(state);
+        if (previousGameId === currentGameId && previousSelection) {
+          chosen = resolveSelection(configuration, previousSelection);
+          render();
+        }
+      }
+      // Una actualización ajena no oculta un error local de escritura.
+      if (!saveError) markSaved();
+      else setSaveStatus("error");
+    });
+  } catch (error) {
+    storageReady = false;
+    setSaveStatus("error");
+    setFeedback(error.message, "error");
+    renderSelection();
+  }
+}
+
+function receiveChange(message) {
+  if (message?.deleted && message.gameId === currentGameId) {
+    currentGameId = null;
+    chosen = null;
+    events = [];
+    render();
+  }
+  refreshState();
+}
+
+function bindSynchronization() {
+  if (globalThis.BroadcastChannel) {
+    channel = new BroadcastChannel("registro-defensivo-changes");
+    channel.onmessage = event => receiveChange(event.data);
+  } else {
+    window.addEventListener("storage", event => {
+      if (event.key === "defensas-change") {
+        try { receiveChange(JSON.parse(event.newValue)); } catch {}
+      }
+    });
+  }
+  window.addEventListener("focus", refreshState);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") refreshState();
   });
-}
-
-function openDatabase() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, DB_VERSION);
-    req.onupgradeneeded = () => {
-      const database = req.result;
-      database.createObjectStore("games", { keyPath: "id" });
-      const records = database.createObjectStore("events", { keyPath: "seq", autoIncrement: true });
-      records.createIndex("byGameId", "gameId");
-      records.createIndex("byGameSeq", ["gameId", "seq"]);
-      records.createIndex("byUuid", "id", { unique: true });
-      database.createObjectStore("settings", { keyPath: "key" });
-    };
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-    req.onblocked = () => reject(new Error("Hay otra pestaña bloqueando la base de datos"));
+  window.addEventListener("defensas-storage-closed", () => {
+    storageReady = false;
+    chosen = null;
+    setSaveStatus("error", "Recarga la página");
+    renderSelection();
   });
-}
-
-async function allGames() {
-  return requestResult(db.transaction("games").objectStore("games").getAll());
-}
-
-async function allEvents() {
-  return requestResult(db.transaction("events").objectStore("events").getAll());
-}
-
-async function eventsForGame(gameId) {
-  return requestResult(
-    db.transaction("events").objectStore("events").index("byGameId").getAll(IDBKeyRange.only(gameId))
-  );
-}
-
-async function activeGameSetting() {
-  return requestResult(db.transaction("settings").objectStore("settings").get("activeGame"));
-}
-
-async function writeActiveGame(gameId) {
-  const tx = db.transaction("settings", "readwrite");
-  const done = transactionDone(tx);
-  tx.objectStore("settings").put({ key: "activeGame", value: gameId });
-  await done;
-}
-
-function queueMutation(task) {
-  const queued = mutationQueue.catch(() => {}).then(task);
-  mutationQueue = queued;
-  return queued;
 }
 
 function setSaveStatus(status, description) {
+  if (status === "error") saveError = true;
+  if (status === "saved") saveError = false;
   const element = $("#saveStatus");
   element.classList.toggle("is-saving", status === "saving");
   element.classList.toggle("is-error", status === "error");
@@ -141,194 +163,144 @@ function gameById(id) {
   return games.find((game) => game.id === id);
 }
 
-function makeNewGame() {
-  return {
-    id: uniqueId(),
-    jornada: "1",
-    rival: "Rival por definir",
-    createdAt: new Date().toISOString()
-  };
-}
-
-async function addGameToDatabase(game) {
-  const tx = db.transaction("games", "readwrite");
-  const done = transactionDone(tx);
-  tx.objectStore("games").add(game);
-  await done;
-}
-
 function labelForGame(game) {
   return `J${game.jornada || "—"} · ${game.rival || "Sin rival"}`;
 }
 
 function renderGameOptions() {
   const selector = $("#gameSelect");
-  selector.innerHTML = games
+  selector.innerHTML = '<option value="">Selecciona o crea un partido</option>' + games
     .slice()
-    .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
-    .map((game) => `<option value="${htmlSafe(game.id)}">${htmlSafe(labelForGame(game))}</option>`)
+    .sort((a, b) => String(a.createdAt ?? "").localeCompare(String(b.createdAt ?? "")))
+    .map(game => `<option value="${htmlSafe(game.id)}">${htmlSafe(labelForGame(game))}</option>`)
     .join("");
   selector.value = currentGameId || "";
 }
 
-function syncGameInputs() {
-  const game = gameById(currentGameId);
-  $("#roundInput").value = game?.jornada ?? "";
-  $("#rivalInput").value = game?.rival ?? "";
-}
-
-// Si se corrige el rival o la jornada, se corrige también esa información
-// en los eventos del mismo partido (sin cambiar sus resultados ni sus IDs).
-async function persistGameDetails(snapshot) {
-  const tx = db.transaction(["games", "events"], "readwrite");
-  const done = transactionDone(tx);
-  tx.objectStore("games").put(snapshot);
-  const cursorRequest = tx.objectStore("events")
-    .index("byGameId").openCursor(IDBKeyRange.only(snapshot.id));
-  cursorRequest.onsuccess = () => {
-    const cursor = cursorRequest.result;
-    if (!cursor) return;
-    const updated = { ...cursor.value, jornada: snapshot.jornada, rival: snapshot.rival };
-    cursor.update(updated);
-    cursor.continue();
-  };
-  await done;
-}
-
-// Cada cambio se confirma en IndexedDB sin esperar a un temporizador.
-// Así se minimiza el riesgo de perder jornada o rival si se recarga
-// inmediatamente después de editarlos.
-function queueCurrentMetadataSave() {
-  const game = gameById(currentGameId);
-  if (!game) return Promise.resolve();
-  const snapshot = { ...game };
-  const revision = ++metadataRevision;
-  setSaveStatus("saving");
-  const operation = queueMutation(() => persistGameDetails(snapshot))
-    .then(() => {
-      if (revision === metadataRevision && !busy) setSaveStatus("saved");
-    })
-    .catch((error) => {
-      console.error("No se pudieron guardar los datos del partido", error);
-      if (revision === metadataRevision) {
-        setSaveStatus("error");
-        setFeedback("No se han podido guardar la jornada o el rival.", "error");
-      }
-      throw error;
-    });
-  pendingMetadataSave = operation;
-  return operation;
-}
-
-// Antes de cambiar de partido, registrar o exportar, esperamos a que
-// todas las ediciones anteriores se hayan confirmado en disco.
-function flushMetadata() {
-  return pendingMetadataSave;
-}
-
-function onMetadataInput() {
-  const game = gameById(currentGameId);
-  if (!game || busy) return;
-  game.jornada = $("#roundInput").value.trim().slice(0, 32);
-  game.rival = $("#rivalInput").value.trim().slice(0, 80);
-  renderGameOptions();
-  queueCurrentMetadataSave().catch(() => {});
-}
-
 async function selectGame(gameId) {
-  if (!gameById(gameId) || busy) return;
-  busy = true;
-  renderSelection();
+  if (!storageReady || (busy && !selectionPending)) { renderGameOptions(); return; }
+  const ticket = ++revision;
+  selectionPending = true;
+  chosen = null;
   try {
-    await flushMetadata();
-    await queueMutation(() => writeActiveGame(gameId));
-    currentGameId = gameId;
-    events = await eventsForGame(gameId);
-    chosen = null;
-    syncGameInputs();
-    render();
-    setSaveStatus("saved");
-    setFeedback(`Partido activo: ${labelForGame(gameById(gameId))}`);
+    await queueOperation(async () => {
+      const state = await selectGameState(gameId || null);
+      if (ticket === revision) {
+        applyState(state);
+        markSaved();
+      }
+      notifyChange(gameId);
+    });
   } catch (error) {
-    console.error("No se pudo abrir el partido", error);
-    setSaveStatus("error");
-    setFeedback("No se ha podido cambiar de partido.", "error");
-    renderGameOptions();
-  } finally {
-    busy = false;
-    renderSelection();
+    if (ticket === revision) {
+      try {
+        const state = await readState();
+        if (ticket === revision) applyState(state);
+      } catch { if (ticket === revision) storageReady = false; }
+      if (ticket === revision) {
+        setSaveStatus("error");
+        setFeedback(error.message, "error");
+      }
+    }
   }
 }
 
-async function createGame() {
-  if (busy) return;
-  busy = true;
-  renderSelection();
-  setSaveStatus("saving");
+function openNewGame() {
+  if (busy || !storageReady) return;
+  $("#newGameForm").reset();
+  $("#roundInput").setCustomValidity("");
+  $("#rivalInput").setCustomValidity("");
+  $("#newGameError").textContent = "";
+  $("#newGameDialog").showModal();
+  $("#roundInput").focus();
+}
+
+async function createGame(event) {
+  event.preventDefault();
+  if (busy || !storageReady || !$("#newGameDialog").open) return;
+  const round = $("#roundInput"), rival = $("#rivalInput");
+  round.value = round.value.trim();
+  rival.value = rival.value.trim();
+  round.setCustomValidity(round.value ? "" : "Introduce la jornada.");
+  rival.setCustomValidity(rival.value ? "" : "Introduce el rival.");
+  if (!$("#newGameForm").reportValidity()) return;
+  const game = { id: uniqueId(), jornada: round.value, rival: rival.value, createdAt: new Date().toISOString() };
+  ++revision;
+  chosen = null;
   try {
-    await flushMetadata();
-    const newGame = makeNewGame();
-    await queueMutation(async () => {
-      await addGameToDatabase(newGame);
-      await writeActiveGame(newGame.id);
+    await queueOperation(async () => {
+      const state = await createGameAndSelect(game);
+      applyState(state);
+      $("#newGameDialog").close();
+      markSaved();
+      setFeedback("Partido creado.", "success");
+      notifyChange(game.id);
     });
-    games.push(newGame);
-    currentGameId = newGame.id;
-    events = [];
-    chosen = null;
-    syncGameInputs();
-    render();
-    setSaveStatus("saved");
-    setFeedback("Partido nuevo. Puedes editar la jornada y el rival antes de empezar.", "success");
-    $("#rivalInput").focus();
-    $("#rivalInput").select();
   } catch (error) {
-    console.error("No se pudo crear el partido", error);
+    $("#newGameError").textContent = "No se ha creado el partido. " + error.message;
     setSaveStatus("error");
     setFeedback("No se ha podido crear el partido.", "error");
-  } finally {
-    busy = false;
-    renderSelection();
   }
 }
 
-function summarize(list) {
-  const attempts = list.length;
-  const missed = list.filter((e) => e.resultado === "fallado").length;
-  const made = attempts - missed;
-  const pointsAllowed = list.reduce(
-    (total, event) => total + (event.resultado === "anotado" ? event.valor_tiro : 0), 0
-  );
-  return { attempts, missed, made, pointsAllowed };
+function askDeleteGame() {
+  const game = gameById(currentGameId);
+  if (busy || !storageReady || !game) return;
+  deletionTarget = { ...game };
+  $("#deleteGameMessage").textContent = `¿Seguro que quieres eliminar el partido ${game.jornada} - ${game.rival}? También se eliminarán todas sus acciones defensivas registradas. Esta operación no se puede deshacer.`;
+  $("#deleteGameError").textContent = "";
+  $("#deleteGameDialog").showModal();
+  $("#cancelDeleteBtn").focus();
 }
 
-function statText(stat) {
-  if (!stat.attempts) return "—";
-  return `${stat.missed}/${stat.attempts} — ${Math.round(100 * stat.missed / stat.attempts)}%`;
+async function confirmDeleteGame() {
+  if (busy || !storageReady || !deletionTarget || !$("#deleteGameDialog").open) return;
+  const gameId = deletionTarget.id;
+  ++revision;
+  chosen = null;
+  try {
+    await queueOperation(async () => {
+      const state = await deleteGame(gameId);
+      $("#deleteGameDialog").close();
+      deletionTarget = null;
+      applyState(state);
+      markSaved();
+      setFeedback("Partido eliminado. Selecciona o crea un partido.", "success");
+      notifyChange(gameId, true);
+    });
+  } catch (error) {
+    $("#deleteGameError").textContent = "No se ha eliminado el partido. " + error.message;
+    setSaveStatus("error");
+    setFeedback("No se ha podido eliminar el partido.", "error");
+    if (error.code === "GAME_NOT_FOUND") await refreshState();
+  }
+}
+
+function categoryFor(id) {
+  return configuration?.categories.find(category => category.id === id);
 }
 
 function isChosen(category, action, strategy = null) {
-  return chosen?.category === category && chosen?.action === action && chosen?.strategy === strategy;
+  return chosen?.category === category && chosen?.actionId === action && chosen?.strategyId === strategy;
 }
 
-function buildSimpleActions(category, config, targetId) {
-  $(targetId).innerHTML = config.map((action) => {
-    const stat = summarize(events.filter((event) => event.categoria === CATEGORY_NAMES[category] && event.accion === action.name));
-    const active = isChosen(category, action.name);
-    return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.name)}" aria-pressed="${active}">
-        <span class="action-name">${htmlSafe(action.name)}</span>
-        <span class="action-score">${statText(stat)}</span>
-      </button>`;
+function buildSimpleActions(category, targetId) {
+  $(targetId).innerHTML = (categoryFor(category)?.actions ?? []).map(action => {
+    const stat = summarize(events.filter(event => matchesEvent(event, category, action.id)));
+    return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.id)}" aria-pressed="${isChosen(category, action.id)}">
+      <span class="action-name">${htmlSafe(action.name)}</span>
+      <span class="action-score">${statText(stat)}</span>
+    </button>`;
   }).join("");
 }
 
 function buildDirectActions() {
-  $("#directActions").innerHTML = DEFENSE_CONFIG.directo.map((action) => {
-    const typeEvents = events.filter((event) => event.categoria === CATEGORY_NAMES.directo && event.tipo_bloqueo === action.name);
-    const chips = DEFENSE_CONFIG.estrategias.map((strategy) => {
-      const stat = summarize(typeEvents.filter((event) => event.estrategia === strategy));
-      return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.name)}" data-strategy="${htmlSafe(strategy)}" aria-pressed="${isChosen("directo", action.name, strategy)}">
-        <span class="defense-name">${htmlSafe(strategy)}</span>
+  $("#directActions").innerHTML = (categoryFor("directo")?.actions ?? []).map(action => {
+    const typeEvents = events.filter(event => matchesEvent(event, "directo", action.id));
+    const chips = action.defenses.map(defense => {
+      const stat = summarize(typeEvents.filter(event => matchesEvent(event, "directo", action.id, defense.id)));
+      return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.id)}" data-strategy="${htmlSafe(defense.id)}" aria-pressed="${isChosen("directo", action.id, defense.id)}">
+        <span class="defense-name">${htmlSafe(defense.name)}</span>
         <span class="defense-score">${statText(stat)}</span>
       </button>`;
     }).join("");
@@ -341,27 +313,37 @@ function buildDirectActions() {
 
 function renderSelection() {
   const selectedText = chosen
-    ? `${CATEGORY_NAMES[chosen.category]} · ${chosen.action}${chosen.strategy ? ` · ${chosen.strategy}` : ""}`
-    : "Selecciona una acción o defensa";
+    ? `${categoryFor(chosen.category).name} · ${chosen.action}${chosen.strategy ? ` · ${chosen.strategy}` : ""}`
+    : (gameById(currentGameId) ? "Selecciona una acción o defensa" : "Selecciona o crea un partido");
   $("#selectedDescription").textContent = selectedText;
   for (const button of $("#resultButtons").querySelectorAll("button")) {
-    button.disabled = busy || !chosen || !chosen.shots.includes(Number(button.dataset.points));
+    button.disabled = busy || !storageReady || !configuration || !gameById(currentGameId) || !chosen || !chosen.shots.includes(Number(button.dataset.points));
   }
-  $("#undoBtn").disabled = busy || events.length === 0;
-  $("#gameSelect").disabled = busy;
-  $("#newGameBtn").disabled = busy;
-  $("#exportCsvBtn").disabled = busy;
+  document.querySelectorAll(".action-btn, .defense-btn").forEach(button => {
+    button.disabled = busy || !storageReady || !configuration || !gameById(currentGameId);
+  });
+  const hasGame = storageReady && Boolean(gameById(currentGameId));
+  $("#undoBtn").disabled = busy || !hasGame || events.length === 0;
+  $("#deleteGameBtn").disabled = busy || !hasGame;
+  $("#noGameNotice").hidden = Boolean(hasGame);
+  $("#gameSelect").disabled = busy || !storageReady;
+  $("#newGameBtn").disabled = busy || !storageReady;
+  for (const id of ["#createGameBtn", "#confirmDeleteBtn", "#cancelNewGameBtn", "#cancelDeleteBtn", "#roundInput", "#rivalInput"]) $(id).disabled = busy;
+  $("#exportCsvBtn").disabled = busy || !hasGame;
 }
 
 function render() {
   renderGameOptions();
-  buildSimpleActions("transicion", DEFENSE_CONFIG.transicion, "#transitionActions");
-  buildSimpleActions("estatico", DEFENSE_CONFIG.estatico, "#staticActions");
+  for (const [id, title] of [["transicion", "#transitionTitle"], ["estatico", "#staticTitle"], ["directo", "#directTitle"]]) {
+    if (categoryFor(id)) $(title).textContent = categoryFor(id).name.toUpperCase();
+  }
+  buildSimpleActions("transicion", "#transitionActions");
+  buildSimpleActions("estatico", "#staticActions");
   buildDirectActions();
   for (const [category, id] of [
     ["transicion", "#transitionTotal"], ["estatico", "#staticTotal"], ["directo", "#directTotal"]
   ]) {
-    $(id).textContent = statText(summarize(events.filter((e) => e.categoria === CATEGORY_NAMES[category])));
+    $(id).textContent = statText(summarize(events.filter((e) => matchesEvent(e, category))));
   }
   const total = summarize(events);
   $("#gameTotal").textContent = `${total.attempts} intento${total.attempts === 1 ? "" : "s"} · ${statText(total)} de éxito`;
@@ -369,151 +351,90 @@ function render() {
 }
 
 function onActionPick(button) {
-  if (busy) return;
+  if (busy || !configuration || !gameById(currentGameId) || button.disabled) return;
   const { category, action, strategy } = button.dataset;
-  const config = DEFENSE_CONFIG[category]?.find((item) => item.name === action);
-  if (!config || (category === "directo" && !DEFENSE_CONFIG.estrategias.includes(strategy))) return;
-  const value = { category, action, strategy: category === "directo" ? strategy : null, shots: config.shots };
-  chosen = isChosen(value.category, value.action, value.strategy) ? null : value;
+  const value = resolveSelection(configuration, { category, actionId: action, strategyId: strategy ?? null });
+  if (!value) return;
+  chosen = isChosen(category, action, value.strategyId) ? null : value;
+  pendingShot = null;
   render();
   setFeedback(chosen ? "Selecciona uno de los resultados habilitados." : "Selección cancelada.");
 }
 
-async function addEvent(event) {
-  const tx = db.transaction("events", "readwrite");
-  const done = transactionDone(tx);
-  const req = tx.objectStore("events").add(event);
-  const seq = await requestResult(req);
-  await done;
-  return seq;
-}
-
 async function recordResult(points, resultado) {
-  if (busy || !chosen || !chosen.shots.includes(points)) return;
-  if (resultado !== "anotado" && resultado !== "fallado") return;
-  busy = true;
-  renderSelection();
-  setSaveStatus("saving");
-  const selection = { ...chosen };
+  if (busy || !storageReady || !gameById(currentGameId) || !chosen) return;
+  const selection = resolveSelection(configuration, chosen);
+  if (!selection || !selection.shots.includes(points) || !["anotado", "fallado"].includes(resultado)) return;
+  const game = { ...gameById(currentGameId) };
+  // Mantener el ID y fecha del intento fallido cuando se repite el mismo resultado.
+  const event = pendingShot && pendingShot.gameId === game.id &&
+    pendingShot.accion_id === selection.actionId && pendingShot.defensa_id === selection.strategyId &&
+    pendingShot.valor_tiro === points && pendingShot.resultado === resultado
+      ? pendingShot : makeShotEvent(uniqueId(), game, selection, points, resultado);
+  pendingShot = event;
+  chosen = null; // Consumir antes de esperar IndexedDB: respuesta inmediata.
+  ++revision;
+  render();
+  let committed = false;
   try {
-    await flushMetadata();
-    const game = gameById(currentGameId);
-    const event = {
-      id: uniqueId(),
-      gameId: game.id,
-      jornada: game.jornada,
-      rival: game.rival,
-      categoria: CATEGORY_NAMES[selection.category],
-      accion: selection.action,
-      tipo_bloqueo: selection.category === "directo" ? selection.action : null,
-      estrategia: selection.category === "directo" ? selection.strategy : null,
-      valor_tiro: points,
-      resultado,
-      fecha_hora: new Date().toISOString()
-    };
-    const seq = await queueMutation(() => addEvent(event));
-    events.push({ ...event, seq });
-    chosen = null;
-    render();
-    setSaveStatus("saved");
-    setFeedback(`✓ ${selection.action}${selection.strategy ? ` · ${selection.strategy}` : ""} · ${points}${resultado === "anotado" ? "✓" : "✕"} registrado`, "success");
+    await queueOperation(async () => {
+      await addEvent(event, selection.shots);
+      committed = true;
+      pendingShot = null;
+      notifyChange(game.id);
+      applyState(await readState());
+      markSaved();
+      setFeedback("Tiro registrado.", "success");
+    });
   } catch (error) {
-    console.error("No se pudo registrar el resultado", error);
+    if (error.code === "EVENT_CONFLICT") pendingShot = null;
+    if (!committed && currentGameId === game.id && error.code !== "GAME_NOT_FOUND") chosen = selection;
     setSaveStatus("error");
-    setFeedback("Error al guardar: la acción NO ha sido registrada. Vuelve a intentarlo.", "error");
-  } finally {
-    busy = false;
-    renderSelection();
+    setFeedback(committed ? "El tiro está guardado, pero no se han podido actualizar las estadísticas. Recarga para recuperarlas."
+      : error.code === "GAME_NOT_FOUND" ? error.message
+      : "No se ha guardado el tiro. Vuelve a pulsar el resultado para reintentarlo.", "error");
+    await refreshState();
   }
-}
-
-async function removeLastGameEvent(gameId) {
-  const tx = db.transaction("events", "readwrite");
-  const done = transactionDone(tx);
-  const index = tx.objectStore("events").index("byGameSeq");
-  const keys = IDBKeyRange.bound([gameId, 0], [gameId, Number.MAX_SAFE_INTEGER]);
-  let removed = null;
-  index.openCursor(keys, "prev").onsuccess = (evt) => {
-    const cursor = evt.target.result;
-    if (!cursor) return;
-    removed = cursor.value;
-    cursor.delete();
-  };
-  await done;
-  return removed;
 }
 
 async function undoLast() {
-  if (busy || events.length === 0) return;
-  busy = true;
-  renderSelection();
-  setSaveStatus("saving");
+  if (busy || !storageReady || !gameById(currentGameId) || !events.length) return;
+  const gameId = currentGameId;
+  ++revision;
+  chosen = null;
+  pendingShot = null;
+  let committed = false;
   try {
-    await flushMetadata();
-    const removed = await queueMutation(() => removeLastGameEvent(currentGameId));
-    if (removed) {
-      events = events.filter((event) => event.id !== removed.id);
-      setFeedback(`↶ Deshecho: ${removed.accion}${removed.estrategia ? ` · ${removed.estrategia}` : ""}.`, "success");
-    } else {
-      setFeedback("No hay registros para deshacer.");
-    }
-    render();
-    setSaveStatus("saved");
+    await queueOperation(async () => {
+      const removed = await removeLastGameEvent(gameId);
+      committed = true;
+      notifyChange(gameId);
+      applyState(await readState());
+      markSaved();
+      setFeedback(removed ? "Última acción deshecha." : "No hay registros para deshacer.", "success");
+    });
   } catch (error) {
-    console.error("No se pudo deshacer", error);
     setSaveStatus("error");
-    setFeedback("No se ha podido deshacer. Ningún otro partido se ha modificado.", "error");
-  } finally {
-    busy = false;
-    renderSelection();
+    setFeedback(committed ? "Deshacer está guardado, pero no se han podido actualizar las estadísticas. Recarga para recuperarlas."
+      : error.code === "GAME_NOT_FOUND" ? error.message : "No se ha podido deshacer. Los eventos no se han modificado.", "error");
+    await refreshState();
   }
 }
 
-function triggerDownload(filename, mime, contents) {
-  const blob = new Blob([contents], { type: mime });
-  const href = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = href;
-  link.download = filename;
-  document.body.append(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(href), 10000);
-}
-
-function csvCell(value) {
-  let text = value === null || value === undefined ? "" : String(value);
-  // Excel/LibreOffice: neutraliza fórmulas introducidas en campos editables.
-  if (/^[\s]*[=+\-@]/.test(text)) text = `'${text}`;
-  return `"${text.replaceAll('"', '""')}"`;
-}
-
-function safeFileStamp() {
-  return new Date().toISOString().slice(0, 10);
-}
-
 async function exportCsv() {
-  if (busy) return;
-  await flushMetadata();
+  if (busy || !storageReady || !gameById(currentGameId)) return;
+  const gameId = currentGameId;
   try {
-    const records = (await allEvents()).sort((a, b) => a.seq - b.seq);
-    const headers = [
-      "ID evento", "ID partido", "Jornada", "Rival", "Categoría defensiva", "Acción",
-      "Tipo de bloqueo", "Estrategia", "Valor tiro", "Resultado",
-      "Intentos", "Anotados", "Fallados", "Puntos concedidos", "Fecha y hora (UTC)"
-    ];
-    const rows = records.map((event) => [
-      event.id, event.gameId, event.jornada, event.rival, event.categoria, event.accion,
-      event.tipo_bloqueo, event.estrategia, event.valor_tiro, event.resultado,
-      1, Number(event.resultado === "anotado"), Number(event.resultado === "fallado"),
-      event.resultado === "anotado" ? event.valor_tiro : 0, event.fecha_hora
-    ]);
-    const csv = "\uFEFF" + [headers, ...rows].map((row) => row.map(csvCell).join(";")).join("\r\n");
-    triggerDownload(`registro-defensivo-${safeFileStamp()}.csv`, "text/csv;charset=utf-8", csv);
-    setFeedback(`CSV descargado: ${records.length} jugadas de todos los partidos.`, "success");
+    await queueOperation(async () => {
+      const snapshot = await readExportSnapshot(gameId);
+      triggerDownload(csvFilename(snapshot.game), "text/csv;charset=utf-8", buildCsv(snapshot.events, snapshot.game));
+      markSaved();
+      setFeedback(`CSV descargado: ${snapshot.events.length} acciones de ${labelForGame(snapshot.game)}.`, "success");
+    });
   } catch (error) {
-    console.error("Error al exportar CSV", error);
-    setFeedback("No se ha podido generar el CSV.", "error");
+    setSaveStatus("error");
+    setFeedback(error.message, "error");
+    if (error.code === "GAME_NOT_FOUND") await refreshState();
   }
 }
 
@@ -526,10 +447,19 @@ function bindEvents() {
     if (button && !button.disabled) recordResult(Number(button.dataset.points), button.dataset.result);
   });
   $("#undoBtn").addEventListener("click", undoLast);
-  $("#newGameBtn").addEventListener("click", createGame);
+  $("#newGameBtn").addEventListener("click", openNewGame);
+  $("#newGameForm").addEventListener("submit", createGame);
+  $("#deleteGameBtn").addEventListener("click", askDeleteGame);
+  $("#confirmDeleteBtn").addEventListener("click", confirmDeleteGame);
   $("#gameSelect").addEventListener("change", (evt) => selectGame(evt.target.value));
-  $("#roundInput").addEventListener("input", onMetadataInput);
-  $("#rivalInput").addEventListener("input", onMetadataInput);
+  for (const id of ["#roundInput", "#rivalInput"]) {
+    $(id).addEventListener("input", () => $(id).setCustomValidity(""));
+  }
+  for (const [dialog, cancel] of [["#newGameDialog", "#cancelNewGameBtn"], ["#deleteGameDialog", "#cancelDeleteBtn"]]) {
+    $(cancel).addEventListener("click", () => { if (!busy) $(dialog).close(); });
+    $(dialog).addEventListener("cancel", event => { if (busy) event.preventDefault(); });
+    if (dialog === "#deleteGameDialog") $(dialog).addEventListener("close", () => { deletionTarget = null; });
+  }
   $("#exportCsvBtn").addEventListener("click", exportCsv);
 }
 
@@ -539,32 +469,33 @@ function onPickClick(evt) {
 }
 
 async function initialize() {
+  initializeLayout();
   bindEvents();
+  renderSelection();
   try {
-    if (!globalThis.indexedDB) throw new Error("El navegador no admite IndexedDB");
-    db = await openDatabase();
-    games = await allGames();
-    if (games.length === 0) {
-      const first = makeNewGame();
-      await addGameToDatabase(first);
-      games.push(first);
-    }
-    const saved = await activeGameSetting();
-    currentGameId = games.some((g) => g.id === saved?.value)
-      ? saved.value
-      : games.slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0].id;
-    await writeActiveGame(currentGameId);
-    events = await eventsForGame(currentGameId);
-    syncGameInputs();
-    render();
-    setSaveStatus("saved");
+    if (!globalThis.indexedDB) throw new Error("El navegador no admite IndexedDB.");
+    await openDatabase();
+    const state = await readState();
+    try { configuration = await loadConfiguration(); }
+    catch (error) { configurationError = error.message; }
+    storageReady = true;
+    busy = false;
+    applyState(state);
+    bindSynchronization();
+    // Releer tras suscribirse evita perder cambios de otra pestaña durante el arranque.
+    await refreshState();
+    if (configurationError) {
+      $("#configurationError").hidden = false;
+      $("#configurationError").textContent = configurationError;
+      setSaveStatus("error", "Configuración incorrecta");
+      setFeedback("Registro bloqueado. Corrige categorias.csv y recarga.", "error");
+    } else if (storageReady) setSaveStatus("saved");
   } catch (error) {
-    console.error("No se pudo iniciar la aplicación", error);
-    busy = true;
+    busy = false;
+    storageReady = false;
     setSaveStatus("error", "Guardado no disponible");
-    setFeedback("Este navegador no permite guardar datos. No registres jugadas hasta solucionarlo.", "error");
+    setFeedback(error.message, "error");
     renderSelection();
-    document.querySelectorAll(".field input, .action-btn, .defense-btn").forEach((element) => { element.disabled = true; });
   }
 }
 
