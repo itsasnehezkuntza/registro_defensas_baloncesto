@@ -201,3 +201,93 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 }
 @media(max-height:480px) and (orientation:landscape){.result-btn{min-height:52px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+/* White-first visual correction: Nike-inspired canvas and surfaces. */
+:root {
+  --bg:#ffffff;
+  --surface:#f8f8f7;
+  --border:#eceeeb;
+  --shadow:0 16px 38px rgba(24,29,26,.048),0 3px 10px rgba(24,29,26,.025);
+  --shadow-inner:inset 0 1px 0 rgba(255,255,255,.96);
+}
+html,body { background:#fff; }
+body {
+  background:#fff;
+  color:#171b19;
+}
+.header {
+  background:#fff;
+  border:1px solid #f0f1ef;
+  box-shadow:0 10px 28px rgba(28,32,29,.045);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.header::before {
+  border-color:rgba(229,233,230,.55);
+  box-shadow:0 0 0 27px rgba(246,247,245,.46),0 0 0 67px rgba(247,248,246,.3);
+}
+.header::after { background:radial-gradient(circle,rgba(244,123,54,.045),transparent 70%); }
+.brand h1,.panel-heading h2 { color:#171a18; }
+.brand p,.field>span,.selection-label { color:#818681; }
+.field select,.tool-button {
+  background:#f8f9f7;
+  border-color:#eceeeb;
+  box-shadow:none;
+}
+.tool-button:hover:not(:disabled) { background:#f2f4f1; }
+#newGameBtn { background:#f47b36; border-color:#f47b36; }
+#newGameBtn:hover:not(:disabled) { background:#ff9053; }
+.save-status { background:#f8f9f7; border-color:#eceeeb; box-shadow:none; }
+.stat-panel {
+  background:#fff;
+  border:1px solid #eceeeb;
+  box-shadow:0 14px 36px rgba(26,32,28,.045),0 2px 8px rgba(26,32,28,.025);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.stat-panel::before,.stat-panel::after { opacity:.35; }
+.panel-summary { background:#f6f7f5; border-color:#f1f2ef; box-shadow:none; }
+.action-btn {
+  background:#f7f8f6;
+  border:1px solid #f0f1ee;
+  box-shadow:none;
+}
+.action-btn:hover:not(:disabled) {
+  background:#f2f4f1;
+  box-shadow:0 8px 18px rgba(24,29,26,.045);
+}
+.action-btn[aria-pressed="true"],.defense-btn[aria-pressed="true"] {
+  background:#f47b36;
+  border-color:#f47b36;
+  box-shadow:0 8px 18px rgba(244,123,54,.16);
+}
+.direct-matrix-inner {
+  background:#f8f9f7;
+  border:1px solid #f1f2ef;
+}
+.direct-type,.defense-heading,.defense-btn {
+  background:#fff;
+  border-color:#eef0ec;
+  box-shadow:none;
+}
+.defense-heading.is-axis-selected,.direct-row.is-axis-selected .direct-type {
+  background:#fff0e5;
+  border-color:#f6ba92;
+}
+.defense-btn:hover:not(:disabled) { background:#f6f7f5;box-shadow:0 7px 14px rgba(24,29,26,.04); }
+.result-dock {
+  background:rgba(255,255,255,.97);
+  border-top:1px solid #eceeeb;
+  box-shadow:0 -8px 22px rgba(24,29,26,.04);
+}
+.result-inner {
+  background:#fff;
+  border:0;
+  box-shadow:none;
+}
+.result-btn {
+  box-shadow:none;
+}
+.result-btn.result-made { background:#fff3f3; border-color:#f3d5d5; }
+.result-btn.result-missed { background:#eff9f1; border-color:#d1ead9; }
+.no-game-notice { background:#f8f9f7; }
