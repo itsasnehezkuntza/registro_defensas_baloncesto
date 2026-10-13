@@ -500,3 +500,15 @@ html,body{width:100%;min-height:100%;background:#fff}
   .action-btn,.transition-list .action-btn{min-height:62px}
   .result-btn{min-height:57px}
 }
+
+/* Estático: 2 filas × 3 columnas para reducir la altura del panel. */
+.static-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){
+  .static-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .static-list .action-btn{padding:8px 7px}
+  .static-list .action-name{font-size:clamp(.72rem,2.6vw,.9rem)}
+  .static-list .action-score{font-size:.64rem}
+}
+@media(max-width:360px){
+  .static-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
