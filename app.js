@@ -295,8 +295,16 @@ function buildSimpleActions(category, targetId) {
 }
 
 function buildDirectActions() {
-  $("#directActions").innerHTML = (categoryFor("directo")?.actions ?? []).map(action => {
+  const actions = categoryFor("directo")?.actions ?? [];
+  const defenses = actions[0]?.defenses ?? [];
+  const selectedDirect = chosen?.category === "directo" ? chosen : null;
+  const headings = defenses.map(defense => {
+    const selected = selectedDirect?.strategyId === defense.id;
+    return `<span class="defense-heading${selected ? " is-axis-selected" : ""}" data-defense-heading="${htmlSafe(defense.id)}">${htmlSafe(defense.name)}</span>`;
+  }).join("");
+  const rows = actions.map(action => {
     const typeEvents = events.filter(event => matchesEvent(event, "directo", action.id));
+    const rowSelected = selectedDirect?.actionId === action.id;
     const chips = action.defenses.map(defense => {
       const stat = summarize(typeEvents.filter(event => matchesEvent(event, "directo", action.id, defense.id)));
       return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.id)}" data-strategy="${htmlSafe(defense.id)}" aria-pressed="${isChosen("directo", action.id, defense.id)}">
@@ -304,11 +312,16 @@ function buildDirectActions() {
         <span class="defense-score">${statText(stat)}</span>
       </button>`;
     }).join("");
-    return `<div class="direct-row">
+    return `<div class="direct-row${rowSelected ? " is-axis-selected" : ""}">
       <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${statText(summarize(typeEvents))}</span></div>
       <div class="defense-options">${chips}</div>
     </div>`;
   }).join("");
+  $("#directActions").innerHTML = `<p class="matrix-hint">Desliza lateralmente para ver todas las defensas →</p>
+    <div class="direct-matrix"><div class="direct-matrix-inner">
+      <div class="direct-matrix-head"><span class="direct-corner">Situación / defensa</span><div class="defense-headings">${headings}</div></div>
+      ${rows}
+    </div></div>`;
 }
 
 function renderSelection() {
