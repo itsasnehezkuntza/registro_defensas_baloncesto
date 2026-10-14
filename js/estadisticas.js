@@ -8,6 +8,16 @@ export function summarize(list) {
   return { attempts, missed, made, pointsAllowed };
 }
 
+// Formato solicitado: fallados/aciertos, un resultado por evento sin ponderar 2/3.
+export function outcomeText(stat) {
+  return stat.attempts ? `${stat.missed}/${stat.made}` : "—";
+}
+
+// Conservado para comprobaciones de puntos; no es el formato visible vigente.
+export function pointsText(stat) {
+  return stat.attempts ? String(stat.pointsAllowed) : "—";
+}
+
 export function statText(stat) {
   if (!stat.attempts) return "—";
   return `${stat.missed}–${stat.made} · ${Math.round(100 * stat.missed / stat.attempts)}%`;

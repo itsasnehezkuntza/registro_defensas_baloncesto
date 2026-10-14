@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#dedede">
-  <meta name="description" content="Planilla de registro defensivo de baloncesto para partidos en directo, sin cuentas ni servidor.">
+  <meta name="description" content="Registro defensivo de baloncesto con guardado local y cuenta de Google opcional.">
   <title>Registro defensivo · Baloncesto</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./premium.css">
   <link rel="stylesheet" href="./dashboard.css">
+  <link rel="stylesheet" href="./cuenta.css">
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./js/cuenta-ui.js"></script>
 </head>
 <body><div class="ambient" aria-hidden="true"><div class="ambient-ribbon"></div><div class="ambient-ring"></div><div class="ambient-light"></div></div>
   <div class="app-shell">
@@ -36,6 +38,15 @@
           <button type="button" id="exportCsvBtn" disabled class="tool-button"><svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg><span>Exportar CSV</span></button>
         </div>
       </div>
+      <div class="account-bar" aria-label="Cuenta opcional">
+        <span id="cloudStatus" class="cloud-status" role="status">Solo local</span>
+        <span id="accountIdentity" class="account-identity" hidden></span>
+        <button id="googleLogin" type="button" class="tool-button" disabled>Iniciar sesión con Google</button>
+        <button id="googleLogout" type="button" class="tool-button" hidden>Cerrar sesión</button>
+        <button id="accountRetry" type="button" class="tool-button" hidden>Reintentar conexión</button>
+        <button id="continueLocal" type="button" class="tool-button" hidden>Continuar sin cuenta</button>
+      </div>
+      <p id="accountMessage" class="account-note" role="status" aria-live="polite" hidden></p>
     </header>
 
     <main>
@@ -115,7 +126,7 @@
           <span class="selection-label">ACCIÓN SELECCIONADA</span>
           <strong id="selectedDescription" aria-live="polite" aria-atomic="true">Selecciona una acción o defensa</strong>
         </div>
-        <span class="selection-meta" id="gameTotal">0 intentos · —</span>
+        <span class="selection-meta" id="gameTotal">Fallados/aciertos · —</span>
       </div>
       <div class="result-buttons" id="resultButtons">
         <button type="button" class="result-btn result-missed" data-points="2" data-result="fallado" aria-label="Tiro de 2 puntos fallado por el rival" disabled><span>2<span class="result-sign">✕</span></span><small>FALLADO</small></button>

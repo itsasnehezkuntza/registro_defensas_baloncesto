@@ -4,7 +4,7 @@ import { initializeViews } from "./js/vistas.js";
 import { renderDashboard } from "./js/dashboard.js";
 import { loadConfiguration } from "./js/configuracion.js";
 import { matchesEvent } from "./js/identidad.js";
-import { summarize, statMarkup } from "./js/estadisticas.js";
+import { summarize, outcomeText } from "./js/estadisticas.js";
 import { buildCsv, csvFilename, triggerDownload } from "./js/exportacion.js";
 import { openDatabase, readState, createGameAndSelect, selectGameState,
   deleteGame, readExportSnapshot, addEvent, removeLastGameEvent } from "./js/persistencia.js";
@@ -298,7 +298,7 @@ function buildSimpleActions(category, targetId) {
     const stat = summarize(events.filter(event => matchesEvent(event, category, action.id)));
     return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.id)}" aria-pressed="${isChosen(category, action.id)}">
       <span class="action-name">${htmlSafe(action.name)}</span>
-      <span class="action-score">${statMarkup(stat)}</span>
+      <span class="action-score">${outcomeText(stat)}</span>
     </button>`;
   }).join("");
 }
@@ -321,11 +321,11 @@ function buildDirectActions() {
       const stat = summarize(typeEvents.filter(event => matchesEvent(event, "directo", action.id, defense.id)));
       return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.id)}" data-strategy="${htmlSafe(defense.id)}" aria-pressed="${isChosen("directo", action.id, defense.id)}">
         <span class="defense-name">${htmlSafe(defense.name)}</span>
-        <span class="defense-score">${statMarkup(stat)}</span>
+        <span class="defense-score">${outcomeText(stat)}</span>
       </button>`;
     }).join("");
     return `<div class="direct-row${rowSelected ? " is-axis-selected" : ""}">
-      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${statMarkup(summarize(typeEvents))}</span></div>
+      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${outcomeText(summarize(typeEvents))}</span></div>
       <div class="defense-options">${chips}</div>
     </div>`;
   }).join("");
@@ -375,10 +375,10 @@ function render() {
   for (const [category, id] of [
     ["transicion", "#transitionTotal"], ["estatico", "#staticTotal"], ["directo", "#directTotal"]
   ]) {
-    $(id).innerHTML = statMarkup(summarize(events.filter((e) => matchesEvent(e, category))));
+    $(id).textContent = outcomeText(summarize(events.filter((e) => matchesEvent(e, category))));
   }
   const total = summarize(events);
-  $("#gameTotal").innerHTML = `${total.attempts} intento${total.attempts === 1 ? "" : "s"} · ${statMarkup(total)}`;
+  $("#gameTotal").textContent = `Fallados/aciertos · ${outcomeText(total)}`;
   renderSelection();
   renderDashboard(configuration, events, gameById(currentGameId));
 }

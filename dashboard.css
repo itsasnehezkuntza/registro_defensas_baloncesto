@@ -49,3 +49,68 @@ body[data-view="estadisticas"] .app-shell{padding-bottom:max(20px,env(safe-area-
  .analysis-grid{display:block;margin-top:10px}.dashboard-situations{gap:10px}.dashboard-direct{margin-top:10px}.dashboard-panel-content{padding:0 13px 14px}.performance{padding:9px 0}.dashboard-direct .performance{padding:13px 0}.performance-heading h3{font-size:.8125rem}
 }
 @media(max-width:360px){.toolbar .view-toggle .ui-icon{display:none}.toolbar .view-toggle{font-size:.5625rem}.group-summary h3{font-size:.5625rem}}
+
+/* Fase 7: organización estadística. Reutiliza la paleta y materiales aprobados. */
+.dashboard .analysis-grid{display:flex;flex-direction:column;gap:14px}
+.dashboard .analysis-grid>.dashboard-group,.dashboard .dashboard-situations{width:100%}
+.dashboard .dashboard-situations{grid-template-columns:1fr 1fr;align-items:start}
+.dashboard .dashboard-direct{margin-top:0}
+.dashboard .dashboard-note,.dashboard .dashboard-footnote{font-size:.75rem}
+.dashboard .performance-points{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 8px;margin-top:6px;font-size:.75rem;color:#444}
+.dashboard .matrix-scroll{max-width:100%;overflow-x:auto;border-radius:14px;background:linear-gradient(140deg,#c9c9c933,#ffffff33);border:1px solid #ffffff85;margin-top:10px}
+.dashboard .analysis-matrix{border-spacing:5px;width:100%;min-width:52rem;table-layout:fixed}
+.dashboard .analysis-matrix th{font-size:.8125rem;text-align:center;padding:9px 4px;overflow-wrap:anywhere;color:#444}
+.dashboard .analysis-matrix th:first-child{width:7.5rem;text-align:left;padding-left:10px}
+.dashboard .analysis-matrix th[scope="row"]{background:linear-gradient(145deg,#ffffff7d,#ffffff40);border:1px solid #ffffff70;border-radius:12px}
+.dashboard .analysis-matrix td{padding:0;vertical-align:top;height:1px}
+.dashboard .matrix-cell{width:100%;height:100%;min-height:103px;min-width:44px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 5px;border-radius:12px;border:1px solid #ffffffd9;background:linear-gradient(145deg,#ffffffeb 0%,#ffffffb8 60%,#f8f8f8d6 100%);box-shadow:inset 0 1px 0 #fff,0 3px 6px #00000004;color:#303030;font-family:inherit;cursor:pointer;line-height:1.2}
+.dashboard .matrix-cell:hover{border-color:#999}
+.dashboard .matrix-cell[aria-pressed="true"]{border-color:var(--accent-dark);box-shadow:inset 0 0 0 1px var(--accent-dark),0 3px 6px #00000004}
+.dashboard .matrix-cell:focus-visible,.dashboard .matrix-scroll:focus-visible{outline:3px solid var(--accent-dark);outline-offset:1px}
+.dashboard .matrix-percent{font-size:1.375rem;font-weight:800}
+.dashboard .matrix-percent small{font-size:.8125rem}
+.dashboard .matrix-points{font-size:1rem;font-weight:800}
+.dashboard .matrix-points small,.dashboard .matrix-rate{font-size:.75rem}
+.dashboard .matrix-rate{color:#555}
+.dashboard .matrix-total .matrix-cell{background:linear-gradient(145deg,#ffffff7d,#ffffff40);border-color:#aaa}
+.dashboard .comparison-badge{display:inline-block;width:fit-content;border:1px solid #777;border-radius:6px;padding:3px 5px;font-size:.75rem;font-weight:800;line-height:1.15;color:#333}
+.dashboard .comparison-badge.is-worst{border-color:var(--accent-dark);color:var(--accent-dark)}
+.dashboard .sample-note{display:block;font-size:.75rem;line-height:1.25;color:#555}
+.dashboard .historical-label{display:block;font-size:.6875rem;font-weight:500}
+.dashboard .matrix-detail{margin-top:12px;padding:12px 14px;border:1px solid #ffffffd9;border-radius:14px;background:linear-gradient(145deg,#ffffff7d,#ffffff40)}
+.dashboard .matrix-detail h3,.dashboard .strategy-heading h3{margin:0;font-size:.875rem;font-weight:800}
+.dashboard .matrix-detail dl{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:12px 0 0}
+.dashboard .matrix-detail dt{font-size:.75rem;color:#555;line-height:1.3}
+.dashboard .matrix-detail dd{margin:4px 0 0;font-size:1.25rem;font-weight:800}
+.dashboard .comparison-rule{margin:10px 0 16px}
+.dashboard .strategy-heading{padding-top:12px;border-top:1px solid #ffffff80}
+.dashboard .strategy-heading p{margin-top:5px}
+.dashboard .strategy-ranking{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.dashboard .strategy-ranking .performance{border:0;padding:8px 0}
+.dashboard .strategy-ranking .performance-heading h3{font-size:.875rem}
+.dashboard .strategy-ranking .percentage{font-size:1.25rem}
+.dashboard .strategy-ranking .performance-bar{height:9px}
+.dashboard .strategy-ranking .comparison-badge,.dashboard .strategy-ranking .sample-note{margin-top:8px}
+.dashboard .matrix-scroll-hint{display:none;font-size:.75rem;color:#555;margin-top:8px}
+.dashboard .analysis-matrix caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:950px){
+ .dashboard .matrix-scroll-hint{display:block}
+ .dashboard .analysis-matrix th:first-child{position:sticky;left:0;z-index:1;background:#eee;box-shadow:3px 0 5px #0000000c;width:7rem}
+ .dashboard .strategy-ranking{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .dashboard .dashboard-situations{grid-template-columns:1fr}
+ .dashboard .matrix-detail dl{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .dashboard .strategy-ranking{grid-template-columns:1fr}
+ .dashboard .strategy-ranking .performance{border-bottom:1px solid #ffffff80;padding:10px 0}
+ .dashboard .strategy-ranking .performance:last-child{border:0}
+ .dashboard .strategy-ranking .performance-heading h3{font-size:1rem}
+}
+@media(max-width:360px){.dashboard .matrix-detail dl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Presentación compacta del resultado fallados/aciertos, con materiales y paleta intactos. */
+.dashboard .matrix-cell{min-height:70px;justify-content:center}
+.dashboard .matrix-points{font-size:1.375rem}
+.dashboard .matrix-success,.dashboard .overview-success{font-size:.8125rem;line-height:1.4;color:#555}
+.dashboard .overview-success{margin:6px 0}
+.dashboard .strategy-heading{margin-top:16px}
