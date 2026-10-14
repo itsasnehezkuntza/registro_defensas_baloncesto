@@ -52,7 +52,7 @@ directo;Bloqueo directo;pr_manejador;PR Manejador;blue;Blue;2,3
 
 Renombra solo los nombres, conservando IDs. Añade acciones con IDs nuevos; no reutilices uno retirado para otra acción. En directo, una fila por defensa y el mismo accion_id para cada tipo. El orden de filas determina el orden de botones. Retira acciones borrando sus filas, sin perder tiros anteriores. Mantén al menos una fila.
 
-PR Roller inicialmente permite únicamente 2 en sus cinco defensas. Los permisos proceden del CSV; editarlo cambia solo los registros futuros. Nombres con `;`, salto o comillas deben encerrarse entre comillas dobles, duplicando comillas interiores.
+PR Roller inicialmente permite únicamente 2 en sus ocho defensas. Las defensas son Black, White, Blue, Red, Tut, Next, Dance y Quick+Under; los otros tipos de bloqueo permiten 2 y 3. En Estático también están Spain (2 y 3 puntos) y Of. Screen (2 puntos). Los permisos proceden del CSV; editarlo cambia solo los registros futuros. Nombres con `;`, salto o comillas deben encerrarse entre comillas dobles, duplicando comillas interiores.
 
 Después de editar, vuelve a preparar los archivos de publicación y, cuando se autorice, actualiza la rama de publicación. Recarga la aplicación después de publicarlo; CSV se solicita sin caché. Un error de configuración bloquea registro, conservando almacenamiento y exportación del activo si IndexedDB funciona.
 
