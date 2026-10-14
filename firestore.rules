@@ -1,0 +1,124 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    function text(value, limit) { return value is string && value.size() > 0 && value.size() <= limit; }
+    function optionalText(value, limit) { return value == null || text(value, limit); }
+    function owner(teamId) {
+      return signedIn()
+        && get(/databases/$(database)/documents/teams/$(teamId)).data.ownerUid == request.auth.uid
+        && get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.role == 'owner'
+        && get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.status == 'active';
+    }
+    function gameLive(teamId, gameId) {
+      return get(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)).data.deletedAt == null;
+    }
+    function gameLiveAfter(teamId, gameId) {
+      return getAfter(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)).data.deletedAt == null;
+    }
+    function newEnvelope(d) {
+      return d.schemaVersion == 1 && d.createdBy == request.auth.uid
+        && d.createdAt == request.time && text(d.sourceId, 128);
+    }
+    function gamePayload(p) {
+      return p.keys().hasAll(['id', 'jornada', 'rival', 'createdAt'])
+        && p.keys().hasOnly(['id', 'jornada', 'rival', 'createdAt'])
+        && text(p.id, 256) && text(p.jornada, 256) && text(p.rival, 1024) && text(p.createdAt, 64);
+    }
+    function shotPayload(p) {
+      return p.keys().hasAll(['id', 'gameId', 'categoria', 'accion', 'valor_tiro', 'resultado', 'fecha_hora'])
+        && p.keys().hasOnly(['id', 'gameId', 'jornada', 'rival', 'categoria', 'accion',
+          'categoria_id', 'accion_id', 'defensa_id', 'estrategia', 'tipo_bloqueo',
+          'tiros_permitidos', 'valor_tiro', 'resultado', 'fecha_hora', 'seq'])
+        && text(p.id, 256) && text(p.gameId, 256)
+        && text(p.categoria, 256) && text(p.accion, 256)
+        && p.valor_tiro in [2, 3] && p.resultado in ['anotado', 'fallado'] && text(p.fecha_hora, 64)
+        && (!('jornada' in p) || text(p.jornada, 256)) && (!('rival' in p) || text(p.rival, 1024))
+        && (!('categoria_id' in p) || optionalText(p.categoria_id, 256))
+        && (!('accion_id' in p) || optionalText(p.accion_id, 256))
+        && (!('defensa_id' in p) || optionalText(p.defensa_id, 256))
+        && (!('estrategia' in p) || optionalText(p.estrategia, 256))
+        && (!('tipo_bloqueo' in p) || optionalText(p.tipo_bloqueo, 256))
+        && (!('seq' in p) || (p.seq is int && p.seq > 0))
+        && (!('tiros_permitidos' in p) || (p.tiros_permitidos is list
+          && p.tiros_permitidos.size() >= 1 && p.tiros_permitidos.size() <= 2
+          && p.tiros_permitidos.hasOnly([2, 3]) && p.valor_tiro in p.tiros_permitidos));
+    }
+
+    match /users/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasAll(['schemaVersion', 'displayName', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'displayName', 'createdAt'])
+        && request.resource.data.schemaVersion == 1
+        && text(request.resource.data.displayName, 256) && request.resource.data.createdAt == request.time;
+      // No permisos/roles ni índice de equipos controlado por el usuario.
+      allow update, delete, list: if false;
+    }
+
+    match /teams/{teamId} {
+      allow get, list: if owner(teamId);
+      // Equipo y su miembro propietario deben nacer en el mismo batch.
+      allow create: if signedIn()
+        && request.resource.data.keys().hasAll(['schemaVersion', 'name', 'ownerUid', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'name', 'ownerUid', 'createdAt'])
+        && request.resource.data.schemaVersion == 1 && text(request.resource.data.name, 120)
+        && request.resource.data.ownerUid == request.auth.uid && request.resource.data.createdAt == request.time
+        && getAfter(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.role == 'owner'
+        && getAfter(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.status == 'active';
+      allow update, delete: if false;
+
+      match /members/{uid} {
+        allow read: if owner(teamId);
+        allow create: if signedIn() && uid == request.auth.uid
+          && !exists(/databases/$(database)/documents/teams/$(teamId))
+          && getAfter(/databases/$(database)/documents/teams/$(teamId)).data.ownerUid == request.auth.uid
+          && request.resource.data.keys().hasAll(['schemaVersion', 'uid', 'role', 'status', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['schemaVersion', 'uid', 'role', 'status', 'createdAt'])
+          && request.resource.data.schemaVersion == 1 && request.resource.data.uid == uid
+          && request.resource.data.role == 'owner' && request.resource.data.status == 'active'
+          && request.resource.data.createdAt == request.time;
+        // Invitaciones y entrenadores adicionales requieren otra fase y otras pruebas.
+        allow update, delete: if false;
+      }
+
+      match /games/{gameId} {
+        // Incluye lápidas de partidos para que un cliente pueda retirar su copia.
+        allow read: if owner(teamId);
+        allow create: if owner(teamId)
+          && request.resource.data.keys().hasAll(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'deletedAt', 'deletedBy'])
+          && request.resource.data.keys().hasOnly(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'deletedAt', 'deletedBy'])
+          && newEnvelope(request.resource.data) && gamePayload(request.resource.data.payload)
+          && request.resource.data.deletedAt == null && request.resource.data.deletedBy == null;
+        // Único cambio permitido: eliminación irreversible. Nunca borrar la lápida.
+        allow update: if owner(teamId) && resource.data.deletedAt == null
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['deletedAt', 'deletedBy'])
+          && request.resource.data.deletedAt == request.time && request.resource.data.deletedBy == request.auth.uid;
+        allow delete: if false;
+
+        match /events/{eventId} {
+          allow read: if owner(teamId) && gameLive(teamId, gameId);
+          allow create: if owner(teamId) && gameLive(teamId, gameId) && gameLiveAfter(teamId, gameId)
+            && !existsAfter(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)/eventDeletions/$(eventId))
+            && request.resource.data.keys().hasAll(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload'])
+            && request.resource.data.keys().hasOnly(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload'])
+            && newEnvelope(request.resource.data) && shotPayload(request.resource.data.payload)
+            && request.resource.data.payload.gameId == get(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)).data.payload.id;
+          allow update, delete: if false;
+        }
+        match /eventDeletions/{eventId} {
+          allow read: if owner(teamId);
+          // Puede llegar antes que el alta del evento (Deshacer sin conexión).
+          allow create: if owner(teamId) && gameLive(teamId, gameId) && gameLiveAfter(teamId, gameId)
+            && request.resource.data.keys().hasAll(['schemaVersion', 'eventId', 'deletedBy', 'deletedAt', 'operationId'])
+            && request.resource.data.keys().hasOnly(['schemaVersion', 'eventId', 'deletedBy', 'deletedAt', 'operationId'])
+            && request.resource.data.schemaVersion == 1 && request.resource.data.eventId == eventId
+            && request.resource.data.deletedBy == request.auth.uid && request.resource.data.deletedAt == request.time
+            && text(request.resource.data.operationId, 128);
+          allow update, delete: if false;
+        }
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

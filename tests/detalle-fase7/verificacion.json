@@ -1,0 +1,1211 @@
+{
+  "ok": true,
+  "browser": "156.0.8078.4",
+  "reports": [
+    {
+      "games": {
+        "ok": true,
+        "isolation": true,
+        "crossTab": true,
+        "undo": true,
+        "deleteOnlySelected": true,
+        "reload": true,
+        "pagesSubpath": true
+      }
+    },
+    {
+      "phase": 2,
+      "ok": true,
+      "results": [
+        "1/12/13 · Sin partidos: 33 combinaciones presentes, registro y herramientas bloqueados",
+        "2 · Creación obligatoria, validación, trim, ID y selección persistida",
+        "3 · Recarga recupera partido activo",
+        "6/7 · Eventos y orden recuperados; deshacer tras recarga funciona",
+        "4/5 · Dos partidos con mismos nombres, IDs distintos y eventos aislados",
+        "14 · Selecciones rápidas conservan la última intención",
+        "14 · Un fallo de selección antiguo no sobrescribe una intención posterior",
+        "8 · Cancelar borrado no cambia datos",
+        "9/10/11 · Borrado confirmado, aislado y persistente; otra pestaña se bloquea",
+        "14 · Transacción impide registrar en partido eliminado",
+        "14 · Fallo y aborto de creación revierten partido y selección atómicamente",
+        "14 · Aborto de borrado, también durante la cascada de eventos, conserva todos los datos",
+        "14 · Fallo de creación en UI: formulario recuperable y sin falso Guardado",
+        "Compatibilidad · Partidos de ejemplo y eventos v1 conservados sin migración",
+        "14 · Dos eliminaciones simultáneas: solo una confirma; el histórico permanece"
+      ]
+    },
+    {
+      "phase": 3,
+      "ok": true,
+      "results": [
+        "1–4/7–10 · 33 combinaciones, 104 resultados válidos en dos pulsaciones; permisos, eventos y 125 puntos correctos",
+        "5/6 · Doble toque y dos resultados distintos generan un solo evento; cambio de selección correcto",
+        "11–13 · Deshacer tras recarga, estadísticas vacías, aislamiento de partidos y Blue por tipo",
+        "11/16 · Aborto de Deshacer conserva todos los eventos y muestra error",
+        "12/16 · Deshacer por seq; aborto real y reintento conservan el ID y producen una sola fila",
+        "16 · Fallo posterior al commit: mensaje preciso, evento conservado y selección consumida",
+        "4/15 · Reintentos simultáneos idempotentes; ID conflictivo rechazado sin sobrescribir",
+        "11/16 · Fallo de refresco tras Deshacer distingue la eliminación confirmada",
+        "15 · Dos pestañas: eventos y estadísticas compartidos, sin perder una selección del mismo partido",
+        "15 · Guardado bajo latencia y cambio de partido: ID capturado y sin falso Guardado",
+        "15/16 · Borrado concurrente rechaza el registro y conserva el resto",
+        "14/18 · Eventos v1 y con IDs; renombrado, retirada y cambio de permisos preservan el histórico",
+        "17 · Sin partido activo tampoco registra un botón alterado desde código"
+      ]
+    },
+    {
+      "phase": 5,
+      "ok": true,
+      "results": [
+        "CSV real de interfaz: solo partido capturado, orden, BOM, nombres originales, escape y puntos",
+        "Histórico renombrado/retirado sigue exportándose sin reescritura",
+        "Partido vacío exporta cabeceras; sin activo no descarga",
+        "Cambio concurrente de activo no altera el ID capturado al iniciar CSV",
+        "Fallo de lectura: error visible y ninguna descarga parcial",
+        "Partido eliminado: snapshot rechazado, ninguna descarga ajena y selección invalidada",
+        "Recarga inmediata tras commit conserva tiro; Deshacer y recarga mantienen aislamiento",
+        "Paquete de 17 archivos bajo /registro_defensas_baloncesto/: HTML, CSS premium, fuentes locales, módulos y CSV cargan; descarga nativa solicitada"
+      ]
+    },
+    {
+      "phase": 6,
+      "ok": true,
+      "checks": [
+        "[data-action=\"transicion_bajo_aro\"] 7/3: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"transicion_bajo_aro\"] 0/5: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"transicion_bajo_aro\"] 5/0: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"estatico_1c1_exterior\"] 7/3: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"estatico_1c1_exterior\"] 0/5: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"estatico_1c1_exterior\"] 5/0: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"pr_manejador\"][data-strategy=\"blue\"] 7/3: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"pr_manejador\"][data-strategy=\"blue\"] 0/5: registro, recarga, Deshacer y aislamiento",
+        "[data-action=\"pr_manejador\"][data-strategy=\"blue\"] 5/0: registro, recarga, Deshacer y aislamiento"
+      ]
+    },
+    {
+      "name": "ipad",
+      "viewport": {
+        "width": 1180,
+        "height": 820
+      },
+      "expected": {
+        "attempts": 155,
+        "missed": 92,
+        "made": 63,
+        "points": 146,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spain\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"next\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"dance\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"quick_under\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 10,
+            "missed": 10,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 12,
+            "count": 6,
+            "missed": 0,
+            "made": 6
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"next\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"dance\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"quick_under\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 5,
+            "missed": 5,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"next\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"dance\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"quick_under\"]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "ipad-compacto",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "expected": {
+        "attempts": 155,
+        "missed": 92,
+        "made": 63,
+        "points": 146,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spain\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"next\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"dance\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"quick_under\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 10,
+            "missed": 10,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 12,
+            "count": 6,
+            "missed": 0,
+            "made": 6
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"next\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"dance\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"quick_under\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 5,
+            "missed": 5,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"next\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"dance\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"quick_under\"]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "movil",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expected": {
+        "attempts": 155,
+        "missed": 92,
+        "made": 63,
+        "points": 146,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spain\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"next\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"dance\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"quick_under\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 10,
+            "missed": 10,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 12,
+            "count": 6,
+            "missed": 0,
+            "made": 6
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"next\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"dance\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"quick_under\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 5,
+            "missed": 5,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"next\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"dance\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"quick_under\"]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "estrecho",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "expected": {
+        "attempts": 155,
+        "missed": 92,
+        "made": 63,
+        "points": 146,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spain\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"next\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"dance\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"quick_under\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 10,
+            "missed": 10,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 12,
+            "count": 6,
+            "missed": 0,
+            "made": 6
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"next\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"dance\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"quick_under\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 5,
+            "missed": 5,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"next\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"dance\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"quick_under\"]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "movil-horizontal",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "expected": {
+        "attempts": 155,
+        "missed": 92,
+        "made": 63,
+        "points": 146,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spain\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"next\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"dance\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"quick_under\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 10,
+            "missed": 10,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 12,
+            "count": 6,
+            "missed": 0,
+            "made": 6
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_roller\",\"next\"]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"dance\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"quick_under\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 5,
+            "missed": 5,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"next\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"dance\"]": {
+            "points": 2,
+            "count": 1,
+            "missed": 0,
+            "made": 1
+          },
+          "[\"cell\",\"pr_pop\",\"quick_under\"]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+﻿[
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\index.html",
+        "Unchanged":  true,
+        "Hash":  "5BC821A8319EE47CCE688F3E174AB87844EFEB30553B1C65C6183FC2C7684760"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\premium.css",
+        "Unchanged":  true,
+        "Hash":  "44B3238028A423024022D6D9EE54864E8DB6F16176A369EB88177C4FD9DCC574"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\styles.css",
+        "Unchanged":  true,
+        "Hash":  "4006BC217638DF6C76E2312E5AE4CE30F7A9B8A3408ABE09D4AFE0207B000490"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\app.js",
+        "Unchanged":  true,
+        "Hash":  "20B77BD61FE39DDFC2E724783743F72F15554B796794D8326508179FC6FD75A2"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\categorias.csv",
+        "Unchanged":  true,
+        "Hash":  "2305DB928244A0C93C68F9CCF2866C90F85765A067406AD966E935DA073A5A2F"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\js\\estadisticas.js",
+        "Unchanged":  true,
+        "Hash":  "87A5CD12D4D5E541834FBC4D1BB7E4C9298EF603E1CAEE57B590BBCD1BA596DD"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\js\\registro.js",
+        "Unchanged":  true,
+        "Hash":  "7F97F7ED68B98517A7BA425B5634EBB33800D729B999CE7F897DFF984BAF1B0E"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\js\\persistencia.js",
+        "Unchanged":  true,
+        "Hash":  "7E20FBDFFDFA8EBC3B6070F923CE5918F86C949873C776FBAA4E9AD633A1BAD8"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\js\\exportacion.js",
+        "Unchanged":  true,
+        "Hash":  "2F52B193B275346B4AD2970D2B4A09E483A9203731914753A757A18020206B53"
+    },
+    {
+        "Path":  "C:\\Users\\itsas\\Downloads\\registro_defensas_baloncesto\\js\\identidad.js",
+        "Unchanged":  true,
+        "Hash":  "2BCD22510D35A9E0756648C494F0CF62585C0B48043E9EF8E1EA587B8E68F7B9"
+    }
+]

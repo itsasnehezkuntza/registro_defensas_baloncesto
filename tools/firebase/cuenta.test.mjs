@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import { createAccountController, authErrorText } from '../../js/cuenta.js';
+let calls = 0;
+const off = createAccountController({ settings: { enabled: false }, loadAdapter: () => { calls++; } });
+let state; off.subscribe(value => { state = value; }); await off.start();
+assert.equal(calls, 0); assert.equal(state.status, 'disabled');
+let notify, resolveLogin;
+const adapter = { ready: async () => {}, observe: next => { notify = next; next(null); return () => {}; },
+  login: () => { calls++; return new Promise(ok => { resolveLogin = ok; }); }, logout: async () => notify(null) };
+const controller = createAccountController({ settings: { enabled: true }, loadAdapter: async () => adapter });
+controller.subscribe(value => { state = value; }); await controller.start();
+assert.equal(state.status, 'ready');
+const signingIn = controller.act('login');
+assert.equal(calls, 1, 'popup invocado sin ceder el gesto de usuario');
+await controller.act('login'); assert.equal(calls, 1, 'doble toque bloqueado');
+notify({ uid: 'a', email: 'a@example.test', accessToken: 'no-exponer' });
+resolveLogin(); await signingIn;
+assert.equal(state.user.uid, 'a'); assert.equal(state.user.accessToken, undefined);
+const version = state.sessionVersion; await controller.act('logout');
+assert.equal(state.user, null); assert(state.sessionVersion > version);
+notify({ uid: 'b' }); assert.equal(state.user.uid, 'b');
+adapter.login = () => Promise.reject({ code: 'auth/popup-blocked' });
+await controller.act('login'); assert.match(state.error, /ventanas emergentes/); assert.equal(state.busy, false);
+adapter.logout = () => Promise.reject({ code: 'auth/network-request-failed' });
+await controller.act('logout'); assert.equal(state.user.uid, 'b', 'no fingir cierre si falla');
+controller.dispose();
+let resolveLate;
+const timeout = createAccountController({ settings: { enabled: true }, timeoutMs: 5,
+  loadAdapter: () => new Promise(ok => { resolveLate = ok; }) });
+timeout.subscribe(value => { state = value; }); await timeout.start();
+assert.equal(state.status, 'error'); resolveLate(adapter); await Promise.resolve();
+assert.equal(state.status, 'error', 'carga tardía no conecta una sesión obsoleta'); timeout.dispose();
+assert.match(authErrorText({ code: 'auth/unauthorized-domain' }), /dominio/);
+console.log('Cuenta: configuración ausente, gesto popup, doble toque, cambios de sesión, errores y timeout correctos.');

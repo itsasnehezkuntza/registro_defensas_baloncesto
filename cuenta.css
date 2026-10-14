@@ -1,0 +1,9 @@
+/* Únicamente controles de cuenta; conserva los materiales Premium existentes. */
+.account-bar{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px 10px;margin-top:8px;min-width:0}
+.account-bar [hidden],.account-note[hidden]{display:none}
+.account-bar .tool-button{min-height:44px;max-width:100%}
+.cloud-status,.account-identity,.account-note{font-size:.6875rem;color:#454545;line-height:1.5}
+.account-identity{max-width:min(100%,24rem);overflow-wrap:anywhere;text-transform:none}
+.cloud-status{margin-right:auto;font-weight:800}
+.account-note{margin:5px 0 0;overflow-wrap:anywhere}
+@media(max-width:480px){.account-identity{flex:1 1 100%}.account-bar{justify-content:flex-start}}
