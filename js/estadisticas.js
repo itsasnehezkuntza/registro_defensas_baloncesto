@@ -10,6 +10,12 @@ export function summarize(list) {
 
 export function statText(stat) {
   if (!stat.attempts) return "—";
-  return `${stat.missed}/${stat.attempts} — ${Math.round(100 * stat.missed / stat.attempts)}%`;
+  return `${stat.missed}–${stat.made} · ${Math.round(100 * stat.missed / stat.attempts)}%`;
 }
 
+
+// Solo presentación: los valores proceden del resumen numérico, nunca de nombres editables.
+export function statMarkup(stat) {
+  if (!stat.attempts) return statText(stat);
+  return `<span class="stat-missed">${stat.missed}</span>–<span class="stat-made">${stat.made}</span> · ${Math.round(100 * stat.missed / stat.attempts)}%`;
+}

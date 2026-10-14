@@ -1,3 +1,5 @@
 .test-artifacts/
+.local-backups/
+node_modules/
 # Pruebas locales: no se incluyen en la primera publicación desde main.
 tests/

@@ -1,8 +1,10 @@
 import { resolveSelection, makeShotEvent } from "./js/registro.js";
 import { initializeLayout } from "./js/interfaz.js";
+import { initializeViews } from "./js/vistas.js";
+import { renderDashboard } from "./js/dashboard.js";
 import { loadConfiguration } from "./js/configuracion.js";
 import { matchesEvent } from "./js/identidad.js";
-import { summarize, statText } from "./js/estadisticas.js";
+import { summarize, statMarkup } from "./js/estadisticas.js";
 import { buildCsv, csvFilename, triggerDownload } from "./js/exportacion.js";
 import { openDatabase, readState, createGameAndSelect, selectGameState,
   deleteGame, readExportSnapshot, addEvent, removeLastGameEvent } from "./js/persistencia.js";
@@ -26,6 +28,7 @@ let channel;
 let saveError = false;
 let mutationQueue = Promise.resolve();
 let feedbackVersion = 0;
+let activeView = "registro";
 
 function htmlSafe(value) {
   return String(value).replace(/[&<>"']/g, (ch) => ({
@@ -157,6 +160,12 @@ function setFeedback(message, type = "normal") {
   element.textContent = message;
   element.classList.toggle("is-success", type === "success");
   element.classList.toggle("is-error", type === "error");
+  const statsFeedback = $("#statisticsFeedback");
+  if (statsFeedback) {
+    statsFeedback.textContent = type === "normal" ? "" : message;
+    statsFeedback.classList.toggle("is-success", type === "success");
+    statsFeedback.classList.toggle("is-error", type === "error");
+  }
 }
 
 function gameById(id) {
@@ -289,26 +298,41 @@ function buildSimpleActions(category, targetId) {
     const stat = summarize(events.filter(event => matchesEvent(event, category, action.id)));
     return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.id)}" aria-pressed="${isChosen(category, action.id)}">
       <span class="action-name">${htmlSafe(action.name)}</span>
-      <span class="action-score">${statText(stat)}</span>
+      <span class="action-score">${statMarkup(stat)}</span>
     </button>`;
   }).join("");
 }
 
 function buildDirectActions() {
-  $("#directActions").innerHTML = (categoryFor("directo")?.actions ?? []).map(action => {
+  const actions = categoryFor("directo")?.actions ?? [];
+  const defenses = actions[0]?.defenses ?? [];
+  // Los encabezados comunes solo son válidos si el CSV conserva los mismos ejes.
+  const sharedAxis = actions.every(action => action.defenses.length === defenses.length &&
+    action.defenses.every((defense, index) => defense.id === defenses[index].id));
+  const selectedDirect = chosen?.category === "directo" ? chosen : null;
+  const headings = sharedAxis ? defenses.map(defense => {
+    const selected = selectedDirect?.strategyId === defense.id;
+    return `<span class="defense-heading${selected ? " is-axis-selected" : ""}" data-defense-heading="${htmlSafe(defense.id)}">${htmlSafe(defense.name)}</span>`;
+  }).join("") : "";
+  const rows = actions.map(action => {
     const typeEvents = events.filter(event => matchesEvent(event, "directo", action.id));
+    const rowSelected = selectedDirect?.actionId === action.id;
     const chips = action.defenses.map(defense => {
       const stat = summarize(typeEvents.filter(event => matchesEvent(event, "directo", action.id, defense.id)));
       return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.id)}" data-strategy="${htmlSafe(defense.id)}" aria-pressed="${isChosen("directo", action.id, defense.id)}">
         <span class="defense-name">${htmlSafe(defense.name)}</span>
-        <span class="defense-score">${statText(stat)}</span>
+        <span class="defense-score">${statMarkup(stat)}</span>
       </button>`;
     }).join("");
-    return `<div class="direct-row">
-      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${statText(summarize(typeEvents))}</span></div>
+    return `<div class="direct-row${rowSelected ? " is-axis-selected" : ""}">
+      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${statMarkup(summarize(typeEvents))}</span></div>
       <div class="defense-options">${chips}</div>
     </div>`;
   }).join("");
+  $("#directActions").innerHTML = `<div class="direct-matrix"><div class="direct-matrix-inner">
+    ${headings ? `<div class="direct-matrix-head"><span class="direct-corner">Situación / defensa</span><div class="defense-headings">${headings}</div></div>` : ""}
+    ${rows}
+  </div></div>`;
 }
 
 function renderSelection() {
@@ -317,7 +341,7 @@ function renderSelection() {
     : (gameById(currentGameId) ? "Selecciona una acción o defensa" : "Selecciona o crea un partido");
   $("#selectedDescription").textContent = selectedText;
   for (const button of $("#resultButtons").querySelectorAll("button")) {
-    button.disabled = busy || !storageReady || !configuration || !gameById(currentGameId) || !chosen || !chosen.shots.includes(Number(button.dataset.points));
+    button.disabled = activeView !== "registro" || busy || !storageReady || !configuration || !gameById(currentGameId) || !chosen || !chosen.shots.includes(Number(button.dataset.points));
   }
   document.querySelectorAll(".action-btn, .defense-btn").forEach(button => {
     button.disabled = busy || !storageReady || !configuration || !gameById(currentGameId);
@@ -326,16 +350,24 @@ function renderSelection() {
   $("#undoBtn").disabled = busy || !hasGame || events.length === 0;
   $("#deleteGameBtn").disabled = busy || !hasGame;
   $("#noGameNotice").hidden = Boolean(hasGame);
+  $("#noGameNotice").textContent = activeView === "estadisticas"
+    ? "Selecciona o crea un partido para consultar sus estadísticas."
+    : "Selecciona o crea un partido para registrar.";
   $("#gameSelect").disabled = busy || !storageReady;
   $("#newGameBtn").disabled = busy || !storageReady;
   for (const id of ["#createGameBtn", "#confirmDeleteBtn", "#cancelNewGameBtn", "#cancelDeleteBtn", "#roundInput", "#rivalInput"]) $(id).disabled = busy;
   $("#exportCsvBtn").disabled = busy || !hasGame;
+  const statsState = $("#statisticsState");
+  if (statsState) {
+    statsState.textContent = !storageReady ? "Estadísticas no actualizadas: almacenamiento no disponible." : "";
+    statsState.hidden = !statsState.textContent;
+  }
 }
 
 function render() {
   renderGameOptions();
   for (const [id, title] of [["transicion", "#transitionTitle"], ["estatico", "#staticTitle"], ["directo", "#directTitle"]]) {
-    if (categoryFor(id)) $(title).textContent = categoryFor(id).name.toUpperCase();
+    if (categoryFor(id)) ($(title).querySelector?.(".category-title") || $(title)).textContent = categoryFor(id).name.toUpperCase();
   }
   buildSimpleActions("transicion", "#transitionActions");
   buildSimpleActions("estatico", "#staticActions");
@@ -343,11 +375,12 @@ function render() {
   for (const [category, id] of [
     ["transicion", "#transitionTotal"], ["estatico", "#staticTotal"], ["directo", "#directTotal"]
   ]) {
-    $(id).textContent = statText(summarize(events.filter((e) => matchesEvent(e, category))));
+    $(id).innerHTML = statMarkup(summarize(events.filter((e) => matchesEvent(e, category))));
   }
   const total = summarize(events);
-  $("#gameTotal").textContent = `${total.attempts} intento${total.attempts === 1 ? "" : "s"} · ${statText(total)} de éxito`;
+  $("#gameTotal").innerHTML = `${total.attempts} intento${total.attempts === 1 ? "" : "s"} · ${statMarkup(total)}`;
   renderSelection();
+  renderDashboard(configuration, events, gameById(currentGameId));
 }
 
 function onActionPick(button) {
@@ -470,6 +503,11 @@ function onPickClick(evt) {
 
 async function initialize() {
   initializeLayout();
+  initializeViews(view => {
+    activeView = view;
+    renderSelection();
+    renderDashboard(configuration, events, gameById(currentGameId));
+  });
   bindEvents();
   renderSelection();
   try {
