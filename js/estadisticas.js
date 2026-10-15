@@ -13,6 +13,23 @@ export function outcomeText(stat) {
   return stat.attempts ? `${stat.missed}/${stat.made}` : "—";
 }
 
+// Mismo texto que outcomeText; solo añade marcado para resaltar los aciertos (V4).
+export function outcomeMarkup(stat) {
+  return stat.attempts ? `<b>${stat.missed}</b>/<span class="made">${stat.made}</span>` : '<span class="score-empty">—</span>';
+}
+
+// Registro (Fase 9B): anotados/intentos, en número de tiros (no puntos). Ejemplo: 2/6.
+export function attemptsText(stat) {
+  return stat.attempts ? `${stat.made}/${stat.attempts}` : "—";
+}
+export function attemptsMarkup(stat) {
+  return stat.attempts ? `<span class="made">${stat.made}</span>/<b>${stat.attempts}</b>` : '<span class="score-empty">—</span>';
+}
+// Marcador del Registro: puntos concedidos / puntos intentados (suma de valores 2/3 de todos los tiros).
+export function pointsAttempted(list) {
+  return list.reduce((total, event) => total + (Number(event.valor_tiro) || 0), 0);
+}
+
 // Conservado para comprobaciones de puntos; no es el formato visible vigente.
 export function pointsText(stat) {
   return stat.attempts ? String(stat.pointsAllowed) : "—";

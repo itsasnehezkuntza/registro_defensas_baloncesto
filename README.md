@@ -1,77 +1,64 @@
 # Registro defensivo de baloncesto
 
-Aplicación estática en español para registrar tiros rivales durante un partido con dos pulsaciones. HTML, CSS, módulos JavaScript e IndexedDB, sin backend, dependencias de producción ni compilación.
+Aplicación estática en español para registrar tiros rivales durante un partido con dos pulsaciones. HTML, CSS, módulos JavaScript e IndexedDB, sin backend, dependencias de producción ni compilación. Los datos se guardan en el navegador del dispositivo.
 
-**Premium Glass (Premium cristal)** es el diseño aprobado de la versión oficial, con vistas de Registro y Estadísticas del partido activo. Barlow Condensed y Manrope se incluyen localmente; las mayúsculas son visuales por CSS y conservan los datos y el CSV.
+**Diseño V4**: fondo gris claro, botones planos, negro para fallados y coral para aciertos del rival y selección. Barlow Condensed para nombres, títulos y cifras grandes; Manrope para controles y etiquetas, ambas incluidas localmente.
 
 ## Uso
 
-1. Pulsa **+ Nuevo partido**, escribe jornada y rival obligatorios y confirma Crear partido. Los nombres pueden repetirse; cada partido tiene un ID propio. Sin partido activo, registro y exportación están bloqueados.
-2. Selecciona una acción de Transición/Estático o directamente una defensa dentro de su tipo de Bloqueo directo.
-3. Pulsa **2✕, 3✕, 2✓ o 3✓**. ✓ significa anotado por el rival; ✕, fallado. Solo se habilitan los resultados permitidos. La selección se consume y el tiro se guarda automáticamente.
-4. **Deshacer** elimina el último tiro persistido del partido activo, incluso después de recargar.
-5. **Exportar CSV** descarga solo el partido seleccionado al iniciar la operación.
-6. **Estadísticas / Registro** cambia de vista conservando partido y selección. Ambas vistas muestran **fallados/aciertos**, por ejemplo **4/2**. Estadísticas añade el porcentaje de éxito defensivo en el resumen general y la matriz de Bloqueo directo, incluidos sus totales. Solo al pulsar una celda o total aparece debajo su desglose: intentos, fallados, aciertos, éxito defensivo, puntos concedidos y puntos por tiro. Se conservan el resumen de estrategias y Transición/Estático. Registro mantiene el formato compacto sin porcentajes. Puedes cambiar de partido, deshacer y exportar desde ambas vistas. La dirección `#estadisticas` permite recargar esa vista y usar Atrás/Adelante.
+1. Pulsa **+ Nuevo**, escribe jornada y rival obligatorios y confirma Crear partido. Cada partido tiene un ID propio. Sin partido activo, registro y exportación están bloqueados.
+2. Selecciona una acción de Transición/Estático o directamente una celda (tipo × defensa) de Bloqueo directo. La celda se marca en coral y su fila y su columna con una píldora negra.
+3. Pulsa **2✕, 3✕, 2✓ o 3✓**. ✓ significa anotado por el rival; ✕, fallado. Solo se habilitan los resultados permitidos. El tiro se guarda al instante.
+4. **Deshacer** elimina el último tiro guardado del partido activo, incluso después de recargar.
+5. En el menú **⋯** están **Editar panel**, **Exportar CSV** y **Eliminar partido**.
+6. El selector **Registro / Estadísticas** cambia de vista. La dirección `#estadisticas` permite recargar esa vista y usar Atrás/Adelante.
 
-Al recargar se restaura el último partido activo válido. El selector permite continuar encuentros anteriores. Jornada y rival no se editan después de crear. **Eliminar partido** identifica el encuentro y requiere confirmación; Cancelar no cambia nada y Eliminar definitivamente borra solo ese partido y sus tiros.
+**Cifras**: tanto el Registro como Estadísticas muestran **anotados/intentos** (veces que anota el rival sobre tiros registrados, por ejemplo **2/6**). El **marcador** de arriba muestra **puntos concedidos / puntos intentados** (suma de los valores 2/3). En Estadísticas, el **éxito defensivo** es fallados / intentos × 100; «Mejor» y «Peor» requieren al menos 5 intentos. Al pulsar una celda o un total de la matriz se abre su desglose: % de éxito, intentos, fallados, aciertos, puntos concedidos y puntos por tiro. Con más de 6 defensas, la tarjeta coral muestra las barras de las 3 mejores y las 3 peores.
 
-Las pestañas del mismo origen comparten selección activa y reciben los cambios confirmados. Una actualización del mismo partido conserva la selección en curso. El desglose estadístico seleccionado se actualiza al registrar o deshacer; se oculta al recargar o cambiar de partido. El porcentaje de éxito es fallados / intentos × 100, redondeado al entero: **4/2 equivale a 67%**. Sin intentos, los porcentajes y puntos por tiro muestran un guion.
+**Distribución adaptable**: los botones se reparten en filas equilibradas que ocupan todo el ancho y la matriz llena el espacio hasta la barra de resultados. Si no cabe todo, se quitan los contadores, después se compacta (letra menor, nombres en dos líneas) y, en último caso, se recortan nombres con «…». En iPad no hay que deslizar; en móvil se desplaza en vertical.
 
-**Guardado localmente** indica transacción confirmada. Si un tiro aborta, el aviso permite repetir el resultado sin duplicar su ID. Si se confirma pero falla el refresco, el aviso distingue ese caso. Antes de cerrar o recargar espera la confirmación de guardado.
+**Guardado** aparece cuando la transacción del navegador ha terminado. Si un tiro falla, el aviso permite repetirlo sin duplicarlo. Las pestañas del mismo navegador comparten el partido activo y los cambios.
 
-**4/2** significa cuatro tiros fallados y dos aciertos del rival. Cada tiro cuenta una vez, sea de dos o de tres puntos. Si no hay datos se muestra un guion; con solo fallos, **4/0**, y con solo aciertos, **0/2**. Las barras del Dashboard usan gris oscuro para fallados y naranja para aciertos. Las acciones y estrategias mantienen el orden de configuración, sin distintivos. El valor real de cada tiro se conserva en los eventos y el CSV, con los puntos concedidos calculados correctamente. La interfaz conserva blanco, negro, grises y naranja cobrizo; los resultados fallados tienen botones oscuros y los anotados claros, con símbolos y etiquetas. Los datos permanecen en ese navegador/origen; no se sincronizan entre dispositivos. Limpiar datos del sitio elimina ese almacenamiento. CSV es una descarga para análisis, no una copia que la aplicación pueda importar.
+Los datos permanecen en ese navegador; no se sincronizan entre dispositivos. Limpiar los datos del sitio los elimina: exporta el CSV de cada partido si quieres conservar una copia. El CSV es una descarga para análisis, no se puede importar.
+
+## Editar el panel
+
+Menú **⋯ → Editar panel** convierte el propio Registro en modo edición: cabecera «Editando panel» con el partido y los botones **Cancelar** y **Hecho**.
+
+- **Un partido con tiros no puede cambiar su panel.** La opción aparece desactivada con la explicación: para cambiarlo, deshaz sus tiros, elimina el partido o crea uno nuevo.
+- **Tocar un botón** (acción, tipo de bloqueo o cabecera de defensa) abre su editor arriba: nombre, tiros 2/3, mover antes/después, **Quitar** y **Listo**.
+- **Añadir**: la barra inferior ofrece Transición, Estático, Tipo de bloqueo y Defensa. Se desactiva con «Máximo» (12 acciones por sección, 8 tipos de bloqueo, 12 defensas) o «No cabe sin deslizar» si el botón nuevo no cabría en iPad 1180×740, iPad mini 1133×670 o iPad vertical 820×1180.
+- **Quitar**: el botón desaparece del panel y no se recupera. Los tiros que tuviera en otros partidos se conservan en esos partidos.
+- **Hecho** guarda el panel para el partido activo y para los partidos nuevos. Cada partido conserva su propio panel: al volver a uno anterior se registra y se consulta con el suyo. **Cancelar** (o Atrás) con cambios pide confirmación.
+
+Renombrar o quitar botones nunca modifica los tiros ya registrados ni el CSV de los partidos anteriores.
 
 ## Exportación CSV
 
-Un evento por fila, ordenado por seq persistente. Incluye ID del evento/partido, jornada, rival, categoría, acción, tipo de bloqueo, defensa, valor, resultado, intentos/anotados/fallados, puntos realmente concedidos, fecha/hora UTC, IDs estables y orden.
+Un evento por fila del partido activo, en orden de registro. Incluye ID del evento/partido, jornada, rival, categoría, acción, tipo de bloqueo, defensa, valor, resultado, intentos/anotados/fallados, puntos concedidos, fecha/hora UTC e IDs estables.
 
-Formato UTF-8 con BOM, separador `;` y saltos CRLF. Campos entre comillas con escape de comillas, separadores y saltos. Los campos que pueden interpretarse como fórmulas se prefijan con apóstrofo al exportar; IndexedDB no se modifica. Excel en otras configuraciones regionales puede requerir importar mediante **Datos → Desde texto/CSV**, eligiendo UTF-8 y punto y coma.
+Formato UTF-8 con BOM, separador `;` y saltos CRLF. Los campos que pueden interpretarse como fórmulas se prefijan con apóstrofo. Excel en otras configuraciones regionales puede requerir **Datos → Desde texto/CSV**, eligiendo UTF-8 y punto y coma. Un partido vacío descarga cabeceras. No hay opciones JSON ni XLSX.
 
-El archivo identifica jornada, rival e ID del partido, con caracteres y longitud saneados. Un partido vacío descarga cabeceras. Las acciones retiradas y nombres originales siguen exportándose; los IDs de eventos v1 conocidos se deducen mediante la tabla fija de lectura. Si no se puede identificar un evento antiguo, esos IDs se dejan vacíos.
+## categorias.csv
 
-No hay opciones JSON ni XLSX nativo.
-
-## Editar categorias.csv
-
-Guarda como CSV UTF-8 separado por punto y coma, con la cabecera:
+Es la **configuración inicial** del panel. Formato CSV UTF-8 separado por punto y coma:
 
 ```text
 categoria_id;categoria;accion_id;accion;defensa_id;defensa;tiros
-```
-
-- `categoria_id`: transicion, estatico o directo; sus nombres visibles son editables.
-- `accion_id`: estable y único entre acciones. Minúsculas, números y guion bajo, comenzando por letra.
-- `categoria` y `accion`: nombres coherentes en todas las filas del mismo ID.
-- `defensa_id` y `defensa`: vacíos en acciones simples; obligatorios en directo. El mismo ID de defensa mantiene el mismo nombre.
-- `tiros`: 2, 3 o 2,3, aplicado a esa combinación.
-
-```text
 transicion;Transición;transicion_bajo_aro;Bajo aro;;;2
 directo;Bloqueo directo;pr_manejador;PR Manejador;blue;Blue;2,3
 ```
 
-Renombra solo los nombres, conservando IDs. Añade acciones con IDs nuevos; no reutilices uno retirado para otra acción. En directo, una fila por defensa y el mismo accion_id para cada tipo. El orden de filas determina el orden de botones. Retira acciones borrando sus filas, sin perder tiros anteriores. Mantén al menos una fila.
-
-PR Roller inicialmente permite únicamente 2 en sus ocho defensas. Las defensas son Black, White, Blue, Red, Tut, Next, Dance y Quick+Under; los otros tipos de bloqueo permiten 2 y 3. En Estático también están Spain (2 y 3 puntos) y Of. Screen (2 puntos). Los permisos proceden del CSV; editarlo cambia solo los registros futuros. Nombres con `;`, salto o comillas deben encerrarse entre comillas dobles, duplicando comillas interiores.
-
-Después de editar, vuelve a preparar los archivos de publicación y, cuando se autorice, actualiza la rama de publicación. Recarga la aplicación después de publicarlo; CSV se solicita sin caché. Un error de configuración bloquea registro, conservando almacenamiento y exportación del activo si IndexedDB funciona.
+`categoria_id` es transicion, estatico o directo; los IDs son estables (minúsculas, números y guion bajo) y no se reutilizan; `tiros` es 2, 3 o 2,3. Un partido sin tiros que use la configuración del archivo recoge sus cambios al recargar; un partido con tiros o con un panel editado conserva el suyo.
 
 ## Ejecutar localmente
 
-Sirve la carpeta del proyecto con cualquier servidor HTTP estático. Abrir index.html mediante file:// no carga correctamente módulos y CSV. La aplicación no necesita compilación ni dependencias de producción.
+Sirve la carpeta con cualquier servidor HTTP estático (abrir `index.html` con file:// no carga los módulos ni el CSV).
 
-## Publicación oficial
+## Publicación
 
 Web: https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/
 
-GitHub Pages publica desde **main / (root)**. El proyecto incluye 20 archivos de aplicación: HTML, tres hojas CSS, app.js, categorias.csv, .nojekyll, nueve módulos JavaScript y dos fuentes con sus licencias OFL. README.md y .gitignore completan los archivos públicos.
+GitHub Pages publica desde **main / (root)**: 25 archivos de aplicación (HTML, cuatro hojas CSS, app.js, categorias.csv, .nojekyll, trece módulos JavaScript y dos fuentes con sus licencias OFL), además de README.md y .gitignore. Una actualización en el mismo navegador conserva los partidos guardados.
 
-Las pruebas, dependencias de desarrollo, copias de seguridad, perfiles y documentos internos permanecen locales. Para futuras actualizaciones, revisar los cambios, ejecutar las pruebas, conservar una copia de respaldo y publicar mediante push normal, sin forzar.
-
-Una actualización en el mismo origen y navegador conserva IndexedDB. Los datos de localhost no se trasladan automáticamente a Pages. No cambiar el nombre de la base ni borrarla durante una actualización.
-
-## Verificación
-
-Se dispone localmente de pruebas de configuración, registro, estadísticas, CSV, integración y Dashboard, además de suites de navegador para partidos, persistencia, concurrencia, recargas, errores, histórico y diseño responsive. Se ejecutan con perfiles efímeros y datos ficticios.
-
-La emulación de Chromium no sustituye pruebas en dispositivos físicos, Safari/Firefox ni apertura real en Excel.
+Verificado en Chromium con perfiles efímeros y datos ficticios; Safari/iPad físico y Excel real están pendientes de comprobar en uso.

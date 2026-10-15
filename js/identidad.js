@@ -96,3 +96,8 @@ export function matchesEvent(event, category, action, defense) {
     (action === undefined || identity.action === action) &&
     (defense === undefined || identity.defense === defense));
 }
+
+// IDs ya usados por eventos v1: el editor de botones nunca debe reutilizarlos (Fase 9B).
+export function legacyIdentityIds() {
+  return { actions: LEGACY.map(row => row[3]), defenses: Object.values(DEFENSE_IDS) };
+}

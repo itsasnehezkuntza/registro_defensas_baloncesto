@@ -1,10 +1,14 @@
 import { resolveSelection, makeShotEvent } from "./js/registro.js";
-import { initializeLayout } from "./js/interfaz.js";
+import { initializeLayout, initializeMenu } from "./js/interfaz.js";
 import { initializeViews } from "./js/vistas.js";
 import { renderDashboard } from "./js/dashboard.js";
-import { loadConfiguration } from "./js/configuracion.js";
+import { loadConfigurationSource } from "./js/configuracion.js";
 import { matchesEvent } from "./js/identidad.js";
-import { summarize, outcomeText } from "./js/estadisticas.js";
+import { summarize, attemptsMarkup, pointsAttempted } from "./js/estadisticas.js";
+import { simpleActionsMarkup, directMatrixMarkup } from "./js/registro-vista.js";
+import { fitRegistro } from "./js/distribucion.js";
+import { loadButtonConfiguration, recordGameUsage, readGameUsage, versionForGame, configurationFromDoc, currentVersion, onConfigChange } from "./js/configuracion-guardada.js";
+import { initializeEditor } from "./js/editor.js";
 import { buildCsv, csvFilename, triggerDownload } from "./js/exportacion.js";
 import { openDatabase, readState, createGameAndSelect, selectGameState,
   deleteGame, readExportSnapshot, addEvent, removeLastGameEvent } from "./js/persistencia.js";
@@ -29,6 +33,13 @@ let saveError = false;
 let mutationQueue = Promise.resolve();
 let feedbackVersion = 0;
 let activeView = "registro";
+// Fase 9B: configuración de botones guardada (versiones), CSV inicial y versión usada por partido.
+let buttonRecord = null;
+let buttonVersion = null;
+let csvSource = null;
+let gameUsage = {};
+let fitState = null;
+const FIT_QUERY = "(min-width: 900px) and (min-height: 560px), (min-width: 700px) and (min-height: 900px)";
 
 function htmlSafe(value) {
   return String(value).replace(/[&<>"']/g, (ch) => ({
@@ -68,6 +79,7 @@ function applyState(state) {
     $("#deleteGameDialog").close();
     deletionTarget = null;
   }
+  syncGameConfiguration();
   render();
 }
 
@@ -149,9 +161,9 @@ function setSaveStatus(status, description) {
   const element = $("#saveStatus");
   element.classList.toggle("is-saving", status === "saving");
   element.classList.toggle("is-error", status === "error");
-  $("#saveStatusText").textContent = description || ({
-    saving: "Guardando…", saved: "Guardado localmente", error: "Error al guardar"
-  })[status];
+  // V4 muestra «Guardado»; «localmente» se conserva para lectores de pantalla.
+  if (!description && status === "saved") $("#saveStatusText").innerHTML = 'Guardado<span class="sr-only"> localmente</span>';
+  else $("#saveStatusText").textContent = description || ({ saving: "Guardando…", error: "Error al guardar" })[status];
 }
 
 function setFeedback(message, type = "normal") {
@@ -160,6 +172,12 @@ function setFeedback(message, type = "normal") {
   element.textContent = message;
   element.classList.toggle("is-success", type === "success");
   element.classList.toggle("is-error", type === "error");
+  // Reinicia la animación de desaparición aunque se repita el mismo tipo de aviso.
+  if (element.style && element.offsetWidth !== undefined) {
+    element.style.animation = "none";
+    void element.offsetWidth;
+    element.style.animation = "";
+  }
   const statsFeedback = $("#statisticsFeedback");
   if (statsFeedback) {
     statsFeedback.textContent = type === "normal" ? "" : message;
@@ -239,6 +257,7 @@ async function createGame(event) {
   try {
     await queueOperation(async () => {
       const state = await createGameAndSelect(game);
+      try { gameUsage = (await recordGameUsage(game.id, buttonRecord && currentVersion(buttonRecord).id)) ?? gameUsage; } catch {}
       applyState(state);
       $("#newGameDialog").close();
       markSaved();
@@ -294,50 +313,76 @@ function isChosen(category, action, strategy = null) {
 }
 
 function buildSimpleActions(category, targetId) {
-  $(targetId).innerHTML = (categoryFor(category)?.actions ?? []).map(action => {
-    const stat = summarize(events.filter(event => matchesEvent(event, category, action.id)));
-    return `<button type="button" class="action-btn" data-category="${category}" data-action="${htmlSafe(action.id)}" aria-pressed="${isChosen(category, action.id)}">
-      <span class="action-name">${htmlSafe(action.name)}</span>
-      <span class="action-score">${outcomeText(stat)}</span>
-    </button>`;
-  }).join("");
+  const actions = categoryFor(category)?.actions ?? [];
+  $(targetId).innerHTML = simpleActionsMarkup(category, actions,
+    id => summarize(events.filter(event => matchesEvent(event, category, id))), id => isChosen(category, id));
 }
 
 function buildDirectActions() {
   const actions = categoryFor("directo")?.actions ?? [];
-  const defenses = actions[0]?.defenses ?? [];
-  // Los encabezados comunes solo son válidos si el CSV conserva los mismos ejes.
-  const sharedAxis = actions.every(action => action.defenses.length === defenses.length &&
-    action.defenses.every((defense, index) => defense.id === defenses[index].id));
-  const selectedDirect = chosen?.category === "directo" ? chosen : null;
-  const headings = sharedAxis ? defenses.map(defense => {
-    const selected = selectedDirect?.strategyId === defense.id;
-    return `<span class="defense-heading${selected ? " is-axis-selected" : ""}" data-defense-heading="${htmlSafe(defense.id)}">${htmlSafe(defense.name)}</span>`;
-  }).join("") : "";
-  const rows = actions.map(action => {
-    const typeEvents = events.filter(event => matchesEvent(event, "directo", action.id));
-    const rowSelected = selectedDirect?.actionId === action.id;
-    const chips = action.defenses.map(defense => {
-      const stat = summarize(typeEvents.filter(event => matchesEvent(event, "directo", action.id, defense.id)));
-      return `<button type="button" class="defense-btn" data-category="directo" data-action="${htmlSafe(action.id)}" data-strategy="${htmlSafe(defense.id)}" aria-pressed="${isChosen("directo", action.id, defense.id)}">
-        <span class="defense-name">${htmlSafe(defense.name)}</span>
-        <span class="defense-score">${outcomeText(stat)}</span>
-      </button>`;
-    }).join("");
-    return `<div class="direct-row${rowSelected ? " is-axis-selected" : ""}">
-      <div class="direct-type"><strong>${htmlSafe(action.name)}</strong><span>${outcomeText(summarize(typeEvents))}</span></div>
-      <div class="defense-options">${chips}</div>
-    </div>`;
-  }).join("");
-  $("#directActions").innerHTML = `<div class="direct-matrix"><div class="direct-matrix-inner">
-    ${headings ? `<div class="direct-matrix-head"><span class="direct-corner">Situación / defensa</span><div class="defense-headings">${headings}</div></div>` : ""}
-    ${rows}
-  </div></div>`;
+  $("#directActions").innerHTML = directMatrixMarkup(actions, {
+    statFor: (action, defense) => summarize(events.filter(event => matchesEvent(event, "directo", action, defense))),
+    typeStat: action => summarize(events.filter(event => matchesEvent(event, "directo", action))),
+    chosen, isChosen: (action, defense) => isChosen("directo", action, defense)
+  });
+}
+
+// Distribución adaptable: filas equilibradas y pasos 0–3 hasta que todo cabe (js/distribucion.js).
+function refit() {
+  const root = $("#registrationView");
+  if (!root?.getClientRects || root.hidden || !configuration) return;
+  delete root.dataset.fits;
+  const result = fitRegistro(root, { narrow: root.clientWidth < 660, checkHeight: matchMedia(FIT_QUERY).matches });
+  if (!result) return;
+  fitState = result;
+  root.dataset.rows = String(result.rows);
+  root.dataset.fits = String(result.fits);
+}
+
+// Estadísticas de cada partido con la configuración con la que registró (las anteriores no se reescriben).
+// Fase 9C: cada partido registra y muestra Estadísticas con su propia configuración de pantalla.
+// Sin partido activo se muestra la predeterminada (la que recibirán los partidos nuevos).
+function syncGameConfiguration() {
+  if (!buttonRecord) return;
+  const version = currentGameId ? versionForGame(buttonRecord, gameUsage, currentGameId, events.length > 0) : currentVersion(buttonRecord);
+  if (version.id === buttonVersion?.id && configuration) return;
+  buttonVersion = version;
+  configuration = configurationFromDoc(version.doc);
+  if (chosen) chosen = resolveSelection(configuration, chosen);
+}
+
+function statsConfiguration() {
+  return configuration;
+}
+
+async function refreshUsage() {
+  try { gameUsage = await readGameUsage(); } catch { gameUsage = {}; }
+}
+
+function useButtonConfiguration(loaded) {
+  buttonRecord = loaded.record;
+  if (loaded.usage) gameUsage = loaded.usage;
+  buttonVersion = loaded.version;
+  configuration = loaded.configuration;
+  // Una selección que ya no existe en la nueva configuración se descarta.
+  if (chosen) chosen = resolveSelection(configuration, chosen);
+  pendingShot = null;
+}
+
+// Otra pestaña (o el editor) ha guardado: se relee sin recargar la página.
+async function reloadButtonConfiguration() {
+  try {
+    useButtonConfiguration(await loadButtonConfiguration(csvSource ?? {}));
+    await refreshUsage();
+    syncGameConfiguration();
+    render();
+  } catch (error) { setFeedback(error.message, "error"); }
 }
 
 function renderSelection() {
+  $("#selectedCategory").textContent = chosen ? categoryFor(chosen.category).name : "Selección";
   const selectedText = chosen
-    ? `${categoryFor(chosen.category).name} · ${chosen.action}${chosen.strategy ? ` · ${chosen.strategy}` : ""}`
+    ? `${chosen.action}${chosen.strategy ? ` · ${chosen.strategy}` : ""}`
     : (gameById(currentGameId) ? "Selecciona una acción o defensa" : "Selecciona o crea un partido");
   $("#selectedDescription").textContent = selectedText;
   for (const button of $("#resultButtons").querySelectorAll("button")) {
@@ -357,6 +402,10 @@ function renderSelection() {
   $("#newGameBtn").disabled = busy || !storageReady;
   for (const id of ["#createGameBtn", "#confirmDeleteBtn", "#cancelNewGameBtn", "#cancelDeleteBtn", "#roundInput", "#rivalInput"]) $(id).disabled = busy;
   $("#exportCsvBtn").disabled = busy || !hasGame;
+  // Fase 9D: un partido con tiros no puede cambiar su panel (deshacer, eliminar o crear otro partido).
+  const panelLocked = hasGame && events.length > 0;
+  $("#editButtonsBtn").disabled = busy || !storageReady || panelLocked;
+  $("#editLockNote").hidden = !panelLocked;
   const statsState = $("#statisticsState");
   if (statsState) {
     statsState.textContent = !storageReady ? "Estadísticas no actualizadas: almacenamiento no disponible." : "";
@@ -375,12 +424,20 @@ function render() {
   for (const [category, id] of [
     ["transicion", "#transitionTotal"], ["estatico", "#staticTotal"], ["directo", "#directTotal"]
   ]) {
-    $(id).textContent = outcomeText(summarize(events.filter((e) => matchesEvent(e, category))));
+    $(id).innerHTML = attemptsMarkup(summarize(events.filter((e) => matchesEvent(e, category))));
   }
   const total = summarize(events);
-  $("#gameTotal").textContent = `Fallados/aciertos · ${outcomeText(total)}`;
+  $("#gameTotal").innerHTML = `Anotados/intentos · ${total.attempts ? `<b class="made">${total.made}</b>/<b>${total.attempts}</b>` : "—"}`;
+  // Marcador: puntos concedidos / puntos intentados (suma de valores 2/3).
+  const scoreboard = $("#scoreboardValue");
+  if (scoreboard) {
+    const attempted = pointsAttempted(events);
+    scoreboard.innerHTML = events.length ? `<span class="made">${total.pointsAllowed}</span>/${attempted}` : "—";
+    scoreboard.setAttribute?.("aria-label", events.length ? `${total.pointsAllowed} puntos concedidos de ${attempted} intentados` : "Sin tiros registrados");
+  }
   renderSelection();
-  renderDashboard(configuration, events, gameById(currentGameId));
+  refit();
+  renderDashboard(statsConfiguration(), events, gameById(currentGameId));
 }
 
 function onActionPick(button) {
@@ -414,6 +471,7 @@ async function recordResult(points, resultado) {
       await addEvent(event, selection.shots);
       committed = true;
       pendingShot = null;
+      try { gameUsage = (await recordGameUsage(game.id, buttonVersion?.id)) ?? gameUsage; } catch {}
       notifyChange(game.id);
       applyState(await readState());
       markSaved();
@@ -503,23 +561,58 @@ function onPickClick(evt) {
 
 async function initialize() {
   initializeLayout();
-  initializeViews(view => {
+  initializeMenu();
+  // Declarado antes de la navegación: una recarga en #editar abre el editor sin error.
+  let editor = null;
+  const views = initializeViews(view => {
     activeView = view;
     renderSelection();
-    renderDashboard(configuration, events, gameById(currentGameId));
+    if (view === "registro") refit();
+    if (view === "editar") void editor?.open();
+    renderDashboard(statsConfiguration(), events, gameById(currentGameId));
+  }, { canLeave: next => editor?.canLeave(next) ?? true });
+  editor = initializeEditor({
+    state: () => ({ buttonRecord, buttonVersion, csvSource, configuration, events, game: gameById(currentGameId), storageReady }),
+    onSaved: async loaded => {
+      useButtonConfiguration(loaded);
+      await refreshUsage();
+      syncGameConfiguration();
+      render();
+      setFeedback("Panel guardado: se aplica a los registros siguientes de este partido y a los partidos nuevos.", "success");
+    },
+    setFeedback,
+    navigate: view => views.go(view)
   });
+  // Girar el iPad o cambiar el tamaño de la ventana recalcula la distribución sin recargar.
+  let fitFrame = 0;
+  const scheduleFit = () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(refit); };
+  window.addEventListener("resize", scheduleFit);
+  window.addEventListener("orientationchange", scheduleFit);
+  // Las fuentes locales cambian las medidas: se recalcula al terminar cada carga.
+  document.fonts?.ready?.then(scheduleFit);
+  document.fonts?.addEventListener?.("loadingdone", scheduleFit);
+  window.addEventListener("load", scheduleFit);
   bindEvents();
   renderSelection();
   try {
     if (!globalThis.indexedDB) throw new Error("El navegador no admite IndexedDB.");
     await openDatabase();
     const state = await readState();
-    try { configuration = await loadConfiguration(); }
-    catch (error) { configurationError = error.message; }
+    // categorias.csv es la configuración inicial; la vigente vive en IndexedDB (Fase 9B).
+    try { csvSource = await loadConfigurationSource(); csvSource = { csvText: csvSource.text, csvConfiguration: csvSource.configuration }; }
+    catch (error) { csvSource = { csvError: error.message }; }
+    try { useButtonConfiguration(await loadButtonConfiguration(csvSource)); await refreshUsage(); }
+    catch (error) {
+      // Sin almacén de configuración disponible se usa el CSV, como antes de la Fase 9B.
+      if (csvSource.csvConfiguration && error.message !== csvSource.csvError) configuration = csvSource.csvConfiguration;
+      else configurationError = csvSource.csvError || error.message;
+    }
+    onConfigChange(() => { void reloadButtonConfiguration(); });
     storageReady = true;
     busy = false;
     applyState(state);
     bindSynchronization();
+    if (views.current?.() === "editar") void editor.open();
     // Releer tras suscribirse evita perder cambios de otra pestaña durante el arranque.
     await refreshState();
     if (configurationError) {

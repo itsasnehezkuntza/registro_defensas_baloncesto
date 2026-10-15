@@ -89,3 +89,13 @@ export async function loadConfiguration(url = new URL("../categorias.csv", impor
   if (!response.ok) throw new Error("No se puede cargar categorias.csv (HTTP " + response.status + ").");
   return parseConfiguration(await response.text());
 }
+
+// Fase 9B: igual que loadConfiguration, pero conserva el texto para detectar cambios del archivo.
+export async function loadConfigurationSource(url = new URL("../categorias.csv", import.meta.url), fetcher = globalThis.fetch) {
+  let response;
+  try { response = await fetcher(url, { cache: "no-store" }); }
+  catch { throw new Error("No se puede cargar categorias.csv. Abre la aplicación mediante un servidor estático o GitHub Pages."); }
+  if (!response.ok) throw new Error("No se puede cargar categorias.csv (HTTP " + response.status + ").");
+  const text = await response.text();
+  return { text, configuration: parseConfiguration(text) };
+}

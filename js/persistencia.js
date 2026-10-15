@@ -35,7 +35,8 @@ export function openDatabase() {
 
 // Todos los resultados se entregan al confirmar la transacción, nunca al
 // completar únicamente una petición. Las comprobaciones y escrituras comparten tx.
-function transact(stores, mode, work) {
+// Exportada para guardar la configuración del panel en «settings» (Fase 9B).
+export function transact(stores, mode, work) {
   return new Promise((resolve, reject) => {
     if (!db) { reject(new Error("Almacenamiento no disponible. Recarga la página.")); return; }
     const tx = db.transaction(stores, mode);
