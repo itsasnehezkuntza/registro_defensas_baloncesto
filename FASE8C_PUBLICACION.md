@@ -3,6 +3,15 @@
 Versión **8C.0**, proyecto Firebase `registro-defensivo`, SDK modular oficial **12.11.0**.
 URL: https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/
 
+## Estado publicado y verificado
+
+- **Código:** `403d252598940f13b066d8f667d4e4b8078ec81b`; **Pages:** `2c49c4b8dce67de82e8d76682f760d88ce6c0d30`, versión **8C.0**. Los commits documentales posteriores no cambian ese paquete.
+- Build **built**, sin error, `2026-10-17T18:27:24Z`; verificación HTTPS `18:28:03.146Z`.
+- **36/36 hashes correctos** y **13 rutas internas/diagnóstico/documentación con 404**. SDK oficial app/auth/firestore 12.11.0 HTTP 200.
+- Chromium y WebKit nuevos con SDK/red reales: Google inicializa, login habilitado, sin errores JS; modo local permite registrar y recargar, sin solicitudes ni escrituras Firestore antes de consentir.
+- Misma URL/origen, respaldo remoto confirmado; ningún perfil deportivo real abierto o limpiado, reglas intactas. La comprobación física breve desde Safari sigue pendiente del usuario; no se confunde con una prueba OAuth o emisión física ya ejecutada.
+- Archivos runtime 8C reflejados en el workspace develop, conservando el resto del trabajo pendiente. **Publicación técnica completada y detenida para revisión.**
+
 ## Alcance de la publicación autorizada
 
 Se prepara desde `origin/main` en `publicacion/fase8c`, mediante checkout aislado `.test-artifacts/publicacion8c-repo`, conservando el trabajo pendiente de develop. Referencia anterior: **`8c6667dd3f4ae7cdd93fa192ca9020e92bcb74a4`**, rama de respaldo `respaldo/antes-fase8c-20261017`.
