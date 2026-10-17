@@ -1,0 +1,15 @@
+/* Únicamente controles de cuenta; conserva los materiales Premium existentes. */
+.account-bar{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px 10px;margin-top:8px;min-width:0}
+.account-bar [hidden],.account-note[hidden]{display:none}
+.account-bar .tool-button{min-height:44px;max-width:100%}
+.cloud-status,.account-identity,.account-note{font-size:.6875rem;color:#454545;line-height:1.5}
+.account-identity{max-width:min(100%,24rem);overflow-wrap:anywhere;text-transform:none}
+.cloud-status{margin-right:auto;font-weight:800}
+.account-note{margin:5px 0 0;overflow-wrap:anywhere}
+@media(max-width:480px){.account-identity{flex:1 1 100%}.account-bar{justify-content:flex-start}}
+.sync-controls{display:grid;gap:8px;width:100%;min-width:0}
+.more-menu.has-sync{max-height:calc(100dvh - 96px);overflow-y:auto}
+.sync-controls select,.sync-controls button,.sync-dialog button{min-height:44px;max-width:100%;font:inherit;white-space:normal}
+.sync-controls select{width:100%;border:1px solid #ccc;border-radius:12px;padding:8px;background:var(--tile,#f0f0f0)}.sync-controls p{margin:0;overflow-wrap:anywhere;font-size:.75rem}
+.sync-dialog{max-height:85dvh;overflow:auto}.sync-dialog label{display:flex;gap:10px;align-items:center;min-height:44px;margin:8px 0}
+.sync-dialog input[type=checkbox]{width:24px;height:24px;flex-shrink:0}

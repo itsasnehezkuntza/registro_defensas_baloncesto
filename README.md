@@ -1,5 +1,7 @@
 # Registro defensivo de baloncesto
 
+**Versi?n interna 8C.0:** Google opcional y sincronizaci?n activable en ?. Entrar no sube partidos antiguos. Consulta [FASE8C_PUBLICACION.md](FASE8C_PUBLICACION.md) para uso, prueba breve y reversi?n.
+
 Aplicación estática en español para registrar tiros rivales durante un partido con dos pulsaciones. HTML, CSS, módulos JavaScript e IndexedDB, sin backend, dependencias de producción ni compilación. Los datos se guardan en el navegador del dispositivo.
 
 **Diseño V4**: fondo gris claro, botones planos, negro para fallados y coral para aciertos del rival y selección. Barlow Condensed para nombres, títulos y cifras grandes; Manrope para controles y etiquetas, ambas incluidas localmente.
@@ -19,7 +21,7 @@ Aplicación estática en español para registrar tiros rivales durante un partid
 
 **Guardado** aparece cuando la transacción del navegador ha terminado. Si un tiro falla, el aviso permite repetirlo sin duplicarlo. Las pestañas del mismo navegador comparten el partido activo y los cambios.
 
-Los datos permanecen en ese navegador; no se sincronizan entre dispositivos. Limpiar los datos del sitio los elimina: exporta el CSV de cada partido si quieres conservar una copia. El CSV es una descarga para análisis, no se puede importar.
+En Solo local los datos permanecen en ese navegador. Con Google y activaci?n expl?cita de Sync se sincronizan los partidos del equipo seleccionado; los antiguos requieren revisi?n y confirmaci?n de subida. Limpiar los datos del sitio los elimina: exporta el CSV de cada partido si quieres conservar una copia. El CSV es una descarga para análisis, no se puede importar.
 
 ## Editar el panel
 
@@ -59,6 +61,6 @@ Sirve la carpeta con cualquier servidor HTTP estático (abrir `index.html` con f
 
 Web: https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/
 
-GitHub Pages publica desde **main / (root)**: 25 archivos de aplicación (HTML, cuatro hojas CSS, app.js, categorias.csv, .nojekyll, trece módulos JavaScript y dos fuentes con sus licencias OFL), además de README.md y .gitignore. Una actualización en el mismo navegador conserva los partidos guardados.
+GitHub Pages publica desde **gh-pages / (root)**: 35 archivos de aplicaci?n y `version.json` p?blico. Main conserva fuentes/documentaci?n; pruebas, herramientas, diagn?sticos y privados no forman parte de Pages. Se conserva el mismo origen y IndexedDB.
 
 Verificado en Chromium con perfiles efímeros y datos ficticios; Safari/iPad físico y Excel real están pendientes de comprobar en uso.

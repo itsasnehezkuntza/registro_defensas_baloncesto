@@ -46,3 +46,29 @@ export function directMatrixMarkup(actions, { statFor, typeStat, chosen = null, 
 }
 
 export { attemptsText };
+
+// Actualización remota con la misma configuración: conserva los objetivos táctiles y el foco.
+// El marcado y los cálculos siguen saliendo de las funciones anteriores.
+export function updateRegistrationMarkup(host, markup) {
+  const template = document.createElement('template');
+  if (!template.content) return false;
+  template.innerHTML = markup;
+  const oldButtons = [...host.querySelectorAll('.action-btn,.defense-btn')];
+  const newButtons = [...template.content.querySelectorAll('.action-btn,.defense-btn')];
+  const key = button => JSON.stringify([button.dataset.category, button.dataset.action, button.dataset.strategy]);
+  if (oldButtons.length !== newButtons.length || oldButtons.some((button, i) => key(button) !== key(newButtons[i]))) return false;
+  const selectors = ['.action-score,.defense-score,.direct-type > span', '.direct-row,.defense-heading'];
+  const pairs = selectors.map(selector => [[...host.querySelectorAll(selector)], [...template.content.querySelectorAll(selector)]]);
+  if (pairs.some(([oldNodes, newNodes]) => oldNodes.length !== newNodes.length)) return false;
+  oldButtons.forEach((button, i) => {
+    for (const name of ['aria-pressed', 'aria-label', 'title']) {
+      const value = newButtons[i].getAttribute(name);
+      if (button.getAttribute(name) !== value) {
+        if (value === null) button.removeAttribute(name); else button.setAttribute(name, value);
+      }
+    }
+  });
+  pairs[0][0].forEach((node, i) => { if (node.innerHTML !== pairs[0][1][i].innerHTML) node.innerHTML = pairs[0][1][i].innerHTML; });
+  pairs[1][0].forEach((node, i) => { if (node.className !== pairs[1][1][i].className) node.className = pairs[1][1][i].className; });
+  return true;
+}

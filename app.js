@@ -5,13 +5,15 @@ import { renderDashboard } from "./js/dashboard.js";
 import { loadConfigurationSource } from "./js/configuracion.js";
 import { matchesEvent } from "./js/identidad.js";
 import { summarize, attemptsMarkup, pointsAttempted } from "./js/estadisticas.js";
-import { simpleActionsMarkup, directMatrixMarkup } from "./js/registro-vista.js";
+import { simpleActionsMarkup, directMatrixMarkup, updateRegistrationMarkup } from "./js/registro-vista.js";
 import { fitRegistro } from "./js/distribucion.js";
 import { loadButtonConfiguration, recordGameUsage, readGameUsage, versionForGame, configurationFromDoc, currentVersion, onConfigChange } from "./js/configuracion-guardada.js";
 import { initializeEditor } from "./js/editor.js";
 import { buildCsv, csvFilename, triggerDownload } from "./js/exportacion.js";
 import { openDatabase, readState, createGameAndSelect, selectGameState,
   deleteGame, readExportSnapshot, addEvent, removeLastGameEvent } from "./js/persistencia.js";
+import { storageContext, assertContext, canonical } from "./js/sync-storage.js";
+
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -39,6 +41,8 @@ let buttonVersion = null;
 let csvSource = null;
 let gameUsage = {};
 let fitState = null;
+let gameOptionsMarkup = null;
+let lastAppliedContext = null;
 const FIT_QUERY = "(min-width: 900px) and (min-height: 560px), (min-width: 700px) and (min-height: 900px)";
 
 function htmlSafe(value) {
@@ -55,11 +59,17 @@ function uniqueId() {
 }
 
 function queueOperation(task) {
+  const context = storageContext();
   pendingOperations++;
   busy = true;
   renderSelection();
   setSaveStatus("saving");
-  const operation = mutationQueue.catch(() => {}).then(task);
+  const operation = mutationQueue.catch(() => {}).then(async () => {
+    assertContext(context);
+    const result = await task();
+    assertContext(context);
+    return result;
+  });
   mutationQueue = operation;
   return operation.finally(() => {
     pendingOperations--;
@@ -69,7 +79,11 @@ function queueOperation(task) {
   });
 }
 
-function applyState(state) {
+function applyState(state, { keepSelection = false } = {}) {
+  const c = storageContext();
+  if ((state.scope ?? null) !== c.scope || (state.scopeVersion !== undefined && state.scopeVersion !== c.version)) {  return; }
+  const previousSelection = keepSelection && state.currentGameId === currentGameId ? chosen : null;
+  const previousConfiguration = configuration;
   if (state.currentGameId !== currentGameId) pendingShot = null;
   games = state.games;
   currentGameId = state.currentGameId;
@@ -80,7 +94,10 @@ function applyState(state) {
     deletionTarget = null;
   }
   syncGameConfiguration();
-  render();
+  if (previousSelection) chosen = resolveSelection(configuration, previousSelection);
+  render({ preserveControls: keepSelection && previousConfiguration === configuration });
+  lastAppliedContext = c;
+  
 }
 
 function markSaved() {
@@ -88,7 +105,7 @@ function markSaved() {
 }
 
 function notifyChange(gameId, deleted = false) {
-  const message = { gameId, deleted, stamp: uniqueId() };
+  const message = { gameId, deleted, scope: storageContext().scope, stamp: uniqueId() };
   if (channel) channel.postMessage(message);
   else {
     try { localStorage.setItem("defensas-change", JSON.stringify(message)); } catch {}
@@ -96,25 +113,27 @@ function notifyChange(gameId, deleted = false) {
 }
 
 async function refreshState() {
-  if (!storageReady) return;
+  if (!storageReady) {  return; }
   const ticket = ++revision;
-  const previousSelection = chosen;
-  const previousGameId = currentGameId;
+  const context = storageContext();
+  
   try {
-    await queueOperation(async () => {
+    // Lectura serializada con las escrituras, sin fingir guardado ni bloquear pulsaciones.
+    const operation = mutationQueue.catch(() => {}).then(async () => {
+      assertContext(context);
       const state = await readState();
+      
+      assertContext(context);
       if (ticket === revision) {
-        applyState(state);
-        if (previousGameId === currentGameId && previousSelection) {
-          chosen = resolveSelection(configuration, previousSelection);
-          render();
-        }
-      }
-      // Una actualización ajena no oculta un error local de escritura.
-      if (!saveError) markSaved();
-      else setSaveStatus("error");
+        if (lastAppliedContext === context && canonical([state.games, state.currentGameId, state.events]) === canonical([games, currentGameId, events])) {  return; }
+        applyState(state, { keepSelection: true });
+      } 
     });
+    mutationQueue = operation;
+    await operation;
   } catch (error) {
+    
+    if (error.code === 'SCOPE_CHANGED') return;
     storageReady = false;
     setSaveStatus("error");
     setFeedback(error.message, "error");
@@ -123,6 +142,7 @@ async function refreshState() {
 }
 
 function receiveChange(message) {
+  if ((message?.scope ?? null) !== storageContext().scope) return;
   if (message?.deleted && message.gameId === currentGameId) {
     currentGameId = null;
     chosen = null;
@@ -133,6 +153,16 @@ function receiveChange(message) {
 }
 
 function bindSynchronization() {
+  
+  window.addEventListener('defensas-scope-change', () => {
+    ++revision;
+    currentGameId = null; games = []; events = []; chosen = null; pendingShot = null; deletionTarget = null;
+    for (const id of ['#newGameDialog', '#deleteGameDialog']) if ($(id).open) $(id).close();
+    render(); void refreshState();
+  });
+  window.addEventListener('defensas-sync-remote', () => {  notifyChange(currentGameId); void refreshState(); });
+  // Importación/otras escrituras locales también actualizan la vista; no dependen de un eco remoto.
+  window.addEventListener('defensas-sync-local', () => { notifyChange(currentGameId); void refreshState(); });
   if (globalThis.BroadcastChannel) {
     channel = new BroadcastChannel("registro-defensivo-changes");
     channel.onmessage = event => receiveChange(event.data);
@@ -196,11 +226,12 @@ function labelForGame(game) {
 
 function renderGameOptions() {
   const selector = $("#gameSelect");
-  selector.innerHTML = '<option value="">Selecciona o crea un partido</option>' + games
+  const markup = '<option value="">Selecciona o crea un partido</option>' + games
     .slice()
     .sort((a, b) => String(a.createdAt ?? "").localeCompare(String(b.createdAt ?? "")))
     .map(game => `<option value="${htmlSafe(game.id)}">${htmlSafe(labelForGame(game))}</option>`)
     .join("");
+  if (markup !== gameOptionsMarkup) { selector.innerHTML = markup; gameOptionsMarkup = markup; }
   selector.value = currentGameId || "";
 }
 
@@ -219,6 +250,7 @@ async function selectGame(gameId) {
       notifyChange(gameId);
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     if (ticket === revision) {
       try {
         const state = await readState();
@@ -265,6 +297,7 @@ async function createGame(event) {
       notifyChange(game.id);
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     $("#newGameError").textContent = "No se ha creado el partido. " + error.message;
     setSaveStatus("error");
     setFeedback("No se ha podido crear el partido.", "error");
@@ -297,6 +330,7 @@ async function confirmDeleteGame() {
       notifyChange(gameId, true);
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     $("#deleteGameError").textContent = "No se ha eliminado el partido. " + error.message;
     setSaveStatus("error");
     setFeedback("No se ha podido eliminar el partido.", "error");
@@ -312,19 +346,21 @@ function isChosen(category, action, strategy = null) {
   return chosen?.category === category && chosen?.actionId === action && chosen?.strategyId === strategy;
 }
 
-function buildSimpleActions(category, targetId) {
+function buildSimpleActions(category, targetId, preserveControls = false) {
   const actions = categoryFor(category)?.actions ?? [];
-  $(targetId).innerHTML = simpleActionsMarkup(category, actions,
+  const markup = simpleActionsMarkup(category, actions,
     id => summarize(events.filter(event => matchesEvent(event, category, id))), id => isChosen(category, id));
+  if (!preserveControls || !updateRegistrationMarkup($(targetId), markup)) $(targetId).innerHTML = markup;
 }
 
-function buildDirectActions() {
+function buildDirectActions(preserveControls = false) {
   const actions = categoryFor("directo")?.actions ?? [];
-  $("#directActions").innerHTML = directMatrixMarkup(actions, {
+  const markup = directMatrixMarkup(actions, {
     statFor: (action, defense) => summarize(events.filter(event => matchesEvent(event, "directo", action, defense))),
     typeStat: action => summarize(events.filter(event => matchesEvent(event, "directo", action))),
     chosen, isChosen: (action, defense) => isChosen("directo", action, defense)
   });
+  if (!preserveControls || !updateRegistrationMarkup($("#directActions"), markup)) $("#directActions").innerHTML = markup;
 }
 
 // Distribución adaptable: filas equilibradas y pasos 0–3 hasta que todo cabe (js/distribucion.js).
@@ -413,14 +449,14 @@ function renderSelection() {
   }
 }
 
-function render() {
+function render({ preserveControls = false } = {}) {
   renderGameOptions();
   for (const [id, title] of [["transicion", "#transitionTitle"], ["estatico", "#staticTitle"], ["directo", "#directTitle"]]) {
     if (categoryFor(id)) ($(title).querySelector?.(".category-title") || $(title)).textContent = categoryFor(id).name.toUpperCase();
   }
-  buildSimpleActions("transicion", "#transitionActions");
-  buildSimpleActions("estatico", "#staticActions");
-  buildDirectActions();
+  buildSimpleActions("transicion", "#transitionActions", preserveControls);
+  buildSimpleActions("estatico", "#staticActions", preserveControls);
+  buildDirectActions(preserveControls);
   for (const [category, id] of [
     ["transicion", "#transitionTotal"], ["estatico", "#staticTotal"], ["directo", "#directTotal"]
   ]) {
@@ -478,6 +514,7 @@ async function recordResult(points, resultado) {
       setFeedback("Tiro registrado.", "success");
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     if (error.code === "EVENT_CONFLICT") pendingShot = null;
     if (!committed && currentGameId === game.id && error.code !== "GAME_NOT_FOUND") chosen = selection;
     setSaveStatus("error");
@@ -505,6 +542,7 @@ async function undoLast() {
       setFeedback(removed ? "Última acción deshecha." : "No hay registros para deshacer.", "success");
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     setSaveStatus("error");
     setFeedback(committed ? "Deshacer está guardado, pero no se han podido actualizar las estadísticas. Recarga para recuperarlas."
       : error.code === "GAME_NOT_FOUND" ? error.message : "No se ha podido deshacer. Los eventos no se han modificado.", "error");
@@ -523,6 +561,7 @@ async function exportCsv() {
       setFeedback(`CSV descargado: ${snapshot.events.length} acciones de ${labelForGame(snapshot.game)}.`, "success");
     });
   } catch (error) {
+    if (error.code === 'SCOPE_CHANGED') return;
     setSaveStatus("error");
     setFeedback(error.message, "error");
     if (error.code === "GAME_NOT_FOUND") await refreshState();
@@ -630,4 +669,10 @@ async function initialize() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initialize);
+// También se carga mediante import() después del preflight de la prueba local.
+// En ese caso DOMContentLoaded ya puede haber ocurrido.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialize, { once: true });
+} else {
+  void initialize();
+}
