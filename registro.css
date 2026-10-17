@@ -1,0 +1,103 @@
+/* Registro V4 con distribución adaptable (Fase 9B). Los tamaños dependen del paso que elige
+   js/distribucion.js (data-fit), no del tamaño de ventana: así la vista previa del editor y la
+   aplicación usan exactamente las mismas reglas. */
+.record-view {
+  --r-gap: 8px; --band-gap: 24px; --tile-h: 56px; --pad: 18px; --name-size: 21px; --score-size: 16px;
+  --head-size: 18px; --col-head: 15px; --matrix-head-h: 30px; --cell-h: 48px; --cell-score: 20px; --type-size: 21px;
+  display: flex; flex-direction: column; gap: 12px; min-width: 0;
+}
+.record-view[data-fit="2"], .record-view[data-fit="3"] {
+  --r-gap: 6px; --band-gap: 14px; --tile-h: 44px; --pad: 12px; --name-size: 17px; --head-size: 15px;
+  --col-head: 13px; --matrix-head-h: 24px; --cell-h: 44px; --cell-score: 17px; --type-size: 17px;
+  gap: 8px;
+}
+/* Paso 1 en adelante: sin contadores (siguen en Estadísticas). */
+.record-view:is([data-fit="1"], [data-fit="2"], [data-fit="3"]) :is(.action-score, .defense-score, .panel-summary, .direct-type > span) { display: none; }
+
+.top-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: var(--r-gap) var(--band-gap); flex: none; }
+.stat-panel { min-width: 0; display: flex; flex-direction: column; gap: var(--r-gap); }
+/* Línea vertical que separa Transición y Estático. */
+.top-grid > .stat-panel + .stat-panel { position: relative; }
+.top-grid > .stat-panel + .stat-panel::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--band-gap) / -2); width: 1px; background: var(--line); }
+.record-view.is-narrow .top-grid > .stat-panel + .stat-panel::before { display: none; }
+.panel-heading { display: flex; align-items: center; gap: 8px; min-height: 24px; min-width: 0; }
+.panel-heading h2 { display: flex; align-items: center; gap: 8px; min-width: 0; margin: 0; font-family: var(--cond); font-size: var(--head-size); font-weight: 600; letter-spacing: .06em; line-height: 1; color: #3A3A36; text-transform: uppercase; white-space: nowrap; }
+.section-icon { width: 22px; height: 22px; flex: none; color: var(--coral); }
+.panel-summary { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Filas equilibradas: cada fila ocupa todo el ancho y sus botones se estiran (sin huecos). */
+.action-list { flex: 1; display: flex; flex-direction: column; gap: var(--r-gap); min-width: 0; }
+.action-row { flex: 1 1 var(--tile-h); display: flex; gap: var(--r-gap); min-width: 0; min-height: var(--tile-h); }
+.action-row > .action-btn { flex: 1 1 0; }
+.action-btn { position: relative; min-width: 0; min-height: var(--tile-h); padding: 0 var(--pad); border: 0; border-radius: 20px; background: var(--tile); display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; transition: background-color .12s ease, transform .08s ease; }
+.action-name { min-width: 0; overflow: hidden; font-family: var(--cond); font-size: var(--name-size); font-weight: 600; letter-spacing: .02em; line-height: 1.05; text-transform: uppercase; white-space: nowrap; }
+.action-score, .defense-score { flex: none; font-size: var(--score-size); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.record-view[data-fit="3"] :is(.action-name, .direct-type strong, .defense-heading-text) { text-overflow: ellipsis; }
+@media (hover: hover) {
+  .action-btn:hover:not(:disabled):not([aria-pressed="true"]), .defense-btn:hover:not(:disabled):not([aria-pressed="true"]) { background: var(--white); }
+}
+.action-btn:active:not(:disabled), .defense-btn:active:not(:disabled) { transform: scale(.98); }
+.action-btn:disabled, .defense-btn:disabled { color: var(--muted); }
+.action-btn:disabled .made, .defense-btn:disabled .made { color: inherit; }
+.action-btn[aria-pressed="true"], .defense-btn[aria-pressed="true"] { background: var(--coral); color: var(--white); box-shadow: 0 8px 20px rgba(218, 90, 53, .32); }
+.action-btn[aria-pressed="true"] .made, .defense-btn[aria-pressed="true"] .made { color: var(--white); }
+.action-btn[aria-pressed="true"]::after, .defense-btn[aria-pressed="true"]::after {
+  content: ""; position: absolute; top: 6px; right: 6px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23BF4320' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E") center / 10px no-repeat;
+}
+.score-empty { color: var(--empty); font-weight: 600; }
+
+/* Bloqueo directo: la matriz llena el alto y el ancho restantes. */
+.direct-panel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--r-gap); padding-top: calc(var(--r-gap) + 4px); border-top: 1px solid var(--line); }
+.direct-list, .direct-matrix { flex: 1; min-height: 0; min-width: 0; display: flex; flex-direction: column; }
+.direct-matrix-inner {
+  flex: 1; min-height: 0; display: grid; gap: var(--r-gap); font-variant-numeric: tabular-nums;
+  grid-template-columns: fit-content(var(--type-col, 320px)) repeat(var(--cols, 5), minmax(0, 1fr));
+  grid-template-rows: var(--matrix-head-h) repeat(var(--rows, 3), minmax(var(--cell-h), 1fr));
+}
+.direct-matrix-head, .defense-headings, .direct-row, .defense-options { display: contents; }
+.direct-corner { min-width: var(--corner-w, 0px); }
+.defense-heading { align-self: center; justify-self: center; display: flex; max-width: 100%; min-width: 0; height: var(--matrix-head-h); padding: 0 8px; border-radius: 999px; align-items: center; font-family: var(--cond); font-size: var(--col-head); font-weight: 600; letter-spacing: .04em; color: var(--label); text-transform: uppercase; white-space: nowrap; }
+.defense-heading-text { min-width: 0; overflow: hidden; }
+.defense-heading.is-axis-selected { background: var(--ink); color: var(--white); }
+.direct-type { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 2px; min-width: 0; max-width: var(--type-max, none); padding: 0 4px; }
+.direct-type strong { max-width: 100%; overflow: hidden; font-family: var(--cond); font-size: var(--type-size); font-weight: 700; letter-spacing: .02em; line-height: 1.15; text-transform: uppercase; white-space: nowrap; }
+.direct-type > span { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.record-view[data-fit="3"] { --type-max: 120px; }
+.direct-row.is-axis-selected .direct-type strong { background: var(--ink); color: var(--white); padding: 5px 10px 4px; margin-left: -6px; border-radius: 999px; }
+.defense-btn { position: relative; min-width: 0; min-height: var(--cell-h); padding: 0 6px; border: 0; border-radius: 20px; background: var(--tile); display: flex; align-items: center; justify-content: center; transition: background-color .12s ease, transform .08s ease; }
+.defense-btn .defense-score { font-size: var(--cell-score); }
+/* El nombre se conserva para lectores de pantalla; la cabecera de columna lo muestra. */
+.defense-btn .defense-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.direct-matrix.is-irregular .direct-matrix-inner { grid-template-columns: minmax(var(--corner-w, 0px), max-content) minmax(0, 1fr); }
+.direct-matrix.is-irregular .defense-options { display: flex; flex-wrap: wrap; gap: var(--r-gap); }
+.direct-matrix.is-irregular .defense-btn { flex: 1 1 120px; justify-content: space-between; padding: 0 14px; }
+.direct-matrix.is-irregular .defense-btn .defense-name { position: static; width: auto; height: auto; clip: auto; font-family: var(--cond); font-size: 18px; text-transform: uppercase; }
+
+/* Título de Bloqueo directo en la esquina de la matriz; el ajustador reserva su ancho (--corner-w). */
+.record-view:not(.is-narrow):not(.is-medium) .direct-panel > .panel-heading { position: absolute; z-index: 1; top: calc(var(--r-gap) + 4px); left: 0; min-height: var(--matrix-head-h); pointer-events: none; }
+.record-view:not(.is-narrow):not(.is-medium) .direct-panel > .panel-heading .panel-summary { margin-left: 6px; }
+
+/* Ancho de móvil: secciones apiladas, filas de dos, scroll vertical y matriz con scroll interno. */
+.record-view.is-narrow .top-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.record-view.is-narrow .direct-matrix { overflow-x: auto; overscroll-behavior-x: contain; margin: 0 calc(-1 * var(--pad-x)); padding: 0 var(--pad-x) 4px; scrollbar-width: thin; }
+.record-view.is-narrow .direct-matrix-inner { grid-template-columns: 116px repeat(var(--cols, 5), 72px); grid-template-rows: var(--matrix-head-h) repeat(var(--rows, 3), minmax(56px, auto)); width: max-content; min-width: 100%; }
+.record-view.is-narrow :is(.direct-corner, .direct-type) { position: sticky; left: calc(-1 * var(--pad-x)); z-index: 2; margin-left: calc(-1 * var(--pad-x)); padding-left: calc(var(--pad-x) + 2px); background: var(--ground); }
+.record-view.is-narrow .direct-type strong { font-size: 18px; }
+.record-view.is-narrow .defense-heading { font-size: 14px; padding: 0 6px; }
+.record-view.is-narrow .action-name { font-size: 19px; }
+
+/* Tablet vertical: cabeceras de columna en hasta dos líneas (cortan por «+» o «/»). */
+.record-view.is-medium .direct-matrix-inner { grid-template-rows: minmax(var(--matrix-head-h), auto) repeat(var(--rows, 3), minmax(var(--cell-h), 1fr)); }
+.record-view.is-medium .defense-heading { height: auto; min-height: var(--matrix-head-h); padding: 3px 6px; line-height: 1.05; text-align: center; white-space: normal; }
+
+/* Fase 9E: más defensas. En el paso compacto (2 y 3) la matriz se comprime antes de recortar nombres:
+   «Bloqueo directo» en dos líneas, nombres de tipo y cabeceras de defensa en hasta dos líneas y
+   columna de tipos más estrecha. */
+.record-view:is([data-fit="2"], [data-fit="3"]) { --type-col: 132px; }
+.record-view:is([data-fit="2"], [data-fit="3"]):not(.is-narrow) .direct-matrix-inner { grid-template-rows: minmax(var(--matrix-head-h), auto) repeat(var(--rows, 3), minmax(var(--cell-h), 1fr)); }
+.record-view:is([data-fit="2"], [data-fit="3"]):not(.is-narrow):not(.is-medium) .direct-panel > .panel-heading .category-title { display: block; width: min-content; line-height: 1.05; white-space: normal; }
+.record-view:is([data-fit="2"], [data-fit="3"]):not(.is-narrow):not(.is-medium) .direct-corner { min-height: 34px; }
+.record-view:is([data-fit="2"], [data-fit="3"]):not(.is-narrow) .direct-type strong { white-space: normal; line-height: 1.05; }
+.record-view[data-fit="3"]:not(.is-narrow) .direct-type strong { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.record-view:is([data-fit="2"], [data-fit="3"]):not(.is-narrow) .defense-heading { height: auto; min-height: var(--matrix-head-h); padding: 3px 6px; line-height: 1.05; text-align: center; white-space: normal; }

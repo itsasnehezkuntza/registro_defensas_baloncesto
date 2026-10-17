@@ -1,0 +1,90 @@
+/* Modo edición del panel (Fase 9C), como el lienzo V4 «Registro con modo edición».
+   Sistema V4: superficies planas, cápsulas, coral para la acción principal; sin cristal ni degradados. */
+body[data-view="editar"] :is(.header, #noGameNotice) { display: none; }
+body[data-view="editar"] .app-shell { padding-bottom: calc(var(--edit-dock-height, 114px) + var(--dock-bottom) + 12px); }
+.editor-view { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+@media (min-width: 900px) and (min-height: 560px), (min-width: 700px) and (min-height: 900px) {
+  body[data-view="editar"] .app-shell { height: 100vh; height: 100dvh; }
+  body[data-view="editar"] main { flex: 1; min-height: 0; }
+  .editor-view { flex: 1; min-height: 0; }
+  .edit-panel { flex: 1; min-height: 0; }
+}
+
+/* Cabecera de edición: general, botón elegido o confirmación. */
+.edit-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; min-height: 48px; flex: none; }
+.edit-bar .brand { margin-right: 0; }
+.edit-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.edit-title-main { font-family: var(--cond); font-size: 20px; font-weight: 700; letter-spacing: .05em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
+.edit-game { display: inline-flex; flex-direction: column; justify-content: center; min-width: 0; max-width: 320px; height: 44px; padding: 0 18px; border-radius: 999px; background: var(--white); box-shadow: 0 2px 8px rgba(0, 0, 0, .05); }
+.edit-game-label { font-size: 10px; font-weight: 800; letter-spacing: .12em; line-height: 1.2; color: var(--muted); text-transform: uppercase; }
+.edit-game strong { font-size: 14px; font-weight: 700; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edit-actions { margin-left: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+.pill-dark { background: var(--ink); color: var(--white); }
+.edit-field { position: relative; flex: 1 1 220px; min-width: 180px; height: 44px; padding: 0 18px; border-radius: 999px; background: var(--white); display: flex; flex-direction: column; justify-content: center; box-shadow: inset 0 0 0 2px var(--coral); }
+.edit-field > span { font-size: 10px; font-weight: 800; letter-spacing: .12em; line-height: 1.2; color: var(--muted); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edit-field input { width: 100%; margin: 0; padding: 0; border: 0; outline: 0; background: transparent; font-family: var(--cond); font-size: 19px; font-weight: 700; letter-spacing: .03em; line-height: 1.1; color: var(--ink); text-transform: uppercase; }
+.edit-field:focus-within { box-shadow: inset 0 0 0 3px var(--coral); }
+.edit-shots-group { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 4px 0 14px; border-radius: 999px; background: var(--white); }
+.edit-shots-label { margin-right: 2px; font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+.edit-shots-group button { position: relative; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--tile); font-family: var(--cond); font-size: 20px; font-weight: 700; color: #7A7A75; }
+/* Área táctil de 44 px alrededor del círculo de 36 px. */
+.edit-shots-group button::before { content: ""; position: absolute; inset: -4px; }
+.edit-shots-group button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+.edit-note { padding: 0 6px; font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.edit-remove { color: var(--coral-text); }
+.edit-warn { flex: 1; min-width: 0; margin: 0; font-size: 13px; font-weight: 700; line-height: 1.3; color: #3A3A36; }
+.edit-warn b { color: var(--coral-text); }
+
+/* Panel en modo edición: los botones muestran sus tiros; las celdas, atenuadas con sus datos. */
+.edit-panel { --matrix-head-h: 44px; }
+.edit-panel .edit-tile { background: var(--white); box-shadow: inset 0 0 0 2px #CFCFC9; }
+.edit-panel .edit-tile[aria-pressed="true"], .edit-panel .edit-row[aria-pressed="true"], .edit-panel .edit-col[aria-pressed="true"] { background: var(--coral); color: var(--white); box-shadow: 0 8px 20px rgba(218, 90, 53, .32); }
+.edit-panel .action-btn::after { display: none; }
+.edit-shots { display: inline-flex; gap: 4px; flex: none; }
+.edit-shots span { width: 22px; height: 22px; border-radius: 50%; background: #E2E2DD; color: #3A3A36; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+[aria-pressed="true"] > .edit-shots span { background: rgba(255, 255, 255, .25); color: var(--white); }
+.edit-panel .edit-cell { opacity: .38; }
+.edit-panel .edit-col { height: auto; min-height: 44px; border: 0; padding: 0 14px; background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 2px #CFCFC9; cursor: pointer; }
+.edit-panel .edit-row { align-self: stretch; justify-content: center; gap: 4px; min-height: var(--cell-h); padding: 0 14px; border: 0; border-radius: 20px; background: var(--white); color: inherit; text-align: left; box-shadow: inset 0 0 0 2px #CFCFC9; cursor: pointer; }
+.edit-panel .edit-row .edit-shots span { width: 18px; height: 18px; font-size: 11px; }
+@media (hover: hover) {
+  .edit-panel :is(.edit-tile, .edit-row, .edit-col):hover:not([aria-pressed="true"]) { box-shadow: inset 0 0 0 2px var(--ink); }
+}
+
+/* Barra inferior de edición, con la misma forma que la de resultados. */
+.edit-dock { position: fixed; z-index: 20; left: max(calc(var(--pad-x) - 8px), env(safe-area-inset-left)); right: max(calc(var(--pad-x) - 8px), env(safe-area-inset-right)); bottom: var(--dock-bottom); border-radius: 34px; background: var(--white); box-shadow: 0 14px 34px rgba(0, 0, 0, .08); }
+.edit-dock .selection-label { white-space: normal; }
+.edit-side { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.edit-alert { font-size: 12px; font-weight: 800; color: var(--coral-text); }
+.edit-add-buttons .result-btn.edit-add { margin: 0; background: var(--tile); color: var(--ink); text-align: left; }
+.edit-add .result-value { background: var(--coral); color: var(--white); }
+.edit-add .result-value .ui-icon { width: 22px; height: 22px; }
+.edit-add-label { display: flex; flex-direction: column; min-width: 0; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.edit-add-label small { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: none; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.edit-add-buttons .result-btn.edit-add:disabled { opacity: .45; }
+.edit-add:disabled .result-value { background: var(--empty); }
+
+/* Medición fuera de pantalla de la vista previa en iPad (no visible ni interactiva). */
+.preview-measure { position: absolute; left: -10000px; top: 0; visibility: hidden; pointer-events: none; }
+
+@media (max-width: 999px) {
+  .edit-add-label { letter-spacing: .06em; }
+}
+@media (max-width: 699px) {
+  .edit-actions { margin-left: 0; width: 100%; }
+  .edit-actions .pill { flex: 1 1 auto; }
+  .edit-game { max-width: none; flex: 1 1 auto; }
+  .edit-add-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .edit-add-buttons .result-btn.edit-add { justify-content: flex-start; padding: 0 10px 0 6px; gap: 8px; }
+  .edit-dock .selection-line { flex-direction: column; align-items: flex-start; }
+  .edit-side { white-space: normal; }
+}
+/* En edición los tiros y las cifras atenuadas se ven siempre, como en el lienzo (no son contadores del Registro). */
+.edit-panel.record-view .direct-type > .edit-shots { display: inline-flex; }
+.edit-panel.record-view .edit-cell .defense-score { display: inline; }
+/* En edición las cabeceras de columna son botones: al menos 44 px también en tablet vertical. */
+.edit-panel.record-view .edit-col { min-width: 44px; min-height: 44px; padding-left: 10px; padding-right: 10px; }
+/* Variante compacta del lienzo: si no cabe en línea (paso 1 o más), los tiros van bajo el nombre. */
+.edit-panel.record-view:is([data-fit="1"], [data-fit="2"], [data-fit="3"]) .edit-tile { flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding-left: 14px; padding-right: 14px; }
+.edit-panel.record-view:is([data-fit="1"], [data-fit="2"], [data-fit="3"]) .edit-tile .action-name { max-width: 100%; }
+.edit-panel.record-view:is([data-fit="1"], [data-fit="2"], [data-fit="3"]) .edit-tile .edit-shots span { width: 18px; height: 18px; font-size: 11px; }
