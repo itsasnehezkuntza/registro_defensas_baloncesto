@@ -1,0 +1,82 @@
+/* B — Courtside Pro. Módulos oscuros y cifras de mesa de anotadores. */
+:root {
+  color-scheme: dark;
+  --bg: #151718; --surface: #222629; --ink: #f2f2e9; --slate: #c0c4c1;
+  --border: #68726e; --accent: #ff9c4a; --ball: #ff9c4a;
+  --blue: #ff9c4a; --blue-pale: #34312b; --navy: #151718;
+  --success: #76dda7; --danger: #ff98a2; --radius: 4px;
+  --number-font: Consolas, Menlo, ui-monospace, monospace;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.header { padding: 7px 10px; border-radius: 0; background: #222629; border-left: 5px solid var(--accent); box-shadow: none; }
+.brand-line { margin-bottom: 5px; }
+h1 { font-family: Impact, "Arial Narrow", Arial, sans-serif; font-size: 1.5rem; font-weight: 400; letter-spacing: .04em; }
+.tool-button { border-radius: var(--radius); background: #303638; border-color: #7d8983; color: var(--ink); font-size: .8125rem; }
+.tool-button:hover:not(:disabled) { background: #3c4345; }
+#newGameBtn { border-color: var(--accent); color: var(--accent); }
+.undo-button { color: var(--ink); }
+.delete-game-button { color: var(--danger); }
+.field select { color: var(--ink); background: #151718; border-color: #7d8983; border-radius: var(--radius); }
+.save-status { color: var(--success); }
+.status-dot { background: var(--success); }
+.save-status.is-saving { color: #f5c96c; }
+.save-status.is-saving .status-dot { background: #f5c96c; }
+.save-status.is-error { color: var(--danger); }
+.save-status.is-error .status-dot { background: var(--danger); }
+.top-grid { gap: 12px; }
+.stat-panel { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.panel-heading { justify-content: flex-start; gap: 14px; padding: 5px 0 7px; border-bottom: 2px solid var(--accent); }
+h2 { font-family: Impact, "Arial Narrow", Arial, sans-serif; font-size: 1.3125rem; font-weight: 400; letter-spacing: .05em; margin: 0; }
+.panel-summary { color: var(--ink); background: transparent; border-radius: 0; font-family: var(--number-font); font-size: 1.125rem; padding: 0; }
+.action-list { padding: 8px 0 0; gap: 8px; }
+.action-btn { border: 1px solid #68726e; border-radius: var(--radius); background: #222629; padding: 6px 10px; min-height: 60px; gap: 3px; }
+.action-name { font-size: .875rem; font-weight: 650; color: var(--ink); }
+.action-score { font-family: var(--number-font); font-size: 1rem; color: var(--ink); font-weight: 700; }
+.action-btn:hover:not(:disabled), .defense-btn:hover:not(:disabled) { background: #303638; border-color: var(--accent); }
+.direct-panel { margin-top: 12px; }
+.direct-list { padding: 8px 0 0; }
+.direct-row { grid-template-columns: 170px minmax(0,1fr); gap: 10px; padding: 5px 0; border-bottom: 1px solid #68726e; }
+.direct-type { border-left: 3px solid var(--accent); padding: 5px 8px; gap: 4px; }
+.direct-type strong { color: var(--ink); font-size: .9375rem; font-weight: 800; }
+.direct-type > span { color: var(--slate); font-family: var(--number-font); font-size: .8125rem; }
+.defense-options { gap: 8px; }
+.defense-btn { text-align: left; background: #222629; border: 1px solid #68726e; border-radius: var(--radius); min-height: 56px; padding: 6px 9px; }
+.defense-name { font-size: .8125rem; font-weight: 650; color: var(--slate); }
+.defense-score { font-family: var(--number-font); color: var(--ink); font-size: 1rem; font-weight: 700; margin-top: 3px; }
+.action-btn[aria-pressed="true"], .defense-btn[aria-pressed="true"] { color: var(--ink); background: #34312b; border: 3px double var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.action-btn[aria-pressed="true"] .action-score, .defense-btn[aria-pressed="true"] .defense-score { color: var(--ink); }
+.action-btn[aria-pressed="true"]::after, .defense-btn[aria-pressed="true"]::after { color: var(--accent); }
+.defense-btn[aria-pressed="true"] { padding-right: 9px; }
+.result-dock { background: #222629; border-top: 2px solid var(--accent); box-shadow: none; }
+.selection-label { display: none; }
+#selectedDescription { font-size: .875rem; }
+.selection-meta { color: var(--ink); font-family: var(--number-font); font-size: 1rem; }
+.result-btn { border-radius: var(--radius); min-height: 56px; border-width: 2px; }
+.result-btn.result-missed { background: #155c3f; border-color: #76dda7; color: #ffffff; }
+.result-btn.result-made { background: #923142; border-color: #ff98a2; color: #ffffff; }
+.result-btn > span { font-family: var(--number-font); font-size: clamp(1.125rem,7vw,1.75rem); }
+.result-btn .result-sign { font-family: "Segoe UI", Arial, sans-serif; }
+.feedback { color: var(--slate); }
+.action-btn:disabled, .defense-btn:disabled, .result-btn:disabled, .tool-button:disabled { color: #b3b8b3; background: #282d2f; border: 1px dashed #7d8983; opacity: 1; }
+.action-btn:disabled .action-name, .defense-btn:disabled .defense-name { color: #b3b8b3; }
+.save-status.is-error, .feedback.is-error { color: var(--danger); }
+.header button:focus-visible, .header select:focus-visible, button:focus-visible, select:focus-visible, .result-btn:focus-visible { outline-color: var(--accent); }
+@media (min-width:1000px) { .top-grid { grid-template-columns: minmax(0,1fr) minmax(0,2fr); } }
+@media (max-width:760px) {
+  h1 { font-size: 1.125rem; }
+  .header { padding: 7px 8px; }
+  .panel-heading { flex-wrap: wrap; gap: 5px 10px; }
+  h2 { font-size: 1.1875rem; }
+  .panel-summary { font-size: .9375rem; }
+  .action-list { gap: 6px; }
+  .action-btn { min-height: 62px; }
+  .action-score, .defense-score { font-size: .875rem; }
+  .direct-row { grid-template-columns: 1fr; gap: 7px; padding: 8px 0; }
+  .direct-type { padding: 4px 8px; }
+  .defense-options { gap: 6px; }
+  .defense-btn { padding: 6px; }
+  .selection-meta { font-size: .8125rem; }
+}
+
+/* Respuesta visual inmediata, también al deshabilitar durante un registro. */
+.action-btn, .defense-btn, .result-btn { transition: none; }

@@ -1,5 +1,8 @@
 .test-artifacts/
 .local-backups/
 node_modules/
-# Pruebas locales: no se incluyen en la primera publicación desde main.
-tests/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebase/
+tests/**/*.png

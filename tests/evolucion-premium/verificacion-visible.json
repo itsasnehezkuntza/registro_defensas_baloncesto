@@ -1,0 +1,505 @@
+{
+  "ok": true,
+  "browser": "156.0.8078.4",
+  "productionUnchanged": true,
+  "reports": [
+    {
+      "name": "escritorio",
+      "width": 1440,
+      "height": 900,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 18,
+          "y": 138.765625,
+          "width": 528.84375,
+          "height": 234.875,
+          "right": 546.84375,
+          "bottom": 373.640625
+        },
+        {
+          "x": 560.84375,
+          "y": 138.765625,
+          "width": 846.15625,
+          "height": 234.875,
+          "right": 1407,
+          "bottom": 373.640625
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 21,
+          "y": 814,
+          "width": 339,
+          "height": 59,
+          "right": 360,
+          "bottom": 873
+        },
+        {
+          "x": 369,
+          "y": 814,
+          "width": 335,
+          "height": 59,
+          "right": 704,
+          "bottom": 873
+        },
+        {
+          "x": 721,
+          "y": 814,
+          "width": 335,
+          "height": 59,
+          "right": 1056,
+          "bottom": 873
+        },
+        {
+          "x": 1065,
+          "y": 814,
+          "width": 339,
+          "height": 59,
+          "right": 1404,
+          "bottom": 873
+        }
+      ],
+      "last": {
+        "x": 1163,
+        "y": 686.515625,
+        "width": 222,
+        "height": 54,
+        "right": 1385,
+        "bottom": 740.515625
+      },
+      "dock": {
+        "x": 0,
+        "y": 778.8125,
+        "width": 1425,
+        "height": 121.1875,
+        "right": 1425,
+        "bottom": 900
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    },
+    {
+      "name": "tablet",
+      "width": 1180,
+      "height": 820,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 18,
+          "y": 111,
+          "width": 434.609375,
+          "height": 211,
+          "right": 452.609375,
+          "bottom": 322
+        },
+        {
+          "x": 466.609375,
+          "y": 111,
+          "width": 695.390625,
+          "height": 211,
+          "right": 1162,
+          "bottom": 322
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 21,
+          "y": 734,
+          "width": 277.75,
+          "height": 59,
+          "right": 298.75,
+          "bottom": 793
+        },
+        {
+          "x": 307.75,
+          "y": 734,
+          "width": 273.75,
+          "height": 59,
+          "right": 581.5,
+          "bottom": 793
+        },
+        {
+          "x": 598.5,
+          "y": 734,
+          "width": 273.75,
+          "height": 59,
+          "right": 872.25,
+          "bottom": 793
+        },
+        {
+          "x": 881.25,
+          "y": 734,
+          "width": 277.75,
+          "height": 59,
+          "right": 1159,
+          "bottom": 793
+        }
+      ],
+      "last": {
+        "x": 967,
+        "y": 607,
+        "width": 173,
+        "height": 50,
+        "right": 1140,
+        "bottom": 657
+      },
+      "dock": {
+        "x": 0,
+        "y": 698.8125,
+        "width": 1180,
+        "height": 121.1875,
+        "right": 1180,
+        "bottom": 820
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    },
+    {
+      "name": "tablet-compacta",
+      "width": 1024,
+      "height": 768,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 18,
+          "y": 109,
+          "width": 368.84375,
+          "height": 202.1875,
+          "right": 386.84375,
+          "bottom": 311.1875
+        },
+        {
+          "x": 400.84375,
+          "y": 109,
+          "width": 590.15625,
+          "height": 202.1875,
+          "right": 991,
+          "bottom": 311.1875
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 21,
+          "y": 685,
+          "width": 235,
+          "height": 56,
+          "right": 256,
+          "bottom": 741
+        },
+        {
+          "x": 265,
+          "y": 685,
+          "width": 231,
+          "height": 56,
+          "right": 496,
+          "bottom": 741
+        },
+        {
+          "x": 513,
+          "y": 685,
+          "width": 231,
+          "height": 56,
+          "right": 744,
+          "bottom": 741
+        },
+        {
+          "x": 753,
+          "y": 685,
+          "width": 235,
+          "height": 56,
+          "right": 988,
+          "bottom": 741
+        }
+      ],
+      "last": {
+        "x": 831.390625,
+        "y": 580.25,
+        "width": 139.609375,
+        "height": 48.6875,
+        "right": 971,
+        "bottom": 628.9375
+      },
+      "dock": {
+        "x": 0,
+        "y": 649.8125,
+        "width": 1009,
+        "height": 118.1875,
+        "right": 1009,
+        "bottom": 768
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    },
+    {
+      "name": "tablet-vertical",
+      "width": 768,
+      "height": 1024,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 18,
+          "y": 129,
+          "width": 276.140625,
+          "height": 226.40625,
+          "right": 294.140625,
+          "bottom": 355.40625
+        },
+        {
+          "x": 308.140625,
+          "y": 129,
+          "width": 441.859375,
+          "height": 226.40625,
+          "right": 750,
+          "bottom": 355.40625
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 21,
+          "y": 938,
+          "width": 174.75,
+          "height": 59,
+          "right": 195.75,
+          "bottom": 997
+        },
+        {
+          "x": 204.75,
+          "y": 938,
+          "width": 170.75,
+          "height": 59,
+          "right": 375.5,
+          "bottom": 997
+        },
+        {
+          "x": 392.5,
+          "y": 938,
+          "width": 170.75,
+          "height": 59,
+          "right": 563.25,
+          "bottom": 997
+        },
+        {
+          "x": 572.25,
+          "y": 938,
+          "width": 174.75,
+          "height": 59,
+          "right": 747,
+          "bottom": 997
+        }
+      ],
+      "last": {
+        "x": 637.390625,
+        "y": 659.8125,
+        "width": 90.59375,
+        "height": 54,
+        "right": 727.984375,
+        "bottom": 713.8125
+      },
+      "dock": {
+        "x": 0,
+        "y": 902.8125,
+        "width": 768,
+        "height": 121.1875,
+        "right": 768,
+        "bottom": 1024
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    },
+    {
+      "name": "movil",
+      "width": 390,
+      "height": 844,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 10,
+          "y": 210,
+          "width": 370,
+          "height": 212.59375,
+          "right": 380,
+          "bottom": 422.59375
+        },
+        {
+          "x": 10,
+          "y": 432.59375,
+          "width": 370,
+          "height": 212.59375,
+          "right": 380,
+          "bottom": 645.1875
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 8,
+          "y": 760,
+          "width": 89,
+          "height": 58,
+          "right": 97,
+          "bottom": 818
+        },
+        {
+          "x": 103,
+          "y": 760,
+          "width": 85,
+          "height": 58,
+          "right": 188,
+          "bottom": 818
+        },
+        {
+          "x": 202,
+          "y": 760,
+          "width": 85,
+          "height": 58,
+          "right": 287,
+          "bottom": 818
+        },
+        {
+          "x": 293,
+          "y": 760,
+          "width": 89,
+          "height": 58,
+          "right": 382,
+          "bottom": 818
+        }
+      ],
+      "last": {
+        "x": 140.65625,
+        "y": 1307.34375,
+        "width": 108.671875,
+        "height": 54,
+        "right": 249.328125,
+        "bottom": 1361.34375
+      },
+      "dock": {
+        "x": 0,
+        "y": 704,
+        "width": 390,
+        "height": 140,
+        "right": 390,
+        "bottom": 844
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    },
+    {
+      "name": "estrecho",
+      "width": 320,
+      "height": 740,
+      "horizontal": false,
+      "small": [],
+      "clipped": [],
+      "forbidden": [],
+      "panels": [
+        {
+          "x": 10,
+          "y": 245.203125,
+          "width": 300,
+          "height": 212.59375,
+          "right": 310,
+          "bottom": 457.796875
+        },
+        {
+          "x": 10,
+          "y": 467.796875,
+          "width": 300,
+          "height": 213.375,
+          "right": 310,
+          "bottom": 681.171875
+        }
+      ],
+      "staticColumns": 3,
+      "staticRows": 2,
+      "results": [
+        {
+          "x": 8,
+          "y": 656,
+          "width": 71.5,
+          "height": 58,
+          "right": 79.5,
+          "bottom": 714
+        },
+        {
+          "x": 85.5,
+          "y": 656,
+          "width": 67.5,
+          "height": 58,
+          "right": 153,
+          "bottom": 714
+        },
+        {
+          "x": 167,
+          "y": 656,
+          "width": 67.5,
+          "height": 58,
+          "right": 234.5,
+          "bottom": 714
+        },
+        {
+          "x": 240.5,
+          "y": 656,
+          "width": 71.5,
+          "height": 58,
+          "right": 312,
+          "bottom": 714
+        }
+      ],
+      "last": {
+        "x": 26,
+        "y": 1583.328125,
+        "width": 131,
+        "height": 54,
+        "right": 157,
+        "bottom": 1637.328125
+      },
+      "dock": {
+        "x": 0,
+        "y": 600,
+        "width": 320,
+        "height": 140,
+        "right": 320,
+        "bottom": 740
+      },
+      "uppercase": true,
+      "errors": [],
+      "simulation": true,
+      "storageUntouched": true
+    }
+  ]
+}

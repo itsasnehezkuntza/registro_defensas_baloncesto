@@ -1,0 +1,4979 @@
+{
+  "fecha": "2026-10-17T21:28:42.796Z",
+  "pasos": [
+    "completo",
+    "sin contador",
+    "compacto",
+    "nombres recortados"
+  ],
+  "tamanos": {
+    "1180x740": [
+      {
+        "caso": "transicion-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-9",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-10",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-11",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-12",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-9",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-11",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-12",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x2",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x3",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x4",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x5",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x6",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x7",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x8",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x10",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x12",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      }
+    ],
+    "1133x670": [
+      {
+        "caso": "transicion-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-9",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-10",
+        "level": 1,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-11",
+        "level": 1,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-12",
+        "level": 1,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-9",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-11",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-12",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x2",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x3",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x4",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x5",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x6",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x7",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x8",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x2",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x3",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x4",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x5",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x6",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x7",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x8",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x10",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x12",
+        "level": 2,
+        "rows": 1,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      }
+    ],
+    "1366x1024": [
+      {
+        "caso": "transicion-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-9",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-10",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-11",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-12",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-9",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-11",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x7",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x8",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x10",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x12",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      }
+    ],
+    "820x1180": [
+      {
+        "caso": "transicion-1",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-4",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-5",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-6",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-7",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-8",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-9",
+        "level": 0,
+        "rows": 5,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-10",
+        "level": 0,
+        "rows": 5,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-11",
+        "level": 0,
+        "rows": 6,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "transicion-12",
+        "level": 0,
+        "rows": 6,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 1,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-1",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-2",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-3",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-4",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-5",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-6",
+        "level": 0,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-9",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-10",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-11",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "estatico-12",
+        "level": 0,
+        "rows": 4,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x4",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x4",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x4",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x4",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-5x8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x2",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x3",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x4",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x5",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x6",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x7",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x8",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x10",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-2x12",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x10",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-3x12",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x10",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-4x12",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x10",
+        "level": 0,
+        "rows": 3,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 0,
+          "fits": true
+        }
+      },
+      {
+        "caso": "matriz-6x12",
+        "level": 2,
+        "rows": 2,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": {
+          "level": 2,
+          "fits": true
+        }
+      }
+    ],
+    "390x844": [
+      {
+        "caso": "transicion-1",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-9",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-11",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "transicion-12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-1",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": false,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-9",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-11",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "estatico-12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-5x8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x2",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x3",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x4",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x5",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x6",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x7",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x8",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-2x12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-3x12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-4x12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x10",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      },
+      {
+        "caso": "matriz-6x12",
+        "level": 0,
+        "rows": 0,
+        "fits": true,
+        "gaps": [],
+        "small": 0,
+        "covered": 0,
+        "matrixFills": true,
+        "scrollY": true,
+        "overflowX": false,
+        "preview": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,981 @@
+{
+  "ok": true,
+  "browser": "156.0.8078.4",
+  "reports": [
+    {
+      "name": "ipad",
+      "viewport": {
+        "width": 1180,
+        "height": 820
+      },
+      "expected": {
+        "attempts": 128,
+        "missed": 68,
+        "made": 60,
+        "points": 141,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 4,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 10,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"spain\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"spain\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"spain\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": false,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "ipad-compacto",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "expected": {
+        "attempts": 128,
+        "missed": 68,
+        "made": 60,
+        "points": 141,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 4,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 10,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"spain\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"spain\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"spain\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": false,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "movil",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expected": {
+        "attempts": 128,
+        "missed": 68,
+        "made": 60,
+        "points": 141,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 4,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 10,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"spain\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"spain\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"spain\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "estrecho",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "expected": {
+        "attempts": 128,
+        "missed": 68,
+        "made": 60,
+        "points": 141,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 4,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 10,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"spain\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"spain\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"spain\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "name": "movil-horizontal",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "expected": {
+        "attempts": 128,
+        "missed": 68,
+        "made": 60,
+        "points": 141,
+        "cells": {
+          "[\"cell\",\"transicion_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"transicion_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_exterior\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_1c1_interior\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_pin_down\",null]": {
+            "points": 5,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_cortes\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_spot_up_3\",null]": {
+            "points": 6,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"estatico_bajo_aro\",null]": {
+            "points": 4,
+            "count": 5,
+            "missed": 3,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_manejador\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_manejador\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_manejador\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_manejador\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"black\"]": {
+            "points": 8,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_roller\",\"white\"]": {
+            "points": 4,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_roller\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_roller\",\"red\"]": {
+            "points": 10,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_roller\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"pr_pop\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"pr_pop\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"pr_pop\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"pr_pop\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"black\"]": {
+            "points": 10,
+            "count": 10,
+            "missed": 6,
+            "made": 4
+          },
+          "[\"cell\",\"spain\",\"white\"]": {
+            "points": 5,
+            "count": 6,
+            "missed": 4,
+            "made": 2
+          },
+          "[\"cell\",\"spain\",\"blue\"]": {
+            "points": 0,
+            "count": 1,
+            "missed": 1,
+            "made": 0
+          },
+          "[\"cell\",\"spain\",\"red\"]": {
+            "points": 12,
+            "count": 5,
+            "missed": 0,
+            "made": 5
+          },
+          "[\"cell\",\"spain\",\"tut\"]": {
+            "points": 0,
+            "count": 0,
+            "missed": 0,
+            "made": 0
+          }
+        }
+      },
+      "geometry": {
+        "pageOverflow": false,
+        "internalOverflow": true,
+        "small": 0,
+        "clipped": [],
+        "forbidden": [],
+        "bars": [
+          "rgb(68, 68, 68)",
+          "rgb(193, 124, 75)"
+        ]
+      },
+      "errors": []
+    }
+  ]
+}

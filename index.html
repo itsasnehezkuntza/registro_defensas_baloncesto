@@ -2,20 +2,49 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com/firebasejs/12.11.0/ https://apis.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.googleusercontent.com https://www.google.com/images/cleardot.gif; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://firestore.googleapis.com; frame-src https://registro-defensivo.firebaseapp.com; object-src 'none'; base-uri 'none'; form-action 'self'; worker-src 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#E7E7E4">
   <meta name="description" content="Registro defensivo de baloncesto con guardado local y cuenta de Google opcional.">
-  <meta name="app-version" content="8C.0">
+  <meta name="app-version" content="20.0">
   <title>Registro defensivo · Baloncesto</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./registro.css">
   <link rel="stylesheet" href="./dashboard.css">
   <link rel="stylesheet" href="./editor.css">
   <link rel="stylesheet" href="./cuenta.css">
+  <script src="./js/inicio.js"></script>
   <script type="module" src="./app.js"></script>
   <script type="module" src="./js/cuenta-ui.js"></script>
 </head>
 <body>
+  <section id="loginScreen" class="login-screen" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-card">
+      <svg class="login-court" viewBox="0 0 600 780" fill="none" stroke="#FFFFFF" stroke-opacity=".17" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M-20 24h640"/><path d="M196 24v246h208V24"/><path d="M196 270a104 104 0 0 0 208 0"/><path d="M196 270a104 104 0 0 1 208 0" stroke-dasharray="10 12"/><path d="M262 66h76"/><circle cx="300" cy="84" r="13"/><path d="M252 84a48 48 0 0 0 96 0"/><path d="M28 24v80a272 272 0 0 0 544 0V24"/><path d="M-20 600h640"/><circle cx="300" cy="600" r="72"/><circle cx="300" cy="600" r="24"/><path d="M196 52h-10M196 92h-10M196 132h-10M404 52h10M404 92h10M404 132h10"/></svg>
+      <div class="login-brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><g transform="rotate(-22 16 16)"><path d="M27.6 12.2A12 12 0 1 0 25.2 23.8"/><path d="M4 16h24"/><path d="M16 4v24"/><path d="M7.6 7.4c2.9 2.4 4.4 5.3 4.4 8.6s-1.5 6.2-4.4 8.6"/><path d="M24.4 7.4c-2.9 2.4-4.4 5.3-4.4 8.6s1.5 6.2 4.4 8.6"/></g></svg><span>Registro defensivo</span></div>
+      <div class="login-hero">
+        <svg class="login-ball" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" aria-hidden="true"><g transform="rotate(-22 16 16)"><path d="M27.6 12.2A12 12 0 1 0 25.2 23.8"/><path d="M4 16h24"/><path d="M16 4v24"/><path d="M7.6 7.4c2.9 2.4 4.4 5.3 4.4 8.6s-1.5 6.2-4.4 8.6"/><path d="M24.4 7.4c-2.9 2.4-4.4 5.3-4.4 8.6s1.5 6.2 4.4 8.6"/></g><path d="M29.5 5.5c1 1.2 1.6 2.6 1.9 4M27 2.6c.9.6 1.6 1.2 2.2 1.9" stroke-width="1"/></svg>
+        <p class="login-claim">Cada tiro rival,<br>en dos toques.</p>
+        <p class="login-lead">Registra la defensa de tu equipo en directo y revisa qué funciona al terminar el partido.</p>
+      </div>
+    </div>
+    <div class="login-panel">
+      <div class="login-box">
+        <div>
+          <p class="login-eyebrow">Bienvenido</p>
+          <h2 id="loginTitle">Inicia sesión</h2>
+          <p class="login-intro">Entra con tu cuenta de Google para acceder a tus partidos.</p>
+        </div>
+        <button id="loginGoogle" type="button" class="google-button google-button-large" disabled><svg class="google-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span id="loginGoogleText">Cargando…</span></button>
+        <p id="loginMessage" class="login-message" role="status" aria-live="polite"></p>
+        <button id="loginRetry" type="button" class="pill" hidden>Reintentar</button>
+        <div class="login-divider" aria-hidden="true"><span></span>o<span></span></div>
+        <button id="loginLocal" type="button" class="login-local">Continuar sin cuenta</button>
+        <p class="login-note">Sin cuenta, los partidos se quedan solo en este dispositivo.</p>
+      </div>
+    </div>
+  </section>
+
   <div class="app-shell">
     <header class="header" aria-label="Datos y herramientas del partido">
       <div class="brand">
@@ -28,7 +57,7 @@
         <svg class="ui-icon game-picker-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </label>
       <button type="button" id="newGameBtn" class="pill pill-new" aria-label="Nuevo partido" disabled><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Nuevo</span></button>
-      <div id="saveStatus" class="save-status is-saving" role="status" aria-live="polite">
+      <div id="saveStatus" class="save-status is-saving" role="status" aria-live="polite" aria-atomic="true">
         <span class="status-dot" aria-hidden="true"></span>
         <span id="saveStatusText">Cargando…</span>
       </div>
@@ -40,21 +69,38 @@
           <button type="button" id="viewStatsBtn" data-view="estadisticas" disabled><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Estadísticas</span></button>
         </div>
         <div class="more">
-          <button type="button" id="moreBtn" class="circle-button" aria-label="Más opciones: editar panel, exportar CSV, eliminar partido y cuenta" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu"><svg class="ui-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
-          <div id="moreMenu" class="more-menu" role="group" aria-label="Más opciones" hidden>
+          <button type="button" id="moreBtn" class="circle-button" aria-label="Más opciones del partido: editar panel, exportar CSV, vaciar o eliminar partido" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu"><svg class="ui-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+          <div id="moreMenu" class="more-menu" role="group" aria-label="Más opciones del partido" hidden>
             <button type="button" id="editButtonsBtn" class="menu-item"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z" stroke="#DA5A35"/><path d="m13.5 6.5 4 4" stroke="#DA5A35"/></svg><span>Editar panel</span></button>
             <p id="editLockNote" class="menu-note" hidden>Este partido ya tiene tiros: su panel no se puede cambiar. Deshaz sus tiros, elimina el partido o crea uno nuevo.</p>
             <button type="button" id="exportCsvBtn" class="menu-item" disabled><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg><span>Exportar CSV</span></button>
+            <button type="button" id="clearGameBtn" class="menu-item clear-game-button" disabled><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l9.6-9.6a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg><span>Vaciar partido</span></button>
             <button type="button" id="deleteGameBtn" class="menu-item delete-game-button" disabled><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 10v7m4-7v7"/></svg><span>Eliminar partido</span></button>
-            <div class="account-bar" aria-label="Cuenta opcional">
-              <span id="cloudStatus" class="cloud-status" role="status">Solo local</span>
-              <span id="accountIdentity" class="account-identity" hidden></span>
-              <button id="googleLogin" type="button" class="menu-item" disabled>Iniciar sesión con Google</button>
-              <button id="googleLogout" type="button" class="menu-item" hidden>Cerrar sesión</button>
+          </div>
+        </div>
+        <div class="profile">
+          <button type="button" id="profileBtn" class="avatar-button" aria-label="Perfil: sin cuenta" aria-haspopup="true" aria-expanded="false" aria-controls="profileMenu"><span id="profileAvatar" class="avatar is-local" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span id="profileDot" class="avatar-dot" aria-hidden="true" hidden></span></button>
+          <div id="profileMenu" class="profile-menu" role="group" aria-label="Perfil" hidden>
+            <span class="profile-notch" aria-hidden="true"></span>
+            <div class="profile-scroll">
+              <div class="profile-head">
+                <span id="profileBigAvatar" class="avatar avatar-large is-local" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+                <div class="profile-names">
+                  <span id="profileName" class="profile-name">Sin cuenta</span>
+                  <span id="accountIdentity" class="profile-email" hidden></span>
+                </div>
+              </div>
+              <div id="profileProvider" class="profile-row" hidden><svg class="google-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Sesión iniciada con Google</span></div>
+              <p id="profileLocalNote" class="profile-note">Los partidos se guardan solo en este dispositivo.</p>
+              <p id="profileSyncWarning" class="profile-warning" hidden></p>
+              <div id="profileSync" class="profile-sync" hidden>
+                <p class="sync-status"><span class="sync-status-label">Sincronización</span> <span id="cloudStatus">Solo local</span></p>
+              </div>
+              <p id="accountMessage" class="profile-note" role="status" aria-live="polite" hidden></p>
               <button id="accountRetry" type="button" class="menu-item" hidden>Reintentar conexión</button>
-              <button id="continueLocal" type="button" class="menu-item" hidden>Continuar sin cuenta</button>
+              <button id="googleLogin" type="button" class="google-button"><svg class="google-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Iniciar sesión con Google</span></button>
+              <button id="googleLogout" type="button" class="logout-button" hidden><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5"/><path d="M5 12h11"/></svg><span>Cerrar sesión</span></button>
             </div>
-            <p id="accountMessage" class="account-note" role="status" aria-live="polite" hidden></p>
           </div>
         </div>
       </div>
@@ -131,6 +177,37 @@
     <div class="dialog-buttons">
       <button id="cancelDeleteBtn" type="button" class="pill">Cancelar</button>
       <button id="confirmDeleteBtn" type="button" class="pill delete-confirm-button">Eliminar definitivamente</button>
+    </div>
+  </dialog>
+
+  <dialog id="clearGameDialog" class="game-dialog" aria-labelledby="clearGameTitle" aria-describedby="clearGameMessage">
+    <h2 id="clearGameTitle">Vaciar partido</h2>
+    <p id="clearGameMessage"></p>
+    <p id="clearGameError" class="dialog-error" role="alert"></p>
+    <div class="dialog-buttons">
+      <button id="clearExportBtn" type="button" class="pill">Exportar CSV antes</button>
+      <button id="confirmClearBtn" type="button" class="pill danger-button">Vaciar partido</button>
+      <button id="cancelClearBtn" type="button" class="pill pill-primary">Cancelar</button>
+    </div>
+  </dialog>
+
+  <dialog id="logoutDialog" class="game-dialog" aria-labelledby="logoutTitle" aria-describedby="logoutMessage">
+    <h2 id="logoutTitle">Cambios sin subir</h2>
+    <p id="logoutMessage"></p>
+    <p id="logoutProgress" class="dialog-progress" role="status" aria-live="polite" hidden></p>
+    <div class="dialog-buttons">
+      <button id="logoutForceBtn" type="button" class="pill danger-button">Salir igualmente</button>
+      <button id="logoutCancelBtn" type="button" class="pill">Cancelar</button>
+      <button id="logoutWaitBtn" type="button" class="pill pill-primary">Esperar</button>
+    </div>
+  </dialog>
+
+  <dialog id="localDataDialog" class="game-dialog" aria-labelledby="localDataTitle" aria-describedby="localDataMessage">
+    <h2 id="localDataTitle">Partidos de este dispositivo</h2>
+    <p id="localDataMessage"></p>
+    <div class="dialog-buttons">
+      <button id="localDataKeepBtn" type="button" class="pill">Dejarlos solo aquí</button>
+      <button id="localDataUploadBtn" type="button" class="pill pill-primary">Subir a mi cuenta</button>
     </div>
   </dialog>
 

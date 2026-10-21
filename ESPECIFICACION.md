@@ -1,5 +1,25 @@
 # Registro defensivo de baloncesto — especificación
 
+**21 de octubre de 2026 — Fase 20, publicación general en preparación:** el usuario solicita subir lo terminado para todos los usuarios. Alcance: funciones y correcciones terminadas hasta Fase 19 en la URL habitual de GitHub Pages, con actualización coordinada de reglas de Fase 14. Los dos cambios del editor del apartado 74 y MOP-001 quedan pendientes. Se conservarán respaldo remoto, datos y trabajo local de develop. Detalles en `FASE20_PUBLICACION.md`; no se considera publicada hasta verificar el resultado remoto.
+
+**Continuidad para mañana (21 de octubre de 2026):** el usuario confirma «Ya funciona perfecto!!» tras la corrección del cursor de Fase 19; prueba física favorable. Pide dejar anotados, sin implementar hoy, los dos cambios del editor del apartado 74.
+
+**Última corrección — Fase 19 terminada y detenida para revisión física:** `19-79f88c07bb7931b7` publicado solo en el mismo canal temporal `ipad17`, con el cursor conservado al escribir nombres (apartado 73). Datos previos, enlace y caducidad intactos. Cerrar/reabrir Safari queda confirmado por el usuario; la corrección del editor espera su prueba. La aplicación habitual sigue en 8C.0.
+
+**Estado actual — 20 de octubre de 2026:** versión publicada habitual documentada: **8C.0**. Fases 10 a **15 terminadas, sin publicar en la aplicación habitual**; A3 corregido en Fase 11 (apartado 61), M4 en Fase 12 (apartado 62), M5 en Fase 13 (apartado 63), M6 en Fase 14 (apartado 64) y B7/CSP en Fase 15 (apartado 65). Publicar M6 requiere coordinar código/reglas y actualizar dispositivos. Sin commit ni push; único despliegue posterior, la copia aislada de Fase 17B descrita debajo. Las entradas fechadas siguientes conservan el histórico y no sustituyen este resumen.
+
+**Decisiones posteriores aprobadas:** conservar los originales importados como respaldo oculto y la preferencia de equipo al cerrar sesión (apartado 66; B6 cerrado por decisión), y cargar el SDK en la pantalla de inicio para abrir Google con un toque (apartado 67). Con «sin cuenta» recordado no se carga el SDK ni hay solicitudes externas. Ambas decisiones mantienen el comportamiento existente, sin modificar código.
+
+**Fase 16 / B4 cerrada y verificada en Authentication real** (apartado 68): retirado con autorización únicamente `registro-defensivo--ipad-8b2-40nbq9cf.web.app`; canal ya inexistente y otros cuatro dominios conservados. La aplicación y reglas no se han publicado. Copia previa `.local-backups/fase16-dominio-20261020/`.
+
+**Fase 17B publicada con autorización y verificada** (apartado 70): candidato `17-ff347879fc8976cc` en `https://registro-defensivo--ipad17-ot4rlj0m.web.app`, caduca el 21 de octubre a las 22:22:43 de Madrid. Google disponible, Sync bloqueado y único dominio añadido a Authentication; otros dominios, Hosting live y referencia de reglas conservados. Preparación en apartado 69; prueba física pendiente del usuario. Respaldo `.local-backups/fase17b-publicacion-20261020/`.
+
+**Fase 18 corregida y confirmada físicamente por el usuario**, publicada solo en el canal temporal (apartado 71): build actual `18-eda58c0c0461ab73`, mismo enlace/caducidad, inicio y Registro excluyentes y cargas acotadas. Tras confirmar Google en iPad nuevo, el usuario responde «Funciona perfecto!!» a comprobar la corrección. El antiguo sigue sin compatibilidad confirmada. Datos de prueba conservados y live/Pages/reglas/Auth intactos; demás pasos físicos pendientes. Véase [FASE18_INICIO_IPAD.md](FASE18_INICIO_IPAD.md).
+
+**Prueba física de registro y recarga confirmada:** el usuario indica «He recargado y se guardan» tras pedirle registrar tiros ficticios y recargar en el iPad nuevo. Se confirma conservación local en esa recarga; no persistencia prolongada ni sincronización (Sync OFF).
+
+**CSV, Deshacer, uso sin conexión, estadísticas y orientaciones físicos confirmados:** el usuario acepta estos pasos guiados en el iPad nuevo, incluida conservación tras reconectar/recargar y revisión de estadísticas en vertical/horizontal. Sync sigue OFF; no se infieren sincronización, retención prolongada ni compatibilidad del iPad antiguo. El bloqueo del deslizamiento sin contenido queda como mejora opcional MOP-001, sin implementar (apartado 72).
+
 Estado vigente, Fase 8C — 17 de octubre de 2026: **8C.0 publicada y verificada en GitHub Pages**. Código 403d252, Pages 2c49c4b (gh-pages/root, misma URL/origen), Google listo y Sync disponible con activación explícita por cuenta/navegador. Modo local operativo, sin subidas antiguas automáticas. 36 hashes correctos y 13 rutas internas 404; SDK 12.11.0 y Chromium/WebKit sin errores de inicialización, registro local y recarga correctos sin solicitudes Firestore. 20 grupos Emulator y cuatro smoke previos correctos. Datos reales no manipulados, reglas intactas; respaldo 8c6667d. Prueba física breve Safari emisor pendiente del usuario; detenido para revisión. Véase apartado 59 y FASE8C_PUBLICACION.md.
 
 Estado vigente, Fase 8B.7 — 17 de octubre de 2026: **A/B/C físicos favorables y detenidos para revisión**. Seis IDs distintos en Firebase/IndexedDB/pantalla, colas cero; tres originales y eventos A/B intactos. A ≈2,4 s desde ack PC; B 3461 ms tras regresar visible; C 416 ms tras online, con cuatro unavailable esperados durante corte y recuperación automática. Trazas íntegras, sin errores inesperados, duplicados o pérdida observados; tres de tres nuevos eventos autorizados consumidos, no más registros. Causa original desconocida, producción no activada. Build `8b7-834293ccb97ae892`, Hosting `c64f791bfdcd2552`, misma caducidad 18 de octubre 09:38 Madrid; sin nuevos despliegues/reglas/Pages por el análisis. Véase apartado 58 y `FASE8B7_ESTABILIDAD_SAFARI.md`.
@@ -1670,3 +1690,338 @@ HTTPS a 18:28:03.146Z: **36/36 hashes**, **13 rutas excluidas 404**; SDK app/aut
 Referencia de reversión remota **respaldo/antes-fase8c-20261017 → 8c6667dd3f4ae7cdd93fa192ca9020e92bcb74a4**. Ante fallo grave detener Sync local y cambiar Settings → Pages a esa rama/root, confirmar build y recargar; sin force-push, borrar IndexedDB, Firestore, colas o lápidas. La versión anterior puede no mostrar copias de nube pero se conservan. Reglas y Hosting no modificados, ni fixture iPad o datos reales migrados/limpiados.
 
 Comprobación de cinco minutos pendiente: Safari con cuenta exclusiva, activar Sync, equipo PRUEBA 8C y nuevo partido ficticio; ordenador mismo equipo/partido, un tiro desde iPad, recepción, Deshacer sincronizado y comprobar Solo local con anteriores intactos. No usar importación ni fixture de seis eventos; detener pruebas si es satisfactoria. Procedimiento detallado en FASE8C_PUBLICACION.md. No se declara causa/resolución definitiva del incidente original; primera versión interna, sin invitaciones. Publicación técnica completada y detenida para revisión, sin iniciar otra fase.
+
+## 60. Fase 10 — Auditoría de datos y cuenta, inicio de sesión, sin indicador de guardado y vaciar partido
+
+Tarea autorizada el 17 de octubre de 2026. Decisiones del usuario aplicadas: **«Continuar sin cuenta» se mantiene**; **datos locales al iniciar sesión por primera vez: preguntar una vez**; **al cerrar sesión, los datos de esa cuenta en el dispositivo se borran**. Referencia visual: lienzo «V4 · Actual», pantallas «Inicio de sesión» y «Menú de perfil». Copia previa: `.local-backups/fase10-cuenta-20261017-203554/` (archivo del proyecto, parche, estado Git, HEAD y hashes). Completada localmente y detenida para revisión. Sin commit, push ni despliegue.
+
+### Parte A — Auditoría
+
+Informe completo en [FASE10_AUDITORIA.md](FASE10_AUDITORIA.md): 0 críticos, 3 altos, 6 medios, 7 bajos. Corregidos: A1 (cerrar sesión dejaba los datos de la cuenta en el dispositivo), A2 (persistencia del navegador, mitigado con `navigator.storage.persist()`), M1 (tras un error al guardar el reintento quedaba desactivado; regresión de 8B.2 que hacía fallar la Fase 3), M2 (SDK de Google descargado siempre), M3 (respuesta remota materializada tras cambiar de cuenta), B1 (pruebas desfasadas respecto a 8C) y B2 (carrera de cierre del diálogo nuevo). Pendientes con propuesta: A3 (lecturas completas cada 5 s: cuota de Firestore), M4 (registro antes de restaurar la sesión), M5 (operación bloqueada detiene la recepción), M6 (panel sin sincronizar), B3–B7. `tools/firebase/local-browser.mjs` revelaba problemas reales (M1, M2) y además estaba desfasada (Fase 5 con versión 1 fija): se corrige el código y se adapta la prueba.
+
+### Parte B — Inicio de sesión y perfil
+
+- **Pantalla de inicio** (`index.html`, `cuenta.css`, `js/cuenta-ui.js`): tarjeta coral con media pista en line art, balón y «Cada tiro rival, en dos toques.»; a la derecha «Inicia sesión», «Continuar con Google» con el formato oficial de Google (blanco, borde #747775, texto #1F1F1F, «G» de cuatro colores) y «Continuar sin cuenta» con el aviso de que los datos se quedan en el dispositivo. En vertical y móvil la tarjeta pasa arriba y se reduce. El resto de la aplicación queda inerte mientras se muestra.
+- **Cuándo aparece**: sin sesión ni elección previa (un script mínimo en `<head>` la muestra antes de pintar), al perder la sesión de Google o al pedirla desde el perfil. La elección se guarda en `localStorage` (`defensas-account-mode`: `google` | `local`); con «sin cuenta» no vuelve a aparecer y **no se carga el SDK ni hay peticiones externas**. El SDK solo se carga con la cuenta elegida o con la pantalla de inicio visible (el popup de Safari exige que esté cargado antes del toque). Sin Google configurado no hay pantalla de inicio.
+- **Cabecera**: avatar a la derecha (foto de Google solo si es `https`, si no iniciales; sin cuenta, icono de persona). En tablet vertical el marcador, «⋯» y el avatar se agrupan a la derecha de la primera fila.
+- **Menú de perfil**: avatar grande, nombre, correo, «Sesión iniciada con Google», sincronización (estado, Activar, Equipo, Crear equipo, Revisar partidos locales, Reintentar, Desactivar) y botón negro «Cerrar sesión». Sin cuenta: «Iniciar sesión con Google» (abre la pantalla de inicio). Cierra con Escape (devuelve el foco al avatar) o pulsando fuera. «⋯» queda solo con Editar panel, Exportar CSV, Vaciar partido y Eliminar partido.
+- **Pregunta única** al iniciar sesión con partidos sin cuenta en el dispositivo: «Dejarlos solo aquí» o «Subir a mi cuenta» (activa la sincronización; sin equipo abre el perfil para crearlo o elegirlo; después abre la revisión con los partidos marcados, que se confirma). Se recuerda por proyecto y cuenta; si no hay partidos, no se pregunta.
+- **Cerrar sesión**: `accountUnsynced` cuenta operaciones sin acuse y partidos creados con la cuenta solo aquí. Si no hay nada, se cierra directamente. Si hay algo, diálogo «Cambios sin subir» con «Salir igualmente», «Cancelar» y, si solo hay cola pendiente sin bloqueos, «Esperar» (sube y cierra al terminar). Tras `signOut` confirmado: se detiene el motor esperando su ciclo, `purgeAccountData` borra en una transacción las copias de la nube, la cola, la lista de equipos y los partidos de la cuenta sin subir, y se avisa a las demás pestañas para que repitan el borrado. Se conservan los partidos sin cuenta, los originales importados (copia de seguridad oculta) y la preferencia de equipo. Si el borrado falla, se reintenta al abrir. Volver a entrar recupera lo subido desde la nube.
+- Sin pantalla de configuración.
+
+### Parte C — Sin indicador «Guardado»
+
+`#saveStatus` sigue siendo la región `role="status"` con «Guardado localmente» cuando termina la transacción, pero solo es visible con `is-error` («Error al guardar», cápsula coral). Los errores de guardado conservan el aviso con opción de repetir (corregido M1). Los cambios de la cuenta pendientes muestran un punto discreto en el avatar y el detalle en el perfil solo si hay un problema: bloqueados, sin conexión, con error o más de 8 s sin subir (`syncWarning`, `SYNC_GRACE_MS`). La etiqueta del avatar lo anuncia. La semántica «guardado = transacción completada» no cambia.
+
+### Parte D — Vaciar partido
+
+`clearGameEvents(gameId, ids)` (`js/persistencia.js`) y `clearCloudGame` (`js/sync-storage.js`): una transacción que comprueba que los tiros son exactamente los confirmados (si no, `GAME_CHANGED`, no borra nada y el diálogo se actualiza), borra todos los del partido y conserva el partido. Con cuenta, cada tiro recibe su lápida y una operación `undo` idempotente en la cola; las lápidas salen antes que las altas, de modo que un tiro vaciado que estaba en cola nunca llega al servidor. Diálogo con partido y número de tiros, «Exportar CSV antes», «Vaciar partido» y «Cancelar» destacado (foco inicial). Desactivado sin tiros. Después: Deshacer vacío, totales y marcador a cero y panel editable de nuevo. Los tiros que otro dispositivo registre sin que este los haya visto no se borran (no se confirmaron).
+
+### Archivos
+
+Producción: `index.html`, `styles.css`, `cuenta.css`, `app.js`, `js/cuenta.js`, `js/cuenta-ui.js` (reescrito), `js/sync-ui.js` (montado en el perfil, informa del estado, `quiesce`, `offerImport`), `js/sync-storage.js` (`clearCloudGame`, `accountUnsynced`, `purgeAccountData`, `listDeviceGames`, comprobación de cuenta en `mergeRemote`), `js/sync-engine.js` (`stop()` devuelve el ciclo en curso), `js/persistencia.js` (`clearGameEvents`), `js/interfaz.js`. Sin cambios en IndexedDB (versión y almacenes), reglas publicadas, `categorias.csv`, registro, CSV ni Estadísticas. Pruebas: nuevas `tests/fase10.html` y `tests/fase10-browser.mjs`; ampliadas `tools/firebase/cuenta.test.mjs`, `rules.test.mjs`, `sync.test.mjs`, `tests/diseno-v4/verificar.mjs` y `revision.html` (referencias del lienzo `referencia/v4-login-1180x820.png` y `v4-perfil-1180x340.png`); reescritas `local-browser.mjs`, `auth-browser.mjs` y `sync-ui.test.mjs`; adaptadas `tests/ui-fixture.mjs`, `fase3-browser.mjs`, `fase5-browser.mjs`, `config-page.html` (regenerada), `real-local.test.mjs`, `default-off.test.mjs`, `sync-auto-refresh.test.mjs`, `tools/playwright/visual.spec.mjs`, `distribucion.mjs`, `editor.mjs` y `rapido.mjs`; ayudantes `emulatorLogin` y `answerLocalData` en `browser-support.mjs`.
+
+### Verificación
+
+- Node: nueve suites deportivas y la de cuenta (elección recordada, pantalla de inicio, iniciales, avisos, resultado de cerrar sesión, foto solo https).
+- Chromium, contextos efímeros y datos ficticios: regresiones Fase 2, 3, 5, 6 y la nueva 10 (indicador oculto con anuncio accesible; vaciar con diálogo, exportar antes, aborto real a mitad, cambio desde otra pestaña, doble toque, recarga y otro partido intacto).
+- `local-browser.mjs`: primera apertura (solo hosts del SDK y Auth con la pantalla de inicio), «sin cuenta» recordado tras recargar con cero peticiones externas, siete tamaños sin peticiones externas, fallos del SDK con registro local operativo y subruta de Pages.
+- Auth Emulator (`auth-browser.mjs`): inicio sin cuenta, inicio de sesión desde el perfil, pregunta única por cuenta, recarga con sesión, dos pestañas (cerrar en una cierra la otra), cambio de cuenta sin mezcla, cierre con partido de la cuenta sin subir (Cancelar conserva, Salir igualmente borra solo ese), ventana bloqueada y Deshacer local.
+- Firestore Emulator: 62 comprobaciones de reglas (8 nuevas); 23 grupos de sincronización (3 nuevos: vaciado entre dos dispositivos con cola y reenvío idempotente, vaciado sin conexión con tiro en cola y recarga, borrado de datos de cuenta) más la interfaz completa con dos dispositivos: «Subir a mi cuenta» con creación de equipo, recarga con sesión, recepción, vaciado sincronizado sin recargar, sin conexión con punto en el avatar, cerrar sesión esperando la subida, cambio de cuenta, vuelta con datos recuperados de la nube y «Salir igualmente» con un cambio perdido que no llega al otro dispositivo. `review8b2`, parpadeo, recepción automática, bandera desactivada y SDK real sin sesión correctos. Cero escrituras reales.
+- Medidas en 1180×740, 1133×670, 1366×1024, 820×1180 y 390×844: Registro sin desplazar en iPad (también con sesión y avatar), sin scroll horizontal, objetivos ≥ 44 px (avatar incluido), indicador de guardado oculto; pantalla de inicio sin desplazar en iPad, tarjeta a la izquierda en horizontal y arriba en vertical/móvil; menú de perfil dentro de la pantalla con y sin sesión. Distribución: 335 mediciones con los mismos pasos que 9E. Editor: 7 grupos. Playwright: 3/3.
+- Consulta pública de solo lectura de Authentication: `itsasnehezkuntza.github.io` autorizado.
+
+### Pendientes de revisión
+
+1. Cargar el SDK de Google mientras se ve la pantalla de inicio (necesario para el popup de Safari) implica una descarga desde gstatic antes de elegir; la alternativa es exigir dos toques para iniciar sesión.
+2. Al cerrar sesión se conservan ocultos los originales ya importados y la preferencia de equipo; confirmar si deben borrarse también.
+3. A3 (cuota de Firestore por las lecturas completas cada 5 s): cerrado localmente en Fase 11 el 20 de octubre; pendiente de revisión y publicación (apartado 61).
+4. M4 cerrado localmente en Fase 12 (apartado 62) y M5 en Fase 13 (apartado 63). Siguen pendientes M6, B4 (retirar el dominio de la vista previa tras su caducidad) y B7 (CSP).
+5. Safari/iPad físico: popup de Google, persistencia, pantalla de inicio en vertical y aviso sin conexión.
+
+## 61. Fase 11 — Lecturas de sincronización (A3)
+
+Autorizada el 20 de octubre de 2026 al pedir empezar a cerrar los pendientes. Se aborda primero A3 y se detiene la fase para revisión antes de continuar con M4, M5, M6 o decisiones de cuenta. Copia previa de archivos principales y estado Git: `.local-backups/fase11-lecturas-20261020/`. Se conservan los cambios locales anteriores.
+
+### Decisión e implementación
+
+Sustituir descargas completas periódicas por `onSnapshot`: una escucha de partidos y dos por partido vivo (eventos y lápidas). `js/firestore-watch.js` mantiene en memoria lo recibido y entrega al motor solo los partidos cambiados. La primera entrega exige confirmación del servidor para partidos, eventos y lápidas; no se considera sincronizada una respuesta solo de caché o con escrituras pendientes. Los cambios despiertan el motor sin esperar cinco segundos. Los ciclos periódicos atienden cola, reintentos y arrendamiento sin descargar colecciones.
+
+Las escuchas se cierran al detener el motor, cambiar de cuenta/equipo, desactivar Sync o abandonar la página sin caché de navegación. Al borrar un partido se cierran sus dos escuchas; si sus permisos desaparecen antes de recibir la lápida del padre, se confirma ese padre con una lectura puntual. El arrendamiento sigue protegiendo cada ciclo de envío/materialización y se libera al terminar, sin retenerlo entre ciclos. `stop()` espera tanto el ciclo en curso como la liberación. Un cierre abrupto conserva la caducidad anterior del arrendamiento (30 s).
+
+Cada pestaña/dispositivo tiene su motor y escuchas; no se añade un líder permanente. Se mantienen las escuchas al ocultar una pestaña para evitar nuevas cargas completas al volver; se elimina el sondeo remoto completo en ambos estados. La lectura inicial, cambios, reconexiones y reglas pueden generar lecturas facturables: se elimina la repetición cada cinco segundos, sin prometer coste cero ni cuota ilimitada. Criterios contrastados con documentación oficial de [escuchas](https://firebase.google.com/docs/firestore/query-data/listen) y [facturación](https://firebase.google.com/docs/firestore/pricing).
+
+No se modifican esquema local/remoto, reglas, históricos, IDs, configuración deportiva, guardado local, CSV ni interfaz. Compatible con clientes 8C/10, sin exigir campos o escrituras nuevos. `pull()` permanece como lectura puntual para herramientas/adaptadores previos; producción ofrece `watch()` y el motor lo elige. Módulo incluido en el paquete estático de Pages, sin publicar.
+
+### Verificación
+
+- **Node, 11/11 archivos de pruebas correctos:** nueve deportivos/UI existentes, cuenta y nueva suite de escuchas. Esta última verifica 30 partidos/2.100 tiros y 120 ciclos sin consultas ni suscripciones nuevas, lápidas iniciales, errores, cierres y respuestas tardías.
+- **Auth/Firestore Emulator, 24 grupos correctos:** SDK oficial, dos dispositivos, simultaneidad, offline/recarga, acuse perdido, Deshacer, borrados, vaciado, importación, migración v1→v2, atomicidad, aislamiento, errores y UI completa. Temporada ficticia 30×70: 61 escuchas iniciales, 12 ciclos sin consultas/reaperturas, tiro remoto recibido y las 61 escuchas cerradas al parar. Tres comprobaciones automáticas de conectividad del SDK a una imagen de Google interceptadas y abortadas por la prueba de transporte; cero escrituras reales. Recibo: `.test-artifacts/firebase/sync.json`.
+- **Batería local correcta:** regresiones de fases 2, 3, 5, 6 y 10, inicio de sesión, siete tamaños sin peticiones externas tras elegir «sin cuenta», fallos del SDK con registro local operativo, CSV y subruta de Pages. Recibo: `.test-artifacts/firebase/local.json`.
+- **Paquete estático local correcto:** 36 archivos con el módulo nuevo. Sin publicación ni modificación de datos deportivos reales. `node --check` correcto en los módulos nuevos/modificados. Comprobación de espacios correcta en los documentos y empaquetador de esta fase; la revisión global conserva seis avisos previos de espacios en `app.js`, sin cambiar ese archivo.
+
+Las pruebas se adaptan a la recepción asíncrona comprobando resultados persistidos con espera acotada, sin forzar lecturas. Recargas controladas esperan la parada; UI conserva recarga normal. El caso «vaciado en cola» detiene antes el motor para distinguir una operación todavía en cola de un envío ya en vuelo. Informe completo: [FASE11_LECTURAS.md](FASE11_LECTURAS.md).
+
+**Cierre:** A3 corregido en el código local y verificado; Fase 11 detenida para revisión. La mejora no está publicada y no representa medición de una factura real. No se inicia M4 ni otra fase.
+
+### Pendientes fuera de esta fase
+
+M4 (restauración de sesión antes de registrar), M5 (cola bloqueada impide recepción), M6 (panel sin sincronizar), descarga inicial del SDK, originales importados/preferencia al salir, dominio temporal de Authentication y CSP. Safari/iPad físico, revisión de Fase 10/11, consolidación en Git y publicación siguen pendientes; esta fase no autoriza cambios reales de Auth, push o despliegue.
+
+## 62. Fase 12 — Restauración de sesión y equipo antes de registrar (M4)
+
+El 20 de octubre de 2026 el usuario indica «Continuamos» tras el cierre de Fase 11 y autoriza abordar M4. Copia previa de archivos principales y estado Git: `.local-backups/fase12-arranque-20261020/`. No se inicia M5. Trabajo local conservando fases anteriores y sin modificar datos deportivos reales.
+
+### Decisiones e implementación
+
+- Con elección recordada «Google» se muestra la pantalla existente desde el `<head>`, antes de cargar módulos. Durante la espera dice **«Recuperando tu sesión»**. CSS oculta la aplicación y los resultados antes de JavaScript; posteriormente quedan también inertes. `app.js` deshabilita los controles y comprueba el bloqueo tanto en los manejadores como antes de ejecutar una operación encolada. No se permiten tiros, Deshacer, cambios de partido, altas, vaciado, eliminación o CSV en un ámbito todavía no resuelto. Al cambiar el acceso se descarta la selección de tiro y se cierran los diálogos deportivos.
+- El desbloqueo espera Auth **y la selección de equipo**. `sync-ui.js` informa `uid`, `restoring` y `restoreError`. Si hay equipo y lista verificados en caché, se permite el registro local de esa cuenta/equipo sin esperar red o descarga de tiros. Si no había equipo preferido o Sync estaba desactivada, se mantiene el ámbito local de la cuenta previsto por el modelo anterior. Si había preferencia pero falta la lista en caché, se espera a recuperarla del servidor. Un equipo ausente/sin acceso no provoca un salto silencioso a los partidos del dispositivo: se bloquea y se conserva la preferencia para reintentar.
+- Error de cuenta/equipo o timeout mantienen el bloqueo, con **«Reintentar»** y **«Continuar sin cuenta»** disponibles. No se cambia automáticamente a modo local por un error. El timeout de Auth conserva el límite existente de 12 s; la vía local está disponible durante toda la espera.
+- Elegir «Continuar sin cuenta» llama a `controller.suspend()`: invalida la generación pendiente, desuscribe los avisos de identidad y detiene Sync al cambiar a identidad local. Las respuestas tardías ya no cambian el modo elegido ni el destino de un tiro. No ejecuta `signOut`, no purga datos ni modifica la sesión persistida de Google; no sustituye la acción «Cerrar sesión». La elección se recuerda y en la próxima apertura no carga SDK ni hace peticiones externas. Los recursos que ya se habían empezado a cargar no se presentan como cancelados por esta elección.
+- La pregunta única sobre los partidos locales se abre después de resolver el acceso, evitando un diálogo sobre la pantalla de restauración. Se mantiene el acceso con popup de Safari, sin esperas previas al toque de Google.
+
+No cambian IndexedDB, reglas, esquema/protocolo remoto, IDs, histórico, configuración deportiva ni formato/cálculos del CSV. No se añade una dependencia ni una pantalla nueva. Informe: [FASE12_ARRANQUE.md](FASE12_ARRANQUE.md).
+
+### Verificación
+
+- **Arranque M4:** siete grupos correctos en `startup12.test.mjs`, con módulos/Auth/equipo retrasados, elección local y callbacks tardíos, error/reintento, equipo sin caché y servidor inaccesible, equipo ausente con/sin caché, timeout y elección local recordada. Ninguna petición externa ni escritura real. `arranque.json` y captura en `.test-artifacts/firebase/fase12/`.
+- **Auth Emulator:** SDK oficial 12.11.0, restauración, dos pestañas, cuentas, pregunta única, cierre y popup bloqueado correctos. Cero solicitudes Firestore reales. Recibo `.test-artifacts/firebase/auth.json`.
+- **Sincronización:** 24 grupos correctos en Auth/Firestore Emulator, incluida UI completa y temporada ficticia 30×70 de Fase 11; cero escrituras reales. Recibo `.test-artifacts/firebase/sync.json`. Recepción bidireccional automática con transporte ficticio también correcta, sin ciclos forzados ni recargas.
+- **Batería local:** fases 2, 3, 5, 6 y 10, siete tamaños sin solicitudes externas en modo local, fallos SDK, CSV y subruta Pages correctos. Recibo `.test-artifacts/firebase/local.json`. **Node: 11/11 archivos correctos**, incluidos cuenta y escuchas.
+- **Responsive:** restauración sin desbordamiento horizontal en 1180×740, 820×1180 y 390×844; botón local ≥44 px y sin desplazamiento en tamaños iPad. Captura 1024×768 inspeccionada. Paquete local de 36 archivos preparado y sintaxis de módulos comprobada. No se publica.
+
+Las pruebas se adaptan al bloqueo deliberado: se distingue inicialización de desbloqueo; el DOM simulado incorpora `documentElement`; Fase 2 elige modo local. Fase 5 espera el refresco posterior al error de partido eliminado antes de exigir selección vacía y ninguna descarga, sin cambiar el comportamiento del CSV.
+
+**Cierre:** M4 corregido y verificado localmente. Fase 12 completada y detenida para revisión. Se conservan los datos reales y el trabajo anterior; sin commit, push, despliegue ni cambios en Firebase real. Safari/iPad físico sigue pendiente.
+
+### Siguiente fase, no iniciada
+
+M5: apartar las operaciones bloqueadas para que no detengan la recepción. Continúan fuera M6, decisiones sobre SDK y originales/preferencia al cerrar sesión, dominio temporal de Authentication, CSP, iPad físico, consolidación Git y publicación. Detenerse para revisión al cerrar esta fase.
+
+## 63. Fase 13 — Una operación bloqueada no detiene la recepción (M5)
+
+Autorizada el 20 de octubre de 2026 por «Continua» tras el cierre de Fase 12. Copia previa del motor, almacenamiento, prueba de sincronización, documentos y estado Git: `.local-backups/fase13-cola-20261020/`. Se conservan fases y cambios anteriores; no se inicia M6.
+
+### Decisiones e implementación
+
+`sync-engine.js` deja de lanzar un error global ante una operación de cola bloqueada. Aparta las escrituras de ese partido y continúa con partidos independientes y con la recepción. También retiene el partido si una operación está en espera de reintento, para no adelantar un tiro a su alta ni a una lápida pendiente. Si el bloqueo se descubre durante el envío, se persiste antes de continuar; `failOperation()` devuelve el registro fallido únicamente al completar su transacción.
+
+Los errores permanentes conservan la clasificación previa (`permission-denied`, `invalid-argument`, `SYNC_CONFLICT`). Un error transitorio detiene nuevos envíos de ese ciclo, evitando probar toda la cola sin red, pero se intenta recibir lo disponible. Los errores reales de lectura, cuenta, ámbito, IndexedDB o conflictos entrantes no identificados siguen notificándose y no se eluden.
+
+Para un `SYNC_CONFLICT` ya identificado en la cola se aparta también la versión remota de ese ID antes de incorporar el lote: solo ese evento si el conflicto es de tiro; el partido entero si lo conflictivo es su alta o eliminación. La copia local y el documento remoto permanecen sin sobrescritura. Esto evita que la validación de identidad aborte todos los cambios compatibles. No se añade una resolución automática de conflictos. Las lápidas compatibles mantienen su tratamiento anterior.
+
+La recepción correcta no borra la cola ni el aviso: con un bloqueo pendiente el estado final sigue siendo «Error de sincronización», el perfil conserva el punto y «Reintentar» mantiene su función. Las escuchas se reutilizan en vez de cerrarse y descargarse otra vez por un error de envío aislado. La cola y sus bloqueos sobreviven a la recarga; no se acusa una operación fallida ni se marca todo como sincronizado. Los tiros posteriores del partido bloqueado quedan locales hasta el reintento; otros partidos sí pueden subir.
+
+No cambian interfaz, diseño, guardado de tiros, registro de dos toques, IndexedDB, esquema remoto, reglas, CSV, configuración deportiva o históricos. Archivos de producción: `js/sync-engine.js`, `js/sync-storage.js`. Prueba nueva: `tools/firebase/blocked13.test.mjs`, incorporada a `sync.test.mjs`. Informe: [FASE13_COLA.md](FASE13_COLA.md).
+
+### Verificación
+
+- **Auth/Firestore Emulator, SDK oficial e IndexedDB real: 30 grupos correctos**, seis nuevos M5. Conflictos reales de tiro y cabecera, envío de partidos independientes, recepción automática sin recarga/ciclos forzados, conservación de las dos versiones, bloqueo duradero/reintento, alta denegada individual con hijos retenidos y lápida en espera sin resurrección. La denegación individual se inyecta solo en el envío; no se modifican las reglas. Cero escrituras reales. Recibo `.test-artifacts/firebase/sync.json` con `ok: true`.
+- **Regresiones completas de datos y UI incluidas:** concurrencia, offline/recarga, acuse perdido, idempotencia, atomicidad, Deshacer, borrados, vaciado, importación, equipos/cuentas/pestañas, migración v1→v2, respuesta tardía, autenticación/perfil/cierre y temporada 30×70 sin reconsultas durante reposo.
+- **Regresiones adicionales correctas:** siete grupos M4 (`startup12.test.mjs`), escuchas (`watch.test.mjs`, incluidos 120 ciclos sin consultas nuevas) y cuenta (`cuenta.test.mjs`). Sintaxis comprobada y paquete estático local de 36 archivos preparado. No se cambia la interfaz; se conservan las verificaciones táctiles/responsive de las fases anteriores, sin repetirlas como prueba visual de esta fase.
+
+**Cierre:** M5 corregido y verificado localmente. Fase 13 completada y detenida para revisión. Ningún dato deportivo real usado o modificado; sin commit, push, despliegue ni cambios de Firebase real. El contenido conflictivo sigue pendiente de resolución explícita; no se borra ni se sobrescribe para resolver el bloqueo.
+
+### Siguiente fase, no iniciada
+
+M6: sincronización de la configuración del panel. Permanecen pendientes las decisiones sobre descarga inicial de SDK y originales/preferencia al salir, dominio temporal de Authentication, CSP, iPad físico, revisión/consolidación en Git y publicación. Detenerse para revisión antes de continuar.
+
+## 64. Fase 14 — M6: configuración del panel entre dispositivos
+
+Fecha: 20 de octubre de 2026. Continuación autorizada por «Continua». **Implementada y verificada localmente; detenida para revisión.** Respaldo previo `.local-backups/fase14-panel-20261020/`. El apartado anterior conserva el cierre histórico de Fase 13. Informe completo: [FASE14_PANEL.md](FASE14_PANEL.md).
+
+### Decisiones y cambios
+
+La configuración de `settings` se separa por proyecto/cuenta/equipo. Cada partido sincronizado conserva un snapshot del panel y sus IDs usados; una edición actualiza también la plantilla compartida para partidos nuevos. Los demás partidos conservan sus versiones. `categorias.csv` sigue siendo el origen inicial. En nube el snapshot queda fijo también si procede del CSV y el partido está vacío; sin cuenta se conserva el seguimiento anterior del archivo en partidos sin tiros.
+
+`panel-model.js` valida el contrato recibido y mezcla versiones inmutables, sin sobrescribir un ID existente ni incrementar revisión ante un eco idéntico. `configuracion-guardada.js`, `sync-storage.js`, `persistencia.js`, `editor.js` y `app.js` integran versiones, asociaciones y snapshot con el registro. Configuración, partido y outbox se guardan en una transacción; no cambia la versión de IndexedDB y no se reinicia ninguna base. Los eventos deportivos, nombres históricos, IDs y exportación CSV permanecen intactos.
+
+Se añaden plantilla actual/versiones por equipo y versiones de panel por partido en Firestore. El snapshot y `panelClock` se guardan fuera del `payload` deportivo. La plantilla y el panel comparan la versión base antes de sustituirse; el transporte comprueba tiros vivos y reloj del padre para detectar registro concurrente. Los tiros bloquean la edición; vaciar o deshacer todos permite editar otra vez. Una edición incompatible conserva historial local y cola bloqueada, con aviso y sin sobrescritura. Si ya hay tiros remotos se muestra el panel remoto que los originó, manteniendo el borrador conflictivo. Resolver manualmente esos conflictos sigue fuera del alcance.
+
+Las importaciones confirmadas incluyen la configuración asociada sin modificar los originales. Se recuperan asociaciones globales antiguas solo cuando este dispositivo ya las vinculaba a un partido conocido del equipo. No se puede reconstruir un panel personalizado nunca subido si el único dispositivo que lo conservaba perdió sus datos. Cerrar sesión elimina del dispositivo los paneles por ámbito de esa cuenta; lo sincronizado se recupera al volver a entrar.
+
+La recepción añade una escucha de plantilla por equipo: 62 para 30 partidos, sin consultas periódicas. El reloj añade una escritura de padre por tiro/deshacer y la recepción de sus cambios; editar requiere consultar eventos/lápidas. La mejora no promete consumo cero ni cuota ilimitada.
+
+### Verificación
+
+- **40 grupos correctos de sincronización** con SDK oficial, IndexedDB real y emuladores `demo-defensas`, diez nuevos M6. Incluyen cambios/IDs en otro dispositivo, plantilla/recarga, tiros/concurrencia, vaciado/reintento, cuentas/equipos, aborto atómico, edición y tiro offline con recarga, conflictos simultáneos, importación personalizada y recuperación antigua. Interfaz completa: editar en A y recibir el nombre en B sin recargar; se mantienen las regresiones anteriores de datos, Auth y temporada 30×70. Recibo `.test-artifacts/firebase/sync.json`, `ok: true`, `realWrites: 0`.
+- **85 comprobaciones de reglas correctas**, incluidas 23 nuevas sobre autoría, aislamiento, versiones inmutables, punteros, plantilla y reloj de tiro/deshacer. Reglas aplicadas exclusivamente al emulador.
+- **10 archivos de pruebas Node correctos**, contrato/validación de panel incluidos; siete grupos M4 de arranque correctos, cero solicitudes externas. Escuchas: 120 ciclos sin nuevas consultas/suscripciones. Recepción automática A↔B e interfaz correctas sin recarga/ciclos forzados.
+- Sintaxis comprobada y paquete local de 37 archivos preparado con rutas relativas; sin publicar. La batería UI conserva capturas en 1024, 390 y 320 px sin desbordamientos.
+- `local-browser.mjs`: regresiones 2/3/5/6/10, inicio de sesión, siete tamaños sin peticiones externas en modo local, fallos Firebase, CSV y subruta correctos.
+
+### Cierre y publicación pendiente
+
+**M6 corregido localmente. Fase 14 completada y detenida para revisión.** Sin datos deportivos reales, commit, push, despliegue, cambios de Authentication o reglas reales.
+
+Código y reglas nuevos requieren publicación coordinada y dispositivos actualizados: las reglas antiguas deniegan las nuevas rutas; las nuevas reglas rechazarían tiros/deshacer de clientes antiguos en partidos que ya tengan panel porque no envían `panelClock`. La cola/datos locales se conservan y el cliente actualizado puede reenviarlos. Los partidos antiguos sin panel mantienen el protocolo anterior hasta asociarlo. Este límite está documentado; no se ha realizado la publicación.
+
+No se inicia la siguiente fase. Pendientes: decisiones sobre SDK inicial y originales/preferencia al salir, dominio temporal de Auth, CSP, prueba física Safari/iPad, revisión/consolidación en Git y publicación autorizada. A2 sigue mitigado con el límite de persistencia de Safari; los conflictos de contenido conservados no se resuelven automáticamente.
+
+## 65. Fase 15 — B7: política de seguridad de contenido
+
+Fecha: 20 de octubre de 2026. Autorizada por «Vamos allá» tras proponer cerrar la CSP. **Implementada y verificada localmente; detenida para revisión.** Respaldo `.local-backups/fase15-csp-20261020/`. Informe y referencias: [FASE15_CSP.md](FASE15_CSP.md). El apartado anterior conserva el cierre histórico de Fase 14; CSP deja de estar pendiente localmente.
+
+### Cambios y decisiones
+
+`index.html` añade la meta CSP después de `charset` y antes de recursos. El script incrustado que prepara el bloqueo de cuenta pasa a `js/inicio.js`, síncrono y previo a los módulos. El empaquetador incluye el archivo nuevo: 38 archivos estáticos. No hay scripts incrustados, permiso `unsafe-eval`, scripts `data:`/`blob:` ni orígenes HTTP/emuladores en el HTML de producción.
+
+La política bloquea recursos por defecto. Permite scripts propios, SDK 12.11.0 de gstatic y auxiliares de apis.google.com; conexiones propias y servicios HTTPS de Auth/Firestore; fotos de Google, imágenes `data:` usadas en el flujo auxiliar y la sonda de conectividad del SDK; un único origen de iframe, el `authDomain` real. Fuentes propias, objetos/trabajadores/cambios de base bloqueados y formularios solo al propio origen. Los estilos incrustados conservan permiso explícito porque el panel, las barras y el editor los generan dinámicamente. No cambian configuración deportiva, eventos, estadísticas, CSV ni diseño.
+
+La entrega por meta no incluye protección `frame-ancestors` ni informes de servidor. La lista corresponde al SDK/dominio actuales y se revisará al cambiarlos. El escape de textos y las reglas de Firestore siguen siendo necesarios. No se añaden backend, dependencias, nuevos proveedores ni cabeceras de alojamiento.
+
+La regresión de arranque detectó una carrera de Fase 14: `assertContext()` dentro de callbacks IndexedDB podía producir una excepción global al cambiar de ámbito. Los tres callbacks afectados de `configuracion-guardada.js` ahora abortan expresamente con `SCOPE_CHANGED`; se conserva el rechazo gestionado y no se escribe en el ámbito anterior. Prueba determinista añadida a `startup12.test.mjs`, sin reiniciar ni cambiar esquema de bases.
+
+Los emuladores necesitan endpoints locales. Solo su servidor loopback, bajo `DEFENSAS_TEST_EMULATOR_CSP=1` establecido por el lanzador de pruebas, los añade a conexiones/frames; no se modifica el archivo ni el paquete. La política restante sigue activa y Auth/interfaz exigen cero violaciones. Se sirve desde el servidor, sin reemplazar la navegación en Playwright ni desactivar el control de acceso a red local de Chromium.
+
+### Verificación
+
+- **Seis grupos CSP en Chromium y WebKit correctos**: política de producción en raíz y subruta, registro, recarga y estadísticas sin violaciones ni solicitudes externas en modo local. Bloqueos ejercitados de scripts incrustados, handlers, `eval`, script/conexión/imagen/frame externos, base y formulario. `object-src 'none'` declarado en ambos y bloqueo observable en Chromium; WebKit no inicia ese object. Recibo `.test-artifacts/firebase/csp15.json`.
+- **Google real hasta OAuth, sin credenciales**: perfil efímero, SDK oficial sin modificar, política de producción, ventana llegada a `accounts.google.com` y cancelación recuperada. Sin completar autenticación, crear usuarios, acceder a datos deportivos o solicitar Firestore; cero errores y violaciones. Recibo `csp15-auth-smoke.json`.
+- **Auth Emulator correcto**: inicio, pregunta única, recarga/restauración, cierre, cambio de cuenta, varias pestañas, popup bloqueado y originales conservados; cero violaciones CSP. Recibo `auth.json`.
+- **40 grupos de sincronización correctos**, con interfaz completa y edición de panel entre dispositivos bajo CSP; cero escrituras reales, errores y violaciones CSP de interfaz. Recibo `sync.json`.
+- **Ocho grupos de arranque correctos**, incluido cambio forzado de ámbito dentro del callback IndexedDB, sin excepción global ni cambios en originales; cero solicitudes externas. Diez archivos de pruebas Node correctos. Regresiones locales 2/3/5/6/10, siete tamaños, errores Firebase, CSV y subruta correctos. Sintaxis y paquete local de 38 archivos comprobados.
+
+### Cierre
+
+**B7 corregido localmente. Fase 15 terminada y detenida para revisión.** Ningún dato deportivo real utilizado o modificado, sin cambios de Authentication/reglas reales, commit, push ni despliegue. La única interacción real de esta fase fue el acceso público necesario para verificar la ventana de Google, sin credenciales ni sesión autenticada.
+
+No se inicia otra fase. Quedan: decidir SDK inicial y originales/preferencia al salir, revisar y retirar con autorización el dominio temporal de Authentication, Safari/iPad físico y consolidación/publicación autorizada. Se mantiene la condición de Fase 14: publicar código y reglas de manera coordinada y actualizar dispositivos. A2 sigue mitigado; las versiones conflictivas conservadas requieren resolución explícita.
+
+## 66. Decisión sobre originales importados y preferencia de equipo
+
+El usuario acepta con «Perfecto» la explicación de conservar el comportamiento actual al cerrar sesión:
+
+- Los originales de partidos importados se conservan en el dispositivo como respaldo oculto; se trabaja con la copia sincronizada.
+- Se recuerda el equipo seleccionado para recuperarlo al volver a entrar.
+- Se mantienen las reglas de cierre de sesión: borrar del dispositivo los datos propios de la cuenta, avisar si hay cambios sin subir y conservar los partidos sin cuenta. No se borran los partidos ya guardados en la nube.
+
+**B6 cerrado por decisión del usuario.** El respaldo es la copia original de la importación, no una copia continuamente actualizada del partido sincronizado. No se añade acceso a ese respaldo desde la interfaz. Es un registro documental del comportamiento existente, sin cambios de código, pruebas nuevas, datos, Authentication, commit, push o publicación.
+
+El «Perfecto» responde a la aclaración de este punto; no se interpreta como autorización para retirar dominios, publicar ni cambiar otros comportamientos. Pendientes actuales: confirmar la decisión sobre carga inicial del SDK; revisar y retirar con autorización el dominio temporal de Auth; Safari/iPad físico; consolidación y publicación coordinada de código/reglas con dispositivos actualizados. No se inicia otra fase.
+
+## 67. Decisión sobre carga inicial del SDK
+
+El usuario elige expresamente «Vamos con tu primera opción» tras explicar las dos alternativas. **Decisión cerrada:** mantener la carga del SDK de Google/Firebase mientras se muestra la pantalla de inicio, para que «Continuar con Google» abra el acceso con un solo toque. También se carga al recuperar una cuenta elegida. Con «Continuar sin cuenta» recordado no se carga el SDK ni se hacen solicitudes externas; si se solicita iniciar sesión desde el perfil, se prepara entonces el acceso.
+
+Se conserva la implementación existente y las verificaciones de las fases 10–15. Solo se actualiza documentación; no se modifica código, datos ni configuración externa y no se necesitan pruebas nuevas para esta decisión. Sin commit, push o despliegue.
+
+Las dos decisiones de cuenta quedan cerradas. Pendientes actuales: revisar y retirar con autorización el dominio temporal de Authentication (B4); prueba física Safari/iPad; consolidación en Git y publicación coordinada de código/reglas con dispositivos actualizados. No se interpreta esta elección como autorización para modificar Authentication o publicar. No se inicia otra fase.
+
+## 68. Fase 16 — B4: retirar el dominio temporal de Authentication
+
+Fecha: 20 de octubre de 2026. El usuario autoriza expresamente con «Vamos allá» la propuesta de revisar y retirar el dominio temporal. **Retirada aplicada en Authentication real, verificada y detenida para revisión.** Informe: [FASE16_DOMINIO.md](FASE16_DOMINIO.md). Respaldo previo de documentos y dominios `.local-backups/fase16-dominio-20261020/`.
+
+La consulta administrativa comprueba que el canal `ipad-8b2` ya no existe, pero `registro-defensivo--ipad-8b2-40nbq9cf.web.app` seguía autorizado. `retirar-dominio16.mjs` prepara el plan sin cambios y, con `--apply`, relee la configuración, evita aplicar una lista obsoleta y actualiza solo `authorizedDomains` para retirar ese hostname. Verificación administrativa completada a las 17:00:01 UTC. Se conservan exactamente `localhost`, `registro-defensivo.firebaseapp.com`, `registro-defensivo.web.app` e `itsasnehezkuntza.github.io`.
+
+Una consulta pública independiente a las 17:00:12 UTC devuelve HTTP 200, proyecto `760744900094` y la misma lista de cuatro dominios. Se contrasta automáticamente con el resultado administrativo y se comprueba la ausencia del temporal. Recibos en `.test-artifacts/firebase/fase16/`: plan, resultado y verificación pública. No se repite autenticación completa ni se presenta la consulta como prueba de sesión Google.
+
+**B4 cerrado.** Esta es una modificación autorizada de configuración real de Authentication, distinta de las fases de aplicación aún locales. No se leen usuarios, partidos o eventos, ni se modifican proveedores, otros dominios, reglas de Firestore, Hosting o Pages. Sin commit, push o despliegue. No se cambia código runtime ni se requieren regresiones deportivas por esta retirada; sintaxis y resultado remoto comprobados.
+
+Pendientes actuales: preparar y realizar la prueba física Safari/iPad; consolidar en Git y publicar con autorización, coordinando código/reglas de Fase 14 y dispositivos actualizados. SDK inicial y originales/preferencia al salir están aprobados; CSP está cerrada localmente. A2 conserva su límite de persistencia y los conflictos de contenido conservados requieren resolución explícita. No se inicia otra fase.
+
+## 69. Fase 17A — preparar la prueba física Safari/iPad
+
+El usuario solicita «Siguiente paso». Se prepara un candidato concreto y verificable para el iPad, sin interpretar la petición como permiso para desplegar o cambiar Authentication. **Preparación terminada; publicación pendiente de autorización.** Respaldo documental `.local-backups/fase17-ipad-20261020/`. Plan y recorrido en [FASE17_IPAD.md](FASE17_IPAD.md). El antiguo documento de prueba se marca histórico para evitar usar el enlace retirado.
+
+Build `17-ff347879fc8976cc`, 39 archivos; candidato `.test-artifacts/firebase/fase17/candidate/public/`, manifiesto con hashes y configuración Hosting fuera del directorio público. Se propone canal nuevo `ipad17`, 24 horas desde creación, añadiendo solo el dominio verificado que devuelva Hosting a Authentication. No se ha creado ni publicado. Herramientas `prepare17-ipad.mjs` y `preview17.test.mjs`.
+
+La copia conserva CSP y Google, pero bloquea Sync en dos capas: configuración OFF inmutable y transporte Firestore sustituido por rechazo explícito. No lee ni escribe partidos de la nube. Un bootstrap verifica HTTPS, origen del canal nuevo, build y ausencia de bases previas sin su marcador antes de importar aplicación/cuenta. Si hay datos previos se detiene sin abrirlos ni borrarlos. La prueba física propuesta usa únicamente datos ficticios y la cuenta exclusiva de pruebas.
+
+Seis grupos correctos en Chromium/WebKit: uso local (editor, dos pulsaciones/doble toque, recarga, estadísticas y CSV), bloqueo ante datos previos y bloqueo de origen incorrecto. Semilla conservada, CSP sin violaciones en uso normal, hashes/dependencias completos, cero solicitudes externas y escrituras reales. Google se desactiva en estas comprobaciones automatizadas locales; no se presentan como validación física de Auth. Recibo `.test-artifacts/firebase/fase17/verificacion.json`.
+
+Esta copia permite probar interfaz, acceso/sesión y persistencia local, pero no M6 entre dispositivos. La sincronización física requiere actualización coordinada de código/reglas con clientes actualizados o un entorno Firebase independiente expresamente autorizado. No se cambian reglas de producción para habilitar esta vista previa.
+
+Se detiene conforme a `AGENTS.md`: «No publicar, desplegar ni hacer push sin autorización correspondiente». El usuario puede revisar el candidato y autorizar el canal temporal y su dominio como siguiente paso concreto. Esta fase no autoriza live, Pages, reglas, Firestore, importaciones, commit o push. La prueba física permanece pendiente y no se da por superada por WebKit de escritorio.
+
+## 70. Fase 17B — publicación temporal autorizada para Safari/iPad
+
+El usuario responde **«Sí»** a publicar el candidato exacto de Fase 17A en un canal temporal durante 24 horas y añadir únicamente su dominio a Authentication. **Publicación completada y verificada; detenida para la prueba física del usuario.** Respaldo `.local-backups/fase17b-publicacion-20261020/`. Plan, recorrido y resultados en [FASE17_IPAD.md](FASE17_IPAD.md).
+
+- URL: `https://registro-defensivo--ipad17-ot4rlj0m.web.app`.
+- Canal `ipad17`, sitio/proyecto `registro-defensivo`; build `17-ff347879fc8976cc`, versión Hosting `ef0aeab1a8e6c8db`.
+- Creación el 20 de octubre; caducidad el **21 de octubre de 2026 a las 20:22:43 UTC / 22:22:43 de Madrid**, sin renovación.
+- Google disponible, **Sync desactivado en configuración y transporte**, sin escrituras Firestore.
+
+`publish17-ipad.mjs` verifica seis grupos locales, build, hashes de los 39 archivos del candidato, configuración limitada a Hosting, canal inexistente, referencia de reglas y estado live antes de publicar. Crea exclusivamente el nuevo canal de 24 horas. Antes de liberar, comprueba los hashes comprimidos del inventario remoto: 38 archivos de aplicación más dos recursos estándar de Firebase; `.nojekyll` queda excluido por la configuración Hosting. No ejecuta limpieza automática de dominios ni despliega reglas. Autoriza después únicamente el hostname recibido, con lista anterior conservada.
+
+Referencia de reglas sin cambios: `projects/registro-defensivo/rulesets/4bc70f67-e0ed-4fb0-b46e-7c2494eab227`. Hosting live sin release antes/después; GitHub Pages no modificado. Otros dominios conservados: localhost, dos dominios Firebase y GitHub Pages. No se vuelve a añadir el antiguo dominio de Fase 16.
+
+### Verificación de HTTPS
+
+38 hashes y cabeceras no-store/nosniff/noindex correctos; documentación, pruebas, herramientas, reglas y Git no publicados (404). Chromium sobre la URL publicada: SDK oficial listo, Google llega a OAuth y se cancela sin credenciales ni sesión completada; tres tamaños sin desbordamiento, tiro único con doble toque, recarga y estadísticas correctos; cero errores, violaciones CSP y solicitudes Firestore. Contexto efímero con datos ficticios. Consulta pública de Auth confirma el proyecto y exactamente la lista previa más el hostname nuevo.
+
+WebKit de escritorio falla la validación de cadena TLS en este entorno. No se ignora el certificado ni se da por superada esa comprobación HTTPS. Las pruebas locales anteriores Chromium/WebKit son correctas, pero Safari/iPad físico permanece pendiente. No se cambia el candidato por esta limitación del entorno.
+
+Recibos en `.test-artifacts/firebase/fase17/`: `preflight.json`, `created-channel.json`, `uploaded-review.json`, `deployment.json`, `https-verification.json`. Publicación real autorizada solo del canal temporal y su dominio; sin datos deportivos reales, usuarios nuevos, reglas nuevas, commit, push o publicación habitual.
+
+### Continuación
+
+El usuario debe abrir el enlace en Safari/iPad y realizar el recorrido de FASE17_IPAD.md con cuenta exclusiva de pruebas y datos ficticios. No se verifica sincronización física en esta copia; requiere la actualización coordinada posterior. Al finalizar/caducar, revisar y retirar el dominio temporal de Authentication: su retirada no se presupone automática. No se amplía la caducidad ni se inicia otra publicación sin autorización.
+
+## 71. Fase 18 — corregir inicio/Registro en la prueba física
+
+El usuario informa de Registro visible debajo del inicio al desplazar y Google «Cargando» en un iPad antiguo. Mientras se investiga, confirma que en un iPad nuevo ha podido iniciar sesión. **Google manual confirmado en el nuevo para la copia 17; versión y causa del antiguo desconocidas.** No se interpreta el éxito como prueba de los demás recorridos. Respaldo `.local-backups/fase18-inicio-ipad-20261020/`; informe [FASE18_INICIO_IPAD.md](FASE18_INICIO_IPAD.md).
+
+### Corrección y conservación
+
+El inicio excluye Registro y barra del layout con `display:none`, manteniendo `visibility` e `inert`; cuerpo fijado al viewport y desplazamiento propio del inicio. No puede aparecer el Registro al desplazar. Se recalcula la distribución al volver a la aplicación.
+
+El controlador de cuenta acota también la primera observación de Auth dentro de los 12 segundos totales y descarta callbacks tardíos tras error. El script clásico previo a módulos muestra un fallo y reintento si cuenta no se evalúa en 15 segundos; permite elegir modo local antes de que llegue esa interfaz. Usa sintaxis sencilla para poder avisar de módulos incompatibles; no acredita compatibilidad completa con Safari antiguo. El bootstrap inicia aplicación/cuenta en paralelo y admite el marcador anterior exacto del mismo canal sin borrar bases ni reescribir partidos.
+
+### Verificación
+
+Seis grupos de inicio en Chromium/WebKit: normal, observador atascado y módulo fallido; cuatro tamaños, Registro/barra sin layout y documento sin scroll de fondo, errores/reintento, salida local y registro correctos. Ocho grupos de candidato, incluida actualización desde build 17 con partido/tiros/selección idénticos. Cuenta y nueva prueba de observador tardío correctas; ocho grupos de arranque 12, diez archivos Node, Auth Emulator, regresiones locales 2/3/5/6/10 en siete tamaños y seis grupos CSP correctos. Solo datos ficticios/contextos efímeros; sin nuevas dependencias, cambios de esquema, datos deportivos o reglas.
+
+### Actualización del canal de prueba y cierre
+
+Se corrige la vista previa ya autorizada en respuesta al reporte del usuario, conservando exactamente canal, origen y caducidad. `publish18-ipad.mjs` exige la versión anterior, referencias protegidas y dominios iguales, revisa hashes antes de liberar e impide creación/renovación/limpieza de canales o Auth. Actualización el 20 de octubre a las 20:38:51 UTC, build `18-eda58c0c0461ab73`, versión Hosting `25de4d164a82c9ed`. URL intacta `https://registro-defensivo--ipad17-ot4rlj0m.web.app`, caduca el 21 de octubre a las 22:22:43 de Madrid. Sync OFF, reglas/Auth/live/Pages sin cambios; sin datos deportivos reales, commit o push.
+
+HTTPS: 38 hashes/cabeceras correctos; Chromium verifica Google hasta OAuth sin credenciales, inicio sin layout de Registro ni scroll de documento, salida local, tiro único, recarga y estadísticas; cero errores/CSP/Firestore. Captura vertical revisada. WebKit de escritorio mantiene la limitación de cadena TLS del entorno; no se ignoran certificados. Recibos y capturas `.test-artifacts/firebase/fase18/`.
+
+**Fase 18 terminada y detenida para repetición física.** Recargar el enlace y, si hay sesión recuperada, volver al inicio cerrando Google; no borrar datos. Pendiente confirmar desplazamiento en iPad, los demás pasos del recorrido, compatibilidad del antiguo y sincronización física posterior. Se conserva la misma caducidad y la obligación de revisar el dominio temporal al finalizar.
+
+**Confirmación física posterior del usuario — 20 de octubre:** «Funciona perfecto!!», en respuesta a recargar y comprobar el inicio corregido en el iPad nuevo. Se registra como comprobación favorable de esa corrección y se cierra su repetición física. El acceso Google en el iPad nuevo ya se había confirmado. No se extiende esta respuesta a todo el recorrido: registro/recarga/CSV/offline físicos, persistencia prolongada, iPad antiguo y sincronización siguen sin confirmación específica. Solo actualización documental; sin nuevos despliegues, cambios de datos ni ampliación del canal. Detenido antes de iniciar otra fase.
+
+**Siguiente comprobación física recibida:** «He recargado y se guardan», tras indicar crear un partido ficticio, registrar tiros y recargar. Registro y conservación local tras recarga quedan confirmados en el iPad nuevo. No se infieren número exacto de tiros, contenido del CSV, resultados estadísticos, prueba offline, retención durante días ni recepción en otro dispositivo. Quedan estos pasos sin confirmación específica; Sync continúa desactivado y la caducidad no cambia. Solo registro documental, sin nuevas acciones externas.
+
+**CSV y Deshacer — confirmación posterior:** el usuario responde «Funciona perfecto» después de indicar exportar CSV, guardarlo desde Safari, pulsar Deshacer y recargar para comprobar un tiro menos. Se registran esos pasos como correctos en el iPad nuevo. No equivale a inspección del contenido del archivo en Excel ni prueba offline, estadísticas, retención prolongada o sincronización. Solo documentación, sin cambios de código, datos, canal o caducidad. Continúa el recorrido físico pendiente.
+
+**Uso sin conexión — confirmación posterior:** el usuario indica «Está guardado» tras el recorrido de desconectar Wi-Fi/datos con la página ya cargada, registrar un tiro ficticio, recuperar conexión y recargar. Se confirma conservación local del tiro en ese recorrido en el iPad nuevo. No acredita arranque/recarga sin red, persistencia prolongada ni subida/recepción entre dispositivos (Sync OFF). Estadísticas y demás pasos físicos no confirmados siguen pendientes. Solo actualización documental; sin cambios de código, datos, permisos, despliegue o caducidad.
+
+**Estadísticas y orientaciones — confirmación posterior:** «Funciona todo perfecto!!» al pedir comparar intentos/aciertos/puntos en Estadísticas y revisar vertical/horizontal en el iPad. Se registran ambos pasos físicos como favorables según el usuario, sin inventar recuentos ni mediciones. El usuario propone evitar el deslizamiento si no hay contenido debajo y pide anotarlo expresamente como extra no fundamental. Se registra MOP-001 en el apartado 72; no se implementa ni se publica otro cambio. No se extiende esta confirmación a sincronización, persistencia prolongada o iPad antiguo.
+
+**Cerrar y reabrir Safari — confirmado posteriormente:** el usuario indica «He probado y funciona asi que la parte 1 la podemos dar por hecha» al paso de cerrar/reabrir Safari y recuperar sesión/partido. Se registra como favorable en el iPad nuevo. No demuestra retención durante días ni sincronización. Comunica además pérdida periódica del cursor al nombrar una defensa; corrección en Fase 19, apartado 73.
+
+## 72. Mejoras opcionales, sin implementar
+
+Lista vigente en [MEJORAS_OPCIONALES.md](MEJORAS_OPCIONALES.md).
+
+**MOP-001 — bloquear el desplazamiento vacío:** el usuario solicita anotar, con prioridad baja y sin carácter fundamental, evitar deslizar/rebotar verticalmente cuando la pantalla ya cabe y no hay contenido debajo. Una revisión futura deberá mantener el desplazamiento necesario cuando sí haya contenido, también en móvil, al girar o ampliar texto. Es distinta de la separación inicio/Registro ya aceptada de Fase 18.
+
+Solo registro documental. No bloquea el cierre funcional ni la publicación y no autoriza su implementación ahora. Sin cambios de código, datos, canal, permisos o caducidad; no se inicia otra fase.
+
+## 73. Fase 19 — conservar el cursor al editar nombres
+
+El usuario solicita corregir la pérdida periódica del cursor al añadir una defensa. Respaldo `.local-backups/fase19-editor-20261020/`. Reproducido con una prueba de navegador antes del cambio: el campo pierde foco 120 ms después de añadir, al terminar el cálculo diferido de capacidad. `renderParts()` reconstruía la cabecera aunque solo cambiaban los botones inferiores.
+
+La actualización de capacidad conserva ahora la cabecera y su campo; actualiza únicamente la barra inferior. Se conservan foco, selección y teclado durante la escritura. No cambia la persistencia, IDs, eventos ni límites de capacidad. MOP-001 sigue sin implementar.
+
+Prueba específica Chromium/WebKit correcta: escritura pausada, inserción en medio del nombre, cambio de altura disponible y nombre conservado tras guardar/recargar. Regresión completa del editor y diez archivos Node correctos. Diez grupos del candidato correctos en ambos motores, incluidos actualización desde 17/18 con partido/eventos idénticos, editor con escritura pausada, registro, doble toque, CSV y estadísticas; cero solicitudes externas/escrituras reales en estas comprobaciones locales.
+
+**Publicado el 20 de octubre a las 21:11:18 UTC**, build `19-79f88c07bb7931b7`, versión Hosting `e06d1fb6d6a86f4a`, exclusivamente en el canal temporal existente. Enlace y caducidad original del 21 de octubre a las 22:22:43 de Madrid conservados; no se renueva el canal. Auth, reglas, live y Pages intactos; Sync sigue bloqueado. El reporte solicita corregir la prueba previamente autorizada, con el mismo alcance aplicado en Fase 18; no autoriza producción.
+
+38 hashes HTTPS y cabeceras correctos; rutas internas no publicadas. Chromium sobre HTTPS verifica escritura pausada/cursor/nombre persistido, acceso hasta OAuth cancelado sin credenciales y registro/recarga/estadísticas, sin errores CSP ni Firestore. WebKit HTTPS sigue limitado por la cadena TLS del entorno; no se ignora el certificado. WebKit local correcto. La prueba de Safari físico de esta corrección queda pendiente del usuario.
+
+Recibos en `.test-artifacts/firebase/fase19/`; detalles en [FASE19_CURSOR_EDITOR.md](FASE19_CURSOR_EDITOR.md). Sin datos reales manipulados, commit o push. **Fase 19 terminada y detenida para revisión; no se inicia otra fase.**
+
+**Confirmación física posterior:** el usuario responde «Ya funciona perfecto!!». Se registra como favorable la corrección del cursor al editar en el iPad. No se extiende esta confirmación a sincronización, compatibilidad del iPad antiguo o persistencia durante días.
+
+## 74. Pendientes del editor para retomar mañana
+
+Solicitud expresa del usuario el 20 de octubre de 2026: anotar para mañana, 21 de octubre, sin implementar ahora.
+
+1. **Cancelar o deshacer el cambio de nombre durante la edición de un elemento.** Añadir una opción visible para recuperar el nombre anterior cuando no se quiera aplicar lo escrito. Revisar el comportamiento al editar un elemento existente y al añadir uno nuevo; concretar el alcance de la cancelación al retomarlo. Es distinta de Deshacer el último tiro y de cancelar la edición completa del panel.
+2. **Cambiar «Quitar» por «Eliminar».** Ajustar el texto del botón y revisar los mensajes asociados del editor para mantener el mismo término. Es un cambio de redacción; conservar las reglas actuales sobre históricos y eventos.
+
+Ambos puntos quedan pendientes para la próxima sesión, sin clasificarlos como mejoras de prioridad baja. MOP-001 conserva por separado su carácter opcional. Solo documentación: sin código, datos, pruebas nuevas, publicación, renovación del canal, commit o push. No se inicia otra fase.

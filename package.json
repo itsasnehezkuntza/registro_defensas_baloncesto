@@ -1,0 +1,28 @@
+{
+  "name": "registro-defensas-baloncesto",
+  "private": true,
+  "scripts": {
+    "visual": "node tools/playwright/cli.mjs test",
+    "visual:abrir": "node tools/playwright/cli.mjs test --headed",
+    "visual:informe": "node tools/playwright/cli.mjs show-report .test-artifacts/playwright/report",
+    "visual:instalar": "node tools/playwright/cli.mjs install chromium",
+    "test:cuenta": "node tools/firebase/cuenta.test.mjs",
+    "test:reglas": "node tools/firebase/emuladores.mjs rules",
+    "test:auth": "node tools/firebase/emuladores.mjs auth",
+    "test:fase8a": "node tools/firebase/local-browser.mjs",
+    "firebase:validar-real": "node tools/firebase/servir-real.mjs",
+    "firebase:comprobar-proyecto": "node tools/firebase/comprobar-proyecto.mjs",
+    "test:auth-real-inicio": "node tools/firebase/real-smoke.mjs",
+    "test:auth-real-local": "node tools/firebase/real-local.test.mjs",
+    "test:sync": "node tools/firebase/emuladores.mjs sync",
+    "test:revision-sync": "node tools/firebase/emuladores.mjs review8b2",
+    "test:parpadeo": "node tools/firebase/sync-flicker.test.mjs",
+    "firebase:preview:preparar": "node tools/firebase/ipad-preview.mjs"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "5.0.0",
+    "@playwright/test": "1.64.0",
+    "firebase": "12.11.0",
+    "firebase-tools": "15.11.0"
+  }
+}

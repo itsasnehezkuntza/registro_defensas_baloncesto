@@ -1,0 +1,55 @@
+{
+  "ok": true,
+  "runtime": [
+    {
+      "path": "index.html",
+      "unchanged": false
+    },
+    {
+      "path": "styles.css",
+      "unchanged": true
+    },
+    {
+      "path": "premium.css",
+      "unchanged": false
+    },
+    {
+      "path": "app.js",
+      "unchanged": false
+    },
+    {
+      "path": "categorias.csv",
+      "unchanged": true
+    },
+    {
+      "path": "js/configuracion.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/estadisticas.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/exportacion.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/identidad.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/interfaz.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/persistencia.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/registro.js",
+      "unchanged": true
+    }
+  ],
+  "approvedFilesUnchanged": 57,
+  "approvedCssExact": true
+}

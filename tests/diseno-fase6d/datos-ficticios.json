@@ -1,0 +1,733 @@
+{
+  "samples": [
+    [
+      4,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      7,
+      3
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      5,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      7,
+      3
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "events": [
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_bajo_aro",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_spot_up_3",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_spot_up_3",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "transicion",
+      "accion_id": "transicion_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_exterior",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_interior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_interior",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_interior",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_1c1_interior",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_pin_down",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_pin_down",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_pin_down",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_pin_down",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_spot_up_3",
+      "defensa_id": null,
+      "resultado": "anotado",
+      "valor_tiro": 3
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "estatico",
+      "accion_id": "estatico_bajo_aro",
+      "defensa_id": null,
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "black",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "white",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "blue",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "tut",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_manejador",
+      "defensa_id": "tut",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "black",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "black",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "white",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "red",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_roller",
+      "defensa_id": "red",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "black",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "black",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "black",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "white",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "white",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "red",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "red",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "red",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "red",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "pr_pop",
+      "defensa_id": "tut",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "white",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "white",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "blue",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "blue",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "red",
+      "resultado": "fallado",
+      "valor_tiro": 2
+    },
+    {
+      "categoria_id": "directo",
+      "accion_id": "spain",
+      "defensa_id": "red",
+      "resultado": "anotado",
+      "valor_tiro": 2
+    }
+  ],
+  "total": {
+    "attempts": 87,
+    "missed": 51,
+    "made": 36,
+    "pointsAllowed": 80
+  }
+}

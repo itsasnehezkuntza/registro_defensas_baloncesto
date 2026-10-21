@@ -1,0 +1,276 @@
+{
+  "fecha": "2026-10-17T21:28:10.389Z",
+  "regresiones": [
+    {
+      "fase": 2,
+      "ok": true,
+      "grupos": 15
+    },
+    {
+      "fase": 3,
+      "ok": true,
+      "grupos": 13
+    },
+    {
+      "fase": 5,
+      "ok": true,
+      "grupos": 8
+    },
+    {
+      "fase": 6,
+      "ok": true,
+      "grupos": 9
+    },
+    {
+      "fase": 10,
+      "ok": true,
+      "grupos": 7
+    }
+  ],
+  "partidos": {
+    "ok": true,
+    "aislamiento": true,
+    "pestanas": true,
+    "deshacerRemoto": true,
+    "eliminarSoloSeleccionado": true,
+    "recarga": true,
+    "subrutaPages": true
+  },
+  "tamanos": [
+    {
+      "tamano": "1180x740",
+      "ok": true,
+      "overflowX": false,
+      "covered": [],
+      "offscreen": 0,
+      "clipped": [],
+      "smallTargets": [],
+      "switchHits": true,
+      "saveStatus": 1,
+      "options": 33,
+      "inScroller": 0,
+      "dockTop": 612,
+      "lastOption": 600,
+      "statsLayout": {
+        "overflowX": false,
+        "clipped": [],
+        "small": 0
+      },
+      "fase10": {
+        "login": {
+          "fitsHeight": true,
+          "overflowX": false,
+          "cardFirst": false,
+          "cardLeft": true,
+          "small": [],
+          "clipped": [],
+          "inert": true
+        },
+        "profile": {
+          "problems": [],
+          "left": 820,
+          "right": 1160,
+          "bottom": 336
+        },
+        "registro": {
+          "overflowX": false,
+          "fits": true
+        }
+      },
+      "perfilSinCuenta": {
+        "problems": [],
+        "left": 820,
+        "right": 1160,
+        "bottom": 291
+      }
+    },
+    {
+      "tamano": "1133x670",
+      "ok": true,
+      "overflowX": false,
+      "covered": [],
+      "offscreen": 0,
+      "clipped": [],
+      "smallTargets": [],
+      "switchHits": true,
+      "saveStatus": 1,
+      "options": 33,
+      "inScroller": 0,
+      "dockTop": 542,
+      "lastOption": 530,
+      "statsLayout": {
+        "overflowX": false,
+        "clipped": [],
+        "small": 0
+      },
+      "fase10": {
+        "login": {
+          "fitsHeight": true,
+          "overflowX": false,
+          "cardFirst": false,
+          "cardLeft": true,
+          "small": [],
+          "clipped": [],
+          "inert": true
+        },
+        "profile": {
+          "problems": [],
+          "left": 773,
+          "right": 1113,
+          "bottom": 336
+        },
+        "registro": {
+          "overflowX": false,
+          "fits": true
+        }
+      },
+      "perfilSinCuenta": {
+        "problems": [],
+        "left": 773,
+        "right": 1113,
+        "bottom": 291
+      }
+    },
+    {
+      "tamano": "1366x1024",
+      "ok": true,
+      "overflowX": false,
+      "covered": [],
+      "offscreen": 0,
+      "clipped": [],
+      "smallTargets": [],
+      "switchHits": true,
+      "saveStatus": 1,
+      "options": 33,
+      "inScroller": 0,
+      "dockTop": 896,
+      "lastOption": 884,
+      "statsLayout": {
+        "overflowX": false,
+        "clipped": [],
+        "small": 0
+      },
+      "fase10": {
+        "login": {
+          "fitsHeight": true,
+          "overflowX": false,
+          "cardFirst": false,
+          "cardLeft": true,
+          "small": [],
+          "clipped": [],
+          "inert": true
+        },
+        "profile": {
+          "problems": [],
+          "left": 1006,
+          "right": 1346,
+          "bottom": 336
+        },
+        "registro": {
+          "overflowX": false,
+          "fits": true
+        }
+      },
+      "perfilSinCuenta": {
+        "problems": [],
+        "left": 1006,
+        "right": 1346,
+        "bottom": 291
+      }
+    },
+    {
+      "tamano": "820x1180",
+      "ok": true,
+      "overflowX": false,
+      "covered": [],
+      "offscreen": 0,
+      "clipped": [],
+      "smallTargets": [],
+      "switchHits": true,
+      "saveStatus": 1,
+      "options": 33,
+      "inScroller": 0,
+      "dockTop": 1052,
+      "lastOption": 1040,
+      "statsLayout": {
+        "overflowX": false,
+        "clipped": [],
+        "small": 0
+      },
+      "fase10": {
+        "login": {
+          "fitsHeight": true,
+          "overflowX": false,
+          "cardFirst": true,
+          "cardLeft": false,
+          "small": [],
+          "clipped": [],
+          "inert": true
+        },
+        "profile": {
+          "problems": [],
+          "left": 460,
+          "right": 800,
+          "bottom": 334
+        },
+        "registro": {
+          "overflowX": false,
+          "fits": true
+        }
+      },
+      "perfilSinCuenta": {
+        "problems": [],
+        "left": 460,
+        "right": 800,
+        "bottom": 289
+      }
+    },
+    {
+      "tamano": "390x844",
+      "ok": true,
+      "overflowX": false,
+      "covered": [],
+      "offscreen": 0,
+      "clipped": [],
+      "smallTargets": [],
+      "switchHits": true,
+      "saveStatus": 1,
+      "options": 33,
+      "inScroller": 24,
+      "dockTop": 730,
+      "lastOption": 835,
+      "statsLayout": {
+        "overflowX": false,
+        "clipped": [],
+        "small": 0
+      },
+      "fase10": {
+        "login": {
+          "fitsHeight": true,
+          "overflowX": false,
+          "cardFirst": true,
+          "cardLeft": false,
+          "small": [],
+          "clipped": [],
+          "inert": true
+        },
+        "profile": {
+          "problems": [],
+          "left": 34,
+          "right": 374,
+          "bottom": 334
+        },
+        "registro": {
+          "overflowX": false,
+          "fits": true
+        }
+      },
+      "perfilSinCuenta": {
+        "problems": [],
+        "left": 34,
+        "right": 374,
+        "bottom": 289
+      }
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+/* CourtFlow: roles compartidos; sin fuentes remotas, sombras ni degradados. */
+:root {
+  color-scheme:light;
+  font-family:"Segoe UI Variable","Aptos","Segoe UI",system-ui,-apple-system,sans-serif;
+  --bg:#f5f6f3;--surface:#fff;--ink:#202c2a;--slate:#55635c;--border:#b9c5bb;
+  --orange:#f46a2a;--accent:#a94412;--success:#147a55;--danger:#be3548;
+  --navy:#202c2a;--blue:#a94412;--blue-pale:#fff0e5;
+  --radius:12px;--header-height:96px;
+}
+.header {background:#fff;color:var(--ink);padding:9px 12px;border-radius:var(--radius);box-shadow:none;margin-bottom:12px;border:0;}
+.brand-line {margin-bottom:8px;}
+h1 {font-family:inherit;font-size:1.25rem;font-weight:750;letter-spacing:-.025em;line-height:1.2;}
+.brand {padding-left:10px;border-left:3px solid var(--orange);}
+.tool-button {color:var(--ink);background:#eff2ed;border:1px solid transparent;border-radius:9px;min-height:44px;font-size:.8125rem;font-weight:650;padding:0 12px;}
+.tool-button:hover:not(:disabled) {background:#e5eae1;}
+#newGameBtn {background:var(--orange);color:#202c2a;}
+.delete-game-button {color:var(--danger);}
+.undo-button {color:var(--ink);}
+.field select {background:#eff2ed;color:var(--ink);border:1px solid #a6b4a8;border-radius:9px;font-size:.875rem;}
+.save-status {color:var(--success);font-size:.75rem;}
+.status-dot {background:var(--success);}
+.save-status.is-saving {color:#865309;}
+.save-status.is-saving .status-dot {background:#865309;}
+.save-status.is-error {color:var(--danger);}
+.save-status.is-error .status-dot {background:var(--danger);}
+.stat-panel {border:0;background:transparent;box-shadow:none;border-radius:0;overflow:visible;}
+.panel-heading {padding:4px 0 8px;border:0;gap:8px;min-height:40px;}
+h2 {font-family:inherit;font-size:1.0625rem;font-weight:750;letter-spacing:-.02em;margin:0;line-height:1.2;}
+.panel-summary {color:var(--ink);background:#e9eee7;border-radius:8px;padding:4px 8px;font-size:.875rem;font-weight:650;}
+.stat-percent {font-weight:850;font-size:1.08em;white-space:nowrap;}
+.action-list {padding:0;gap:8px;}
+.action-btn {background:#fff;color:var(--ink);border:1px solid #ccd5cb;border-radius:12px;min-height:60px;padding:9px 12px;gap:5px;}
+.action-name {font-size:.875rem;font-weight:650;line-height:1.2;}
+.action-score {color:var(--ink);font-family:inherit;font-size:1rem;font-weight:600;line-height:1.25;}
+.action-btn:hover:not(:disabled),.defense-btn:hover:not(:disabled) {background:#f7f8f4;border-color:var(--accent);}
+.direct-panel {margin-top:12px;}
+.direct-list {padding:0;}
+.direct-row {grid-template-columns:160px minmax(0,1fr);gap:12px;padding:8px 0;border-bottom:1px solid #dce3d8;}
+.direct-row:last-child {border-bottom:0;}
+.direct-type {padding:0 8px 0 3px;gap:5px;}
+.direct-type strong {font-size:.9375rem;font-weight:700;line-height:1.2;}
+.direct-type > span {color:var(--slate);font-size:.8125rem;font-weight:550;}
+.direct-type .stat-percent {color:var(--ink);font:inherit;font-weight:800;}
+.defense-options {gap:8px;align-self:stretch;}
+.defense-btn {background:#fff;border:1px solid #ccd5cb;border-radius:12px;min-height:56px;padding:7px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.defense-name {font-size:.8125rem;font-weight:650;}
+.defense-score {font-family:inherit;font-size:1rem;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.25;}
+.action-btn[aria-pressed="true"],.defense-btn[aria-pressed="true"] {background:#fff0e5;color:var(--ink);border:3px double var(--accent);box-shadow:inset 3px 0 0 var(--accent);}
+.action-btn[aria-pressed="true"]::after,.defense-btn[aria-pressed="true"]::after {color:var(--accent);}
+.action-btn[aria-pressed="true"] .action-score,.defense-btn[aria-pressed="true"] .defense-score {color:var(--ink);}
+.result-dock {background:#fff;border-top:1px solid #b9c5bb;box-shadow:none;padding-top:7px;padding-bottom:max(7px,env(safe-area-inset-bottom));}
+.selection-label {color:var(--slate);letter-spacing:.035em;font-weight:650;}
+#selectedDescription {font-size:.875rem;font-weight:700;}
+.selection-meta {color:var(--ink);font-size:.875rem;font-weight:600;}
+.selection-line {margin-bottom:5px;}
+.result-btn {min-height:56px;border-radius:12px;border-width:1px;flex-direction:row;gap:9px;padding:4px 12px;}
+.result-btn > span {font-family:inherit;font-size:clamp(1.25rem,3vw,1.875rem);font-weight:750;letter-spacing:-.035em;}
+.result-btn .result-sign {font-family:inherit;font-size:1.375rem;}
+.result-btn small {font-size:.6875rem;font-weight:750;letter-spacing:.03em;}
+.result-btn.result-missed {color:#126d4c;background:#e6f3eb;border-color:#6c9f80;}
+.result-btn.result-made {color:#ac2e40;background:#fff0f0;border-color:#cb8892;}
+.feedback {color:var(--slate);font-size:.6875rem;min-height:18px;padding-top:4px;}
+.action-btn:disabled,.defense-btn:disabled,.result-btn:disabled,.tool-button:disabled {color:#57655c;background:#e8ece5;border:1px dashed #8b9b8d;opacity:1;}
+button:focus-visible,select:focus-visible,.header button:focus-visible,.header select:focus-visible {outline-color:var(--accent);}
+.result-btn:focus-visible {outline-color:var(--ink);}
+.action-btn,.defense-btn,.result-btn {transition:none;}
+@media(min-width:1000px) and (min-height:700px) {
+  main {height:calc(100dvh - var(--dock-height) - var(--header-height) - 44px);min-height:440px;}
+  .action-list {grid-auto-rows:minmax(60px,1fr);}
+}
+@media(max-width:760px) {
+  .header {padding:8px;}
+  h1 {font-size:1.0625rem;}
+  .brand {padding-left:7px;}
+  .panel-heading {padding:4px 0 8px;gap:6px;}
+  h2 {font-size:1rem;}
+  .panel-summary {font-size:.8125rem;padding:4px 6px;}
+  .action-list {gap:6px;}
+  .action-btn {min-height:64px;padding:8px 10px;}
+  .action-score,.defense-score {font-size:.9375rem;}
+  .direct-row {grid-template-columns:1fr;gap:7px;padding:9px 0;}
+  .direct-type {flex-direction:row;align-items:center;justify-content:space-between;padding:0 3px;}
+  .defense-options {gap:6px;}
+  .defense-btn {min-height:58px;padding:6px 4px;}
+  .selection-meta {font-size:.75rem;}
+  .result-btn {min-height:56px;flex-direction:column;padding:3px 2px;gap:3px;}
+  .result-btn > span {font-size:1.5rem;}
+  .result-btn small {font-size:.5625rem;}
+}

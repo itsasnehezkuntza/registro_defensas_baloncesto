@@ -1,0 +1,15 @@
+/* CourtFlow Light — lienzo abierto, acciones próximas y matriz sin panel exterior. */
+.header {border-bottom:2px solid #f46a2a;}
+.top-grid {gap:16px;}
+.panel-heading > div {padding-left:9px;border-left:3px solid var(--orange);}
+.direct-type strong {letter-spacing:-.02em;}
+@media(min-width:1000px) and (min-height:700px) {
+  main {display:grid;grid-template-rows:minmax(175px,.35fr) minmax(265px,.65fr);gap:12px;}
+  .top-grid {grid-template-columns:minmax(0,1fr) minmax(0,2fr);}
+  .stat-panel {display:flex;flex-direction:column;}
+  .action-list {flex:1;}
+  .direct-panel {margin:0;}
+  .direct-list {flex:1;display:grid;grid-template-rows:repeat(4,minmax(60px,1fr));}
+  .direct-row {padding:6px 0;}
+  .action-score,.defense-score {font-size:clamp(.9375rem,1.9vh,1.125rem);}
+}

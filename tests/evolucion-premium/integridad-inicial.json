@@ -1,0 +1,50 @@
+﻿[
+    {
+        "path":  "index.html",
+        "sha256":  "360EA6BBFEB1D4251D95F1F6125ED31D8CC8B568EFDA8DEC648EE6C2C18DF7D6"
+    },
+    {
+        "path":  "styles.css",
+        "sha256":  "4006BC217638DF6C76E2312E5AE4CE30F7A9B8A3408ABE09D4AFE0207B000490"
+    },
+    {
+        "path":  "premium.css",
+        "sha256":  "D6B3186A35BC77FF14CD3BA80F84B66A0C18F26876A8774BCE8B2F972434A4B7"
+    },
+    {
+        "path":  "app.js",
+        "sha256":  "822CAE617D01A1A44EB935778EC16E50FE54A0FBEC63E998ED8014AF3381F215"
+    },
+    {
+        "path":  "categorias.csv",
+        "sha256":  "2305DB928244A0C93C68F9CCF2866C90F85765A067406AD966E935DA073A5A2F"
+    },
+    {
+        "path":  "js/configuracion.js",
+        "sha256":  "7B7B3840E06F62DF5C18FD106BB7E22493466AC9864958B7AEEC09F03A1EB034"
+    },
+    {
+        "path":  "js/estadisticas.js",
+        "sha256":  "87A5CD12D4D5E541834FBC4D1BB7E4C9298EF603E1CAEE57B590BBCD1BA596DD"
+    },
+    {
+        "path":  "js/exportacion.js",
+        "sha256":  "2F52B193B275346B4AD2970D2B4A09E483A9203731914753A757A18020206B53"
+    },
+    {
+        "path":  "js/identidad.js",
+        "sha256":  "2BCD22510D35A9E0756648C494F0CF62585C0B48043E9EF8E1EA587B8E68F7B9"
+    },
+    {
+        "path":  "js/interfaz.js",
+        "sha256":  "786DE22DC6F5DD69B400C034335D028F27110AE1442A198CA38784086D856AD2"
+    },
+    {
+        "path":  "js/persistencia.js",
+        "sha256":  "7E20FBDFFDFA8EBC3B6070F923CE5918F86C949873C776FBAA4E9AD633A1BAD8"
+    },
+    {
+        "path":  "js/registro.js",
+        "sha256":  "7F97F7ED68B98517A7BA425B5634EBB33800D729B999CE7F897DFF984BAF1B0E"
+    }
+]

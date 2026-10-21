@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validación Firebase real · Fase 8A.1</title>
+<style>
+  body{font:1rem/1.5 system-ui,sans-serif;max-width:54rem;margin:2rem auto;padding:0 1rem;color:#222;background:#f7f7f7}
+  button{font:inherit;min-height:44px;padding:.5rem .8rem;margin:.25rem;border:1px solid #999;border-radius:8px;background:white;color:#222}
+  button:focus-visible{outline:3px solid #89512c;outline-offset:3px}button:disabled{opacity:.5}
+  [hidden]{display:none!important}section{padding:1rem;border:1px solid #ccc;background:white;border-radius:12px;margin:1rem 0}
+  h1{font-size:1.5rem}h2{font-size:1.1rem}p,dd{overflow-wrap:anywhere}dt{font-weight:700}dd{margin:0 0 .6rem}
+  #accountMessage,#verification{white-space:pre-line}code{overflow-wrap:anywhere}
+</style>
+<h1>Validación de Firebase real · Fase 8A.1</h1>
+<p>Esta página usa los módulos de cuenta de la aplicación. No carga <code>app.js</code>, no abre la base deportiva y no importa Firestore.</p>
+<section aria-labelledby="configurationTitle">
+  <h2 id="configurationTitle">Configuración pública</h2>
+  <p id="configurationState" role="status">Comprobando…</p>
+  <dl><dt>Proyecto</dt><dd id="projectId">—</dd><dt>Dominio de autenticación</dt><dd id="authDomain">—</dd><dt>Origen de prueba</dt><dd id="testOrigin">—</dd></dl>
+</section>
+<section aria-labelledby="accountTitle">
+  <h2 id="accountTitle">Cuenta</h2>
+  <p id="cloudStatus">Solo local</p>
+  <p id="accountIdentity" hidden></p>
+  <button id="googleLogin" type="button" disabled>Iniciar sesión con Google</button>
+  <button id="googleLogout" type="button" hidden>Cerrar sesión</button>
+  <button id="accountRetry" type="button" hidden>Reintentar conexión</button>
+  <button id="continueLocal" type="button" hidden>Continuar sin cuenta</button>
+  <p id="accountMessage" role="status" aria-live="polite" hidden></p>
+</section>
+<section aria-labelledby="testsTitle">
+  <h2 id="testsTitle">Comprobaciones con el servidor real</h2>
+  <button id="checkDomains" type="button" disabled>Consultar dominios autorizados</button>
+  <button id="verifySession" type="button" disabled>Verificar sesión con Firebase real</button>
+  <button id="reloadSession" type="button" disabled>Recargar para probar restauración</button>
+  <p id="verification" role="status" aria-live="polite">Pendiente de configuración válida y acceso real.</p>
+  <p>No copies tokens ni contraseñas al informe. Anota solo resultado, fecha, navegador y proyecto. La primera entrada con Google puede crear el usuario en Firebase Authentication; no crea equipos ni partidos.</p>
+</section>
+<script type="module" src="./validacion-real.js"></script>
+</html>

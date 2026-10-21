@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisión Fase 9 · Diseño V4 y editor</title>
+<style>
+body{margin:0;padding:24px;background:#E7E7E4;color:#161616;font:14px/1.45 system-ui,sans-serif}
+h1{margin:0 0 4px;font-size:22px}h2{margin:32px 0 10px;font-size:17px}p{margin:0 0 12px;color:#5E5E5A}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
+figure{margin:0;padding:10px;border-radius:18px;background:#fff}figcaption{margin-bottom:8px;font-weight:700}
+img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #D2D2CD}
+</style>
+</head>
+<body>
+<h1>Fase 9 · Diseño V4 — comparación con el lienzo</h1>
+<p>Izquierda: lienzo EJEMPLO.html (referencia; muestra 28 opciones). Derecha: aplicación real con el CSV vigente (33 opciones) y datos ficticios. Capturas Chromium; no sustituyen a Safari/iPad físico.</p>
+<h2>Registro · iPad en Safari 1180×740</h2>
+<div class="pair"><figure><figcaption>Lienzo V4</figcaption><img src="referencia/v4-registro-1180x740.png" alt="Lienzo V4 Registro"></figure><figure><figcaption>Aplicación</figcaption><img src="capturas/1180x740-registro.png" alt="Aplicación Registro 1180×740"></figure></div>
+<h2>Registro · iPad mini 1133×670 (con categorias.csv)</h2>
+<div class="pair"><figure><figcaption>Lienzo V4 (modo edición, solo referencia de reparto)</figcaption><img src="referencia/v4-csv-ipad-mini-1133x670.png" alt="Lienzo V4 iPad mini"></figure><figure><figcaption>Aplicación</figcaption><img src="capturas/1133x670-registro.png" alt="Aplicación Registro 1133×670"></figure></div>
+<h2>Estadísticas · 1180</h2>
+<div class="pair"><figure><figcaption>Lienzo V4</figcaption><img src="referencia/v4-estadisticas-1180.png" alt="Lienzo V4 Estadísticas"></figure><figure><figcaption>Aplicación (página completa)</figcaption><img src="capturas/1180x740-estadisticas.png" alt="Aplicación Estadísticas"></figure></div>
+<h2>Desglose bajo la fila y menú «⋯»</h2>
+<div class="pair"><figure><figcaption>Desglose 1180×740</figcaption><img src="capturas/1180x740-desglose.png" alt="Desglose"></figure><figure><figcaption>Menú 1133×670</figcaption><img src="capturas/1133x670-menu.png" alt="Menú"></figure></div>
+<h2>Otros tamaños</h2>
+<div class="pair">
+<figure><figcaption>1366×1024 Registro</figcaption><img src="capturas/1366x1024-registro.png" alt=""></figure>
+<figure><figcaption>820×1180 Registro</figcaption><img src="capturas/820x1180-registro.png" alt=""></figure>
+<figure><figcaption>820×1180 Estadísticas</figcaption><img src="capturas/820x1180-estadisticas.png" alt=""></figure>
+<figure><figcaption>390×844 Registro (página completa)</figcaption><img src="capturas/390x844-registro.png" alt=""></figure>
+<figure><figcaption>390×844 Estadísticas</figcaption><img src="capturas/390x844-estadisticas.png" alt=""></figure>
+<figure><figcaption>390×844 Desglose</figcaption><img src="capturas/390x844-desglose.png" alt=""></figure>
+</div>
+<h2>Fase 10 · Inicio de sesión (lienzo «V4 · Inicio de sesión»)</h2>
+<p>La aplicación usa el botón oficial de Google (borde #747775, texto #1F1F1F); el lienzo lo dibuja con borde gris claro. Sin red en las pruebas: el aviso de conexión se oculta solo para la captura.</p>
+<div class="pair"><figure><figcaption>Lienzo V4 · 1180×820</figcaption><img src="referencia/v4-login-1180x820.png" alt="Lienzo inicio de sesión"></figure><figure><figcaption>Aplicación · 1180×740</figcaption><img src="capturas/1180x740-inicio-sesion.png" alt=""></figure></div>
+<div class="pair">
+<figure><figcaption>1133×670 Inicio de sesión</figcaption><img src="capturas/1133x670-inicio-sesion.png" alt=""></figure>
+<figure><figcaption>1366×1024 Inicio de sesión</figcaption><img src="capturas/1366x1024-inicio-sesion.png" alt=""></figure>
+<figure><figcaption>820×1180 Inicio de sesión</figcaption><img src="capturas/820x1180-inicio-sesion.png" alt=""></figure>
+<figure><figcaption>390×844 Inicio de sesión</figcaption><img src="capturas/390x844-inicio-sesion.png" alt=""></figure>
+</div>
+<h2>Fase 10 · Menú de perfil (lienzo «V4 · Menú de perfil»)</h2>
+<p>Sesión simulada (sin SDK) para la captura; la sesión real con el emulador se prueba en sync-ui.test.mjs.</p>
+<div class="pair"><figure><figcaption>Lienzo V4 · 1180×340</figcaption><img src="referencia/v4-perfil-1180x340.png" alt="Lienzo menú de perfil"></figure><figure><figcaption>Aplicación · con sesión</figcaption><img src="capturas/1180x740-perfil.png" alt=""></figure></div>
+<div class="pair">
+<figure><figcaption>1133×670 Perfil con sesión</figcaption><img src="capturas/1133x670-perfil.png" alt=""></figure>
+<figure><figcaption>1366×1024 Perfil con sesión</figcaption><img src="capturas/1366x1024-perfil.png" alt=""></figure>
+<figure><figcaption>820×1180 Perfil con sesión</figcaption><img src="capturas/820x1180-perfil.png" alt=""></figure>
+<figure><figcaption>390×844 Perfil con sesión</figcaption><img src="capturas/390x844-perfil.png" alt=""></figure>
+<figure><figcaption>1180×740 Perfil sin cuenta</figcaption><img src="capturas/1180x740-perfil-sin-cuenta.png" alt=""></figure>
+<figure><figcaption>1133×670 Perfil sin cuenta</figcaption><img src="capturas/1133x670-perfil-sin-cuenta.png" alt=""></figure>
+<figure><figcaption>1366×1024 Perfil sin cuenta</figcaption><img src="capturas/1366x1024-perfil-sin-cuenta.png" alt=""></figure>
+<figure><figcaption>820×1180 Perfil sin cuenta</figcaption><img src="capturas/820x1180-perfil-sin-cuenta.png" alt=""></figure>
+<figure><figcaption>390×844 Perfil sin cuenta</figcaption><img src="capturas/390x844-perfil-sin-cuenta.png" alt=""></figure>
+</div>
+<h2>Fase 10 · Vaciar partido</h2>
+<div class="pair">
+<figure><figcaption>1180×740 Vaciar partido</figcaption><img src="capturas/1180x740-vaciar.png" alt=""></figure>
+<figure><figcaption>1133×670 Vaciar partido</figcaption><img src="capturas/1133x670-vaciar.png" alt=""></figure>
+<figure><figcaption>1366×1024 Vaciar partido</figcaption><img src="capturas/1366x1024-vaciar.png" alt=""></figure>
+<figure><figcaption>820×1180 Vaciar partido</figcaption><img src="capturas/820x1180-vaciar.png" alt=""></figure>
+<figure><figcaption>390×844 Vaciar partido</figcaption><img src="capturas/390x844-vaciar.png" alt=""></figure>
+</div>
+<h2>Fases 9C–9D · Edición sobre el panel (estilo del lienzo)</h2>
+<p>Menú «⋯ → Editar panel». Compárese con «V4 · Registro con modo edición» de EJEMPLO.html. Datos ficticios.</p>
+<div class="pair">
+<figure><figcaption>Partido con tiros: «Editar panel» bloqueado con la explicación</figcaption><img src="capturas/editor-1180x740-bloqueado.png" alt="Bloqueado"></figure>
+<figure><figcaption>Modo edición: cabecera con el partido, botones con sus tiros y Defensa «Máximo 8»</figcaption><img src="capturas/editor-1180x740-modo-edicion.png" alt="Modo edición: cabecera, medidor, botones con sus tiros y Defensa «Máximo 8»"></figure>
+<figure><figcaption>Botón nuevo elegido: nombre, tiros, mover, Quitar, Listo</figcaption><img src="capturas/editor-1180x740-boton-elegido.png" alt="Botón nuevo elegido: nombre, tiros, mover, Quitar, Listo"></figure>
+<figure><figcaption>Registro del partido tras «Hecho» (anotados/intentos y marcador)</figcaption><img src="capturas/editor-1180x740-registro-editado.png" alt="Registro del partido tras «Hecho» (anotados/intentos y marcador)"></figure>
+<figure><figcaption>Estadísticas en anotados/intentos</figcaption><img src="capturas/editor-1180x740-estadisticas-editado.png" alt="Estadísticas en anotados/intentos"></figure>
+<figure><figcaption>Al límite: «Añadir» desactivado</figcaption><img src="capturas/editor-1180x740-lleno-edicion.png" alt="Al límite: «Añadir» desactivado"></figure>
+<figure><figcaption>Registro con lo máximo permitido, sin desplazar</figcaption><img src="capturas/editor-1180x740-registro-lleno.png" alt="Registro con lo máximo permitido, sin desplazar"></figure>
+<figure><figcaption>iPad mini 1133×670</figcaption><img src="capturas/editor-1133x670.png" alt="iPad mini 1133×670"></figure>
+<figure><figcaption>iPad vertical con un tipo elegido</figcaption><img src="capturas/editor-820x1180-elegido.png" alt="iPad vertical con un tipo elegido"></figure>
+<figure><figcaption>Móvil (página completa)</figcaption><img src="capturas/editor-390x844-elegido.png" alt="Móvil (página completa)"></figure>
+</div>
+<h2>Fase 9B · Distribución adaptable</h2>
+<p>Filas equilibradas sin huecos y matriz que llena el espacio. El informe completo por caso y paso está en distribucion.json.</p>
+<div class="pair">
+<figure><figcaption>1180x740 · transicion-1</figcaption><img src="capturas/distribucion-1180x740-transicion-1.png" alt="1180x740 · transicion-1"></figure>
+<figure><figcaption>1180x740 · estatico-5</figcaption><img src="capturas/distribucion-1180x740-estatico-5.png" alt="1180x740 · estatico-5"></figure>
+<figure><figcaption>1180x740 · estatico-12</figcaption><img src="capturas/distribucion-1180x740-estatico-12.png" alt="1180x740 · estatico-12"></figure>
+<figure><figcaption>1133x670 · matriz-6x8</figcaption><img src="capturas/distribucion-1133x670-matriz-6x8.png" alt="1133x670 · matriz-6x8"></figure>
+<figure><figcaption>1133x670 · matriz-2x2</figcaption><img src="capturas/distribucion-1133x670-matriz-2x2.png" alt="1133x670 · matriz-2x2"></figure>
+<figure><figcaption>820x1180 · matriz-6x8</figcaption><img src="capturas/distribucion-820x1180-matriz-6x8.png" alt="820x1180 · matriz-6x8"></figure>
+<figure><figcaption>1366x1024 · matriz-4x5</figcaption><img src="capturas/distribucion-1366x1024-matriz-4x5.png" alt="1366x1024 · matriz-4x5"></figure>
+<figure><figcaption>390x844 · estatico-12</figcaption><img src="capturas/distribucion-390x844-estatico-12.png" alt="390x844 · estatico-12"></figure>
+</div>
+</body>
+</html>

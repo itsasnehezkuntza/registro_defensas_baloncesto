@@ -1,0 +1,12 @@
+{
+  "fecha": "2026-10-20T21:09:24.646Z",
+  "comprobaciones": [
+    "Migración: base v1 con partidos y eventos ficticios → configuración inicial en «settings» sin cambiar versión ni eventos; IDs heredados reservados; marcador 5/7 y anotados/intentos; recargar no duplica versiones",
+    "Con tiros «Editar panel» está bloqueado con la explicación (también al recargar en #editar); en un partido sin tiros: partido en la cabecera, sin medidor ni Restaurar; renombrar, mover, quitar (retirado si tiene tiros en otros partidos, borrado con ID reservado si no), añadir Flex (solo 2) e Ice; añadir defensas por encima de 8; Atrás con cambios pide confirmación; guardado atómico asignado al partido; eventos idénticos; la otra pestaña se actualiza",
+    "Un tiro bloquea el panel y deshacerlo lo desbloquea; Flex solo 2; CSV del partido con los nombres nuevos; Estadísticas en anotados/intentos (1/2) y marcador de puntos (2/4)",
+    "Cada partido usa su panel: los antiguos siguen con el suyo y registran con él; un partido nuevo recibe la última configuración",
+    "Cancelar con cambios pide confirmación y no guarda; dos editores a la vez: el segundo «Hecho» se rechaza; si otra pestaña registra un tiro mientras se edita, «Hecho» se rechaza con la explicación",
+    "Añadir se desactiva al llegar al límite (6 acciones más en Estático: «Máximo 12»; 3 tipos más: «No cabe sin deslizar»; 4 defensas más: «Máximo 12»); lo guardado cabe sin desplazar",
+    "Modo edición sin scroll horizontal, sin desplazamiento en iPad y con controles ≥ 44 px en 1133×670, 820×1180 y 390×844 (capturas)"
+  ]
+}
