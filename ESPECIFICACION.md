@@ -1,6 +1,6 @@
 # Registro defensivo de baloncesto — especificación
 
-**21 de octubre de 2026 — Fase 20, publicación general en preparación:** el usuario solicita subir lo terminado para todos los usuarios. Alcance: funciones y correcciones terminadas hasta Fase 19 en la URL habitual de GitHub Pages, con actualización coordinada de reglas de Fase 14. Los dos cambios del editor del apartado 74 y MOP-001 quedan pendientes. Se conservarán respaldo remoto, datos y trabajo local de develop. Detalles en `FASE20_PUBLICACION.md`; no se considera publicada hasta verificar el resultado remoto.
+**Estado actual — 21 de octubre de 2026: versión 20.0 publicada y verificada para todos en GitHub Pages.** Fuentes `86cf617`, Pages `647aeb5`, mismo origen habitual. Incluye lo terminado hasta Fase 19 y reglas de Fase 14 coordinadas (`901339e9-c122-463f-98e2-a5a02d34439a`). 39 hashes HTTPS, build, reglas y navegador correctos; respaldos remotos y datos conservados. Detalles y límites en [FASE20_PUBLICACION.md](FASE20_PUBLICACION.md), apartado 75. Cancelar/Deshacer el nombre, «Eliminar» y MOP-001 quedan pendientes. Los dispositivos deben recargar la página. Las notas de estado anteriores que siguen son históricas y no sustituyen este resumen.
 
 **Continuidad para mañana (21 de octubre de 2026):** el usuario confirma «Ya funciona perfecto!!» tras la corrección del cursor de Fase 19; prueba física favorable. Pide dejar anotados, sin implementar hoy, los dos cambios del editor del apartado 74.
 
@@ -2025,3 +2025,15 @@ Solicitud expresa del usuario el 20 de octubre de 2026: anotar para mañana, 21 
 2. **Cambiar «Quitar» por «Eliminar».** Ajustar el texto del botón y revisar los mensajes asociados del editor para mantener el mismo término. Es un cambio de redacción; conservar las reglas actuales sobre históricos y eventos.
 
 Ambos puntos quedan pendientes para la próxima sesión, sin clasificarlos como mejoras de prioridad baja. MOP-001 conserva por separado su carácter opcional. Solo documentación: sin código, datos, pruebas nuevas, publicación, renovación del canal, commit o push. No se inicia otra fase.
+
+## 75. Fase 20 — publicación general de lo terminado
+
+El usuario solicita subir lo hecho para todos los usuarios. Se publica 20.0 en `https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/`, con las funciones y correcciones terminadas hasta Fase 19 y la actualización coordinada de reglas de Fase 14. No se implementan los pendientes del apartado 74 ni MOP-001.
+
+Desde una copia aislada de main, conservando develop y sus cambios: fuentes `86cf6177e380e6100b274d3c07c031ffc1bf6083`; Pages `647aeb55d8738e04dbb785e9ca652bcb64529cd0`, exclusivamente 38 archivos de aplicación y `version.json`. Respaldo remoto de main `d98bee5` y Pages `2c49c4b` en ramas `respaldo/antes-fase20-main-20261021` y `respaldo/antes-fase20-pages-20261021`. Reglas anteriores conservadas y respaldadas; nuevas `projects/registro-defensivo/rulesets/901339e9-c122-463f-98e2-a5a02d34439a`, publicadas a las 22:48:08 de Madrid. Auth y Hosting no cambian; no se renueva el temporal ni se leen/escriben datos deportivos reales.
+
+Verificación: 40 grupos Sync y 85 comprobaciones de reglas en emuladores; diez archivos Node; regresiones locales, siete tamaños/subruta/CSV; seis grupos CSP y seis de inicio. Actualización desde los archivos exactos publicados 8C.0→20.0 en Chromium/WebKit conserva partido, selección e históricos, con Deshacer y editor correctos. Se ajustó la espera de una prueba de aborto para recibir antes el último evento remoto; la batería completa posterior pasó sin cambiar runtime.
+
+Build Pages `built`, 39 hashes HTTPS y versión pública correctos; diez rutas internas 404. Chromium en la URL pública: SDK Google listo, inicio exclusivo, escritura/cursor/nombre persistido, doble toque, recarga y estadísticas correctos; sin errores, CSP o Firestore. WebKit HTTPS limitado por TLS del entorno, sin desactivar certificados; WebKit local correcto. Recibos `.test-artifacts/firebase/fase20/`.
+
+Todos los dispositivos deben recargar. Los clientes antiguos no soportan el protocolo nuevo de paneles; sus operaciones locales pendientes se conservan para reenviarse con el cliente actualizado. La prueba física entre dispositivos con Sync nuevo queda pendiente; la prueba iPad anterior tenía Sync OFF y no la acredita. No se confunden pruebas de emulador con actividad real. **Publicación técnica completada y detenida para revisión; no se inicia otra fase.**
