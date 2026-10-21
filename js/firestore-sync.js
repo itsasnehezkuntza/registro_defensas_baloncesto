@@ -1,7 +1,8 @@
 import { canonical } from './sync-storage.js';
 import { syncSettings } from './sync-config.js';
 import { firebaseSettings } from './firebase-config.js';
-// Los snapshots aquí son resultados de lecturas puntuales; no hay onSnapshot de aplicación.
+import { watchFirestoreTeam } from './firestore-watch.js';
+import { validatePanel } from './panel-model.js';
 
 const conflict = () => Object.assign(Error('El ID remoto contiene datos diferentes. Se conserva la copia local.'), { code: 'SYNC_CONFLICT' });
 const emulatorDatabases = new WeakSet();
@@ -12,6 +13,7 @@ export function createFirestoreTransport(sdk, database, uid, currentUid) {
   const envelope = op => ({ schemaVersion: 1, createdBy: uid, createdAt: sdk.serverTimestamp(), sourceId: op.sourceId, payload: op.payload });
   const same = (existing, op) => canonical(existing.payload) === canonical(op.payload) && existing.sourceId === op.sourceId;
   return {
+    watch(teamId, onChange) { guard(); return watchFirestoreTeam(sdk, database, teamId, guard, onChange); },
     async teams() {
       guard();
       const result = await sdk.getDocsFromServer(sdk.query(sdk.collection(database, 'teams'), sdk.where('ownerUid', '==', uid)));
@@ -37,10 +39,49 @@ export function createFirestoreTransport(sdk, database, uid, currentUid) {
     },
     async send(op) {
       guard(); if (op.uid !== uid || op.projectId !== database.app.options.projectId) throw Error('Operación de otra cuenta o proyecto.');
+      if (op.type === 'default-panel') {
+        validatePanel(op.payload);
+        return sdk.runTransaction(database, async tx => {
+          guard();
+          const head = sdk.doc(database, 'teams', op.teamId, 'configuration', 'current');
+          const version = sdk.doc(database, 'teams', op.teamId, 'configurationVersions', op.payload.version.id);
+          const [current, stored] = await Promise.all([tx.get(head), tx.get(version)]);
+          if (stored.exists() && !same(stored.data(), op)) throw conflict();
+          if (current.data()?.payload.version.id === op.payload.version.id) { if (!same(current.data(), op)) throw conflict(); return; }
+          if ((current.data()?.payload.version.id ?? null) !== op.baseId) throw conflict();
+          guard(); if (!stored.exists()) tx.set(version, envelope(op));
+          tx.set(head, { ...envelope(op), baseId: op.baseId });
+        });
+      }
+      let panelCheck = null;
+      if (op.type === 'panel') {
+        validatePanel(op.payload);
+        if (op.baseId) {
+          const parent = gameRef(op.teamId, op.gameId), before = await sdk.getDocFromServer(parent);
+          const events = await sdk.getDocsFromServer(sdk.collection(parent, 'events'));
+          const tombs = await sdk.getDocsFromServer(sdk.collection(parent, 'eventDeletions'));
+          guard();
+          panelCheck = { clock: before.data()?.panelClock ?? null, live: events.docs.some(event => !tombs.docs.some(tomb => tomb.id === event.id)) };
+        }
+      }
       return sdk.runTransaction(database, async tx => {
         guard();
         const parent = gameRef(op.teamId, op.gameId), game = await tx.get(parent);
         if (game.exists() && game.data().deletedAt != null) return { deleted: true };
+        if (op.type === 'panel') {
+          if (!game.exists()) throw Object.assign(Error('El alta del partido está pendiente.'), { code: 'unavailable' });
+          const existing = game.data().panel;
+          const ref = sdk.doc(parent, 'panelVersions', op.payload.version.id), version = await tx.get(ref);
+          if (version.exists() && !same(version.data(), op)) throw conflict();
+          if (existing?.version.id === op.payload.version.id) { if (canonical(existing) !== canonical(op.payload)) throw conflict(); return; }
+          if ((existing?.version.id ?? null) !== op.baseId) throw conflict();
+          if (panelCheck) {
+            if ((game.data().panelClock ?? null) !== panelCheck.clock) throw Object.assign(Error('El partido ha cambiado al comprobar su panel.'), { code: 'unavailable' });
+            if (panelCheck.live) throw conflict();
+          }
+          guard(); if (!version.exists()) tx.set(ref, envelope(op));
+          tx.update(parent, { panel: op.payload, panelClock: 'panel:' + op.payload.version.id }); return;
+        }
         if (op.type === 'delete') {
           guard();
           if (game.exists()) {
@@ -54,17 +95,21 @@ export function createFirestoreTransport(sdk, database, uid, currentUid) {
           guard(); tx.set(parent, { ...envelope(op), deletedAt: null, deletedBy: null }); return;
         }
         if (!game.exists()) throw Object.assign(Error('El alta del partido está pendiente.'), { code: 'unavailable' });
+        if (op.type === 'event' && op.panelVersionId && game.data().panel?.version.id !== op.panelVersionId) throw conflict();
         const tombRef = sdk.doc(parent, 'eventDeletions', op.eventId), tomb = await tx.get(tombRef);
         if (tomb.exists()) return { deleted: true };
         if (op.type === 'undo') {
+          if (game.data().panel) tx.update(parent, { panelClock: 'undo:' + op.eventId });
           guard(); tx.set(tombRef, { schemaVersion: 1, eventId: op.eventId, operationId: op.opId,
             deletedBy: uid, deletedAt: sdk.serverTimestamp() }); return;
         }
         const ref = sdk.doc(parent, 'events', op.eventId), event = await tx.get(ref);
         if (event.exists()) { if (!same(event.data(), op)) throw conflict(); return; }
+        if (game.data().panel) tx.update(parent, { panelClock: 'event:' + op.eventId });
         guard(); tx.set(ref, envelope(op));
       });
     },
+    // Lectura puntual de herramientas/adaptadores antiguos; el motor usa watch().
     async pull(teamId) {
       guard();
       const games = await sdk.getDocsFromServer(sdk.collection(database, 'teams', teamId, 'games'));
@@ -89,6 +134,8 @@ export function createFirestoreTransport(sdk, database, uid, currentUid) {
           else throw error;
         }
       }
+      const configs = await sdk.getDocsFromServer(sdk.collection(database, 'teams', teamId, 'configuration'));
+      for (const doc of configs.docs) result.push({ kind: 'configuration', id: '@configuration', panel: doc.data().payload });
       guard(); return result;
     }
   };

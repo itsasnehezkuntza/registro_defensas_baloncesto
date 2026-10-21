@@ -1,9 +1,11 @@
-// Configuración de botones editable (Fase 9B).
-// categorias.csv es la configuración inicial y la de «Restaurar valores iniciales».
+// Configuración de botones editable, local o por cuenta/equipo (Fases 9B y 14).
+// categorias.csv sigue siendo la configuración inicial.
 // Se guarda en el almacén «settings» existente: no cambia la versión ni el esquema de IndexedDB.
-// Las versiones son inmutables, con ID, fecha y origen, para poder sincronizarlas más adelante.
+// Las versiones inmutables conservan ID, fecha y origen al sincronizarse.
 import { transact, allEvents } from './persistencia.js';
 import { eventIdentity, legacyIdentityIds } from './identidad.js';
+import { storageContext, assertContext, SYNC_STORES, queuePanel, configEvents } from './sync-storage.js';
+import { panelKey, panelSnapshot, mergePanelRecord, PANEL_DEFAULT } from './panel-model.js';
 
 export const CONFIG_KEY = 'configuracionBotones';
 export const USAGE_KEY = 'configuracionPorPartido';
@@ -151,7 +153,7 @@ export function mergeIntoDoc(previous, incoming) {
 
 // Recuento de tiros por ID en todos los partidos locales: decide qué se puede borrar del todo.
 export async function eventCounts(events) {
-  const list = events ?? await allEvents();
+  const list = events ?? [...await allEvents(), ...(storageContext().scope ? await configEvents() : [])];
   const actions = new Map(), defenses = new Map();
   for (const event of list) {
     const identity = eventIdentity(event);
@@ -175,11 +177,11 @@ function makeVersion(doc, source, basedOn, csvHash = null) {
   return { id: `cfg-${randomId()}`, createdAt: new Date().toISOString(), source, basedOn: basedOn ?? null, csvHash, doc: clone(doc) };
 }
 
-function readRecord(tx, done) {
-  const request = tx.objectStore('settings').get(CONFIG_KEY);
+function readRecord(tx, done, c = storageContext()) {
+  const request = tx.objectStore('settings').get(panelKey(CONFIG_KEY, c));
   request.onsuccess = () => done(request.result?.value ?? null);
 }
-const putRecord = (tx, value) => tx.objectStore('settings').put({ key: CONFIG_KEY, value });
+const putRecord = (tx, value, c = storageContext()) => tx.objectStore('settings').put({ key: panelKey(CONFIG_KEY, c), value, scope: c.scope });
 
 const configChannel = () => globalThis.BroadcastChannel ? new BroadcastChannel('registro-defensivo-config') : null;
 let channel;
@@ -196,14 +198,56 @@ export function onConfigChange(listener) {
 
 export const currentVersion = record => record.versions.find(v => v.id === record.currentId);
 
+// Copiar únicamente versiones que este dispositivo ya vinculó a partidos del
+// equipo. Nunca atribuir el panel de otro equipo ni modificar los originales.
+async function recoverKnownPanels(c, initial) {
+  return transact(SYNC_STORES, 'readwrite', (tx, done, abort) => {
+    const settings = tx.objectStore('settings'), old = settings.get(CONFIG_KEY), used = settings.get(USAGE_KEY);
+    const current = settings.get(panelKey(CONFIG_KEY, c)), currentUsage = settings.get(panelKey(USAGE_KEY, c));
+    const games = tx.objectStore('cloudGames').index('byScope').getAll(c.scope);
+    let count = 0;
+    const finish = () => {
+      if (++count !== 5) return;
+      if (storageContext() !== c) { abort('La cuenta o el equipo han cambiado.', 'SCOPE_CHANGED'); return; }
+      let record = current.result?.value ?? initial;
+      const usage = currentUsage.result?.value ?? {};
+      if (old.result?.value) for (const game of games.result) {
+        if (game.deleted || game.panel || usage[game.gameId]?.length) continue;
+        const ids = used.result?.value?.[game.gameId] ?? used.result?.value?.[game.payload.id] ?? [];
+        for (const id of ids) {
+          const version = old.result.value.versions.find(item => item.id === id);
+          if (!version) continue;
+          const panel = { version, usedIds: old.result.value.usedIds };
+          record = mergePanelRecord(record, panel, false);
+          usage[game.gameId] = [...(usage[game.gameId] || []), id];
+        }
+        const version = record.versions.find(item => item.id === usage[game.gameId]?.at(-1));
+        if (version) {
+          const panel = { version, usedIds: record.usedIds };
+          tx.objectStore('cloudGames').put({ ...game, panel }); queuePanel(tx, c, game.gameId, panel);
+          if (!record.syncHead && old.result.value.currentId === version.id) {
+            record = mergePanelRecord(record, panel, true); queuePanel(tx, c, PANEL_DEFAULT, panel);
+          }
+        }
+      }
+      putRecord(tx, record, c);
+      settings.put({ key: panelKey(USAGE_KEY, c), scope: c.scope, value: usage }); done(record);
+    };
+    old.onsuccess = used.onsuccess = current.onsuccess = currentUsage.onsuccess = games.onsuccess = finish;
+  });
+}
+
 // Arranque: crea la configuración inicial desde el CSV si no existe (migración conservadora) y,
 // mientras no haya ediciones, adopta los cambios del CSV como antes. Nunca toca partidos ni eventos.
 export async function loadButtonConfiguration({ csvText = null, csvConfiguration = null, csvError = null } = {}) {
+  const c = storageContext();
   let counts = null;
   try { counts = await eventCounts(); } catch { counts = null; }
   const hash = csvText === null ? null : textHash(csvText);
   const incoming = csvConfiguration ? docFromConfiguration(csvConfiguration) : null;
-  const record = await transact(['settings'], 'readwrite', (tx, result) => readRecord(tx, stored => {
+  assertContext(c);
+  const record = await transact(['settings'], 'readwrite', (tx, result, abort) => readRecord(tx, stored => {
+    if (storageContext() !== c) { abort('La cuenta o el equipo han cambiado.', 'SCOPE_CHANGED'); return; }
     if (!stored) {
       if (!incoming) { result(null); return; }
       const version = makeVersion(incoming, 'csv', null, hash);
@@ -222,26 +266,30 @@ export async function loadButtonConfiguration({ csvText = null, csvConfiguration
     result({ value: stored });
   }));
   if (!record) throw new Error(csvError || 'No hay configuración de botones disponible.');
-  const value = record.value, version = currentVersion(value);
+  const value = record.created && c.scope ? await recoverKnownPanels(c, record.value) : record.value;
+  const version = currentVersion(value);
   // Un CSV roto solo bloquea si la configuración vigente procede del propio CSV.
   if (csvError && ['csv', 'restore'].includes(version.source)) throw new Error(csvError);
   return { record: value, version, configuration: configurationFromDoc(version.doc), created: Boolean(record.created), adopted: Boolean(record.adopted) };
 }
 
-// Guardado atómico: un único put tras comprobar que nadie ha guardado antes (otra pestaña).
-// gameId (Fase 9C): la versión nueva pasa a ser la del partido activo, en la misma transacción.
-export async function saveButtonConfiguration(doc, baseRevision, { source = 'editor', csvHash = null, gameId = null } = {}) {
+// Guardado atómico tras comprobar que nadie ha guardado antes (otra pestaña).
+// Versión, asociación, snapshot del partido y outbox comparten transacción.
+export async function saveButtonConfiguration(doc, baseRevision, { source = 'editor', csvHash = null, gameId = null, baseVersionId = null } = {}) {
+  const c = storageContext();
   const errors = validateDoc(doc);
   if (errors.length) throw Object.assign(new Error(errors.join(' ')), { code: 'INVALID_CONFIG' });
   let counts = null;
   try { counts = await eventCounts(); } catch {}
-  const value = await transact(['settings'], 'readwrite', (tx, result, abort) => readRecord(tx, stored => {
+  assertContext(c);
+  const value = await transact(c.scope ? SYNC_STORES : ['settings'], 'readwrite', (tx, result, abort) => readRecord(tx, stored => {
+    if (storageContext() !== c) { abort('La cuenta o el equipo han cambiado.', 'SCOPE_CHANGED'); return; }
     if (!stored || stored.revision !== baseRevision) {
       abort('La configuración ha cambiado en otra pestaña. Cierra el editor y vuelve a abrirlo.', 'CONFIG_CONFLICT'); return;
     }
     // Ningún ID nuevo puede coincidir con uno emitido antes para otro elemento. Restaurar puede
     // recuperar los IDs del propio CSV: son los mismos elementos, no una reutilización.
-    const before = currentVersion(stored).doc, known = idsInDoc(before);
+    const before = (stored.versions.find(version => version.id === baseVersionId) ?? currentVersion(stored)).doc, known = idsInDoc(before);
     const used = { actions: new Set(stored.usedIds.actions), defenses: new Set(stored.usedIds.defenses) };
     const ids = idsInDoc(doc);
     const checkReuse = source === 'editor';
@@ -250,21 +298,43 @@ export async function saveButtonConfiguration(doc, baseRevision, { source = 'edi
     // Borrar del todo solo elementos sin tiros registrados.
     for (const id of known.actions) if (!ids.actions.has(id) && counts?.actions.get(id)) { abort('No se puede borrar un elemento con tiros registrados; retíralo.', 'HAS_EVENTS'); return; }
     for (const id of known.defenses) if (!ids.defenses.has(id) && counts?.defenses.get(id)) { abort('No se puede borrar una defensa con tiros registrados; retírala.', 'HAS_EVENTS'); return; }
-    const version = makeVersion(doc, source, stored.currentId, csvHash);
+    const version = makeVersion(doc, source, baseVersionId ?? stored.currentId, csvHash);
     const next = { ...stored, revision: stored.revision + 1, currentId: version.id, usedIds: unionUsed(stored.usedIds, doc, counts),
       versions: [...stored.versions, version], updatedAt: version.createdAt };
-    putRecord(tx, next);
-    if (!gameId) { result({ record: next, usage: null }); return; }
-    const usageRequest = tx.objectStore('settings').get(USAGE_KEY);
-    usageRequest.onsuccess = () => {
-      const usage = usageRequest.result?.value ?? {};
-      const list = (usage[gameId] ?? []).filter(id => id !== version.id);
-      const nextUsage = { ...usage, [gameId]: [...list, version.id] };
-      tx.objectStore('settings').put({ key: USAGE_KEY, value: nextUsage });
-      result({ record: next, usage: nextUsage });
+    const finish = game => {
+      if (c.scope) {
+        const panel = panelSnapshot(next);
+        queuePanel(tx, c, PANEL_DEFAULT, panel, stored.syncHead ?? null);
+        next.syncHead = version.id;
+        if (gameId) {
+          tx.objectStore('cloudGames').put({ ...game, panel });
+          queuePanel(tx, c, gameId, panel, game.panel?.version.id ?? null);
+        }
+      }
+      putRecord(tx, next);
+      if (!gameId) { result({ record: next, usage: null }); return; }
+      const usageRequest = tx.objectStore('settings').get(panelKey(USAGE_KEY, c));
+      usageRequest.onsuccess = () => {
+        const usage = usageRequest.result?.value ?? {};
+        const list = (usage[gameId] ?? []).filter(id => id !== version.id);
+        const nextUsage = { ...usage, [gameId]: [...list, version.id] };
+        tx.objectStore('settings').put({ key: panelKey(USAGE_KEY, c), value: nextUsage, scope: c.scope });
+        result({ record: next, usage: nextUsage });
+      };
+    };
+    if (!c.scope || !gameId) { finish(null); return; }
+    const gameRequest = tx.objectStore('cloudGames').get([c.scope, gameId]);
+    gameRequest.onsuccess = () => {
+      if (!gameRequest.result || gameRequest.result.deleted) { abort('El partido ya no existe.', 'GAME_NOT_FOUND'); return; }
+      const events = tx.objectStore('cloudEvents').index('byGame').getAll([c.scope, gameId]);
+      events.onsuccess = () => {
+        if (events.result.some(event => !event.deleted)) { abort('Este partido ya tiene tiros: su panel no se puede cambiar.', 'HAS_EVENTS'); return; }
+        finish(gameRequest.result);
+      };
     };
   }));
   notifyConfigChange(value.record.revision);
+  if (c.scope) globalThis.dispatchEvent?.(new Event('defensas-sync-local'));
   const saved = currentVersion(value.record);
   return { record: value.record, usage: value.usage, version: saved, configuration: configurationFromDoc(saved.doc) };
 }
@@ -278,20 +348,21 @@ export function recordGameUsage(gameId, versionId) {
   if (!gameId || !versionId) return Promise.resolve(null);
   // Devuelve el mapa resultante en la misma transacción: no hace falta una lectura posterior.
   return transact(['settings'], 'readwrite', (tx, result) => {
-    const request = tx.objectStore('settings').get(USAGE_KEY);
+    const c = storageContext();
+    const request = tx.objectStore('settings').get(panelKey(USAGE_KEY, c));
     request.onsuccess = () => {
       const value = request.result?.value ?? {};
       const list = value[gameId] ?? [];
       if (list.at(-1) === versionId) { result(value); return; }
       const next = { ...value, [gameId]: [...list.filter(id => id !== versionId), versionId] };
-      tx.objectStore('settings').put({ key: USAGE_KEY, value: next });
+      tx.objectStore('settings').put({ key: panelKey(USAGE_KEY, c), value: next, scope: c.scope });
       result(next);
     };
   });
 }
 export function readGameUsage() {
   return transact(['settings'], 'readonly', (tx, result) => {
-    const request = tx.objectStore('settings').get(USAGE_KEY);
+    const request = tx.objectStore('settings').get(panelKey(USAGE_KEY, storageContext()));
     request.onsuccess = () => result(request.result?.value ?? {});
   });
 }
@@ -300,10 +371,11 @@ export function readGameUsage() {
 // Fase 9B y tiene tiros, la inicial; si no tiene tiros, la vigente.
 // Fase 9E: un partido con tiros nunca cambia de panel. Sin tiros, si usa la configuración del archivo
 // (csv/restaurar), sigue los cambios de categorias.csv; en cuanto se edita su panel, queda fijo.
+// Fase 14: en un equipo sincronizado el snapshot del partido queda fijo también si procede del CSV.
 const followsFile = version => ['csv', 'restore'].includes(version?.source);
 export function versionForGame(record, usage, gameId, hasEvents) {
   const id = usage?.[gameId]?.at(-1) ?? (hasEvents ? record.baselineId : record.currentId);
   const version = record.versions.find(v => v.id === id) ?? currentVersion(record);
   const current = currentVersion(record);
-  return !hasEvents && followsFile(version) && followsFile(current) ? current : version;
+  return !storageContext().scope && !hasEvents && followsFile(version) && followsFile(current) ? current : version;
 }

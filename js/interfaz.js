@@ -23,9 +23,9 @@ export function initializeMenu() {
     else if (restoreFocus) button.focus();
   };
   button.addEventListener("click", () => setOpen(menu.hidden));
-  // Editar botones, exportar y eliminar cierran el menú; el diálogo de eliminar toma el foco.
+  // Editar, exportar, vaciar y eliminar cierran el menú; los diálogos toman el foco.
   menu.addEventListener("click", event => {
-    if (event.target.closest("#editButtonsBtn, #exportCsvBtn, #deleteGameBtn")) setOpen(false);
+    if (event.target.closest("#editButtonsBtn, #exportCsvBtn, #clearGameBtn, #deleteGameBtn")) setOpen(false);
   });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && !menu.hidden) setOpen(false, true);

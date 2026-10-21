@@ -236,10 +236,10 @@ export function initializeEditor({ state, onSaved, navigate, setFeedback = () =>
     if (!panel) return;
     fitRegistro(panel, { narrow: panel.clientWidth < 660, checkHeight: matchMedia('(min-width: 900px) and (min-height: 560px), (min-width: 700px) and (min-height: 900px)').matches });
   }
-  const renderParts = () => {
+  const renderParts = ({ updateBar = true } = {}) => {
     if (!draft) return;
     const focusAct = document.activeElement?.dataset?.act, focusList = document.activeElement?.dataset?.list;
-    view.querySelector('.edit-bar').outerHTML = barMarkup();
+    if (updateBar) view.querySelector('.edit-bar').outerHTML = barMarkup();
     view.querySelector('.edit-dock').outerHTML = dockMarkup();
     if (focusAct) view.querySelector(`[data-act="${focusAct}"]${focusList ? `[data-list="${focusList}"]` : ''}:not(:disabled)`)?.focus({ preventScroll: true });
   };
@@ -258,7 +258,13 @@ export function initializeEditor({ state, onSaved, navigate, setFeedback = () =>
   }
   function scheduleCapacity() {
     clearTimeout(capacityTimer);
-    capacityTimer = setTimeout(() => { if (!draft) return; capacity = computeCapacity(); renderParts(); }, 120);
+    capacityTimer = setTimeout(() => {
+      if (!draft) return;
+      capacity = computeCapacity();
+      // Solo cambian los botones de añadir. Conservar el campo evita perder
+      // foco, selección y teclado virtual al terminar el recálculo diferido.
+      renderParts({ updateBar: false });
+    }, 120);
   }
 
   function change(mutator) {
@@ -297,7 +303,7 @@ export function initializeEditor({ state, onSaved, navigate, setFeedback = () =>
     if (errors.length) { alertText = errors[0]; selected = null; renderParts(); return; }
     try {
       const doc = finalizeIds(structuredClone(draft), buttonRecord);
-      const loaded = await saveButtonConfiguration(doc, baseRevision, { source: 'editor', gameId: game?.id ?? null });
+      const loaded = await saveButtonConfiguration(doc, baseRevision, { source: 'editor', gameId: game?.id ?? null, baseVersionId: state().buttonVersion?.id ?? null });
       dirty = false;
       await onSaved(loaded);
       navigate('registro');

@@ -1,6 +1,7 @@
 import { syncSettings } from './sync-config.js';
 import { upgradeSyncSchema, storageContext, filterLegacyGames, guardLegacyGame, claimLocalGame, stampState,
-  readCloudState, createCloudGame, selectCloudGame, deleteCloudGame, addCloudEvent, undoCloudEvent, exportCloudGame } from './sync-storage.js';
+  readCloudState, createCloudGame, selectCloudGame, deleteCloudGame, clearCloudGame, addCloudEvent, undoCloudEvent, exportCloudGame,
+  sameIds } from './sync-storage.js';
 const DB_NAME = "registro_defensivo_baloncesto";
 let db;
 let opening;
@@ -88,11 +89,11 @@ export function readState() {
   });
 }
 
-export function createGameAndSelect(game) {
+export function createGameAndSelect(game, panel = null) {
   if (!game.id || !game.jornada?.trim() || !game.rival?.trim()) {
     return Promise.reject(new Error("Jornada y rival son obligatorios."));
   }
-  if (storageContext().scope) return createCloudGame(game);
+  if (storageContext().scope) return createCloudGame(game, storageContext(), panel);
   return transact(["games", "events", "settings"], "readwrite", (tx, result) => {
     tx.objectStore("games").add(game);
     claimLocalGame(tx, game.id);
@@ -139,12 +140,33 @@ export function deleteGame(gameId) {
   });
 }
 
-export function addEvent(event, allowedShots = event.tiros_permitidos) {
+// Fase 10: vaciar partido. Borra todos sus tiros en una sola transacción y conserva el partido
+// (ID, jornada y rival). Solo si los tiros siguen siendo exactamente los que vio el usuario al confirmar.
+export function clearGameEvents(gameId, expectedIds) {
+  if (!Array.isArray(expectedIds)) return Promise.reject(new Error("Faltan los tiros confirmados."));
+  if (storageContext().scope) return clearCloudGame(gameId, expectedIds);
+  return transact(["games", "events", "settings"], "readwrite", (tx, result, abort) => {
+    const game = tx.objectStore("games").get(gameId);
+    game.onsuccess = () => guardLegacyGame(tx, gameId, abort, () => {
+      if (!game.result) { abort("El partido ya no existe. No se ha borrado nada."); return; }
+      const request = tx.objectStore("events").index("byGameId").getAll(IDBKeyRange.only(gameId));
+      request.onsuccess = () => {
+        if (!sameIds(request.result.map(event => event.id), expectedIds)) {
+          abort("El partido ha cambiado mientras confirmabas. No se ha borrado nada.", "GAME_CHANGED"); return;
+        }
+        for (const event of request.result) tx.objectStore("events").delete(event.seq);
+        snapshot(tx, result, gameId);
+      };
+    });
+  });
+}
+
+export function addEvent(event, allowedShots = event.tiros_permitidos, panel = null) {
   if (![2, 3].includes(event.valor_tiro) || !["anotado", "fallado"].includes(event.resultado) ||
       (allowedShots && !allowedShots.includes(event.valor_tiro))) {
     return Promise.reject(new Error("El resultado no está permitido para esta acción."));
   }
-  if (storageContext().scope) return addCloudEvent(event);
+  if (storageContext().scope) return addCloudEvent(event, storageContext(), panel);
   return transact(["games", "events"], "readwrite", (tx, result, abort) => {
     const game = tx.objectStore("games").get(event.gameId);
     game.onsuccess = () => guardLegacyGame(tx, event.gameId, abort, () => {

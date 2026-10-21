@@ -81,6 +81,10 @@ body:is([data-view="estadisticas"], [data-view="editar"]) .scoreboard { display:
 .save-status.is-saving .status-dot { background: var(--empty); }
 .save-status.is-error { color: var(--coral-text); }
 .save-status.is-error .status-dot { background: var(--coral); }
+/* Fase 10: sin indicador permanente. Guardando/Guardado solo se anuncian a lectores de pantalla;
+   el estado se ve únicamente cuando hay un error. */
+.save-status:not(.is-error) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.save-status.is-error { height: 32px; padding: 0 12px 0 10px; border-radius: 999px; background: var(--worst-bg); }
 .header-tools { margin-left: auto; display: flex; align-items: center; gap: 10px; flex: none; }
 .view-switch { display: flex; padding: 4px; border-radius: 999px; background: var(--switch); gap: 2px; }
 .view-switch button { height: 36px; min-width: 44px; padding: 0 16px 0 12px; border: 0; border-radius: 999px; background: transparent; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--label); white-space: nowrap; }
@@ -148,8 +152,11 @@ body:is([data-view="estadisticas"], [data-view="editar"]) .scoreboard { display:
 .dialog-error { min-height: 1.2em; margin: 4px 0 8px; color: var(--coral-text); font-size: 13px; font-weight: 700; }
 .dialog-error:empty { min-height: 0; margin: 0; }
 .dialog-buttons { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.dialog-buttons .pill:not(.pill-new):not(.delete-confirm-button) { background: var(--tile); box-shadow: none; }
+.dialog-buttons .pill:not(.pill-new):not(.delete-confirm-button):not(.pill-primary) { background: var(--tile); box-shadow: none; }
 .delete-confirm-button { background: var(--ink); color: var(--white); }
+.dialog-buttons .pill-primary { background: var(--ink); color: var(--white); box-shadow: none; }
+.dialog-buttons .danger-button { color: var(--coral-text); }
+.pill-primary:disabled, .danger-button:disabled { opacity: .45; }
 
 /* iPad horizontal y escritorio: Registro ocupa justo el alto visible sobre la barra. */
 @media (min-width: 900px) and (min-height: 560px), (min-width: 700px) and (min-height: 900px) {
@@ -171,15 +178,18 @@ body:is([data-view="estadisticas"], [data-view="editar"]) .scoreboard { display:
 
 /* Tablet vertical y móvil */
 @media (max-width: 999px) {
-  .header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto auto; grid-template-areas: "brand status status score more" "picker picker new undo switch"; row-gap: 10px; }
+  .header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto auto; grid-template-areas: "brand status account account account" "picker picker new undo switch"; row-gap: 10px; }
   .brand { grid-area: brand; }
-  .save-status { grid-area: status; }
+  .save-status { grid-area: status; justify-self: start; }
   .game-picker { grid-area: picker; min-width: 0; }
   #newGameBtn { grid-area: new; }
   .header-tools { display: contents; }
-  .header > .header-tools > .more { grid-area: more; justify-self: end; }
+  /* «⋯» y el avatar comparten la celda derecha de la primera fila. */
+  .header > .header-tools > .more { grid-area: account; justify-self: end; margin-right: 52px; }
+  .header > .header-tools > .profile { grid-area: account; justify-self: end; }
   .header-tools > .undo-button { grid-area: undo; }
-  .header-tools > .scoreboard { grid-area: score; justify-self: end; }
+  /* Marcador, «⋯» y avatar alineados a la derecha en la primera fila. */
+  .header-tools > .scoreboard { grid-area: account; justify-self: end; margin-right: 106px; }
   .header-tools > .view-switch { grid-area: switch; }
   .result-btn { gap: 8px; padding: 0 12px 0 7px; }
   .result-btn:nth-child(2) { margin-right: 8px; }
@@ -188,9 +198,9 @@ body:is([data-view="estadisticas"], [data-view="editar"]) .scoreboard { display:
 }
 @media (max-width: 699px) {
   :root { --pad-x: 16px; }
-  .header { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "brand score status more" "picker picker picker new" "undo switch switch switch"; }
+  .header { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "brand score status account" "picker picker picker new" "undo switch switch switch"; }
   .header-tools > .view-switch { justify-self: stretch; }
-  .header-tools > .scoreboard { justify-self: start; }
+  .header-tools > .scoreboard { grid-area: score; justify-self: start; margin-right: 0; }
   /* En móvil el estado se reduce al punto; el texto sigue disponible para lectores de pantalla. */
   #saveStatusText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .scoreboard { padding: 0 12px; }
