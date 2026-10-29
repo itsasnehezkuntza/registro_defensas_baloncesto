@@ -213,8 +213,7 @@ function setSaveStatus(status, description) {
   const element = $("#saveStatus");
   element.classList.toggle("is-saving", status === "saving");
   element.classList.toggle("is-error", status === "error");
-  // V4 muestra «Guardado»; «localmente» se conserva para lectores de pantalla.
-  if (!description && status === "saved") $("#saveStatusText").innerHTML = 'Guardado<span class="sr-only"> localmente</span>';
+  if (!description && status === "saved") $("#saveStatusText").textContent = 'Guardado en este dispositivo';
   else $("#saveStatusText").textContent = description || ({ saving: "Guardando…", error: "Error al guardar" })[status];
 }
 
@@ -268,8 +267,10 @@ async function selectGame(gameId) {
       const state = await selectGameState(gameId || null);
       if (ticket === revision) {
         applyState(state);
-        markSaved();
       }
+      // La transacción ya terminó aunque un refresco de Sync haya invalidado
+      // la presentación capturada. No dejar «Guardando» por una selección vieja.
+      markSaved();
       notifyChange(gameId);
     });
   } catch (error) {

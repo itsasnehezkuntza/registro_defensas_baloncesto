@@ -36,13 +36,11 @@ export async function verifySyncUI(browser) {
     await createGame(a, 'Antiguo ficticio UI');
     await a.locator('.action-btn').first().click(); await a.locator('[data-points="2"][data-result="fallado"]').click(); await idle(a);
     await emulatorLogin(a, 'sync-ui@ficticio.test', 'Propietario ficticio');
+    await a.locator('#teamSetup').waitFor({ state: 'visible' });
+    assert(await a.locator('#newGameBtn').isDisabled(), 'Sin equipo no se registra con cuenta');
+    await a.locator('#teamSetupName').fill('Equipo ficticio UI');
+    await a.locator('#teamSetupCreate').click();
     assert(await answerLocalData(a, 'upload'), 'Pregunta por los partidos locales al iniciar sesión');
-    // Sin equipo todavía: se abre el perfil para crearlo y después la revisión con los partidos marcados.
-    await a.locator('#profileMenu').waitFor({ state: 'visible' });
-    await a.waitForFunction(() => !document.querySelector('#syncCreateTeam').disabled);
-    assert.match(await a.locator('#syncDetail').textContent(), /equipo para subir/);
-    a.once('dialog', dialog => dialog.accept('Equipo ficticio UI'));
-    await a.locator('#syncCreateTeam').click();
     await a.locator('.sync-dialog').waitFor({ state: 'visible' });
     assert.equal(await a.locator('#syncReviewList input:checked').count(), 1, 'Tras «Subir a mi cuenta» los partidos llegan marcados');
     assert.match(await a.locator('#syncDestination').textContent(), /sync-ui@ficticio.test.*Equipo ficticio UI/);
@@ -72,9 +70,8 @@ export async function verifySyncUI(browser) {
     await emulatorLogin(b, 'sync-ui@ficticio.test');
     assert(!await answerLocalData(b, 'keep', 1500), 'Sin partidos locales no se pregunta');
     const team = await a.evaluate(() => document.querySelector('#syncTeam').value);
-    await profile(b); await b.locator('#syncEnable').click();
     await b.waitForFunction(id => !!document.querySelector(`#syncTeam option[value="${id}"]`), team, { timeout: 30000 });
-    await b.locator('#syncTeam').selectOption(team); await idle(b); await closeProfile(b);
+    await idle(b); await closeProfile(b);
     await b.waitForFunction(id => !!document.querySelector(`#gameSelect option[value="${id}"]`), gid, { timeout: 30000 });
     await b.locator('#gameSelect').selectOption(gid); await idle(b); await eventsIn(b, 1);
     await b.locator('.action-btn').first().click(); await b.locator('[data-points="2"][data-result="anotado"]').click(); await idle(b);
@@ -128,9 +125,11 @@ export async function verifySyncUI(browser) {
 
     // Cambio de cuenta en A: ningún dato de la primera cuenta.
     await emulatorLogin(a, 'otra@ficticio.test', 'Otra cuenta ficticia');
+    await a.locator('#teamSetup').waitFor({ state: 'visible' });
+    await a.locator('#teamSetupName').fill('Otro equipo ficticio UI'); await a.locator('#teamSetupCreate').click(); await idle(a);
     assert(!await answerLocalData(a, 'keep', 1500));
     assert.equal((await snapshot(a)).games.length, 0);
-    await profile(a); assert(await a.locator('#syncEnable').isVisible(), 'Otra cuenta no hereda la activación');
+    await profile(a); assert.equal(await a.locator('#syncEnable').count(), 0, 'No existe activación separada');
     await a.locator('#googleLogout').click();
     await a.waitForFunction(() => document.documentElement.dataset.login);
 
@@ -140,16 +139,17 @@ export async function verifySyncUI(browser) {
     await a.waitForFunction(id => !!document.querySelector(`#gameSelect option[value="${id}"]`), gid, { timeout: 30000 });
     await a.locator('#gameSelect').selectOption(gid); await idle(a); await eventsIn(a, 1); await synced(a);
 
-    // «Salir igualmente» con un cambio sin subir: se pierde de este dispositivo y nunca llega a B.
+    // Fase 22: no existe salida destructiva. Cancelar conserva y reconectar envía una sola vez.
     await ac.setOffline(true); await a.evaluate(() => dispatchEvent(new Event('offline')));
     await a.locator('.action-btn').first().click(); await a.locator('[data-points="2"][data-result="fallado"]').click(); await idle(a);
     await profile(a); await a.locator('#googleLogout').click();
     await a.locator('#logoutDialog').waitFor({ state: 'visible' });
-    await a.locator('#logoutForceBtn').click();
-    await a.waitForFunction(() => document.documentElement.dataset.login, undefined, { timeout: 30000 });
-    assert.equal(await cloudRows(a), 0);
+    assert.equal(await a.locator('#logoutForceBtn').count(), 0);
+    await a.locator('#logoutCancelBtn').click();
+    assert.equal((await snapshot(a)).events.length, 2);
     await ac.setOffline(false);
-    await b.waitForTimeout(7000); await synced(b); assert.equal((await snapshot(b)).events.length, 1);
+    await a.evaluate(() => dispatchEvent(new Event('online')));
+    await eventsIn(b, 2); await synced(a); await synced(b);
 
     assert.deepEqual(forbidden, []); assert.deepEqual(errors, []);
     for (const width of [1024, 390, 320]) {

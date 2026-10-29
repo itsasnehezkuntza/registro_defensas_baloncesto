@@ -14,15 +14,16 @@ const javaRoot = resolve(root, '.test-artifacts/java21');
 const jre = (await readdir(javaRoot).catch(() => [])).find(name => name.startsWith('jdk-'));
 if (jre) env.PATH = resolve(javaRoot, jre, 'bin') + delimiter + env.PATH;
 const mode = process.argv[2] || 'rules';
-if (!['rules', 'auth', 'sync', 'review8b2', 'preview8b3', 'receive8b4', 'receive8b6', 'receive8b7'].includes(mode)) throw Error('Modo de emulador desconocido');
+if (!['rules', 'auth', 'sync', 'account22', 'review8b2', 'preview8b3', 'receive8b4', 'receive8b6', 'receive8b7'].includes(mode)) throw Error('Modo de emulador desconocido');
 const args = mode === 'rules'
   ? ['emulators:exec', '--only', 'firestore', '--project', 'demo-defensas', 'node tools/firebase/rules.test.mjs']
+  : mode === 'account22' ? ['emulators:exec', '--only', 'firestore,auth', '--project', 'demo-defensas', 'node tools/firebase/account22.test.mjs']
   : mode === 'receive8b7' ? ['emulators:exec', '--only', 'firestore', '--project', 'demo-defensas', 'node tools/firebase/receive8b7.test.mjs']
   : mode === 'receive8b6' ? ['emulators:exec', '--only', 'firestore', '--project', 'demo-defensas', 'node tools/firebase/receive8b6.test.mjs']
   : mode === 'receive8b4' ? ['emulators:exec', '--only', 'firestore', '--project', 'demo-defensas', 'node tools/firebase/receive8b4.test.mjs']
   : mode === 'preview8b3' ? ['emulators:exec', '--only', 'firestore', '--project', 'demo-defensas', 'node tools/firebase/preview-account.test.mjs']
   : mode === 'review8b2' ? ['emulators:exec', '--only', 'firestore,auth', '--project', 'demo-defensas', 'node tools/firebase/review8b2.test.mjs']
   : mode === 'sync' ? ['emulators:exec', '--only', 'firestore,auth', '--project', 'demo-defensas', 'node tools/firebase/sync.test.mjs']
-  : ['emulators:exec', '--only', 'auth', '--project', 'demo-defensas', 'node tools/firebase/auth-browser.mjs'];
+  : ['emulators:exec', '--only', 'auth,firestore', '--project', 'demo-defensas', 'node tools/firebase/auth-browser.mjs'];
 const child = spawn(process.execPath, [resolve(root, 'node_modules/firebase-tools/lib/bin/firebase.js'), ...args], { cwd: root, env, stdio: 'inherit' });
 process.exitCode = await new Promise((ok, fail) => { child.on('exit', code => ok(code ?? 1)); child.on('error', fail); });

@@ -1,0 +1,35 @@
+# Contexto para continuar — Registro defensivo
+
+Actualizado el 29 de octubre de 2026. Publicación conjunta 22.0 autorizada, en preparación; consultar FASE22_PUBLICACION.md para el resultado definitivo. URL habitual: https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/ .
+
+## Trabajo terminado
+
+1. **Fase 21:** corregido el guardado del panel local: no permite editar un partido con tiros ni un partido eliminado, con comprobación atómica y sin escrituras parciales. Eventos, IDs y esquema IndexedDB conservados.
+2. **Fase 22:** dos modos claros. Sin cuenta, todo deportivo local en IndexedDB. Google activa Sync automáticamente y exige equipo; único automático, último válido o elección entre varios. Sin segundo botón de activación. Trabajo offline cuando el equipo está configurado, cola persistente y reintentos.
+3. **Históricos y cierre:** nunca se importan automáticamente; requieren selección y confirmación. Originales conservados e importación idempotente. Pendientes protegidos al cerrar/cambiar de cuenta; sin salida que descarte silenciosamente la cola. Estados visibles de guardado local, pendiente, confirmado y error/conflicto.
+4. **Fase 22.1:** preview de 24 horas, candidato `22.1-3cd65834dc6e9da4`; paquete/hashes HTTPS comprobados. El usuario confirma la guía física A–D en Safari/iPad: Google/equipo, recepción en ordenador, offline/reconexión y modo local/históricos. No se añaden pruebas no comunicadas a esa confirmación.
+5. **Publicación 22.0:** autorizada expresamente. Preparada desde copia aislada, conservando el trabajo acumulado de develop. Los módulos publicados deben coincidir con el candidato físico. No cambiar reglas, Auth, Hosting ni documentos reales para esta publicación.
+
+## Evidencia disponible
+
+- 28 grupos de cuentas/equipos en Chromium/WebKit con Auth/Firestore Emulator.
+- 40 grupos de Sync, 42 de integridad local, 11 archivos unitarios, arranque/editor/CSV y regresiones locales correctas.
+- FASE21_INTEGRIDAD_LOCAL.md, FASE22_CUENTAS.md y FASE22_1_VALIDACION_IPAD.md contienen alcance y límites. Recibos privados en `.test-artifacts/firebase/` y respaldos en `.local-backups/`.
+
+## Git y datos: conservar antes de continuar
+
+develop sigue en `7c439c149ad2bbe4e71749260e8b9d10f45c0d83`, con numerosos cambios previos y archivos sin seguimiento. No hacer reset, limpieza, cambio de rama ni commit masivo para igualarlo con main. La publicación se prepara en `.test-artifacts/publicacion22-repo`; comparar contra el respaldo y las referencias remotas antes de integrar otra fase.
+
+No borrar IndexedDB, cachés, sesiones o documentos para diagnosticar sincronización. No hacer migraciones reales ni importaciones de históricos sin confirmación. «Sincronizado» no equivale a copia independiente: un borrado autorizado puede propagarse.
+
+El preview `https://registro-defensivo--fase22-1-bsovr4vx.web.app` caduca el **30 de octubre de 2026 a las 17:09 de Madrid**, sin renovación. Su IndexedDB es distinta de Pages. Se añadió solo su dominio Auth con autorización expresa; la caducidad no borra los datos ficticios ni retira ese dominio. Cualquier limpieza se revisará aparte, sin eliminar partidos.
+
+## Pendientes para una próxima fase, sin autorización de implementación todavía
+
+1. **Partidos reales del entrenador:** el problema inicial no se ha diagnosticado sobre sus datos. Podrían estar solo en su dispositivo, pendientes, en otro equipo/cuenta o fuera de los permisos del propietario. Empezar por identificar dispositivo/origen/cuenta/equipo/estado y por metadatos/recuentos autorizados. No confundir registro de Authentication con respaldo de partidos. Conservar y revisar antes de importar; no duplicar ni sobrescribir.
+2. **Administración de lectura:** estudiar supervisor por equipo frente a administrador global, con reglas efectivas y asignación de privilegios no disponible para usuarios normales. No implementado; no confiar solo en email o UI; sin servidor propio si es viable.
+3. **Respaldo independiente de bajo coste:** pendiente de definir; no añadir infraestructura ni nuevos formatos de exportación deportivos sin solicitud. La aplicación continúa exportando CSV del partido activo.
+4. **Editor:** Cancelar/Deshacer al nombrar y cambiar «Quitar» por «Eliminar», pendientes del apartado 74 de ESPECIFICACION.md.
+5. **MOP-001:** refinamiento opcional del desplazamiento vacío en Safari; pendiente, prioridad baja.
+
+Ningún resultado de la prueba breve garantiza retención prolongada de Safari ni apertura de la web desde cero sin conexión: no hay nuevo service worker. No retomar campañas de escrituras ni ampliar el alcance sin nueva instrucción.

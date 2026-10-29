@@ -56,8 +56,8 @@ try {
     assert.equal((await snapshot(page)).events.length, 1);
     await page.reload(); await idle(page);
     assert.equal((await snapshot(page)).events.length, 1);
-    assert.equal(await page.locator('#cloudStatus').textContent(), 'Solo local');
-    assert.equal(await page.locator('#saveStatusText').textContent(), 'Guardado localmente');
+    assert.equal(await page.locator('#cloudStatus').textContent(), 'Guardado en este dispositivo');
+    assert.equal(await page.locator('#saveStatusText').textContent(), 'Guardado en este dispositivo');
     assert((await page.locator('#saveStatus').boundingBox()).width <= 1, 'Sin indicador visible de guardado');
     // V4: exportar está en el menú «⋯», que ya no contiene la cuenta.
     const download = page.waitForEvent('download'); await page.locator('#moreBtn').click();
@@ -109,8 +109,8 @@ try {
     await createGame(page, 'Error de cuenta · partido ficticio');
     await page.locator('.action-btn').first().click(); await page.locator('[data-points="2"][data-result="anotado"]').click(); await idle(page);
     assert.equal((await snapshot(page)).events.length, 1);
-    assert.equal(await page.locator('#saveStatusText').textContent(), 'Guardado localmente');
-    assert.equal(await page.locator('#cloudStatus').textContent(), 'Solo local');
+    assert.equal(await page.locator('#saveStatusText').textContent(), 'Guardado en este dispositivo');
+    assert.equal(await page.locator('#cloudStatus').textContent(), 'Guardado en este dispositivo');
     if (mode === 'sdk-stalled') {
       // Elegir sin cuenta invalida también el timeout/callback de la restauración.
       release();
@@ -123,7 +123,7 @@ try {
   const context = await browser.newContext(); await asLocal(context); const page = await context.newPage();
   const failures = []; page.on('response', r => { if (r.status() >= 400) failures.push(r.url()); });
   await page.goto('http://127.0.0.1:4198/registro_defensas_baloncesto/'); await idle(page);
-  assert.equal(await page.locator('#cloudStatus').textContent(), 'Solo local');
+  assert.equal(await page.locator('#cloudStatus').textContent(), 'Guardado en este dispositivo');
   assert.deepEqual(failures, []); reports.push({ pagesSubpath: true }); await context.close();
   await writeFile(new URL('local.json', out), JSON.stringify({ ok: true, reports }, null, 2));
   console.log('Fase 8A/10: regresiones 2–10, inicio de sesión, 7 tamaños sin peticiones externas, fallos Firebase, CSV y subruta correctos.');

@@ -20,7 +20,7 @@ try {
   const other = await a.create("10", "Otro ficticio");
   await shots(a, 2);
   const status = a.q("#saveStatus"), view = a.frame.contentWindow;
-  assert(a.q("#saveStatusText").textContent === "Guardado localmente", "Anuncio accesible de guardado perdido");
+  assert(a.q("#saveStatusText").textContent === "Guardado en este dispositivo", "Anuncio accesible de guardado perdido");
   assert(status.getAttribute("role") === "status" && status.getAttribute("aria-live") === "polite", "Región accesible ausente");
   assert(status.getBoundingClientRect().width <= 1 && view.getComputedStyle(status).clip !== "auto", "Indicador permanente visible");
   pass("Guardado: sin indicador visible, anuncio «Guardado localmente» para lectores de pantalla");
@@ -64,6 +64,7 @@ try {
   await until(() => a.q("#gameTotal").textContent.endsWith("/6"));
   a.q("#confirmClearBtn").click(); await a.idle();
   // El diálogo se abrió con 5: la confirmación se rechaza sin borrar y el recuento pasa a 6.
+  await until(() => a.q("#clearGameError").textContent.includes("ha cambiado"));
   assert((await ids(game)).length === 6 && dialog.open && a.q("#clearGameMessage").textContent.includes("6 tiros") &&
     a.q("#clearGameError").textContent.includes("ha cambiado"), "Vació tiros no vistos o no actualizó el recuento");
   a.q("#confirmClearBtn").click(); await a.idle();

@@ -397,10 +397,27 @@ export function accountUnsynced(uid) {
 // Cerrar sesión borra de este dispositivo los datos de la cuenta: copias de la nube, cola, lista de equipos
 // y partidos creados con esa cuenta sin subir. Una sola transacción e idempotente. Se conservan los partidos
 // sin cuenta, las copias originales ya importadas (datos previos del dispositivo) y la preferencia de equipo.
-export function purgeAccountData(uid) {
+export function purgeAccountData(uid, { protectUnsynced = false } = {}) {
   if (!hasSyncStorage() || !uid) return Promise.resolve({ rows: 0, localGames: 0 });
   const summary = { rows: 0, localGames: 0 }, account = accountKey(uid);
-  return transact(['games', 'events', 'settings', ...SYNC_STORES], 'readwrite', (tx, done) => {
+  return transact(['games', 'events', 'settings', ...SYNC_STORES], 'readwrite', (tx, done, abort) => {
+    // Fase 22: la UI vuelve a comprobar dentro de la misma transacción que borra.
+    // Cubre un tiro de otra pestaña posterior al aviso y purgas aplazadas de 20.0.
+    if (protectUnsynced) {
+      const queue = tx.objectStore('syncQueue').getAll(), meta = tx.objectStore('syncMeta').getAll(), games = tx.objectStore('games').getAllKeys();
+      let loaded = 0;
+      const check = () => {
+        if (++loaded !== 3) return;
+        const ids = new Set(games.result);
+        if (queue.result.some(op => op.uid === uid && op.projectId === projectId) ||
+          meta.result.some(row => row.key.startsWith(LEGACY) && row.uid === uid && !row.imported && ids.has(JSON.parse(row.key.slice(LEGACY.length))))) {
+          abort('Los datos sin sincronizar se conservan en este dispositivo. Vuelve a esta cuenta para recuperarlos.', 'UNSYNCED_DATA'); return;
+        }
+        remove();
+      };
+      queue.onsuccess = check; meta.onsuccess = check; games.onsuccess = check;
+    } else remove();
+    function remove() {
     done(summary);
     for (const name of ['cloudGames', 'cloudEvents', 'cloudTombs', 'syncQueue', 'syncBindings']) {
       const request = tx.objectStore(name).openCursor();
@@ -436,6 +453,7 @@ export function purgeAccountData(uid) {
       if (ownsScope(cursor.value.scope, uid)) { cursor.delete(); summary.rows++; }
       cursor.continue();
     };
+    }
   });
 }
 // Partidos guardados sin cuenta en este dispositivo (para preguntar una vez al iniciar sesión).
@@ -458,8 +476,8 @@ export function listLegacyForImport() {
     const games = tx.objectStore('games').getAll(), events = tx.objectStore('events').getAll(), meta = tx.objectStore('syncMeta').getAll();
     let count = 0;
     const finish = () => { if (++count !== 3) return;
-      const owners = new Map(meta.result.map(row => [row.key, row.uid]));
-      done(games.result.filter(game => !owners.has(ownerKey(game.id)) || owners.get(ownerKey(game.id)) === uid)
+      const owners = new Map(meta.result.map(row => [row.key, row]));
+      done(games.result.filter(game => !owners.has(ownerKey(game.id)) || (owners.get(ownerKey(game.id)).uid === uid && !owners.get(ownerKey(game.id)).imported))
         .map(game => ({ game, events: events.result.filter(event => event.gameId === game.id).sort((a, b) => a.seq - b.seq) })));
     };
     games.onsuccess = finish; events.onsuccess = finish; meta.onsuccess = finish;
@@ -502,7 +520,8 @@ export function legacyImportIssue(item) {
 }
 export async function importLegacy(reviewed, c, confirmed = false) {
   assertContext(c);
-  if (!c.scope || !confirmed || !reviewed.length) throw Error('Revisa y confirma cuenta, equipo y partidos.');
+  if (!c.scope || !confirmed) throw Error('Revisa y confirma cuenta, equipo y partidos.');
+  if (!reviewed.length) return [];
   const issue = reviewed.map(legacyImportIssue).find(Boolean); if (issue) throw Error(issue);
   const source = await sourceIdentity();
   const plan = await Promise.all(reviewed.map(async item => ({ ...item,
@@ -524,6 +543,7 @@ export async function importLegacy(reviewed, c, confirmed = false) {
             const binding = tx.objectStore('syncBindings').get([c.scope, item.game.id]);
             binding.onsuccess = () => {
               if (binding.result) return;
+              if (owner.result?.imported) { abort('Este partido ya está incorporado a un equipo. Abre su equipo original para continuar.', 'ALREADY_IMPORTED'); return; }
               tx.objectStore('syncMeta').put({ key: ownerKey(item.game.id), uid: c.uid, imported: true });
               tx.objectStore('syncBindings').add({ key: [c.scope, item.game.id], scope: c.scope, gameId: item.gid, source });
               tx.objectStore('cloudGames').add({ key: [c.scope, item.gid], scope: c.scope, gameId: item.gid, payload: item.game, sourceId: source, deleted: false });

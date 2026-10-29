@@ -70,6 +70,7 @@ assert.equal(loginScreenVisible({ ...base, mode: 'google', status: 'loading' }),
 assert.equal(loginScreenVisible({ ...base, mode: 'google', status: 'error' }), true, 'el error exige reintentar o elegir sin cuenta');
 assert.equal(loginScreenVisible({ ...base, mode: 'google', user: { uid: 'a' }, restoring: true }), true, 'esperar también al equipo');
 assert.equal(loginScreenVisible({ ...base, mode: 'google', user: { uid: 'a' }, restoreError: 'Equipo no recuperado' }), true);
+assert.equal(loginScreenVisible({ ...base, mode: 'google', user: { uid: 'a' }, needsTeam: true }), true, 'Google sin equipo mantiene el registro bloqueado');
 assert.equal(loginScreenVisible({ ...base, mode: 'google', user: { uid: 'a' } }), false, 'cuenta y equipo resueltos');
 assert.equal(loginScreenVisible({ ...base, mode: 'google' }), true, 'sesión perdida o cerrada');
 assert.equal(loginScreenVisible({ ...base, mode: null, user: { uid: 'a' } }), false);

@@ -1,4 +1,5 @@
-// Controlador sin DOM ni acceso a datos deportivos. La cuenta no implica subirlos.
+// Controlador de Authentication sin DOM ni datos deportivos. La UI exige equipo
+// antes de registrar con cuenta; los históricos requieren confirmación aparte.
 export function authErrorText(error) {
   return ({
     "auth/popup-blocked": "Safari o el navegador ha bloqueado la ventana. Permite ventanas emergentes para este sitio y vuelve a pulsar Iniciar sesión con Google.",
@@ -27,10 +28,10 @@ export function writeAccountMode(mode, storage = globalThis.localStorage) {
 }
 
 // Pantalla de inicio: al abrir sin sesión ni elección previa, al perder la sesión de Google o a petición.
-export function loginScreenVisible({ enabled, mode, user, requested = false, restoring = false, restoreError = "" }) {
+export function loginScreenVisible({ enabled, mode, user, requested = false, restoring = false, restoreError = "", needsTeam = false }) {
   if (!enabled) return false;
   if (mode === "local" && !requested) return false;
-  if (restoring || restoreError) return true;
+  if (restoring || restoreError || needsTeam) return true;
   if (user) return false;
   if (requested) return true;
   if (mode === "local") return false;

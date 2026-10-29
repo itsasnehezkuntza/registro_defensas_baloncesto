@@ -4,7 +4,7 @@ process.env.PLAYWRIGHT_BROWSERS_PATH = fileURLToPath(new URL('../../.test-artifa
 export const { chromium } = await import('@playwright/test');
 export const idle = page => page.waitForFunction(() => !document.querySelector('#gameSelect').disabled);
 // La aplicación puede terminar de cargar y mantener el registro bloqueado por sesión.
-export const initialized = page => page.waitForFunction(() => document.querySelector('#saveStatusText')?.textContent === 'Guardado localmente');
+export const initialized = page => page.waitForFunction(() => /^(Guardado localmente|Guardado en este dispositivo)$/.test(document.querySelector('#saveStatusText')?.textContent));
 export async function createGame(page, rival = 'Ficticio F8A') {
   await page.locator('#newGameBtn').click();
   await page.locator('#roundInput').fill('8A'); await page.locator('#rivalInput').fill(rival);

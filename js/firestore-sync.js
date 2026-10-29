@@ -26,7 +26,7 @@ export function createFirestoreTransport(sdk, database, uid, currentUid) {
         sdk.getDocFromServer(sdk.doc(database, 'teams', teamId, 'members', uid))
       ]);
       guard();
-      if (team.data()?.ownerUid !== uid || member.data()?.role !== 'owner' || member.data()?.status !== 'active') throw Error('El equipo no está autorizado.');
+      if (team.data()?.ownerUid !== uid || member.data()?.role !== 'owner' || member.data()?.status !== 'active') throw Object.assign(Error('El equipo no está autorizado.'), { code: 'permission-denied' });
       return { id: team.id, name: team.data().name };
     },
     async createTeam(name, teamId = crypto.randomUUID()) {

@@ -148,7 +148,7 @@ try {
   await d.reload(); await initialized(d); await d.waitForFunction(() => window.F12); await d.evaluate(() => F12.resolve());
   await d.waitForFunction(() => window.F12Teams); await locked(d); await unchanged(d, beforeD);
   await d.evaluate(() => F12Teams.reject()); await d.locator('#loginRetry').waitFor({ state: 'visible' });
-  await locked(d); assert.match(await d.locator('#loginMessage').textContent(), /recuperar tu equipo/);
+  await locked(d); assert.match(await d.locator('#loginMessage').textContent(), /preparar tu equipo/);
   await d.locator('#loginLocal').click(); await idle(d);
   assert.equal((await snapshot(d)).games[0].rival, 'LOCAL FICTICIO');
   pass('Equipo preferido sin caché y servidor inaccesible: sin salto silencioso a partidos locales');
@@ -159,7 +159,7 @@ try {
     await missing.evaluate(() => F12.resolve()); await missing.waitForFunction(() => window.F12Teams);
     if (cache) await idle(missing);
     await missing.evaluate(() => F12Teams.resolve(true));
-    await missing.locator('#loginRetry').waitFor({ state: 'visible' }); await locked(missing); await unchanged(missing, beforeMissing);
+    await missing.locator('#teamSetup').waitFor({ state: 'visible' }); await locked(missing); await unchanged(missing, beforeMissing);
     assert.equal(await missing.evaluate(async () => (await import('./js/sync-storage.js')).syncPreference('cuenta-ficticia-12')), team.id);
   }
   pass('Equipo ausente o sin acceso, con y sin caché: bloqueo explícito y preferencia conservada para reintentar');
