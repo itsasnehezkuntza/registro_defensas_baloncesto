@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#E7E7E4">
   <meta name="description" content="Registro defensivo de baloncesto con guardado local y cuenta de Google opcional.">
-  <meta name="app-version" content="20.0">
+  <meta name="app-version" content="22.0">
   <title>Registro defensivo · Baloncesto</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./registro.css">
@@ -33,13 +33,24 @@
         <div>
           <p class="login-eyebrow">Bienvenido</p>
           <h2 id="loginTitle">Inicia sesión</h2>
-          <p class="login-intro">Entra con tu cuenta de Google para acceder a tus partidos.</p>
+          <p id="loginIntro" class="login-intro">Con Google, tus partidos se sincronizan con tu equipo. Sin cuenta, se guardan en este dispositivo.</p>
         </div>
         <button id="loginGoogle" type="button" class="google-button google-button-large" disabled><svg class="google-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span id="loginGoogleText">Cargando…</span></button>
         <p id="loginMessage" class="login-message" role="status" aria-live="polite"></p>
         <button id="loginRetry" type="button" class="pill" hidden>Reintentar</button>
+        <div id="teamSetup" class="team-setup" hidden>
+          <p id="teamSetupIdentity" class="profile-note"></p>
+          <label id="teamSetupChoice" class="sync-team" hidden>Equipo<select id="teamSetupSelect" aria-label="Equipo para continuar"></select></label>
+          <button id="teamSetupContinue" type="button" class="pill pill-primary" hidden>Continuar con este equipo</button>
+          <form id="teamSetupForm">
+            <label class="sync-team" for="teamSetupName">Nombre de tu equipo</label>
+            <input id="teamSetupName" name="teamName" type="text" maxlength="120" required autocomplete="organization">
+            <button id="teamSetupCreate" type="submit" class="pill pill-primary">Crear equipo y continuar</button>
+          </form>
+          <button id="teamSetupLogout" type="button" class="pill">Usar otra cuenta</button>
+        </div>
         <div class="login-divider" aria-hidden="true"><span></span>o<span></span></div>
-        <button id="loginLocal" type="button" class="login-local">Continuar sin cuenta</button>
+        <button id="loginLocal" type="button" class="login-local">Continuar sin cuenta · modo local</button>
         <p class="login-note">Sin cuenta, los partidos se quedan solo en este dispositivo.</p>
       </div>
     </div>
@@ -94,7 +105,7 @@
               <p id="profileLocalNote" class="profile-note">Los partidos se guardan solo en este dispositivo.</p>
               <p id="profileSyncWarning" class="profile-warning" hidden></p>
               <div id="profileSync" class="profile-sync" hidden>
-                <p class="sync-status"><span class="sync-status-label">Sincronización</span> <span id="cloudStatus">Solo local</span></p>
+                <p class="sync-status"><span class="sync-status-label">Sincronización</span> <span id="cloudStatus">Guardado en este dispositivo</span></p>
               </div>
               <p id="accountMessage" class="profile-note" role="status" aria-live="polite" hidden></p>
               <button id="accountRetry" type="button" class="menu-item" hidden>Reintentar conexión</button>
@@ -105,6 +116,7 @@
         </div>
       </div>
     </header>
+    <p id="storageNotice" class="storage-notice" role="status" aria-live="polite">Cargando…</p>
 
     <main>
       <p id="noGameNotice" class="no-game-notice" role="status">Selecciona o crea un partido para registrar acciones.</p>
@@ -196,7 +208,6 @@
     <p id="logoutMessage"></p>
     <p id="logoutProgress" class="dialog-progress" role="status" aria-live="polite" hidden></p>
     <div class="dialog-buttons">
-      <button id="logoutForceBtn" type="button" class="pill danger-button">Salir igualmente</button>
       <button id="logoutCancelBtn" type="button" class="pill">Cancelar</button>
       <button id="logoutWaitBtn" type="button" class="pill pill-primary">Esperar</button>
     </div>

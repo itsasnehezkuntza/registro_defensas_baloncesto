@@ -4,7 +4,7 @@
 // Las versiones inmutables conservan ID, fecha y origen al sincronizarse.
 import { transact, allEvents } from './persistencia.js';
 import { eventIdentity, legacyIdentityIds } from './identidad.js';
-import { storageContext, assertContext, SYNC_STORES, queuePanel, configEvents } from './sync-storage.js';
+import { storageContext, assertContext, guardLegacyGame, SYNC_STORES, queuePanel, configEvents } from './sync-storage.js';
 import { panelKey, panelSnapshot, mergePanelRecord, PANEL_DEFAULT } from './panel-model.js';
 
 export const CONFIG_KEY = 'configuracionBotones';
@@ -274,7 +274,8 @@ export async function loadButtonConfiguration({ csvText = null, csvConfiguration
 }
 
 // Guardado atómico tras comprobar que nadie ha guardado antes (otra pestaña).
-// Versión, asociación, snapshot del partido y outbox comparten transacción.
+// La existencia del partido y la ausencia de tiros se comprueban en la misma tx
+// que versión/asociación (y, en Sync, snapshot del partido y outbox).
 export async function saveButtonConfiguration(doc, baseRevision, { source = 'editor', csvHash = null, gameId = null, baseVersionId = null } = {}) {
   const c = storageContext();
   const errors = validateDoc(doc);
@@ -282,7 +283,7 @@ export async function saveButtonConfiguration(doc, baseRevision, { source = 'edi
   let counts = null;
   try { counts = await eventCounts(); } catch {}
   assertContext(c);
-  const value = await transact(c.scope ? SYNC_STORES : ['settings'], 'readwrite', (tx, result, abort) => readRecord(tx, stored => {
+  const value = await transact(c.scope ? SYNC_STORES : gameId ? ['games', 'events', 'settings'] : ['settings'], 'readwrite', (tx, result, abort) => readRecord(tx, stored => {
     if (storageContext() !== c) { abort('La cuenta o el equipo han cambiado.', 'SCOPE_CHANGED'); return; }
     if (!stored || stored.revision !== baseRevision) {
       abort('La configuración ha cambiado en otra pestaña. Cierra el editor y vuelve a abrirlo.', 'CONFIG_CONFLICT'); return;
@@ -322,7 +323,19 @@ export async function saveButtonConfiguration(doc, baseRevision, { source = 'edi
         result({ record: next, usage: nextUsage });
       };
     };
-    if (!c.scope || !gameId) { finish(null); return; }
+    if (!gameId) { finish(null); return; }
+    if (!c.scope) {
+      const gameRequest = tx.objectStore('games').get(gameId);
+      gameRequest.onsuccess = () => guardLegacyGame(tx, gameId, abort, () => {
+        if (!gameRequest.result || gameRequest.result.deleted) { abort('El partido ya no existe.', 'GAME_NOT_FOUND'); return; }
+        const events = tx.objectStore('events').index('byGameId').count(gameId);
+        events.onsuccess = () => {
+          if (events.result) { abort('Este partido ya tiene tiros: su panel no se puede cambiar.', 'HAS_EVENTS'); return; }
+          finish(null);
+        };
+      });
+      return;
+    }
     const gameRequest = tx.objectStore('cloudGames').get([c.scope, gameId]);
     gameRequest.onsuccess = () => {
       if (!gameRequest.result || gameRequest.result.deleted) { abort('El partido ya no existe.', 'GAME_NOT_FOUND'); return; }

@@ -1,4 +1,4 @@
-// Fase 8C: disponible para uso interno; cada cuenta debe activarla en el menú.
+// Fase 22: Google activa Sync; el registro requiere un equipo seleccionado.
 export const syncSettings = Object.freeze({
   enabled: true,
   emulator: false,

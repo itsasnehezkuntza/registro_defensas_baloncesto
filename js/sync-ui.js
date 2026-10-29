@@ -5,23 +5,22 @@ import { createSyncEngine } from './sync-engine.js';
 import { setStorageIdentity, setStorageScope, storageContext, assertContext, cachedTeams, cacheTeams,
   syncPreference, listLegacyForImport, legacyImportIssue, importLegacy, listPending } from './sync-storage.js';
 
-// Fase 10: los controles viven en el menú de perfil (antes en «⋯»). Este módulo solo informa del estado;
-// cuenta-ui decide qué se ve (un punto en el avatar únicamente cuando hay un problema).
+// Fase 22: prepara el equipo al entrar con Google y coordina importación y Sync.
+// cuenta-ui bloquea el registro hasta resolver el equipo y presenta ambos estados.
 const FRIENDLY = {
   unavailable: 'Sin conexión con el servidor. Los cambios se subirán solos al recuperarla.',
   'permission-denied': 'Este equipo no permite el acceso con esta cuenta.',
   SYNC_CONFLICT: 'Hay un cambio que no coincide con el del servidor. Se conserva la copia local.'
 };
-export function initializeSyncUI(controller, { host = document.querySelector('#profileSync'), onState = () => {}, onNeedTeam = () => {} } = {}) {
+export function initializeSyncUI(controller, { host = document.querySelector('#profileSync'), onState = () => {} } = {}) {
   if (!host) return null;
   const section = document.createElement('div'); section.className = 'sync-controls'; section.hidden = true;
   section.innerHTML = `<p id="syncDetail" class="sync-detail" aria-live="polite"></p>
-    <button id="syncEnable" class="menu-item" type="button">Activar sincronización</button>
-    <div id="syncOptions" class="sync-options" hidden><label class="sync-team"><span>Equipo</span> <select id="syncTeam"><option value="">Solo local</option></select></label>
+    <div id="syncOptions" class="sync-options" hidden><label class="sync-team"><span>Equipo</span> <select id="syncTeam"><option value="" disabled>Elige un equipo</option></select></label>
     <button id="syncCreateTeam" class="menu-item" type="button">Crear equipo</button>
     <button id="syncImport" class="menu-item" type="button" disabled>Revisar partidos locales</button>
     <button id="syncRetry" class="menu-item" type="button" disabled>Reintentar sincronización</button>
-    <button id="syncDisable" class="menu-item" type="button">Desactivar sincronización aquí</button></div>`;
+    </div>`;
   host.append(section);
   const dialog = document.createElement('dialog'); dialog.className = 'game-dialog sync-dialog';
   dialog.setAttribute('aria-labelledby', 'syncReviewTitle');
@@ -35,12 +34,11 @@ export function initializeSyncUI(controller, { host = document.querySelector('#p
   let uid = null, accountVersion = -1, generation = 0, transport, engine, teams = [], user, review, reviewContext;
   let connected = false, teamBusy = false, importOffer = false, stopping = Promise.resolve();
   let lastAccount;
-  let restoring = false, restoreError = '';
-  let label = 'Solo local', detail = '', pending = 0, blocked = 0, pendingSince = null;
-  const consentKey = uid => 'defensas-sync-consent:' + JSON.stringify([storageContext().projectId, uid]);
-  const consent = uid => { try { return localStorage.getItem(consentKey(uid)) === 'enabled'; } catch { return false; } };
+  let restoring = false, restoreError = '', needsTeam = false, choosing = false;
+  const setup = $('teamSetup');
+  let label = 'Guardado en este dispositivo', detail = '', pending = 0, blocked = 0, pendingSince = null;
   const emit = () => onState({ signedIn: Boolean(uid), active: Boolean(storageContext().scope), connected, label, detail,
-    pending, blocked, pendingSince, uid, restoring, restoreError, error: label === 'Error de sincronización' });
+    pending, blocked, pendingSince, uid, restoring, restoreError, needsTeam, error: label === 'Error de sincronización' });
   async function countPending() {
     const c = storageContext();
     if (!c.scope) { pending = 0; blocked = 0; pendingSince = null; emit(); return; }
@@ -58,18 +56,32 @@ export function initializeSyncUI(controller, { host = document.querySelector('#p
     emit(); void countPending();
   };
   function reset() {
-    restoring = false; restoreError = '';
-    generation++; stopping = engine?.stop() ?? Promise.resolve(); engine = null; transport = null; teams = [];
-    if (dialog.open) dialog.close(); review = null; connected = false;
-    $('syncTeam').innerHTML = '<option value="">Solo local</option>';
+    restoring = false; restoreError = ''; needsTeam = false; choosing = false; teamBusy = false;
+    generation++; stopping = Promise.all([stopping, engine?.stop()]); engine = null; transport = null; teams = [];
+    if (dialog.open) dialog.close(); review = null; connected = false; pending = 0; blocked = 0; pendingSince = null;
+    $('syncTeam').replaceChildren(new Option('Elige un equipo', ''));
     $('syncImport').disabled = true; $('syncRetry').disabled = true;
-    status('Solo local');
+    status('Guardado en este dispositivo');
   }
   function renderTeams() {
     const selected = storageContext().teamId || '';
-    $('syncTeam').replaceChildren(new Option('Solo local', ''), ...teams.map(team => new Option(team.name, team.id)));
+    const offline = globalThis.navigator?.onLine === false;
+    $('syncTeam').replaceChildren(new Option('Elige un equipo', ''), ...teams.map(team => new Option(team.name, team.id)));
     $('syncTeam').value = selected;
-    $('syncCreateTeam').disabled = !transport || !connected || teamBusy;
+    $('syncTeam').options[0].disabled = true;
+    $('syncTeam').disabled = choosing || teamBusy || offline;
+    $('syncOptions').hidden = false;
+    if (setup) {
+      $('teamSetupChoice').hidden = !teams.length;
+      $('teamSetupContinue').hidden = !teams.length;
+      const previous = $('teamSetupSelect').value;
+      $('teamSetupSelect').replaceChildren(...teams.map(team => new Option(team.name, team.id)));
+      if (teams.some(team => team.id === previous)) $('teamSetupSelect').value = previous;
+      $('teamSetupContinue').disabled = choosing || teamBusy || !connected || offline;
+      $('teamSetupCreate').disabled = choosing || teamBusy || !connected || offline;
+      $('teamSetupName').disabled = choosing || teamBusy;
+    }
+    $('syncCreateTeam').disabled = !transport || !connected || teamBusy || choosing || offline;
     $('syncImport').disabled = !storageContext().scope;
     $('syncRetry').disabled = !engine;
   }
@@ -84,19 +96,27 @@ export function initializeSyncUI(controller, { host = document.querySelector('#p
   function maybeOffer() {
     if (!importOffer || !uid || !connected) return;
     if (storageContext().scope) { importOffer = false; void openReview(true); return; }
-    status('Solo local', 'Crea o elige un equipo para subir los partidos de este dispositivo.');
-    onNeedTeam();
+    status('Pendiente de sincronizar', 'Crea o elige un equipo para subir los partidos de este dispositivo.');
+    needsTeam = true; emit();
   }
-  async function choose(teamId, save = true) {
-    const ticket = generation;
-    if (teamId && !teams.some(team => team.id === teamId)) throw Error('Equipo desconocido.');
-    engine?.stop(); engine = null;
-    // La copia verificada permite registrar offline. El servidor revalida cada envío.
-    setStorageScope(teamId || null);
-    if (save) await syncPreference(uid, teamId || null);
-    if (ticket !== generation) return;
-    status(teamId ? 'Pendiente de sincronizar' : 'Solo local'); runEngine();
-    maybeOffer();
+  async function choose(teamId, save = true, verify = true) {
+    if (choosing) return;
+    const ticket = generation, backend = transport;
+    if (!teamId || !teams.some(team => team.id === teamId)) throw Error('Elige un equipo de esta cuenta.');
+    choosing = true; renderTeams();
+    try {
+      if (verify && backend) await backend.verifyTeam(teamId);
+      if (ticket !== generation) return;
+      const previous = engine; engine = null;
+      await Promise.all([stopping, previous?.stop()]);
+      if (ticket !== generation) return;
+      // La selección recordada y verificada permite trabajar sin conexión.
+      if (save) await syncPreference(uid, teamId);
+      if (ticket !== generation) return;
+      setStorageScope(teamId);
+      needsTeam = false; restoring = false; restoreError = '';
+      status('Pendiente de sincronizar'); runEngine(); maybeOffer();
+    } finally { if (ticket === generation) { choosing = false; renderTeams(); } }
   }
   function accountChanged(state) {
     lastAccount = state;
@@ -108,89 +128,104 @@ export function initializeSyncUI(controller, { host = document.querySelector('#p
     setStorageIdentity(uid); section.hidden = !uid;
     emit();
     if (!uid) return;
-    const enabled = consent(uid);
-    $('syncEnable').hidden = enabled;
-    $('syncOptions').hidden = !enabled;
-    if (!enabled) {
-      restoring = false;
-      setStorageScope(null);
-      status('Solo local', 'La sincronización está desactivada en este navegador. Tus partidos locales se conservan.');
-      return;
-    }
     const ticket = generation;
     void (async () => {
       await openDatabase();
+      await stopping;
+      if (ticket !== generation) return;
       const cached = await cachedTeams(uid); if (ticket !== generation) return; teams = cached;
-      renderTeams();
       const preference = await syncPreference(uid);
       if (ticket !== generation) return;
-      if (teams.some(team => team.id === preference)) await choose(preference, false);
+      // No elegir arbitrariamente entre varios equipos en una primera sesión offline.
+      if (teams.some(team => team.id === preference)) await choose(preference, false, false);
       if (ticket !== generation) return;
-      // Con el equipo recordado en caché se puede registrar offline sin esperar
-      // al transporte. Sin preferencia, el ámbito de cuenta local es intencional.
-      if (!preference || storageContext().scope) { restoring = false; emit(); }
+      renderTeams();
       try {
         const backend = await loadFirestoreTransport(uid); if (ticket !== generation) return;
-        transport = backend; connected = true; runEngine();
+        transport = backend;
         const remoteTeams = await backend.teams(); if (ticket !== generation) return;
-        teams = remoteTeams; await cacheTeams(uid, teams);
+        connected = true; teams = remoteTeams; await cacheTeams(uid, teams);
+        if (ticket !== generation) return;
         if (storageContext().scope && !teams.some(team => team.id === storageContext().teamId)) {
           restoring = true; emit();
-          await choose('', false);
+          const previous = engine; engine = null; await previous?.stop();
+          if (ticket !== generation) return;
+          setStorageScope(null);
         }
-        // Tras cerrar sesión la lista de equipos se borra: el equipo preferido se recupera con la del servidor.
-        else if (!storageContext().scope && teams.some(team => team.id === preference)) await choose(preference, false);
+        const selected = storageContext().teamId;
+        const candidate = teams.some(team => team.id === preference) ? preference : teams.length === 1 ? teams[0].id : null;
+        if (selected) {
+          await backend.verifyTeam(selected); if (ticket !== generation) return;
+          runEngine();
+        } else if (candidate) await choose(candidate);
         if (ticket !== generation) return;
-        if (restoring && preference && !storageContext().scope) throw Error('El equipo seleccionado ya no está disponible.');
-        restoring = false; restoreError = '';
+        restoring = false; needsTeam = !storageContext().scope; restoreError = '';
         renderTeams(); emit(); maybeOffer();
-      } catch (error) { if (ticket === generation) {
-        connected = false;
-        if (restoring) { restoring = false; restoreError = 'No se ha podido recuperar tu equipo. Reintenta o continúa sin cuenta.'; }
-        status('Error de sincronización', error.message); renderTeams();
-      } }
+      } catch (error) {
+        if (ticket !== generation) return;
+        connected = error.code === 'permission-denied';
+        // Un permiso revocado no se trata como una desconexión.
+        if (error.code === 'permission-denied' && storageContext().scope) {
+          const previous = engine; engine = null; await previous?.stop();
+          if (ticket !== generation) return;
+          setStorageScope(null);
+        }
+        restoring = false; needsTeam = !storageContext().scope;
+        restoreError = needsTeam ? 'No se ha podido preparar tu equipo. Reintenta con conexión o continúa en modo local. Los datos existentes se conservan.' : '';
+        status('Error de sincronización', error.code || error.message); renderTeams();
+        if (storageContext().scope) runEngine();
+      }
     })().catch(error => { if (ticket === generation) {
-      restoring = false; restoreError = 'No se ha podido recuperar tu equipo. Reintenta o continúa sin cuenta.';
+      restoring = false; needsTeam = !storageContext().scope;
+      restoreError = 'No se ha podido recuperar tu equipo. Reintenta o continúa en modo local.';
       status('Error de sincronización', error.message);
     } });
   }
   controller.subscribe(accountChanged);
-  function changeConsent(enabled) {
-    if (!uid) return;
-    try {
-      localStorage.setItem(consentKey(uid), enabled ? 'enabled' : 'disabled');
-      accountVersion = -1;
-      accountChanged(lastAccount);
-    } catch { status('Solo local', 'No se pudo guardar la activación. Puedes seguir registrando localmente.'); }
-  }
-  $('syncEnable').addEventListener('click', () => changeConsent(true));
-  $('syncDisable').addEventListener('click', () => changeConsent(false));
-  globalThis.addEventListener('storage', event => {
-    if (uid && event.key === consentKey(uid)) { accountVersion = -1; accountChanged(lastAccount); }
-  });
   $('syncTeam').addEventListener('change', () => { void choose($('syncTeam').value).catch(error => status('Error de sincronización', error.message)); });
-  $('syncCreateTeam').addEventListener('click', () => {
-    // Formulario nativo independiente: no altera las dos pulsaciones de registro.
-    const name = window.prompt('Nombre del equipo que crearás como propietario:');
-    if (!name?.trim() || teamBusy || !transport) return;
+  async function createTeam(name) {
+    if (!name?.trim() || teamBusy || choosing || !transport || !connected) return;
     teamBusy = true; renderTeams(); const ticket = generation, backend = transport;
-    void backend.createTeam(name).then(async team => {
+    try {
+      const team = await backend.createTeam(name);
       if (ticket !== generation) return;
       teams.push(team); await cacheTeams(uid, teams); if (ticket !== generation) return;
       await choose(team.id);
-    }).catch(error => { if (ticket === generation) status('Error de sincronización', error.message); })
-      .finally(() => { teamBusy = false; renderTeams(); });
+    } catch (error) {
+      if (ticket === generation) {
+        restoreError = needsTeam ? (FRIENDLY[error.code] || error.message) : '';
+        status('Error de sincronización', error.code || error.message);
+      }
+    } finally { if (ticket === generation) { teamBusy = false; renderTeams(); } }
+  }
+  $('syncCreateTeam').addEventListener('click', () => { void createTeam(window.prompt('Nombre de tu equipo:')); });
+  $('teamSetupForm')?.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = $('teamSetupName');
+    if (!name.value.trim()) { name.setCustomValidity('Escribe el nombre de tu equipo.'); name.reportValidity(); return; }
+    name.setCustomValidity(''); void createTeam(name.value.trim());
+  });
+  $('teamSetupName')?.addEventListener('input', () => $('teamSetupName').setCustomValidity(''));
+  $('teamSetupContinue')?.addEventListener('click', () => {
+    void choose($('teamSetupSelect').value).catch(error => {
+      restoreError = error.message; status('Error de sincronización', error.code || error.message);
+    });
   });
   $('syncRetry').addEventListener('click', () => { void engine?.retry().catch(error => status('Error de sincronización', error.message)); });
   globalThis.addEventListener('defensas-sync-local', () => { engine?.wake(); void countPending(); });
-  globalThis.addEventListener('online', () => { engine?.wake(); emit(); });
-  globalThis.addEventListener('offline', emit);
+  globalThis.addEventListener('online', () => {
+    if (uid && !storageContext().scope && !restoring && !connected) { accountVersion = -1; accountChanged(lastAccount); }
+    else { engine?.wake(); renderTeams(); emit(); }
+  });
+  globalThis.addEventListener('offline', () => { renderTeams(); emit(); });
+  globalThis.addEventListener('pageshow', () => engine?.wake());
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') engine?.wake(); });
   function openReview(preselect = false) {
-    reviewContext = storageContext();
+    const c = storageContext(); reviewContext = c;
     return listLegacyForImport().then(items => {
-      assertContext(reviewContext); review = items;
-      const team = teams.find(team => team.id === reviewContext.teamId);
-      $('syncDestination').textContent = `Cuenta: ${user.email || user.uid} · Equipo: ${team?.name || reviewContext.teamId} · Proyecto: ${reviewContext.projectId}`;
+      assertContext(c); review = items;
+      const team = teams.find(team => team.id === c.teamId);
+      $('syncDestination').textContent = `Cuenta: ${user.email || user.uid} · Equipo: ${team?.name || c.teamId} · Proyecto: ${c.projectId}`;
       $('syncReviewList').replaceChildren();
       for (const [index, item] of items.entries()) {
         const label = document.createElement('label'), checkbox = document.createElement('input');
@@ -218,7 +253,7 @@ export function initializeSyncUI(controller, { host = document.querySelector('#p
   return {
     // Cerrar sesión: espera a que el motor termine su ciclo antes de borrar los datos de la cuenta.
     async quiesce() { const current = engine?.stop(); engine = null; await Promise.all([stopping, current]); },
-    offerImport() { importOffer = true; if (!uid) return; if (!consent(uid)) changeConsent(true); else maybeOffer(); },
+    offerImport() { importOffer = true; maybeOffer(); },
     refresh: countPending
   };
 }

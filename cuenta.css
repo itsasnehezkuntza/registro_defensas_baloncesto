@@ -108,3 +108,14 @@ html[data-login] .login-screen {
 .sync-dialog label { display: flex; gap: 10px; align-items: center; min-height: 44px; margin: 8px 0; }
 .sync-dialog input[type=checkbox] { width: 24px; height: 24px; flex-shrink: 0; }
 .dialog-progress { font-size: 13px; font-weight: 700; color: var(--label); }
+
+/* Fase 22: reutiliza la pantalla de acceso y los colores/tipografía V4. */
+.team-setup, #teamSetupForm { display: grid; gap: 12px; min-width: 0; }
+.team-setup input { width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); color: var(--ink); font: inherit; }
+.team-setup button { min-height: 48px; height: auto; padding: 12px 18px; white-space: normal; }
+.team-setup .pill-primary { background: var(--coral); color: var(--white); }
+.storage-notice { flex: none; min-height: 18px; font-size: 12px; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }
+.storage-notice.has-error { color: var(--coral-text); }
+@media (max-width: 899px), (orientation: portrait) and (max-width: 1100px) {
+  html[data-login="equipo"] .login-hero { display: none; }
+}
