@@ -1,5 +1,7 @@
 # Registro defensivo de baloncesto
 
+**Desarrollo local desde main 23.0:** [requisitos, instalación y comandos de pruebas vigentes](DESARROLLO.md). Fase 24.1 preparada localmente, pendiente de revisión; no cambia la versión pública.
+
 **Versión pública actual: 23.0**, publicada y verificada el 31 de octubre de 2026. Supervisión por UID/equipo, vista independiente de solo lectura y reglas efectivas sin ampliar escrituras. [Publicación y prueba ficticia revocada](FASE23_PUBLICACION.md). [Abrir supervisión](https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/supervision.html). Recargar con conexión, sin borrar almacenamiento. Las notas de versiones y candidatos que siguen conservan su carácter histórico.
 
 **Candidato local — Fase 23: supervisión por UID/equipo.** Implementado en copia aislada desde las fuentes publicadas 22.0, sin commit/push/despliegue. Consulta independiente de solo lectura, protegida en Firestore Rules, con asignación/revocación administrativa e índice privado de equipos. [Arquitectura, pruebas, costes y procedimiento administrativo](FASE23_SUPERVISION.md). La versión pública continúa siendo 22.0.

@@ -7,7 +7,7 @@ let server;
 let status = 1;
 try {
   if (process.argv[2] === 'test') {
-    server = fork(resolve(root, 'tools/playwright/servidor.mjs'), [], { cwd: root, stdio: ['ignore', 'inherit', 'inherit', 'ipc'] });
+    server = fork(resolve(root, 'tools/playwright/servidor.mjs'), [], { cwd: root, env: { ...process.env, DEFENSAS_TEST_LOCAL_ONLY: '1' }, stdio: ['ignore', 'inherit', 'inherit', 'ipc'] });
     await new Promise((resolveReady, reject) => {
       const timer = setTimeout(() => reject(new Error('El servidor local no responde.')), 10000);
       server.once('message', () => { clearTimeout(timer); resolveReady(); });

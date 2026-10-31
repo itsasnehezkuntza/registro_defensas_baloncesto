@@ -12,6 +12,17 @@ createServer(async (req, res) => {
     if (!/^(index\.html|app\.js|[\w-]+\.css|categorias\.csv|js\/[\w-]+\.js|fonts\/[\w-]+\.(ttf|txt))$/.test(relative)) {
       res.writeHead(404).end(); return;
     }
+    // Solo respuesta de pruebas: no cambia la configuración pública en disco.
+    if (relative === 'js/firebase-config.js' && process.env.DEFENSAS_TEST_LOCAL_ONLY === '1') {
+      res.writeHead(200, { 'Content-Type': types.js, 'Cache-Control': 'no-store' })
+        .end('export const firebaseSettings = Object.freeze({ enabled: true, config: { projectId: \"demo-defensas\" }, authEmulator: false });');
+      return;
+    }
+    if (relative === 'js/firebase-auth.js' && process.env.DEFENSAS_TEST_LOCAL_ONLY === '1') {
+      res.writeHead(200, { 'Content-Type': types.js, 'Cache-Control': 'no-store' })
+        .end(await readFile(new URL('./auth-fixture.mjs', import.meta.url)));
+      return;
+    }
     const data = await readFile(fileURLToPath(new URL(relative, root)));
     res.writeHead(200, { 'Content-Type': types[relative.split('.').pop()], 'Cache-Control': 'no-store' }).end(data);
   } catch { res.writeHead(404).end(); }

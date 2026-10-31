@@ -18,12 +18,18 @@
     "test:revision-sync": "node tools/firebase/emuladores.mjs review8b2",
     "test:parpadeo": "node tools/firebase/sync-flicker.test.mjs",
     "firebase:preview:preparar": "node tools/firebase/ipad-preview.mjs",
-    "test:supervision": "node tools/firebase/emuladores.mjs supervision23"
+    "test:supervision": "node tools/firebase/emuladores.mjs supervision23",
+    "test": "node tools/test.mjs",
+    "check": "node tools/check.mjs",
+    "test:browser": "node tools/playwright/cli.mjs test",
+    "test:emulator": "node tools/firebase/emuladores.mjs",
+    "prepare:test-pages": "node tools/prepare-test-pages.mjs"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "5.0.0",
     "@playwright/test": "1.64.0",
     "firebase": "12.11.0",
     "firebase-tools": "15.11.0"
-  }
+  },
+  "type": "module"
 }
