@@ -17,7 +17,8 @@
     "test:sync": "node tools/firebase/emuladores.mjs sync",
     "test:revision-sync": "node tools/firebase/emuladores.mjs review8b2",
     "test:parpadeo": "node tools/firebase/sync-flicker.test.mjs",
-    "firebase:preview:preparar": "node tools/firebase/ipad-preview.mjs"
+    "firebase:preview:preparar": "node tools/firebase/ipad-preview.mjs",
+    "test:supervision": "node tools/firebase/emuladores.mjs supervision23"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "5.0.0",

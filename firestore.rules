@@ -10,6 +10,15 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.role == 'owner'
         && get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.status == 'active';
     }
+    // Una sola autorización administrativa sirve de ACL e índice de descubrimiento.
+    // Ningún cliente (tampoco el propietario) puede crear o alterar estas rutas.
+    function supervisor(teamId) {
+      let path = /databases/$(database)/documents/supervision/$(request.auth.uid)/teams/$(teamId);
+      return signedIn() && exists(path)
+        && get(path).data.schemaVersion == 1
+        && get(path).data.role == 'reader' && get(path).data.status == 'active';
+    }
+    function reader(teamId) { return owner(teamId) || (signedIn() && supervisor(teamId)); }
     function gameLive(teamId, gameId) {
       return get(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)).data.deletedAt == null;
     }
@@ -77,9 +86,14 @@ service cloud.firestore {
       allow update, delete, list: if false;
     }
 
+    match /supervision/{uid}/teams/{teamId} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
     match /teams/{teamId} {
       match /configuration/{head} {
-        allow read: if owner(teamId);
+        allow read: if reader(teamId);
         allow create, update: if owner(teamId) && head == 'current'
           && request.resource.data.keys().hasAll(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'baseId'])
           && request.resource.data.keys().hasOnly(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'baseId'])
@@ -90,11 +104,11 @@ service cloud.firestore {
         allow delete: if false;
       }
       match /configurationVersions/{versionId} {
-        allow read: if owner(teamId);
+        allow read: if reader(teamId);
         allow create: if owner(teamId) && panelEnvelope(request.resource.data) && request.resource.data.payload.version.id == versionId;
         allow update, delete: if false;
       }
-      allow get: if owner(teamId);
+      allow get: if reader(teamId);
       // Consulta acotada por ownerUid (inmutable y establecido en batch).
       // Los partidos y miembros además exigen membresía activa en servidor.
       allow list: if signedIn() && resource.data.ownerUid == request.auth.uid;
@@ -124,7 +138,7 @@ service cloud.firestore {
 
       match /games/{gameId} {
         // Incluye lápidas de partidos para que un cliente pueda retirar su copia.
-        allow read: if owner(teamId);
+        allow read: if reader(teamId);
         allow create: if owner(teamId)
           && request.resource.data.keys().hasAll(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'deletedAt', 'deletedBy'])
           && request.resource.data.keys().hasOnly(['schemaVersion', 'createdBy', 'createdAt', 'sourceId', 'payload', 'deletedAt', 'deletedBy'])
@@ -140,13 +154,13 @@ service cloud.firestore {
             && getAfter(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)/panelVersions/$(request.resource.data.panel.version.id)).data.payload == request.resource.data.panel));
         allow delete: if false;
         match /panelVersions/{versionId} {
-          allow read: if owner(teamId);
+          allow read: if reader(teamId);
           allow create: if owner(teamId) && gameLive(teamId, gameId) && panelEnvelope(request.resource.data) && request.resource.data.payload.version.id == versionId;
           allow update, delete: if false;
         }
 
         match /events/{eventId} {
-          allow read: if owner(teamId) && gameLive(teamId, gameId);
+          allow read: if reader(teamId) && gameLive(teamId, gameId);
           allow create: if owner(teamId) && gameLive(teamId, gameId) && gameLiveAfter(teamId, gameId)
             && panelClock(teamId, gameId, 'event:' + eventId)
             && !existsAfter(/databases/$(database)/documents/teams/$(teamId)/games/$(gameId)/eventDeletions/$(eventId))
@@ -157,7 +171,7 @@ service cloud.firestore {
           allow update, delete: if false;
         }
         match /eventDeletions/{eventId} {
-          allow read: if owner(teamId);
+          allow read: if reader(teamId);
           // Puede llegar antes que el alta del evento (Deshacer sin conexión).
           allow create: if owner(teamId) && gameLive(teamId, gameId) && gameLiveAfter(teamId, gameId)
             && panelClock(teamId, gameId, 'undo:' + eventId)

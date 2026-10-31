@@ -1,6 +1,6 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-process.env.PLAYWRIGHT_BROWSERS_PATH = fileURLToPath(new URL('../../.test-artifacts/playwright/browsers', import.meta.url));
+process.env.PLAYWRIGHT_BROWSERS_PATH = process.env.PLAYWRIGHT_BROWSERS_PATH || fileURLToPath(new URL('../../.test-artifacts/playwright/browsers', import.meta.url));
 export const { chromium } = await import('@playwright/test');
 export const idle = page => page.waitForFunction(() => !document.querySelector('#gameSelect').disabled);
 // La aplicación puede terminar de cargar y mantener el registro bloqueado por sesión.

@@ -1,5 +1,9 @@
 # Contexto para continuar — Registro defensivo
 
+**Fase 23.1 terminada: revisión y preparación, sin publicar.** Sin bloqueantes de seguridad detectados. Cliente exacto Pages 22.0 probado bajo reglas nuevas en emuladores; 19 cláusulas, funciones auxiliares y ámbitos originales conservados. Paquete revisado de 44 archivos públicos, reglas/configuración dedicadas fuera de Pages y reversión exacta de 39 archivos 22.0 en `.test-artifacts/firebase/fase23-1/`. Las reglas activas se respaldarán y compararán al ejecutar una publicación autorizada; no se han consultado ahora. [Plan, asignación desde Console y prueba física](FASE23_1_REVISION_PUBLICACION.md). Sin commit, push, despliegue, permisos reales o acceso a datos deportivos reales. Detenido para revisión.
+
+**Fase 23 local, pendiente de revisión.** Esta copia aislada añade supervisión por UID/equipo, descubrimiento por ACL privada y Dashboard de solo lectura fuera del motor de escritura. No se ha publicado ni asignado acceso real. Detalle y procedimiento en [FASE23_SUPERVISION.md](FASE23_SUPERVISION.md). La información de 22.0 siguiente identifica la base publicada.
+
 Actualizado el 29 de octubre de 2026. **Versión 22.0 publicada y verificada para todos**, con Fases 21 y 22. URL habitual: https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/ . Recargar con conexión en todos los dispositivos, sin borrar datos. Fuentes `6bfe942d32de8b4fe6efef8cafd48f533acbd339`, Pages `3aed91f329ed00b672b16ae6002a41e9acf68001`, build `22.0-568698c631fa8c1b`. Detalle en FASE22_PUBLICACION.md.
 
 ## Trabajo terminado
@@ -27,7 +31,7 @@ El preview `https://registro-defensivo--fase22-1-bsovr4vx.web.app` caduca el **3
 ## Pendientes para una próxima fase, sin autorización de implementación todavía
 
 1. **Partidos reales del entrenador:** el problema inicial no se ha diagnosticado sobre sus datos. Podrían estar solo en su dispositivo, pendientes, en otro equipo/cuenta o fuera de los permisos del propietario. Empezar por identificar dispositivo/origen/cuenta/equipo/estado y por metadatos/recuentos autorizados. No confundir registro de Authentication con respaldo de partidos. Conservar y revisar antes de importar; no duplicar ni sobrescribir.
-2. **Administración de lectura:** estudiar supervisor por equipo frente a administrador global, con reglas efectivas y asignación de privilegios no disponible para usuarios normales. No implementado; no confiar solo en email o UI; sin servidor propio si es viable.
+2. **Administración de lectura:** implementada localmente en Fase 23, exclusivamente por UID/equipo y con ACL administrativa. Pendientes revisión, publicación coordinada y asignaciones concretas autorizadas; ver FASE23_SUPERVISION.md.
 3. **Respaldo independiente de bajo coste:** pendiente de definir; no añadir infraestructura ni nuevos formatos de exportación deportivos sin solicitud. La aplicación continúa exportando CSV del partido activo.
 4. **Editor:** Cancelar/Deshacer al nombrar y cambiar «Quitar» por «Eliminar», pendientes del apartado 74 de ESPECIFICACION.md.
 5. **MOP-001:** refinamiento opcional del desplazamiento vacío en Safari; pendiente, prioridad baja.

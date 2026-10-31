@@ -83,6 +83,8 @@ export async function verifyBlockedQueue({ device, flush, pass }) {
   await flush(b);
   await until(b, async () => (await T.p.readState()).games.some(game => game.id === 'parent-block-13'));
   await b.evaluate(() => T.p.selectGameState('parent-block-13'));
+  // La cabecera puede llegar antes que su subcolección de eventos.
+  await until(b, async () => (await T.p.readState()).events.some(event => event.id === 'child-13'));
   assert.deepEqual((await b.evaluate(() => T.p.readState())).events.map(event => event.id), ['child-13']);
   await a.evaluate(() => T.custom13.stop());
   pass('M5: alta denegada retiene sus hijos, permite recepción y otros envíos; al reintentar sube padre→tiro una sola vez');
