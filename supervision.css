@@ -1,0 +1,13 @@
+/* Mismos tokens y tipografía V4; navegación de consulta fuera del Registro. */
+.supervision-shell { max-width: 1560px; margin: auto; padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); }
+.supervision-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.supervision-heading h1 { font-family: var(--cond); font-size: 36px; line-height: 1.1; }
+.supervision-heading p { color: var(--muted); margin-top: 6px; overflow-wrap: anywhere; }
+.supervision-shell a { color: var(--ink); }
+.supervision-shell a.pill { text-decoration: none; white-space: normal; }
+.supervision-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; padding: 16px; background: var(--tile); border-radius: 16px; }
+.supervision-controls label { flex: 1 1 240px; min-width: 0; font-weight: 700; font-size: 14px; }
+.supervision-controls select { display: block; width: 100%; min-width: 0; margin-top: 8px; min-height: 48px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); padding: 10px; text-overflow: ellipsis; }
+#supervisionStatus { margin: 16px 0; max-width: 78ch; line-height: 1.6; }
+.supervision-badge { display: inline-block; color: var(--white); background: var(--ink); padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 700; }
+@media (max-width: 480px) { .supervision-shell { padding: 16px 12px 24px; } .supervision-heading h1 { font-size: 30px; } .supervision-controls { padding: 12px; } }

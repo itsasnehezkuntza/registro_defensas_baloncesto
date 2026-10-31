@@ -1,12 +1,6 @@
 {
-  "version": "22.0",
-  "buildId": "22.0-568698c631fa8c1b",
-  "sourceCommit": "6bfe942d32de8b4fe6efef8cafd48f533acbd339",
-  "validatedCandidate": "22.1-3cd65834dc6e9da4",
-  "phases": [
-    21,
-    22
-  ],
-  "physicalValidation": "confirmed_by_user",
-  "builtAt": "2026-10-29T20:21:32.091Z"
+  "version": "23.0",
+  "build": "23.0-3c1018ebaed68c92",
+  "baseSourceCommit": "6bfe942d32de8b4fe6efef8cafd48f533acbd339",
+  "reviewedSourceFingerprint": "3c1018ebaed68c92ecc20807ab0b0852f73c7c6304259cf4e13475f5a9abfe65"
 }

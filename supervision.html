@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com/firebasejs/12.11.0/ https://apis.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.googleusercontent.com https://www.google.com/images/cleardot.gif; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://firestore.googleapis.com; frame-src https://registro-defensivo.firebaseapp.com; object-src 'none'; base-uri 'none'; form-action 'self'; worker-src 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#E7E7E4">
+  <meta name="app-version" content="23.0">
+  <title>Supervisión · Registro defensivo</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./dashboard.css">
+  <link rel="stylesheet" href="./supervision.css">
+  <script type="module" src="./js/supervision-ui.js"></script>
+</head>
+<body data-view="estadisticas">
+  <main class="supervision-shell">
+    <header class="supervision-heading">
+      <div><h1>Equipos supervisados</h1><p id="supervisionIdentity">Preparando cuenta…</p></div>
+      <span class="supervision-badge">Solo lectura</span>
+      <a class="pill" href="./index.html">Volver al registro</a>
+    </header>
+    <div class="supervision-controls" role="group" aria-label="Consulta de equipos y partidos">
+      <button class="pill" id="supervisionLogin" type="button" disabled>Entrar con Google</button>
+      <label>Equipo<select id="supervisionTeam" disabled><option value="">Selecciona un equipo</option></select></label>
+      <label>Partido<select id="supervisionGame" disabled><option value="">Selecciona un partido</option></select></label>
+      <button class="pill" id="supervisionRefresh" type="button">Actualizar equipos</button>
+    </div>
+    <p id="supervisionStatus" role="status" aria-live="polite">Preparando consulta…</p>
+    <noscript>Activa JavaScript para consultar los equipos asignados.</noscript>
+    <section id="statisticsView" class="dashboard" data-dashboard aria-label="Estadísticas del partido seleccionado" hidden>
+      <div id="statisticsContent"></div>
+    </section>
+  </main>
+</body>
+</html>
