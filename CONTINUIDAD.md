@@ -1,11 +1,30 @@
-# Contexto para continuar — Registro defensivo
+# Continuidad — estado presente
 
-31 de octubre de 2026. **23.0 publicada y verificada para todos.** URL https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/ ; supervisión https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/supervision.html . Build `23.0-3c1018ebaed68c92`, commit funcional `8fbca8e80adaf99adc99089c362766beb80de82d`, Pages `062343707cdfc54a764ca7ae18f98fd5aedfe750`. Detalle en [FASE23_PUBLICACION.md](FASE23_PUBLICACION.md).
+Actualizado el 1 de noviembre de 2026. **Aplicación pública 23.0**, build `23.0-3c1018ebaed68c92`. [Registro](https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/) · [Supervisión](https://itsasnehezkuntza.github.io/registro_defensas_baloncesto/supervision.html).
 
-Reglas activas `projects/registro-defensivo/rulesets/f8b43ea9-7556-4ca3-9f76-96fbefec5734`, hash `e9f7a85f0dc5dcac07decdd7005f8ac9ddeb78991f47719ab16d50bd6d9a515d`. Diecinueve cláusulas anteriores de escritura y auxiliares intactos. Propietario existente/transporte 22.0 correctos en equipo ficticio tras reglas nuevas. Build Pages built, 44 hashes HTTPS y 13 rutas internas 404; Registro/Dashboard/Google y prueba de supervisión correctos en Chromium. Auth, Hosting e índices sin cambios. Datos deportivos reales no consultados/modificados.
+## Referencias y trabajo actual
 
-La única ACL temporal `supervision/K7mMAmwEbxbYkkXnFdfZmxPppe22/teams/prueba8b2-seguridad-9941b41c-9837-419c-8385-3407bd4f897f` queda **revoked**, no eliminada. SDK denegó escritura válida; después de revocar denegó lectura nueva y la UI limpió el Dashboard. No hay permisos sobre equipos reales. Prueba física iPad pendiente; con esta cuenta ficticia debe verse sin equipos, no un Dashboard todavía autorizado.
+- Rama principal vigente: `main`. Su HEAD remoto se consulta con `git ls-remote origin refs/heads/main`; no debe deducirse del commit que sirvió de base a una fase.
+- Base de partida de Fase 24.2: `4a9e639d26533e475c03b83a537d0aad2657de73`, merge de Fase 24.1; conserva `ed42d882c0ef6dc7a9433eedfbc8f1d3175fceca`. Es una referencia histórica de la consolidación, no un HEAD permanente de main. El entorno reproducible no cambia la versión de la aplicación.
+- Fuentes funcionales 23.0: `8fbca8e80adaf99adc99089c362766beb80de82d`; Pages: `062343707cdfc54a764ca7ae18f98fd5aedfe750`. Publicación con 44 archivos: 43 fuentes y version.json. [Recibo histórico](docs/historico/FASE23_PUBLICACION.md).
+- Fase 24.2: consolidación de documentación vigente, arquitectura y pendientes, con el histórico conservado por separado. Sin cambios funcionales ni publicación de la aplicación. [Entrega y verificaciones](docs/revision-fase24-2.md).
+- develop sigue siendo histórico. No cambiarlo ni mezclar sus 368 rutas/acumulado con main. Conservar ramas, worktrees, respaldos y archivos sin seguimiento.
 
-Desarrollo/publicación conservados en la copia aislada .test-artifacts/fase23-repo. develop original sigue en 7c439c149ad2bbe4e71749260e8b9d10f45c0d83, con sus 368 rutas y acumulado intactos. No hacer reset, limpieza, cambio de rama ni commit masivo del original. Respaldos remotos previos en respaldo/antes-fase23-main-20261031 y respaldo/antes-fase23-pages-20261031; reglas/recibos locales privados en .test-artifacts/firebase/fase23-2 dentro de esta copia. Publicación funcional terminada; cierre documental posterior sin tocar paquete/hash de Pages.
+## Funciones terminadas
 
-Próximos trabajos, solo con autorización: asignar tu UID a equipos concretos y propietarios verificados; prueba física de Dashboard supervisado con permiso temporal si se desea; recuperación de partidos reales empezando por diagnóstico autorizado; respaldo independiente; Cancelar/Deshacer al nombrar y «Eliminar» en editor; MOP-001 opcional. No se inicia ninguno ahora. No borrar datos para diagnosticar Sync. El preview 22.1 caducó el 30 de octubre a las 17:09 de Madrid; no se renueva ni se modifica Authentication para retirar dominios en esta fase.
+Registro de dos pulsaciones, partidos aislados, IndexedDB conservadora, Deshacer/vaciado, CSV por partido, Dashboard y panel versionado por partido. Google exige equipo y activa Sync automáticamente; importación de históricos confirmada y cierre protegido. Supervisión por UID/equipo, solo lectura, con revocación efectiva. [Contrato funcional](ESPECIFICACION.md) y [arquitectura](docs/arquitectura.md).
+
+## Comandos y límites
+
+`npm ci`, `npm test` y `npm run check`. Ver [DESARROLLO.md](DESARROLLO.md) para Node, Java, navegadores y emuladores. En cambios documentales comprobar enlaces y reutilizar evidencia; no repetir campañas completas sin motivo.
+
+El almacenamiento del navegador puede perderse; el respaldo oculto de importación no se actualiza continuamente y CSV no se importa. Sync no sustituye un respaldo independiente. No borrar IndexedDB para diagnosticar. Los conflictos se conservan y requieren revisión, sin resolución automática por sobrescritura. La prueba visual usa Auth simulado; no acredita Google real ni Safari físico.
+
+## Pendientes priorizados
+
+1. Diagnóstico/recuperación y respaldo independiente si siguen siendo necesarios: requieren alcance y autorización sobre datos reales; esta fase no confirma una pérdida actual.
+2. Prueba física de Supervisión en Safari/iPad y límites del dispositivo antiguo/persistencia prolongada que no quedaron acreditados. Cualquier permiso temporal exige autorización propia.
+3. Editor: cancelar/deshacer el nombre de un elemento y sustituir Quitar por Eliminar. Peticiones expresas pendientes; distintas de Deshacer un tiro o cancelar el panel completo.
+4. MOP-001: desplazamiento vacío, opcional y de prioridad baja.
+
+Detalles, límites de evidencia y mantenimiento futuro en [pendientes](docs/pendientes.md). No iniciar ninguno de estos trabajos por estar anotado. Los candidatos temporales y anuncios anteriores pertenecen al [histórico](docs/historico/README.md), no al flujo vigente.

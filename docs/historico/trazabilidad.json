@@ -1,0 +1,381 @@
+{
+  "baseCommit": "4a9e639d26533e475c03b83a537d0aad2657de73",
+  "hashConvention": "SHA256 de UTF-8 con finales de línea LF, equivalente al blob original de Git; independiente del autocrlf del checkout. Los respaldos locales conservan los bytes brutos iniciales.",
+  "policy": "Texto íntegro; únicamente destinos de enlaces Markdown adaptados. Los tres enlaces ausentes se muestran como código; las sustituciones son reversibles.",
+  "documents": [
+    {
+      "original": "FASE10_AUDITORIA.md",
+      "archive": "docs/historico/FASE10_AUDITORIA.md",
+      "originalSha256": "3d893a8a0f30f6d812fbb08550fdac0d54a36290cca5012b48fd2d213369594a",
+      "archiveSha256": "3d893a8a0f30f6d812fbb08550fdac0d54a36290cca5012b48fd2d213369594a",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "5190cd89d90b405ab0934149fe575ee13598d723"
+    },
+    {
+      "original": "FASE11_LECTURAS.md",
+      "archive": "docs/historico/FASE11_LECTURAS.md",
+      "originalSha256": "3215789e51d8d626dc863b4edc7a87647902453492f5d29b27710855e2afadec",
+      "archiveSha256": "3215789e51d8d626dc863b4edc7a87647902453492f5d29b27710855e2afadec",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "71c43be8304270f519404b2efe63eae8b0353338"
+    },
+    {
+      "original": "FASE12_ARRANQUE.md",
+      "archive": "docs/historico/FASE12_ARRANQUE.md",
+      "originalSha256": "38645420233bbd43cc2b8ed038f3d893509da3be40bde70e1f0ff00d7dbfa117",
+      "archiveSha256": "38645420233bbd43cc2b8ed038f3d893509da3be40bde70e1f0ff00d7dbfa117",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "13591b6a4bd8b166de6b96bd11b8ad34cd2a72e3"
+    },
+    {
+      "original": "FASE13_COLA.md",
+      "archive": "docs/historico/FASE13_COLA.md",
+      "originalSha256": "2e2c7f0fc3e2613da49d98c8480462eccfdc678c38799473f170395aa0228bfa",
+      "archiveSha256": "2e2c7f0fc3e2613da49d98c8480462eccfdc678c38799473f170395aa0228bfa",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "a350a461fb969cd747467b37cd6388c7fb0fda63"
+    },
+    {
+      "original": "FASE14_PANEL.md",
+      "archive": "docs/historico/FASE14_PANEL.md",
+      "originalSha256": "adfe326edc13bb608db5795e2c14e8954451df9149e6d3f1643b089e867052dd",
+      "archiveSha256": "adfe326edc13bb608db5795e2c14e8954451df9149e6d3f1643b089e867052dd",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "5b0d62b3a1c9c2f1180c2d7f665225048c3f4b0b"
+    },
+    {
+      "original": "FASE15_CSP.md",
+      "archive": "docs/historico/FASE15_CSP.md",
+      "originalSha256": "2d9c08018640e8c07fa152712efedbf635de6887f85f0ce0ecf2a387b48e8594",
+      "archiveSha256": "2d9c08018640e8c07fa152712efedbf635de6887f85f0ce0ecf2a387b48e8594",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "b74ed3ce3e85e7f89e22944a1de10083b55f92d5"
+    },
+    {
+      "original": "FASE16_DOMINIO.md",
+      "archive": "docs/historico/FASE16_DOMINIO.md",
+      "originalSha256": "505051c69b78a00eaa862b815deff1ab2a01fc9846a082bf5477be21f3f58760",
+      "archiveSha256": "505051c69b78a00eaa862b815deff1ab2a01fc9846a082bf5477be21f3f58760",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "19e09a4996b2ca75a34f658c420c3128983b5c87"
+    },
+    {
+      "original": "FASE17_IPAD.md",
+      "archive": "docs/historico/FASE17_IPAD.md",
+      "originalSha256": "41017c8d659779dc1afda7152e2d5b005c71bd8eccde9778fba5e373026161b2",
+      "archiveSha256": "41017c8d659779dc1afda7152e2d5b005c71bd8eccde9778fba5e373026161b2",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "a4be4711836ac18130291bf4f36cdabd971c6bef"
+    },
+    {
+      "original": "FASE18_INICIO_IPAD.md",
+      "archive": "docs/historico/FASE18_INICIO_IPAD.md",
+      "originalSha256": "41a694e2b4ad2b47b5b7e30b4c0640cc02af30d8f318820ca79260f37f0c8f9c",
+      "archiveSha256": "0680cb4dad09f25b0fa35ebc7634529c3d8d5ffe5aaf0c0ee83c97717ef982a9",
+      "onlyLinkEdits": [
+        {
+          "before": "[MOP-001](MEJORAS_OPCIONALES.md)",
+          "after": "[MOP-001](../../MEJORAS_OPCIONALES.md)"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "a3b6ee365f9b1067426b414ee2000b6ecf9ef24a"
+    },
+    {
+      "original": "FASE19_CURSOR_EDITOR.md",
+      "archive": "docs/historico/FASE19_CURSOR_EDITOR.md",
+      "originalSha256": "159e3915e760bbff566bce0ed58d9109360e4b4fd382211fc539d7767d4fc6ce",
+      "archiveSha256": "159e3915e760bbff566bce0ed58d9109360e4b4fd382211fc539d7767d4fc6ce",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "66997a5e7502e61846ee1e36e7be8aa022d49d52"
+    },
+    {
+      "original": "FASE20_PUBLICACION.md",
+      "archive": "docs/historico/FASE20_PUBLICACION.md",
+      "originalSha256": "2fe344970f3712e91752517ff286ce593ec1adc5f7ee1a1067c80aacb3ff48cf",
+      "archiveSha256": "2fe344970f3712e91752517ff286ce593ec1adc5f7ee1a1067c80aacb3ff48cf",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "e85eb684794cee01e221e7163170e1a9c399ec7e"
+    },
+    {
+      "original": "FASE21_INTEGRIDAD_LOCAL.md",
+      "archive": "docs/historico/FASE21_INTEGRIDAD_LOCAL.md",
+      "originalSha256": "dffc4c71c58522607f2a410eb749a04c9ccf282f2442d3dd0a02ade6a6a3205d",
+      "archiveSha256": "dffc4c71c58522607f2a410eb749a04c9ccf282f2442d3dd0a02ade6a6a3205d",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "0dd50edfebb92cc1026ef1512f8d465998fd83fc"
+    },
+    {
+      "original": "FASE22_1_VALIDACION_IPAD.md",
+      "archive": "docs/historico/FASE22_1_VALIDACION_IPAD.md",
+      "originalSha256": "c757eb8759787c5799c48d10fc17b30ed412c9c1fa86401b2c5f3976cd4a304b",
+      "archiveSha256": "c757eb8759787c5799c48d10fc17b30ed412c9c1fa86401b2c5f3976cd4a304b",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "e4d760b6cb32be9323be0c48b4d5b6dbb3b04361"
+    },
+    {
+      "original": "FASE22_CUENTAS.md",
+      "archive": "docs/historico/FASE22_CUENTAS.md",
+      "originalSha256": "8596d56294ec06c602d7a3572987f06c605ecfeb9ab93b51ca16bb1b9ec8453c",
+      "archiveSha256": "8596d56294ec06c602d7a3572987f06c605ecfeb9ab93b51ca16bb1b9ec8453c",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "4036dac25e4a78851f9a83e6d6db063658dbd2b3"
+    },
+    {
+      "original": "FASE22_PUBLICACION.md",
+      "archive": "docs/historico/FASE22_PUBLICACION.md",
+      "originalSha256": "7922740a79d3c0df42d73dc99e725af941e833662f66018a4a0a39a2da992d98",
+      "archiveSha256": "7922740a79d3c0df42d73dc99e725af941e833662f66018a4a0a39a2da992d98",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "87899ba8b21873b499268c087411ab7263c586df"
+    },
+    {
+      "original": "FASE23_1_REVISION_PUBLICACION.md",
+      "archive": "docs/historico/FASE23_1_REVISION_PUBLICACION.md",
+      "originalSha256": "c47f45451973949d6ced3edd5f8b631fcd13b8d8775805d95a5fdd9dac36de55",
+      "archiveSha256": "c8a5dce2162f84be4fb304ceb99352445933296ad8d978ae28aff27b421ceede",
+      "onlyLinkEdits": [
+        {
+          "before": "[ARCHIVOS_PUBLICACION.txt](.test-artifacts/firebase/fase23-1/ARCHIVOS_PUBLICACION.txt)",
+          "after": "`[ARCHIVOS_PUBLICACION.txt](.test-artifacts/firebase/fase23-1/ARCHIVOS_PUBLICACION.txt)`"
+        },
+        {
+          "before": "[revision.json](.test-artifacts/firebase/fase23-1/revision.json)",
+          "after": "`[revision.json](.test-artifacts/firebase/fase23-1/revision.json)`"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "b2397edd98c69b0bb16e512d04cb5c39c9e2b235"
+    },
+    {
+      "original": "FASE23_PUBLICACION.md",
+      "archive": "docs/historico/FASE23_PUBLICACION.md",
+      "originalSha256": "c040ec5405ffd4148a40f22253f9013ea2585d66ee37deb4ea920a8730a3ed39",
+      "archiveSha256": "c040ec5405ffd4148a40f22253f9013ea2585d66ee37deb4ea920a8730a3ed39",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "73285a6b9865783c7ded778ea1938accbdbdaa86"
+    },
+    {
+      "original": "FASE23_SUPERVISION.md",
+      "archive": "docs/historico/FASE23_SUPERVISION.md",
+      "originalSha256": "98d2c91851e6d68c682b8a3c49648114ebbbbaa4b0b3e7e2c803e9941be868b7",
+      "archiveSha256": "98d2c91851e6d68c682b8a3c49648114ebbbbaa4b0b3e7e2c803e9941be868b7",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "5687bfe7f9b8f4667d26c04e1753e1308a5055d2"
+    },
+    {
+      "original": "FASE24_1_ENTORNO.md",
+      "archive": "docs/historico/FASE24_1_ENTORNO.md",
+      "originalSha256": "8586d4871632f00dbe6353b3d59e0899b118ff1a3b7101af25c895648e5a9580",
+      "archiveSha256": "fa9ceadd151988ef6551420dd6363ebd54b143c67b4c9a0a0126428a77413d18",
+      "onlyLinkEdits": [
+        {
+          "before": "[DESARROLLO.md](DESARROLLO.md)",
+          "after": "[DESARROLLO.md](DESARROLLO-antes-de-24-2.md)"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "d70208e73d69fc683f9ef72b5c5214dc059d48cf"
+    },
+    {
+      "original": "FASE8A1_VALIDACION_REAL.md",
+      "archive": "docs/historico/FASE8A1_VALIDACION_REAL.md",
+      "originalSha256": "362c41f5afa2a4eaaecbe3ff2fc78ef09f85aac504270f6dd91f719846146f5c",
+      "archiveSha256": "362c41f5afa2a4eaaecbe3ff2fc78ef09f85aac504270f6dd91f719846146f5c",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "e217b376c06d2c037fc9dec7502b3e3db1104204"
+    },
+    {
+      "original": "FASE8A_FIREBASE.md",
+      "archive": "docs/historico/FASE8A_FIREBASE.md",
+      "originalSha256": "b0b2414b9f376ca2a777d8e99a08d26f5275dcc95da073d9b5e71da952c5d1d1",
+      "archiveSha256": "b0b2414b9f376ca2a777d8e99a08d26f5275dcc95da073d9b5e71da952c5d1d1",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "4fc63ae0b6bed8ab66a77bc1173189c6e7ec2fd2"
+    },
+    {
+      "original": "FASE8B1_RESULTADOS.md",
+      "archive": "docs/historico/FASE8B1_RESULTADOS.md",
+      "originalSha256": "cef8bd834041b6fa9f43f6d324cc77ceb7166e17e55ea5d48104cee1b77c178d",
+      "archiveSha256": "cef8bd834041b6fa9f43f6d324cc77ceb7166e17e55ea5d48104cee1b77c178d",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "44d827386f374ceef2126493be06e12282c5aefa"
+    },
+    {
+      "original": "FASE8B1_VALIDACION_REAL.md",
+      "archive": "docs/historico/FASE8B1_VALIDACION_REAL.md",
+      "originalSha256": "d52e2bc6426396cf2be12e2bcbcd2fbf3f5b33127b0da94213784e6048ea09be",
+      "archiveSha256": "d52e2bc6426396cf2be12e2bcbcd2fbf3f5b33127b0da94213784e6048ea09be",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "4985ec30f80e14b223d53cb54659b309974e58cd"
+    },
+    {
+      "original": "FASE8B2_REVISION.md",
+      "archive": "docs/historico/FASE8B2_REVISION.md",
+      "originalSha256": "3bac4011d44b7d476920214efa710450d14ce752b3d871e85fe98fe7b26cfc14",
+      "archiveSha256": "c1e1e8c1565d0d1c66d8f526c2fe9f1608f23ccc830a84bbad166e77fff8c26e",
+      "onlyLinkEdits": [
+        {
+          "before": "[PRUEBA_SAFARI_IPAD.md](PRUEBA_SAFARI_IPAD.md)",
+          "after": "`[PRUEBA_SAFARI_IPAD.md](PRUEBA_SAFARI_IPAD.md)`"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "37a76e4e193f14a48bbcc22eb37a4b7afee54284"
+    },
+    {
+      "original": "FASE8B3_PREVIEW.md",
+      "archive": "docs/historico/FASE8B3_PREVIEW.md",
+      "originalSha256": "6fff3b2839831b29dfe673b025f5b9f68401a06ef4bdd3192cc9b1bb8113d249",
+      "archiveSha256": "6fff3b2839831b29dfe673b025f5b9f68401a06ef4bdd3192cc9b1bb8113d249",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "a49e3b6b2a8b0f781836641d8fd9ae9de31908c9"
+    },
+    {
+      "original": "FASE8B4_DIAGNOSTICO.md",
+      "archive": "docs/historico/FASE8B4_DIAGNOSTICO.md",
+      "originalSha256": "6dce697568c3a456c5a6d6e7e8ac0fe591b89d6fd8dfc335211112ec6c41583b",
+      "archiveSha256": "6dce697568c3a456c5a6d6e7e8ac0fe591b89d6fd8dfc335211112ec6c41583b",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "769eacd522f832075de2e8011f4d0b2d6e7f75ab"
+    },
+    {
+      "original": "FASE8B5_DIAGNOSTICO_FISICO.md",
+      "archive": "docs/historico/FASE8B5_DIAGNOSTICO_FISICO.md",
+      "originalSha256": "09be4fb463406af9f20739d328bb5a27c3856c7007e6cfee95bbc75dcdee53de",
+      "archiveSha256": "09be4fb463406af9f20739d328bb5a27c3856c7007e6cfee95bbc75dcdee53de",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "375b6484ef034b6649c0b8e0f692237a70c4c3c6"
+    },
+    {
+      "original": "FASE8B6_INCORPORACION_REMOTA.md",
+      "archive": "docs/historico/FASE8B6_INCORPORACION_REMOTA.md",
+      "originalSha256": "03389a4421320fdc5dbaf1cb86c925e8b59fd0ffefdea5e7456665e6dde23f49",
+      "archiveSha256": "03389a4421320fdc5dbaf1cb86c925e8b59fd0ffefdea5e7456665e6dde23f49",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "94a747c7e11839c78c8e1be4a5ed7e7b232b6416"
+    },
+    {
+      "original": "FASE8B7_ESTABILIDAD_SAFARI.md",
+      "archive": "docs/historico/FASE8B7_ESTABILIDAD_SAFARI.md",
+      "originalSha256": "6f5cf68995e6e66b1a25c398c9106581f0c7521b8361e4d9a693ca6bdb8edb74",
+      "archiveSha256": "6f5cf68995e6e66b1a25c398c9106581f0c7521b8361e4d9a693ca6bdb8edb74",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "56352e9efdd0c8f0a2bac8c13cbc793e26f9e428"
+    },
+    {
+      "original": "FASE8B_SINCRONIZACION.md",
+      "archive": "docs/historico/FASE8B_SINCRONIZACION.md",
+      "originalSha256": "c554e2c1cf4890809921dd23e32f0cb898994ddf4804f074efc4b5e1b29a7cb4",
+      "archiveSha256": "c554e2c1cf4890809921dd23e32f0cb898994ddf4804f074efc4b5e1b29a7cb4",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "7bb60ba7fc2f234a11891bec700f5f63a404529e"
+    },
+    {
+      "original": "FASE8C_PUBLICACION.md",
+      "archive": "docs/historico/FASE8C_PUBLICACION.md",
+      "originalSha256": "faf22433b16104c8495f5d52ed0156b3bcddc29a6b7dc5467f3aa136eb2438dc",
+      "archiveSha256": "faf22433b16104c8495f5d52ed0156b3bcddc29a6b7dc5467f3aa136eb2438dc",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "7496bf5f294bed8d6f6763bf69768f05cc0f92de"
+    },
+    {
+      "original": "README.md",
+      "archive": "docs/historico/README-antes-de-24-2.md",
+      "originalSha256": "dff6f7cc907255584bc6335851ec9c4c7fd9b3bb1908661302819ae3834e01f4",
+      "archiveSha256": "e07bf094d0e758be35d211c98cf2b3cd899fa06cffa1d0d3c8a5865d203b7745",
+      "onlyLinkEdits": [
+        {
+          "before": "[requisitos, instalación y comandos de pruebas vigentes](DESARROLLO.md)",
+          "after": "[requisitos, instalación y comandos de pruebas vigentes](DESARROLLO-antes-de-24-2.md)"
+        },
+        {
+          "before": "[CONTINUIDAD.md](CONTINUIDAD.md)",
+          "after": "[CONTINUIDAD.md](CONTINUIDAD-antes-de-24-2.md)"
+        },
+        {
+          "before": "[MEJORAS_OPCIONALES.md](MEJORAS_OPCIONALES.md)",
+          "after": "[MEJORAS_OPCIONALES.md](../../MEJORAS_OPCIONALES.md)"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "8e21581e5fcd5d79fbcb02e72795490fc541e3eb"
+    },
+    {
+      "original": "ESPECIFICACION.md",
+      "archive": "docs/historico/ESPECIFICACION-antes-de-24-2.md",
+      "originalSha256": "9c808759cb04de0b09aa126612b52590b63c689673185b1d9dddac38f6bdd13f",
+      "archiveSha256": "4fcf1c9e252d2b1f7a5a51300d3adb2c123c4f81cca1c26f30c2f219add974ae",
+      "onlyLinkEdits": [
+        {
+          "before": "[CONTINUIDAD.md](CONTINUIDAD.md)",
+          "after": "[CONTINUIDAD.md](CONTINUIDAD-antes-de-24-2.md)"
+        },
+        {
+          "before": "[MEJORAS_OPCIONALES.md](MEJORAS_OPCIONALES.md)",
+          "after": "[MEJORAS_OPCIONALES.md](../../MEJORAS_OPCIONALES.md)"
+        },
+        {
+          "before": "[DESARROLLO.md](DESARROLLO.md)",
+          "after": "[DESARROLLO.md](DESARROLLO-antes-de-24-2.md)"
+        }
+      ],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "6e68ff1d6b41e80c63911559933409a6a1ce8850"
+    },
+    {
+      "original": "CONTINUIDAD.md",
+      "archive": "docs/historico/CONTINUIDAD-antes-de-24-2.md",
+      "originalSha256": "d221df73e346d9d20ba9e8af764c2c9957087fd4f5e7485ac58769efb3839c2f",
+      "archiveSha256": "d221df73e346d9d20ba9e8af764c2c9957087fd4f5e7485ac58769efb3839c2f",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "7f03c0ec240bbfabc1de67c29a89374c5357e985"
+    },
+    {
+      "original": "AGENTS.md",
+      "archive": "docs/historico/AGENTS-antes-de-24-2.md",
+      "originalSha256": "22bc6d02263e2fe0b95aec3bfebcd6c68e3f659cba88454f0f8b08c77bb45883",
+      "archiveSha256": "22bc6d02263e2fe0b95aec3bfebcd6c68e3f659cba88454f0f8b08c77bb45883",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "157bfca5ca42bf4afcb464b3fcab199beae7d18c"
+    },
+    {
+      "original": "DESARROLLO.md",
+      "archive": "docs/historico/DESARROLLO-antes-de-24-2.md",
+      "originalSha256": "1a9bff9076ec6e635b2532c47700d0eea3f52b12f3ca8b856676a990d816318e",
+      "archiveSha256": "1a9bff9076ec6e635b2532c47700d0eea3f52b12f3ca8b856676a990d816318e",
+      "onlyLinkEdits": [],
+      "originalBodyRecoverable": true,
+      "originalGitBlob": "a606f66f725540a1d525a632433b97faf9423122"
+    }
+  ]
+}

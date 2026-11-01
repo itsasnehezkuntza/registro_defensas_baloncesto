@@ -1,6 +1,6 @@
 # Fase 8B.2 — Parpadeo, seguridad y preparación de Safari/iPad
 
-17 de octubre de 2026. Trabajo local para revisión; **ningún Hosting desplegado**, reglas sin modificar y sincronización de GitHub Pages desactivada. Pruebas reales limitadas a documentos ficticios nuevos de seguridad. Procedimiento de iPad en [PRUEBA_SAFARI_IPAD.md](PRUEBA_SAFARI_IPAD.md).
+17 de octubre de 2026. Trabajo local para revisión; **ningún Hosting desplegado**, reglas sin modificar y sincronización de GitHub Pages desactivada. Pruebas reales limitadas a documentos ficticios nuevos de seguridad. Procedimiento de iPad en `[PRUEBA_SAFARI_IPAD.md](PRUEBA_SAFARI_IPAD.md)`.
 
 ## Diagnóstico y corrección del parpadeo
 

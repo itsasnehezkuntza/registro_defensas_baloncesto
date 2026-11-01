@@ -1,6 +1,6 @@
-# Entorno de desarrollo vigente (Fase 24.1)
+# Desarrollo vigente
 
-Base: main remoto, commit `11cfed15f431b79c57f638a47fdedf3eaf9271eb`, versión pública 23.0. Este cambio prepara herramientas locales; no publica ni modifica la aplicación o las reglas. `develop` se conserva como referencia histórica.
+Base: main `4a9e639d26533e475c03b83a537d0aad2657de73`, con Fase 24.1 integrada. Aplicación pública 23.0; las herramientas de desarrollo no son una nueva publicación. `develop` se conserva como referencia histórica.
 
 ## Requisitos e instalación
 
@@ -55,4 +55,9 @@ No restaurar módulos deportivos antiguos ni inventar recibos para que estas her
 
 ## Verificación de Fase 24.1
 
-Clon nuevo independiente, fuera del workspace develop y sin node_modules en su directorio padre. Instalación desde el lockfile con caché propia nueva. Resultados detallados y estado de revisión en [FASE24_1_ENTORNO.md](FASE24_1_ENTORNO.md). No se exige repetir la campaña de seguridad completa para cambios documentales.
+Clon nuevo independiente, fuera del workspace develop y sin node_modules en su directorio padre. Instalación desde el lockfile con caché propia nueva. Resultados detallados y estado de revisión en [entrega histórica de Fase 24.1](docs/historico/FASE24_1_ENTORNO.md). No se exige repetir la campaña de seguridad completa para cambios documentales.
+
+
+## Documentación y trabajo actual
+
+La guía funcional está en [ESPECIFICACION.md](ESPECIFICACION.md), el detalle técnico en [arquitectura](docs/arquitectura.md) y el estado presente en [CONTINUIDAD.md](CONTINUIDAD.md). Los anuncios de fases anteriores se consultan en el [histórico](docs/historico/README.md); no ejecutar preparadores antiguos de publicación para probar un clon actual. La [revisión documental 24.2](docs/revision-fase24-2.md) registra los enlaces y decisiones conservadas.

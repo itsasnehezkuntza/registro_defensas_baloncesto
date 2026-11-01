@@ -26,7 +26,7 @@ Nueva evidencia en `.test-artifacts/firebase/fase23-1/`: `cliente22.json` (únic
 
 Todo lo preparado está dentro de **esta copia aislada**, en `.test-artifacts/firebase/fase23-1/`:
 
-- `candidato/public/`: **44 archivos públicos**. Lista completa en [ARCHIVOS_PUBLICACION.txt](.test-artifacts/firebase/fase23-1/ARCHIVOS_PUBLICACION.txt); SHA-256 por archivo en [revision.json](.test-artifacts/firebase/fase23-1/revision.json).
+- `candidato/public/`: **44 archivos públicos**. Lista completa en `[ARCHIVOS_PUBLICACION.txt](.test-artifacts/firebase/fase23-1/ARCHIVOS_PUBLICACION.txt)`; SHA-256 por archivo en `[revision.json](.test-artifacts/firebase/fase23-1/revision.json)`.
 - `candidato/reglas/firestore.rules`: único archivo de reglas que se propone publicar en Firestore, fuera de Pages.
 - `candidato/reglas/firebase.rules-only.json`: configuración local explícita, solo reglas, sin Hosting, Authentication o índices. Evita heredar configuración de develop.
 - `reversion/pages22/`: **39 archivos exactos** del commit Pages 22.0 `3aed91f329ed00b672b16ae6002a41e9acf68001`.
