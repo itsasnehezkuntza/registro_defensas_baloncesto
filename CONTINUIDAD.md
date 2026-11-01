@@ -4,9 +4,10 @@ Actualizado el 1 de noviembre de 2026. **Aplicación pública 23.0**, build `23.
 
 ## Referencias y trabajo actual
 
-- Base principal: main `4a9e639d26533e475c03b83a537d0aad2657de73`, merge de Fase 24.1; conserva `ed42d882c0ef6dc7a9433eedfbc8f1d3175fceca`. Entorno reproducible integrado; no es una nueva versión de la aplicación.
+- Rama principal vigente: `main`. Su HEAD remoto se consulta con `git ls-remote origin refs/heads/main`; no debe deducirse del commit que sirvió de base a una fase.
+- Base de partida de Fase 24.2: `4a9e639d26533e475c03b83a537d0aad2657de73`, merge de Fase 24.1; conserva `ed42d882c0ef6dc7a9433eedfbc8f1d3175fceca`. Es una referencia histórica de la consolidación, no un HEAD permanente de main. El entorno reproducible no cambia la versión de la aplicación.
 - Fuentes funcionales 23.0: `8fbca8e80adaf99adc99089c362766beb80de82d`; Pages: `062343707cdfc54a764ca7ae18f98fd5aedfe750`. Publicación con 44 archivos: 43 fuentes y version.json. [Recibo histórico](docs/historico/FASE23_PUBLICACION.md).
-- Fase 24.2: consolidación documental en mantenimiento/fase24-2, pendiente de integración en main mediante revisión de PR. Sin cambios funcionales ni publicación de la aplicación. [Entrega y verificaciones](docs/revision-fase24-2.md).
+- Fase 24.2: consolidación de documentación vigente, arquitectura y pendientes, con el histórico conservado por separado. Sin cambios funcionales ni publicación de la aplicación. [Entrega y verificaciones](docs/revision-fase24-2.md).
 - develop sigue siendo histórico. No cambiarlo ni mezclar sus 368 rutas/acumulado con main. Conservar ramas, worktrees, respaldos y archivos sin seguimiento.
 
 ## Funciones terminadas

@@ -1,6 +1,6 @@
 # Especificación vigente — versión 23.0
 
-Base documental: main `4a9e639d26533e475c03b83a537d0aad2657de73`. Se describe el comportamiento del código de esa base; no se implementan funciones nuevas. La cronología completa se conserva en la [especificación anterior](docs/historico/ESPECIFICACION-antes-de-24-2.md).
+Se describe el comportamiento de la versión pública 23.0, sin implementar funciones nuevas. El commit `4a9e639d26533e475c03b83a537d0aad2657de73` es la referencia de partida de la consolidación documental 24.2, no un HEAD permanente de main. La cronología completa se conserva en la [especificación anterior](docs/historico/ESPECIFICACION-antes-de-24-2.md).
 
 ## Alcance y experiencias
 
@@ -73,6 +73,6 @@ Revocar impide nuevas lecturas autorizadas; cuando se detecta, la UI limpia la s
 
 Contrato, asignación y revocación: [supervisión](docs/supervision.md). Reglas efectivas: [firestore.rules](firestore.rules); [lector](js/supervision-reader.js), [UI](js/supervision-ui.js), [pruebas unitarias](tests/supervision-reader.test.mjs) y [batería específica](tools/firebase/supervision23.test.mjs).
 
-## Mantenimiento y alcance de esta fase
+## Mantenimiento documental
 
-Instalación y comandos: [DESARROLLO.md](DESARROLLO.md). Estado y límites: [CONTINUIDAD.md](CONTINUIDAD.md). La [revisión de Fase 24.2](docs/revision-fase24-2.md) registra inventario, contradicciones resueltas con evidencia y conservación. Solo documentación, pendiente de revisión; sin cambios de código, reglas, dependencias o comportamiento. La propuesta se revisa mediante una PR documental; no habilita cambios reales, fusión ni despliegue de la aplicación.
+Instalación y comandos: [DESARROLLO.md](DESARROLLO.md). Estado y límites: [CONTINUIDAD.md](CONTINUIDAD.md). La [revisión de Fase 24.2](docs/revision-fase24-2.md) registra inventario, contradicciones resueltas con evidencia y conservación. La organización documental conserva los contratos de 23.0 y no modifica código, reglas, dependencias o comportamiento. Los cambios reales y los despliegues requieren su autorización específica.
