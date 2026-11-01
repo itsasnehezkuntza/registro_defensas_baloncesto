@@ -54,7 +54,7 @@ No se añadió firestore.indexes.json: no es necesario para ejecutar estas prueb
 | Hashes de invariantes | 43 fuentes públicas, firestore.rules y package-lock.json: 45/45 idénticos a los bytes del clon inicial 23.0. |
 | Conservación develop | 368 rutas iguales y mismo estado Git/worktrees. |
 
-Requisitos: Node >=22 y npm (probados 24.21.0/11.19.0), red en la primera descarga, Java >=21 solo para emuladores; Chromium solo para visual y WebKit adicional para las baterías que lo usan. Véase [DESARROLLO.md](DESARROLLO.md) para comandos de cada batería. La instalación de npm 11 avisa de dependencias transitivas obsoletas y de scripts no autorizados por su política; no hizo falta aprobarlos para las comprobaciones realizadas. No se cambiaron versiones ni se aplicó npm audit fix. Es mantenimiento pendiente del lockfile, fuera de esta fase.
+Requisitos: Node >=22 y npm (probados 24.21.0/11.19.0), red en la primera descarga, Java >=21 solo para emuladores; Chromium solo para visual y WebKit adicional para las baterías que lo usan. Véase [DESARROLLO.md](DESARROLLO-antes-de-24-2.md) para comandos de cada batería. La instalación de npm 11 avisa de dependencias transitivas obsoletas y de scripts no autorizados por su política; no hizo falta aprobarlos para las comprobaciones realizadas. No se cambiaron versiones ni se aplicó npm audit fix. Es mantenimiento pendiente del lockfile, fuera de esta fase.
 
 No se repitió la campaña completa de seguridad ni account22/sync/supervision23: sus imports vigentes se revisaron, sus comandos y requisitos quedaron preparados, pero esta entrega solo acredita la prueba representativa de reglas y la visual. WebKit no se instaló en este clon. No confundir revisión estática con ejecución de estas baterías.
 
