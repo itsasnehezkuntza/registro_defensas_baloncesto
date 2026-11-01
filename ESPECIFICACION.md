@@ -76,3 +76,5 @@ Contrato, asignación y revocación: [supervisión](docs/supervision.md). Reglas
 ## Mantenimiento documental
 
 Instalación y comandos: [DESARROLLO.md](DESARROLLO.md). Estado y límites: [CONTINUIDAD.md](CONTINUIDAD.md). La [revisión de Fase 24.2](docs/revision-fase24-2.md) registra inventario, contradicciones resueltas con evidencia y conservación. La organización documental conserva los contratos de 23.0 y no modifica código, reglas, dependencias o comportamiento. Los cambios reales y los despliegues requieren su autorización específica.
+
+La [CI básica de Fase 24.3](docs/ci-github-actions.md) documenta el workflow, su alcance y sus límites. Los resultados de Actions deben corresponder a ejecuciones verificables; la validación local no acredita una ejecución remota.
