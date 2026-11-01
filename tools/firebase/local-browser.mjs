@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
+import { prepareTestPages } from '../prepare-test-pages.mjs';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { startServer } from './servidor.mjs';
 import { chromium, idle, initialized, createGame, snapshot, configure, testConfig } from './browser-support.mjs';
 const out = new URL('../../.test-artifacts/firebase/', import.meta.url);
 await mkdir(out, { recursive: true });
+await prepareTestPages();
 const server = await startServer();
 const reports = [];
 // Fase 10: usuario que ya eligió «Continuar sin cuenta» en este navegador.

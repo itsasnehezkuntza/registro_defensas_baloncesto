@@ -2082,3 +2082,10 @@ Procedimiento Console por UID exacto y teamId exacto, propietario comprobado y t
 
 
 **Cierre de Fase 23.2 — 31 de octubre:** publicación terminada y verificada. Propietario existente conserva permisos; registro/Deshacer ficticios confirmados. Chromium en HTTPS: Registro, Dashboard, Google, única asignación ficticia y escritura SDK denegada; revocación retira vista y deniega nuevas lecturas con misma sesión/recarga. Permiso conservado revoked, sin borrar equipos/partidos. Auth/Hosting/índices y datos deportivos reales intactos. Referencias y guía física/procedimiento administrativo en FASE23_PUBLICACION.md. No se requiere reversión ni se inicia otra fase.
+
+
+## 79. Fase 24.1 — Entorno de desarrollo reproducible desde main 23.0
+
+31 de octubre de 2026. Preparación local en clon independiente del main remoto 11cfed15f431b79c57f638a47fdedf3eaf9271eb, rama mantenimiento/fase24-1. Configuración de emuladores/Playwright, npm test/check y generación automática del paquete de subruta; sin dependencias nuevas. Guía vigente en [DESARROLLO.md](DESARROLLO.md) y archivos/resultados/límites en [FASE24_1_ENTORNO.md](FASE24_1_ENTORNO.md).
+
+Instalación reproducible correcta; 12 pruebas nativas, 63 scripts estáticos, tres tamaños de navegador, subruta sin red externa y 85 comprobaciones de reglas en emulador correctos. Pruebas históricas con commits/recibos o módulos retirados clasificadas sin cambiar producción. No se repite la campaña de seguridad completa. Los 43 archivos públicos, reglas y lockfile conservan sus bytes; develop conserva sus 368 rutas, estado Git y worktrees. Sin Firebase real, datos deportivos reales, cambios de producción, commits, push o despliegue. Fase cerrada localmente y detenida para revisión; no se inicia 24.2.
