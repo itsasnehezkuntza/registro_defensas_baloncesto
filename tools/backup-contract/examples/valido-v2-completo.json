@@ -1,0 +1,1521 @@
+{
+  "format": "registro-defensivo-backup",
+  "formatVersion": {
+    "major": 1,
+    "minor": 0
+  },
+  "backupId": "00000000-0000-4000-8000-000000000262",
+  "exportedAt": "2026-11-05T10:00:00.000Z",
+  "producer": {
+    "appVersion": "23.0",
+    "buildId": null,
+    "sourceCommit": "b0bc47ec848d68977c52b9b3206d11cbee66a94e",
+    "contractVersion": "1.0"
+  },
+  "origin": {
+    "webOrigin": "https://ficticio.example",
+    "databaseName": "registro_defensivo_baloncesto",
+    "databaseVersion": 2,
+    "lineageKind": "sync-source",
+    "lineageId": "origen-ficticio-a"
+  },
+  "schemas": {
+    "indexedDb": 2,
+    "panelRecord": 1,
+    "panelDoc": 1,
+    "remoteEnvelope": 1
+  },
+  "coverage": {
+    "account": [
+      "demo-defensas",
+      "usuario-ficticio-a"
+    ],
+    "includedScopes": [
+      null,
+      [
+        "demo-defensas",
+        "usuario-ficticio-a",
+        "equipo-ficticio-a"
+      ],
+      [
+        "demo-defensas",
+        "usuario-ficticio-a",
+        "equipo-ficticio-b"
+      ]
+    ],
+    "excluded": [
+      {
+        "reason": "other-account",
+        "scopeCount": 1
+      }
+    ],
+    "localSnapshotComplete": true,
+    "remoteInventory": "not-performed",
+    "omissions": [],
+    "missingHistoricalPanels": [],
+    "unresolvedImportedOriginals": [],
+    "detachedGameUsage": [],
+    "externalBaseVersions": []
+  },
+  "manifest": {
+    "requiredFeatures": [
+      "inactive-intents",
+      "local-snapshot",
+      "panel-history",
+      "source-seq",
+      "tombstones"
+    ],
+    "stores": {
+      "cloudGames": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 4,
+        "excludedRows": 1,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "cloudEvents": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 7,
+        "excludedRows": 2,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "settings": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 7,
+        "excludedRows": 2,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "syncMeta": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 7,
+        "excludedRows": 1,
+        "transientRows": 1,
+        "omittedRows": 0
+      },
+      "syncQueue": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 7,
+        "excludedRows": 1,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "syncBindings": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 2,
+        "excludedRows": 1,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "games": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 2,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "events": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 3,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "cloudTombs": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 2,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      }
+    },
+    "sections": {
+      "localGames": {
+        "count": 2,
+        "bytes": 219,
+        "sha256": "f68034855da5e2017a5afabd00f8b5dba3b8c41789feb981e55237b083378beb"
+      },
+      "localEvents": {
+        "count": 3,
+        "bytes": 1200,
+        "sha256": "8d07dd0aa655466ec5a01e5cca80c87e73fd903a1c51c954fedfb6e04321674d"
+      },
+      "settings": {
+        "count": 5,
+        "bytes": 3943,
+        "sha256": "e5fd7c22a5a8e3bc3f068d375d789f9f316908385ab11f7fc63675ea0edc1d2e"
+      },
+      "cloudGames": {
+        "count": 3,
+        "bytes": 3191,
+        "sha256": "dadefb0769d8be04508c49c02a405b9a256fbcc7b943fe245fcc33d9aeef4737"
+      },
+      "cloudEvents": {
+        "count": 5,
+        "bytes": 3174,
+        "sha256": "ac98160460893619f8b399ab4e67f7181fb04e48a77cb8b3cf92b34d017c515c"
+      },
+      "tombstones": {
+        "count": 2,
+        "bytes": 271,
+        "sha256": "c76da3da4b62b502af5d379519bc0854893b018ad9dd2b03591dbaa96b85b0f5"
+      },
+      "pendingIntents": {
+        "count": 6,
+        "bytes": 3880,
+        "sha256": "fc66b36274b8613c6e6dbba2ea5ce125e890663477f7a707fd95412beedcd17f"
+      },
+      "metadata": {
+        "count": 5,
+        "bytes": 592,
+        "sha256": "26344bb0bd916742d3db37485f3c9e73e680863f0b8a2c3a7388f329c00fa4d3"
+      },
+      "bindings": {
+        "count": 1,
+        "bytes": 211,
+        "sha256": "46f0476be9dd8662d3f56990f4bf944f0542ee823cd0af88a0c578af4eaa1547"
+      }
+    },
+    "totals": {
+      "representations": 5,
+      "logicalGames": 4,
+      "originals": 1,
+      "localEvents": 3,
+      "cloudEvents": 5,
+      "liveEvents": 5,
+      "deletedEvents": 1,
+      "originalEvents": 2,
+      "tombstones": 2,
+      "teams": 2,
+      "versions": 4,
+      "pending": 6,
+      "blocked": 1
+    }
+  },
+  "data": {
+    "localGames": [
+      {
+        "id": "original-ficticio",
+        "jornada": "F-01",
+        "rival": "Rival ficticio",
+        "createdAt": "2026-11-05T10:00:00.000Z"
+      },
+      {
+        "id": "solo-local-ficticio",
+        "jornada": "F-01",
+        "rival": "Rival ficticio",
+        "createdAt": "2026-11-05T10:00:00.000Z"
+      }
+    ],
+    "localEvents": [
+      {
+        "sourceSeq": 1,
+        "payload": {
+          "id": "original-t1",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 1
+        }
+      },
+      {
+        "sourceSeq": 2,
+        "payload": {
+          "id": "original-t2",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 3,
+          "resultado": "anotado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 2
+        }
+      },
+      {
+        "sourceSeq": 3,
+        "payload": {
+          "id": "local-t1",
+          "gameId": "solo-local-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 3
+        }
+      }
+    ],
+    "settings": [
+      {
+        "kind": "game-usage",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "games": [
+          {
+            "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+            "versionIds": [
+              "cfg-a"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "game-usage",
+        "scope": null,
+        "games": [
+          {
+            "gameId": "original-ficticio",
+            "versionIds": [
+              "cfg-a"
+            ]
+          },
+          {
+            "gameId": "solo-local-ficticio",
+            "versionIds": [
+              "cfg-a"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "panel-record",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "record": {
+          "schema": 1,
+          "revision": 2,
+          "currentId": "cfg-b",
+          "baselineId": "cfg-a",
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          },
+          "versions": [
+            {
+              "id": "cfg-a",
+              "createdAt": "2026-11-05T10:00:00.000Z",
+              "source": "editor",
+              "basedOn": null,
+              "csvHash": null,
+              "doc": {
+                "schema": 1,
+                "categories": [
+                  {
+                    "id": "transicion",
+                    "name": "Transición",
+                    "items": [
+                      {
+                        "id": "transicion_ficticia",
+                        "name": "Acción ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "estatico",
+                    "name": "Estático",
+                    "items": [
+                      {
+                        "id": "estatico_ficticio",
+                        "name": "Histórica conservada",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directo",
+                    "name": "Bloqueo directo",
+                    "types": [
+                      {
+                        "id": "tipo_ficticio",
+                        "name": "Tipo ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "defenses": [
+                      {
+                        "id": "defensa_ficticia",
+                        "name": "Defensa ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "cells": {}
+                  }
+                ]
+              }
+            },
+            {
+              "id": "cfg-b",
+              "createdAt": "2026-11-05T10:00:00.000Z",
+              "source": "editor",
+              "basedOn": "cfg-a",
+              "csvHash": null,
+              "doc": {
+                "schema": 1,
+                "categories": [
+                  {
+                    "id": "transicion",
+                    "name": "Transición",
+                    "items": [
+                      {
+                        "id": "transicion_ficticia",
+                        "name": "Acción ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "estatico",
+                    "name": "Estático",
+                    "items": [
+                      {
+                        "id": "estatico_ficticio",
+                        "name": "Nombre posterior ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": true
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directo",
+                    "name": "Bloqueo directo",
+                    "types": [
+                      {
+                        "id": "tipo_ficticio",
+                        "name": "Tipo ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "defenses": [
+                      {
+                        "id": "defensa_ficticia",
+                        "name": "Defensa ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "cells": {}
+                  }
+                ]
+              }
+            }
+          ],
+          "updatedAt": "2026-11-05T10:00:00.000Z",
+          "origin": "cloud",
+          "syncHead": "cfg-b"
+        }
+      },
+      {
+        "kind": "panel-record",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "record": {
+          "schema": 1,
+          "revision": 1,
+          "currentId": "cfg-a",
+          "baselineId": "cfg-a",
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          },
+          "versions": [
+            {
+              "id": "cfg-a",
+              "createdAt": "2026-11-05T10:00:00.000Z",
+              "source": "editor",
+              "basedOn": null,
+              "csvHash": null,
+              "doc": {
+                "schema": 1,
+                "categories": [
+                  {
+                    "id": "transicion",
+                    "name": "Transición",
+                    "items": [
+                      {
+                        "id": "transicion_ficticia",
+                        "name": "Acción ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "estatico",
+                    "name": "Estático",
+                    "items": [
+                      {
+                        "id": "estatico_ficticio",
+                        "name": "Histórica conservada",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directo",
+                    "name": "Bloqueo directo",
+                    "types": [
+                      {
+                        "id": "tipo_ficticio",
+                        "name": "Tipo ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "defenses": [
+                      {
+                        "id": "defensa_ficticia",
+                        "name": "Defensa ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "cells": {}
+                  }
+                ]
+              }
+            }
+          ],
+          "updatedAt": "2026-11-05T10:00:00.000Z",
+          "origin": "cloud"
+        }
+      },
+      {
+        "kind": "panel-record",
+        "scope": null,
+        "record": {
+          "schema": 1,
+          "revision": 1,
+          "currentId": "cfg-a",
+          "baselineId": "cfg-a",
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          },
+          "versions": [
+            {
+              "id": "cfg-a",
+              "createdAt": "2026-11-05T10:00:00.000Z",
+              "source": "editor",
+              "basedOn": null,
+              "csvHash": null,
+              "doc": {
+                "schema": 1,
+                "categories": [
+                  {
+                    "id": "transicion",
+                    "name": "Transición",
+                    "items": [
+                      {
+                        "id": "transicion_ficticia",
+                        "name": "Acción ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "estatico",
+                    "name": "Estático",
+                    "items": [
+                      {
+                        "id": "estatico_ficticio",
+                        "name": "Histórica conservada",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directo",
+                    "name": "Bloqueo directo",
+                    "types": [
+                      {
+                        "id": "tipo_ficticio",
+                        "name": "Tipo ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "defenses": [
+                      {
+                        "id": "defensa_ficticia",
+                        "name": "Defensa ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "cells": {}
+                  }
+                ]
+              }
+            }
+          ],
+          "updatedAt": "2026-11-05T10:00:00.000Z",
+          "origin": "local"
+        }
+      }
+    ],
+    "cloudGames": [
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "payload": {
+          "id": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "createdAt": "2026-11-05T10:00:00.000Z"
+        },
+        "sourceId": "origen-ficticio-a",
+        "deleted": false,
+        "panel": {
+          "version": {
+            "id": "cfg-a",
+            "createdAt": "2026-11-05T10:00:00.000Z",
+            "source": "editor",
+            "basedOn": null,
+            "csvHash": null,
+            "doc": {
+              "schema": 1,
+              "categories": [
+                {
+                  "id": "transicion",
+                  "name": "Transición",
+                  "items": [
+                    {
+                      "id": "transicion_ficticia",
+                      "name": "Acción ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "estatico",
+                  "name": "Estático",
+                  "items": [
+                    {
+                      "id": "estatico_ficticio",
+                      "name": "Histórica conservada",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "directo",
+                  "name": "Bloqueo directo",
+                  "types": [
+                    {
+                      "id": "tipo_ficticio",
+                      "name": "Tipo ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "defenses": [
+                    {
+                      "id": "defensa_ficticia",
+                      "name": "Defensa ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "cells": {}
+                }
+              ]
+            }
+          },
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          }
+        },
+        "cloudState": "blocked"
+      },
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "gameId": "partido-eliminado",
+        "payload": {
+          "id": "partido-eliminado",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "createdAt": "2026-11-05T10:00:00.000Z"
+        },
+        "deleted": true,
+        "panel": {
+          "version": {
+            "id": "cfg-a",
+            "createdAt": "2026-11-05T10:00:00.000Z",
+            "source": "editor",
+            "basedOn": null,
+            "csvHash": null,
+            "doc": {
+              "schema": 1,
+              "categories": [
+                {
+                  "id": "transicion",
+                  "name": "Transición",
+                  "items": [
+                    {
+                      "id": "transicion_ficticia",
+                      "name": "Acción ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "estatico",
+                  "name": "Estático",
+                  "items": [
+                    {
+                      "id": "estatico_ficticio",
+                      "name": "Histórica conservada",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "directo",
+                  "name": "Bloqueo directo",
+                  "types": [
+                    {
+                      "id": "tipo_ficticio",
+                      "name": "Tipo ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "defenses": [
+                    {
+                      "id": "defensa_ficticia",
+                      "name": "Defensa ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "cells": {}
+                }
+              ]
+            }
+          },
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          }
+        },
+        "cloudState": "pending-local-ack"
+      },
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "gameId": "partido-equipo-b",
+        "payload": {
+          "id": "partido-equipo-b",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "createdAt": "2026-11-05T10:00:00.000Z"
+        },
+        "deleted": false,
+        "panel": {
+          "version": {
+            "id": "cfg-a",
+            "createdAt": "2026-11-05T10:00:00.000Z",
+            "source": "editor",
+            "basedOn": null,
+            "csvHash": null,
+            "doc": {
+              "schema": 1,
+              "categories": [
+                {
+                  "id": "transicion",
+                  "name": "Transición",
+                  "items": [
+                    {
+                      "id": "transicion_ficticia",
+                      "name": "Acción ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "estatico",
+                  "name": "Estático",
+                  "items": [
+                    {
+                      "id": "estatico_ficticio",
+                      "name": "Histórica conservada",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "directo",
+                  "name": "Bloqueo directo",
+                  "types": [
+                    {
+                      "id": "tipo_ficticio",
+                      "name": "Tipo ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "defenses": [
+                    {
+                      "id": "defensa_ficticia",
+                      "name": "Defensa ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "cells": {}
+                }
+              ]
+            }
+          },
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          }
+        },
+        "cloudState": "cloud-status-unknown"
+      }
+    ],
+    "cloudEvents": [
+      {
+        "sourceSeq": 1,
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "e_83eb2696ee23a61022b0bc1ef44a096a179a93897b545909af30872f87c3f080",
+        "payload": {
+          "id": "original-t1",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 1
+        },
+        "deleted": false,
+        "sourceId": "origen-ficticio-a",
+        "cloudState": "cloud-status-unknown"
+      },
+      {
+        "sourceSeq": 2,
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "e_6cdd06371357a975d3707ee1181208c13156a29ed07e69ff64387249d4215bb8",
+        "payload": {
+          "id": "original-t2",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 3,
+          "resultado": "anotado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 2
+        },
+        "deleted": false,
+        "sourceId": "origen-ficticio-a",
+        "cloudState": "cloud-status-unknown"
+      },
+      {
+        "sourceSeq": 3,
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "nuevo-t3",
+        "payload": {
+          "id": "nuevo-t3",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "anotado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z"
+        },
+        "deleted": false,
+        "cloudState": "blocked"
+      },
+      {
+        "sourceSeq": 4,
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "eliminado-t4",
+        "payload": {
+          "id": "eliminado-t4",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 3,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z"
+        },
+        "deleted": true,
+        "cloudState": "pending-local-ack"
+      },
+      {
+        "sourceSeq": 5,
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "gameId": "partido-equipo-b",
+        "eventId": "otro-t1",
+        "payload": {
+          "id": "otro-t1",
+          "gameId": "partido-equipo-b",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z"
+        },
+        "deleted": false,
+        "cloudState": "cloud-status-unknown"
+      }
+    ],
+    "tombstones": [
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "eliminado-t4"
+      },
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "gameId": "partido-eliminado"
+      }
+    ],
+    "pendingIntents": [
+      {
+        "opId": "op-alta",
+        "type": "game",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": null,
+        "payload": {
+          "id": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "createdAt": "2026-11-05T10:00:00.000Z"
+        },
+        "sourceId": "origen-ficticio-a",
+        "createdAt": 1793872800000,
+        "blocked": false,
+        "executable": false
+      },
+      {
+        "opId": "op-deshacer",
+        "type": "undo",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "eliminado-t4",
+        "payload": null,
+        "sourceId": "",
+        "createdAt": 1793872800000,
+        "blocked": false,
+        "executable": false
+      },
+      {
+        "opId": "op-evento",
+        "type": "event",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": "nuevo-t3",
+        "payload": {
+          "id": "nuevo-t3",
+          "gameId": "original-ficticio",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "anotado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z"
+        },
+        "sourceId": "event-nuevo-t3",
+        "createdAt": 1793872800000,
+        "blocked": true,
+        "executable": false,
+        "panelVersionId": "cfg-a",
+        "error": "SYNC_CONFLICT"
+      },
+      {
+        "opId": "op-panel",
+        "type": "panel",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "eventId": null,
+        "payload": {
+          "version": {
+            "id": "cfg-a",
+            "createdAt": "2026-11-05T10:00:00.000Z",
+            "source": "editor",
+            "basedOn": null,
+            "csvHash": null,
+            "doc": {
+              "schema": 1,
+              "categories": [
+                {
+                  "id": "transicion",
+                  "name": "Transición",
+                  "items": [
+                    {
+                      "id": "transicion_ficticia",
+                      "name": "Acción ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "estatico",
+                  "name": "Estático",
+                  "items": [
+                    {
+                      "id": "estatico_ficticio",
+                      "name": "Histórica conservada",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "directo",
+                  "name": "Bloqueo directo",
+                  "types": [
+                    {
+                      "id": "tipo_ficticio",
+                      "name": "Tipo ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "defenses": [
+                    {
+                      "id": "defensa_ficticia",
+                      "name": "Defensa ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "cells": {}
+                }
+              ]
+            }
+          },
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          }
+        },
+        "sourceId": "cfg-a",
+        "createdAt": 1793872800000,
+        "blocked": false,
+        "executable": false,
+        "baseId": null
+      },
+      {
+        "opId": "op-plantilla",
+        "type": "default-panel",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "@configuration",
+        "eventId": null,
+        "payload": {
+          "version": {
+            "id": "cfg-b",
+            "createdAt": "2026-11-05T10:00:00.000Z",
+            "source": "editor",
+            "basedOn": "cfg-a",
+            "csvHash": null,
+            "doc": {
+              "schema": 1,
+              "categories": [
+                {
+                  "id": "transicion",
+                  "name": "Transición",
+                  "items": [
+                    {
+                      "id": "transicion_ficticia",
+                      "name": "Acción ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ]
+                },
+                {
+                  "id": "estatico",
+                  "name": "Estático",
+                  "items": [
+                    {
+                      "id": "estatico_ficticio",
+                      "name": "Nombre posterior ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": true
+                    }
+                  ]
+                },
+                {
+                  "id": "directo",
+                  "name": "Bloqueo directo",
+                  "types": [
+                    {
+                      "id": "tipo_ficticio",
+                      "name": "Tipo ficticio",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "defenses": [
+                    {
+                      "id": "defensa_ficticia",
+                      "name": "Defensa ficticia",
+                      "shots": [
+                        2,
+                        3
+                      ],
+                      "retired": false
+                    }
+                  ],
+                  "cells": {}
+                }
+              ]
+            }
+          },
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          }
+        },
+        "sourceId": "cfg-b",
+        "createdAt": 1793872800000,
+        "blocked": false,
+        "executable": false,
+        "baseId": "cfg-a"
+      },
+      {
+        "opId": "op-borrar",
+        "type": "delete",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-b"
+        ],
+        "gameId": "partido-eliminado",
+        "eventId": null,
+        "payload": {
+          "id": "partido-eliminado",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "createdAt": "2026-11-05T10:00:00.000Z"
+        },
+        "sourceId": "deleted-partido-eliminado",
+        "createdAt": 1793872800000,
+        "blocked": false,
+        "executable": false
+      }
+    ],
+    "metadata": [
+      {
+        "kind": "active-team",
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71"
+      },
+      {
+        "kind": "legacy-owner",
+        "gameId": "original-ficticio",
+        "uid": "usuario-ficticio-a",
+        "imported": true
+      },
+      {
+        "kind": "preferred-team",
+        "account": [
+          "demo-defensas",
+          "usuario-ficticio-a"
+        ],
+        "teamId": "equipo-ficticio-b"
+      },
+      {
+        "kind": "source",
+        "value": "origen-ficticio-a"
+      },
+      {
+        "kind": "teams",
+        "account": [
+          "demo-defensas",
+          "usuario-ficticio-a"
+        ],
+        "teams": [
+          {
+            "id": "equipo-ficticio-a",
+            "name": "Azul ficticio"
+          },
+          {
+            "id": "equipo-ficticio-b",
+            "name": "Verde ficticio"
+          }
+        ]
+      }
+    ],
+    "bindings": [
+      {
+        "scope": [
+          "demo-defensas",
+          "usuario-ficticio-a",
+          "equipo-ficticio-a"
+        ],
+        "localGameId": "original-ficticio",
+        "gameId": "g_7f9826e37cb710facc104ef779fd875560271e6b447415fe5fdc385ad51e0f71",
+        "source": "origen-ficticio-a"
+      }
+    ]
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "RFC8785",
+    "digest": "8a1bb2089dc9ec0c26424c7cbff72d685d3a92852623c48d0393786ee7c46a62"
+  }
+}

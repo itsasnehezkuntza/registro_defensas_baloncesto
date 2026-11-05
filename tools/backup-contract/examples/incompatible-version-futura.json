@@ -1,0 +1,345 @@
+{
+  "format": "registro-defensivo-backup",
+  "formatVersion": {
+    "major": 2,
+    "minor": 0
+  },
+  "backupId": "00000000-0000-4000-8000-000000000262",
+  "exportedAt": "2026-11-05T10:00:00.000Z",
+  "producer": {
+    "appVersion": "23.0",
+    "buildId": null,
+    "sourceCommit": "b0bc47ec848d68977c52b9b3206d11cbee66a94e",
+    "contractVersion": "1.0"
+  },
+  "origin": {
+    "webOrigin": "https://ficticio.example",
+    "databaseName": "registro_defensivo_baloncesto",
+    "databaseVersion": 1,
+    "lineageKind": "unresolved",
+    "lineageId": null
+  },
+  "schemas": {
+    "indexedDb": 1,
+    "panelRecord": 1,
+    "panelDoc": 1,
+    "remoteEnvelope": 1
+  },
+  "coverage": {
+    "account": null,
+    "includedScopes": [
+      null
+    ],
+    "excluded": [],
+    "localSnapshotComplete": true,
+    "remoteInventory": "not-performed",
+    "omissions": [],
+    "missingHistoricalPanels": [],
+    "unresolvedImportedOriginals": [],
+    "detachedGameUsage": [],
+    "externalBaseVersions": []
+  },
+  "manifest": {
+    "requiredFeatures": [
+      "inactive-intents",
+      "local-snapshot",
+      "panel-history",
+      "source-seq",
+      "tombstones"
+    ],
+    "stores": {
+      "games": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 1,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "events": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 1,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "settings": {
+        "present": true,
+        "read": "complete",
+        "sourceRows": 3,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "cloudGames": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "cloudEvents": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "cloudTombs": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "syncQueue": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "syncMeta": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      },
+      "syncBindings": {
+        "present": false,
+        "read": "absent",
+        "sourceRows": 0,
+        "excludedRows": 0,
+        "transientRows": 0,
+        "omittedRows": 0
+      }
+    },
+    "sections": {
+      "localGames": {
+        "count": 1,
+        "bytes": 105,
+        "sha256": "64b1d5c2e95e73021d614f0ee555ad2a3c2e679edb3f3d9abbe4a8c180b04037"
+      },
+      "localEvents": {
+        "count": 1,
+        "bytes": 398,
+        "sha256": "ed97631a193bf561567f9ba345b0e2fc3d146482eae5ff225a3d8562d9bb6294"
+      },
+      "settings": {
+        "count": 3,
+        "bytes": 1082,
+        "sha256": "f202ae967faf16bc5ee6864563fe3e6fbe4969304da58eca6bfa1aeb4a779153"
+      },
+      "cloudGames": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "cloudEvents": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "tombstones": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "pendingIntents": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "metadata": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "bindings": {
+        "count": 0,
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "totals": {
+      "representations": 1,
+      "logicalGames": 1,
+      "originals": 0,
+      "localEvents": 1,
+      "cloudEvents": 0,
+      "liveEvents": 1,
+      "deletedEvents": 0,
+      "originalEvents": 0,
+      "tombstones": 0,
+      "teams": 0,
+      "versions": 1,
+      "pending": 0,
+      "blocked": 0
+    }
+  },
+  "data": {
+    "localGames": [
+      {
+        "id": "partido-local",
+        "jornada": "F-01",
+        "rival": "Rival ficticio",
+        "createdAt": "2026-11-05T10:00:00.000Z"
+      }
+    ],
+    "localEvents": [
+      {
+        "sourceSeq": 7,
+        "payload": {
+          "id": "tiro-local-1",
+          "gameId": "partido-local",
+          "jornada": "F-01",
+          "rival": "Rival ficticio",
+          "categoria": "Transición",
+          "accion": "Acción ficticia",
+          "categoria_id": "transicion",
+          "accion_id": "transicion_ficticia",
+          "defensa_id": null,
+          "estrategia": null,
+          "tipo_bloqueo": null,
+          "tiros_permitidos": [
+            2,
+            3
+          ],
+          "valor_tiro": 2,
+          "resultado": "fallado",
+          "fecha_hora": "2026-11-05T10:00:00.000Z",
+          "seq": 7
+        }
+      }
+    ],
+    "settings": [
+      {
+        "kind": "active-local",
+        "gameId": "partido-local"
+      },
+      {
+        "kind": "game-usage",
+        "scope": null,
+        "games": [
+          {
+            "gameId": "partido-local",
+            "versionIds": [
+              "cfg-a"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "panel-record",
+        "scope": null,
+        "record": {
+          "schema": 1,
+          "revision": 1,
+          "currentId": "cfg-a",
+          "baselineId": "cfg-a",
+          "usedIds": {
+            "actions": [
+              "transicion_ficticia",
+              "estatico_ficticio",
+              "tipo_ficticio"
+            ],
+            "defenses": [
+              "defensa_ficticia"
+            ]
+          },
+          "versions": [
+            {
+              "id": "cfg-a",
+              "createdAt": "2026-11-05T10:00:00.000Z",
+              "source": "editor",
+              "basedOn": null,
+              "csvHash": null,
+              "doc": {
+                "schema": 1,
+                "categories": [
+                  {
+                    "id": "transicion",
+                    "name": "Transición",
+                    "items": [
+                      {
+                        "id": "transicion_ficticia",
+                        "name": "Acción ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "estatico",
+                    "name": "Estático",
+                    "items": [
+                      {
+                        "id": "estatico_ficticio",
+                        "name": "Histórica conservada",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "directo",
+                    "name": "Bloqueo directo",
+                    "types": [
+                      {
+                        "id": "tipo_ficticio",
+                        "name": "Tipo ficticio",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "defenses": [
+                      {
+                        "id": "defensa_ficticia",
+                        "name": "Defensa ficticia",
+                        "shots": [
+                          2,
+                          3
+                        ],
+                        "retired": false
+                      }
+                    ],
+                    "cells": {}
+                  }
+                ]
+              }
+            }
+          ],
+          "updatedAt": "2026-11-05T10:00:00.000Z",
+          "origin": "local"
+        }
+      }
+    ],
+    "cloudGames": [],
+    "cloudEvents": [],
+    "tombstones": [],
+    "pendingIntents": [],
+    "metadata": [],
+    "bindings": []
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "RFC8785",
+    "digest": "3dd9454665e5fa5465957b309d4fc48af9f852de28abf47b9a2b48d466c5904a"
+  }
+}

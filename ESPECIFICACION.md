@@ -78,3 +78,7 @@ Contrato, asignación y revocación: [supervisión](docs/supervision.md). Reglas
 Instalación y comandos: [DESARROLLO.md](DESARROLLO.md). Estado y límites: [CONTINUIDAD.md](CONTINUIDAD.md). La [revisión de Fase 24.2](docs/revision-fase24-2.md) registra inventario, contradicciones resueltas con evidencia y conservación. La organización documental conserva los contratos de 23.0 y no modifica código, reglas, dependencias o comportamiento. Los cambios reales y los despliegues requieren su autorización específica.
 
 La [CI básica de Fase 24.3](docs/ci-github-actions.md) documenta el workflow, su alcance y sus límites. Los resultados de Actions deben corresponder a ejecuciones verificables; la validación local no acredita una ejecución remota.
+
+## Herramienta técnica de validación — Fase 26.2
+
+El [contrato técnico JSON 1.0 y validador puro](tools/backup-contract/CONTRATO_JSON_1_0.md), con base b0bc47ec848d68977c52b9b3206d11cbee66a94e, describe una herramienta aislada de Node y ejemplos exclusivamente ficticios. El lector actual admite productores declarados como 23.0; aplicación, IndexedDB y contrato tienen versiones independientes. No existen todavía exportación desde IndexedDB, descarga real de respaldo, restauración, cifrado ni reconciliación remota. La herramienta no modifica las funciones públicas de registro o CSV. Alcance, pruebas, límites y decisiones pendientes en el [informe de Fase 26.2](tools/backup-contract/INFORME_FASE26_2.md). La integración del prototipo técnico no autoriza esas funciones futuras ni acceso a datos reales.
